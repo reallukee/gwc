@@ -1,0 +1,29 @@
+# All files
+[*]
+indent_style = space
+indent_size = 4
+charset = utf-8
+end_of_line = crlf
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+# Repository
+[*.{md,json,yml}]
+indent_size = 2
+
+# Visual Studio
+[*.sln]
+indent_style = tab
+
+[*.{slnx,vcxproj,vcxproj.filters,resx,config}]
+indent_size = 2
+
+[*.{sln,vcxproj,vcxproj.filters,resx,config}]
+charset = utf-8-bom
+
+[*.rc]
+charset = utf-16le
+trim_trailing_whitespace = false
+
+[resource.{h,hxx}]
+trim_trailing_whitespace = false
