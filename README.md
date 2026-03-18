@@ -1,12 +1,12 @@
 <img src="./assets/gwc.png" width="128px" height="128px" />
 
-# GWC 3.0
+# GWC
 
 ![License](https://img.shields.io/github/license/reallukee/gwc)
 ![Release](https://img.shields.io/github/v/release/reallukee/gwc?include_prereleases)
 ![Language](https://img.shields.io/github/languages/top/reallukee/gwc)
 
-A C++ graphics library written in C++/CLI
+A C#, C++ and C graphics library written in C#, C++ and C
 
 Caratteristiche:
 
@@ -16,25 +16,39 @@ Caratteristiche:
 * 🧱 Incompleta
 * 🤤 Goduriosa
 
-Nessuna Pretesa, Solo Chill
+Nessuna Pretesa, Solo Chill!
+
+
+
+# RoadMap
+
+* [x] Interfaccia C#
+* [ ] Interfaccia C++
+* [ ] Interfaccia C
 
 
 
 # Utilizzo
 
+> [!WARNING]
 > CI STO LAVORANDO!
 
 ## Prerequisiti
 
+<!--
 * Microsoft Visual C++ v14 Redistributable (x64) per x64
 * Microsoft Visual C++ v14 Redistributable (x86) per x86
 * Microsoft Visual C++ v14 Redistributable (arm64) per arm64
+-->
 * .NET Framework 4.8.1 Runtime
 * Windows 10+
 
 
 
 # Compilazione
+
+> [!WARNING]
+> CI STO LAVORANDO!
 
 * [Prerequisiti](#0-prerequisiti)
 * [Sorgente](#1-sorgente)
@@ -53,10 +67,12 @@ Nessuna Pretesa, Solo Chill
 
 In Visual Studio Installer Selezionare:
 
+<!--
 * Sviluppo di Applicazioni Desktop con C++
   * Strumenti di Compilazione MSVC per ARM64/ARM64EC (Ultima Versione)
   * Strumenti di Compilazione MSVC per x64/x86 (Ultima Versione)
   * Supporto a C++/CLI (Ultima Versione)
+-->
 * Sviluppo per Desktop .NET
   * .NET Framework 4.8.1 SDK
   * .NET Framework 4.8.1 Targeting Pack

@@ -18,6 +18,7 @@ ipch/
 [Oo]bj/
 
 # Repository
+*.temp/
 *.temp.*
 
 # Windows

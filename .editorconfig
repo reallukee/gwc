@@ -15,10 +15,10 @@ indent_size = 2
 [*.sln]
 indent_style = tab
 
-[*.{slnx,vcxproj,vcxproj.filters,resx,config}]
+[*.{slnx,csproj,vbproj,fsproj,vcxproj,vcxproj.filters,resx,props,config}]
 indent_size = 2
 
-[*.{sln,vcxproj,vcxproj.filters,resx,config}]
+[*.{sln,csproj,vbproj,fsproj,vcxproj,vcxproj.filters,resx,props,config}]
 charset = utf-8-bom
 
 [*.rc]
