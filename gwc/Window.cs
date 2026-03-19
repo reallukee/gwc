@@ -311,11 +311,11 @@ namespace Reallukee.GWC
             }
         }
 
-        public void Open()
+        public bool Open()
         {
             if (windowThread.IsAlive || renderThread.IsAlive)
             {
-                return;
+                return false;
             }
 
             windowThread.Start();
@@ -326,19 +326,23 @@ namespace Reallukee.GWC
             {
                 Thread.Sleep(100);
             }
+
+            return true;
         }
 
-        public void Shutdown()
+        public bool Shutdown()
         {
             if (!windowThread.IsAlive || !renderThread.IsAlive)
             {
-                return;
+                return false;
             }
 
             if (window.IsHandleCreated)
             {
                 Application.Exit();
             }
+
+            return true;
         }
 
         public bool IsOpen
@@ -357,12 +361,32 @@ namespace Reallukee.GWC
             }
         }
 
-        public void Draw(IFigure figure)
+        public bool DrawBorderRectangle(int x, int y, int width, int height)
         {
-            if (renderBuffer.Count < MaxRenderBufferLength)
+            if (renderBuffer.Count > MaxRenderBufferLength)
             {
-                renderBuffer.Enqueue(figure);
+                return false;
             }
+
+            IFigure borderRectangle = new BorderRectangle(BorderColor, x, y, width, height);
+
+            renderBuffer.Enqueue(borderRectangle);
+
+            return true;
+        }
+
+        public bool DrawFillRectangle(int x, int y, int width, int height)
+        {
+            if (renderBuffer.Count > MaxRenderBufferLength)
+            {
+                return false;
+            }
+
+            IFigure fillRectangle = new FillRectangle(FillColor, x, y, width, height);
+
+            renderBuffer.Enqueue(fillRectangle);
+
+            return true;
         }
     }
 }

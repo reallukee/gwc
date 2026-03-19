@@ -34,17 +34,8 @@ namespace Reallukee.GWC
 
             if (window.IsOpen)
             {
-                IFigure fillRectangle = new FillRectangle(
-                    Color.Green, 50, 50, 100, 100
-                );
-
-                window.Draw(fillRectangle);
-
-                IFigure borderRectangle = new BorderRectangle(
-                    Color.Red, 50, 50, 100, 100
-                );
-
-                window.Draw(borderRectangle);
+                window.DrawFillRectangle(50, 50, 100, 100);
+                window.DrawBorderRectangle(50, 50, 100, 100);
 
                 Console.ReadKey();
 
