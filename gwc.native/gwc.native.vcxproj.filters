@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="File di origine">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="File di intestazione">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="File di risorse">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="File di intestazione\C API">
+      <UniqueIdentifier>{bba59fae-898b-4623-bbb8-1da0ce0c867e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File di intestazione\C++ API">
+      <UniqueIdentifier>{c596c727-4d01-4fbf-ba4a-53b05ec48acd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File di origine\C API">
+      <UniqueIdentifier>{8fb5ff14-8c0f-4908-8cde-ef839b227edd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File di origine\C++ API">
+      <UniqueIdentifier>{9ca3dfc9-fc98-431c-85d0-2e30c21d6b20}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="WindowHandler.clr.hpp">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="export.hpp">
+      <Filter>File di intestazione\C++ API</Filter>
+    </ClInclude>
+    <ClInclude Include="header.hpp">
+      <Filter>File di intestazione\C++ API</Filter>
+    </ClInclude>
+    <ClInclude Include="gwc.hpp">
+      <Filter>File di intestazione\C++ API</Filter>
+    </ClInclude>
+    <ClInclude Include="window_macros.hpp">
+      <Filter>File di intestazione\C++ API</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.hpp">
+      <Filter>File di intestazione\C++ API</Filter>
+    </ClInclude>
+    <ClInclude Include="export.h">
+      <Filter>File di intestazione\C API</Filter>
+    </ClInclude>
+    <ClInclude Include="header.h">
+      <Filter>File di intestazione\C API</Filter>
+    </ClInclude>
+    <ClInclude Include="gwc.h">
+      <Filter>File di intestazione\C API</Filter>
+    </ClInclude>
+    <ClInclude Include="window_macros.h">
+      <Filter>File di intestazione\C API</Filter>
+    </ClInclude>
+    <ClInclude Include="WINDOW.h">
+      <Filter>File di intestazione\C API</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="WindowHandler.clr.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="gwc.cpp">
+      <Filter>File di origine\C++ API</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>File di origine\C++ API</Filter>
+    </ClCompile>
+    <ClCompile Include="gwc.c">
+      <Filter>File di origine\C API</Filter>
+    </ClCompile>
+    <ClCompile Include="WINDOW.c">
+      <Filter>File di origine\C API</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
