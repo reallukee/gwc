@@ -36,6 +36,7 @@ Nessuna Pretesa, Solo Chill!
 > CI STO LAVORANDO!
 
 * [Requisiti](#0-requisiti)
+* [Progetto](#1-progetto)
 
 
 
@@ -49,6 +50,102 @@ Nessuna Pretesa, Solo Chill!
   * Microsoft Visual C++ v14 Redistributable (x86)
   * Microsoft Visual C++ v14 Redistributable (arm64)
 * Windows 10
+
+
+
+## 1. Progetto
+
+### API C
+
+```c
+// GWC 0.1.0
+
+#include <gwc.h>
+
+int main(int argc, const char* argv[])
+{
+    WINDOW* window = window_new(800, 600);
+
+    window_open(window);
+
+    if (!window_isInitialized(window))
+    {
+        window_delete(window);
+
+        return 1;
+    }
+
+    if (window_isOpen(window))
+    {
+        window_drawFillRectangle(window, 50, 50, 100, 100);
+        window_drawBorderRectangle(window, 50, 50, 100, 100);
+
+        printf("Press any key to exit...\n");
+
+        _getch();
+
+        window_shutdown(window);
+    }
+    else
+    {
+        printf("Oh :(\n");
+    }
+
+    window_delete(window);
+
+    return 0;
+}
+```
+
+### API C++
+
+```cpp
+// GWC 0.1.0
+
+#include <gwc.hpp>
+
+#include <conio.h>
+
+#include <iostream>
+
+using namespace gwc;
+
+using namespace std;
+
+int main(int argc, const char* argv[])
+{
+    Window* window = new Window(800, 600);
+
+    window->open();
+
+    if (!window->isInitialized())
+    {
+        delete window;
+
+        return 1;
+    }
+
+    if (window->isOpen())
+    {
+        window->drawFillRectangle(50, 50, 100, 100);
+        window->drawBorderRectangle(50, 50, 100, 100);
+
+        cout << "Press any key to exit..." << endl;
+
+        _getch();
+
+        window->shutdown();
+    }
+    else
+    {
+        cout << "Oh :(" << endl;
+    }
+
+    delete window;
+
+    return 0;
+}
+```
 
 
 
@@ -97,10 +194,10 @@ git clone https://github.com/reallukee/gwc.git
 
 ```cmd
 REM Visual Studio 2026
-CALL "%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\Tools\vsdevcmd"
+CALL "%PROGRAMFILES%\Microsoft Visual Studio\18\Community\Common7\Tools\vsdevcmd"
 
 REM Build Tools per Visual Studio 2026
-CALL "%ProgramFiles% (x86)\Microsoft Visual Studio\18\BuildTools\Common7\Tools\vsdevcmd"
+CALL "%PROGRAMFILES% (x86)\Microsoft Visual Studio\18\BuildTools\Common7\Tools\vsdevcmd"
 ```
 
 
