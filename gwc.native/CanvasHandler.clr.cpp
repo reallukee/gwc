@@ -3,10 +3,10 @@
 //
 //  Version : 0.1.0
 //  MIT License
-//  WindowHandler.clr.cpp
+//  CanvasHandler.clr.cpp
 //
 
-#include "WindowHandler.clr.hpp"
+#include "CanvasHandler.clr.hpp"
 
 #ifdef __cplusplus_cli
 
@@ -16,18 +16,18 @@ namespace GWC
 {
 namespace Interop
 {
-    IntPtr WindowHandler::Alloc(int width, int height)
+    IntPtr CanvasHandler::Alloc(int width, int height)
     {
-        Window^ window = gcnew Window(width, height);
+        Canvas^ canvas = gcnew Canvas(width, height);
 
-        GCHandle managedHandle = GCHandle::Alloc(window);
+        GCHandle managedHandle = GCHandle::Alloc(canvas);
 
         IntPtr nativeHandle = GCHandle::ToIntPtr(managedHandle);
 
         return nativeHandle;
     }
 
-    bool WindowHandler::Free(IntPtr handle)
+    bool CanvasHandler::Free(IntPtr handle)
     {
         if (handle == IntPtr::Zero)
         {
@@ -43,14 +43,14 @@ namespace Interop
         return true;
     }
 
-    bool WindowHandler::IsNull(IntPtr handle)
+    bool CanvasHandler::IsNull(IntPtr handle)
     {
         IntPtr nativeHandle = handle;
 
         return nativeHandle == IntPtr::Zero;
     }
 
-    Window^ WindowHandler::Invoke(IntPtr handle)
+    Canvas^ CanvasHandler::Invoke(IntPtr handle)
     {
         if (handle == IntPtr::Zero)
         {
@@ -61,14 +61,14 @@ namespace Interop
 
         GCHandle managedHandle = GCHandle::FromIntPtr(nativeHandle);
 
-        Window^ window = safe_cast<Window^>(managedHandle.Target);
+        Canvas^ canvas = safe_cast<Canvas^>(managedHandle.Target);
 
-        return window;
+        return canvas;
     }
 
-    WindowHandler::WindowHandler() {}
+    CanvasHandler::CanvasHandler() {}
 
-    WindowHandler::~WindowHandler() {}
+    CanvasHandler::~CanvasHandler() {}
 }
 }
 }

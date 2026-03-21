@@ -3,13 +3,13 @@
 //
 //  Version : 0.1.0
 //  MIT License
-//  WindowHandler.clr.hpp
+//  CanvasHandler.clr.hpp
 //
 
 #pragma once
 
-#ifndef GWC_WINDOWHANDLER_CLR_HPP
-#define GWC_WINDOWHANDLER_CLR_HPP
+#ifndef GWC_CANVASHANDLER_CLR_HPP
+#define GWC_CANVASHANDLER_CLR_HPP
 
 #ifdef __cplusplus_cli
 
@@ -21,7 +21,7 @@ namespace GWC
 {
 namespace Interop
 {
-    public ref class WindowHandler abstract
+    public ref class CanvasHandler abstract
     {
 
     public:
@@ -29,12 +29,12 @@ namespace Interop
         static IntPtr  Alloc (int width, int height);
         static bool    Free  (IntPtr handle);
         static bool    IsNull(IntPtr handle);
-        static Window^ Invoke(IntPtr handle);
+        static Canvas^ Invoke(IntPtr handle);
 
     private:
 
-        WindowHandler();
-        ~WindowHandler();
+        CanvasHandler();
+        ~CanvasHandler();
 
     };
 }
@@ -43,4 +43,4 @@ namespace Interop
 
 #endif // __cplusplus_cli
 
-#endif // !GWC_WINDOWHANDLER_CLR_HPP
+#endif // !GWC_CANVASHANDLER_CLR_HPP

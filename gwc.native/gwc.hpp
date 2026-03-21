@@ -13,6 +13,7 @@
 
 #ifdef __cplusplus
 
+#include "Canvas.hpp"
 #include "Window.hpp"
 
 namespace gwc

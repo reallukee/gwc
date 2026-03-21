@@ -15,11 +15,11 @@
 
 #include "export.hpp"
 
+#include <windows.h>
+
 #include <cstddef>
 #include <cstdlib>
 #include <cstring>
-
-#include <string>
 
 using namespace std;
 

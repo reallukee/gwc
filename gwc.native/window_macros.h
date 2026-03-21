@@ -11,32 +11,32 @@
 #ifndef WINDOW_MACROS_H
 #define WINDOW_MACROS_H
 
-#ifndef INVOKE_C_VOID
-#define INVOKE_C_VOID(window, target) \
-    WINDOW* nativeHandle = window; \
+#ifndef INVOKE_WINDOW_VOID_C
+#define INVOKE_WINDOW_VOID_C(window, target) \
+    void* nativeHandle = window->window; \
     \
     IntPtr managedHandle = IntPtr(nativeHandle); \
     \
-    if (WindowHandler::isNull(managedHandle)) \
+    if (WindowHandler::IsNull(managedHandle)) \
     { \
         return; \
-    }\
+    } \
     \
-    WindowHandler::invoke(managedHandle)->target;
-#endif // !INVOKE_C_VOID
+    WindowHandler::Invoke(managedHandle)->target;
+#endif // !INVOKE_WINDOW_VOID_C
 
-#ifndef INVOKE_C_BOOL
-#define INVOKE_C_BOOL(window, target) \
-    WINDOW* nativeHandle = window; \
+#ifndef INVOKE_WINDOW_BOOL_C
+#define INVOKE_WINDOW_BOOL_C(window, target) \
+    void* nativeHandle = window->window; \
     \
     IntPtr managedHandle = IntPtr(nativeHandle); \
     \
-    if (WindowHandler::isNull(managedHandle)) \
+    if (WindowHandler::IsNull(managedHandle)) \
     { \
         return false; \
     } \
     \
-    return WindowHandler::invoke(managedHandle)->target;
-#endif // !INVOKE_C_BOOL
+    return WindowHandler::Invoke(managedHandle)->target;
+#endif // !INVOKE_WINDOW_BOOL_C
 
 #endif // !WINDOW_MACROS_H

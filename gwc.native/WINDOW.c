@@ -9,63 +9,92 @@
 #include "WINDOW.h"
 #include "window_macros.h"
 
-#include "WindowHandler.clr.hpp"
+#include "gwc.clr.hpp"
 
-using namespace Reallukee::GWC::Interop;
+typedef struct WINDOW {
+    void* window;
+} WINDOW;
 
-typedef struct WINDOW {} WINDOW;
-
-WINDOW* window_new()
+WINDOW* window_new(int width, int height)
 {
-    IntPtr managedHandle = WindowHandler::alloc();
+    IntPtr managedHandle = WindowHandler::Alloc(width, height);
 
-    WINDOW* nativeHandle = reinterpret_cast<WINDOW*>(managedHandle.ToPointer());
+    WINDOW* window = (WINDOW*)calloc(1, sizeof(WINDOW));
 
-    WINDOW* window = nativeHandle;
+    if (window == NULL)
+    {
+        return NULL;
+    }
+
+    void* nativeHandle = reinterpret_cast<void*>(managedHandle.ToPointer());
+
+    window->window = nativeHandle;
 
     return window;
 }
 
 void window_delete(WINDOW* window)
 {
-    WINDOW* nativeHandle = window;
-
-    IntPtr managedHandle = IntPtr(nativeHandle);
-
-    if (WindowHandler::isNull(managedHandle))
+    if (window == NULL)
     {
         return;
     }
 
-    WindowHandler::free(managedHandle);
+    void* nativeHandle = window->window;
+
+    if (nativeHandle != NULL)
+    {
+        IntPtr managedHandle = IntPtr(nativeHandle);
+
+        if (WindowHandler::IsNull(managedHandle))
+        {
+            return;
+        }
+
+        WindowHandler::Free(managedHandle);
+    }
+
+    free(window);
 }
+
+bool window_isInitialized(WINDOW* window)
+{
+    if (window == NULL)
+    {
+        return false;
+    }
+
+    return window->window != NULL;
+}
+
+
 
 bool window_open(WINDOW* window)
 {
-    INVOKE_C_BOOL(window, Open());
+    INVOKE_WINDOW_BOOL_C(window, Open());
 }
 
 bool window_shutdown(WINDOW* window)
 {
-    INVOKE_C_BOOL(window, Shutdown());
+    INVOKE_WINDOW_BOOL_C(window, Shutdown());
 }
 
 bool window_isOpen(WINDOW* window)
 {
-    INVOKE_C_BOOL(window, IsOpen);
+    INVOKE_WINDOW_BOOL_C(window, IsOpen);
 }
 
 bool window_isShutdown(WINDOW* window)
 {
-    INVOKE_C_BOOL(window, IsShutdown);
+    INVOKE_WINDOW_BOOL_C(window, IsShutdown);
 }
 
 bool window_drawBorderRectangle(WINDOW* window, int x, int y, int width, int height)
 {
-    INVOKE_C_BOOL(window, DrawBorderRectangle(x, y, width, height));
+    INVOKE_WINDOW_BOOL_C(window, DrawBorderRectangle(x, y, width, height));
 }
 
 bool window_drawFillRectangle(WINDOW* window, int x, int y, int width, int height)
 {
-    INVOKE_C_BOOL(window, DrawFillRectangle(x, y, width, height));
+    INVOKE_WINDOW_BOOL_C(window, DrawFillRectangle(x, y, width, height));
 }
