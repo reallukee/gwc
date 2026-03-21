@@ -93,6 +93,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="..\gwc\IFigure.cs" />
     <Compile Include="..\gwc\IBorderColor.cs" />
     <Compile Include="..\gwc\IFillColor.cs" />
@@ -102,11 +107,18 @@
     <Compile Include="..\gwc\WindowForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="..\gwc\Canvas.cs" />
     <Compile Include="..\gwc\Window.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
