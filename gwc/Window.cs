@@ -24,79 +24,71 @@ using System.Windows.Forms;
 
 namespace Reallukee.GWC
 {
-    public class Window
+    public sealed class Window : IDisposable
     {
-        public Window()
+        public Window(int width, int height)
         {
-            InitWindow();
+            InitWindow(width, height);
 
-            if (windowCanvas != null)
-            {
-                InitRender();
-            }
+            InitRender(width, height);
         }
 
         ~Window()
         {
-            if (windowCanvas != null)
+            Dispose();
+        }
+
+        public void Dispose()
+        {
+            if (canvas != null)
             {
-                windowCanvas.Dispose();
+                canvas.Dispose();
             }
         }
 
-        public const int DefaultWindowWidth    = 800;
-        public const int DefaultWindowHeight   = 600;
-        public const int MaxRenderBufferLength = 1000;
+        private WindowForm    window;
+        private Canvas        canvas;
 
-        private WindowForm       window;
+        private Thread        windowThread;
+        private volatile bool windowThreadFlag;
+        object                windowLock;
 
-        private Thread           windowThread;
-        private volatile bool    windowThreadFlag;
-        private Bitmap           windowCanvas;
-        object                   windowLock;
+        private Thread        renderThread;
+        private volatile bool renderThreadFlag;
+        object                renderLock;
 
-        private Thread           renderThread;
-        private volatile bool    renderThreadFlag;
-        ConcurrentQueue<IFigure> renderBuffer;
-        object                   renderLock;
-
-        private void InitWindow()
+        private void InitWindow(int width, int height)
         {
             window = new WindowForm();
 
-            window.Text = string.Format(
-                "{0} {1}",
-                Application.ProductName,
-                Application.ProductVersion
-            );
-
+            window.Text        = $"{Application.ProductName} {Application.ProductVersion}";
+            window.Icon        = Properties.Resources.AppIcon;
             window.MinimumSize = new Size(0, 0);
             window.MaximumSize = new Size(0, 0);
-            window.Size        = new Size(DefaultWindowWidth, DefaultWindowHeight);
-            window.ClientSize  = new Size(DefaultWindowWidth, DefaultWindowHeight);
+            window.Size        = new Size(width, height);
+            window.ClientSize  = new Size(width, height);
 
-            borderColor = Color.Black;
-            fillColor   = Color.Red;
-
-            window.Paint += OnPaint;
+            window.Paint  += WindowForm_Paint;
+            window.Resize += WindowForm_Resize;
 
             windowThread = new Thread(WindowThreadLoop);
 
             windowThreadFlag = true;
-
-            windowCanvas = new Bitmap(DefaultWindowWidth, DefaultWindowHeight);
         }
 
-        private void InitRender()
+        private void InitRender(int width, int height)
         {
+            canvas = new Canvas(width, height);
+
+            canvas.BorderColor = Color.Black;
+            canvas.FillColor   = Color.Red;
+
             renderThread = new Thread(RenderThreadLoop)
             {
                 IsBackground = true
             };
 
             renderThreadFlag = true;
-
-            renderBuffer = new ConcurrentQueue<IFigure>();
 
             renderLock = new object();
         }
@@ -123,7 +115,7 @@ namespace Reallukee.GWC
             {
                 double renderElapsedTime = 0;
 
-                if (window.IsHandleCreated && !renderBuffer.IsEmpty)
+                if (window.IsHandleCreated && !canvas.Buffer.IsEmpty)
                 {
                     lock (renderLock)
                     {
@@ -131,9 +123,9 @@ namespace Reallukee.GWC
                         {
                             renderStopwatch.Restart();
 
-                            using (var g = Graphics.FromImage(windowCanvas))
+                            using (Graphics g = Graphics.FromImage(canvas.Bitmap))
                             {
-                                while (renderBuffer.TryDequeue(out var figure))
+                                while (canvas.Buffer.TryDequeue(out var figure))
                                 {
                                     figure.Render(g);
 
@@ -152,11 +144,7 @@ namespace Reallukee.GWC
                         {
                             MessageBox.Show(
                                 ex.Message,
-                                string.Format(
-                                    "{0} {1}",
-                                    Application.ProductName,
-                                    Application.ProductVersion
-                                ),
+                                $"{Application.ProductName} {Application.ProductVersion}",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error
                             );
@@ -257,53 +245,63 @@ namespace Reallukee.GWC
             }
         }
 
-        private Color borderColor;
-
-        public Color BorderColor
+        private void WindowForm_Paint(object sender, PaintEventArgs e)
         {
-            get
+            if (window.ClientSize.Width <= 0 || window.ClientSize.Height <= 0)
             {
-                return borderColor;
+                return;
             }
 
-            set
-            {
-                borderColor = value;
-            }
-        }
-
-        private Color fillColor;
-
-        public Color FillColor
-        {
-            get
-            {
-                return fillColor;
-            }
-
-            set
-            {
-                fillColor = value;
-            }
-        }
-
-        private void OnPaint(object sender, PaintEventArgs e)
-        {
             lock (renderLock)
             {
                 try
                 {
-                    e.Graphics.DrawImage(windowCanvas, 0, 0);
+                    e.Graphics.DrawImage(canvas.Bitmap, 0, 0);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(
                         ex.Message,
-                        string.Format(
-                            "{0} {1}",
-                            Application.ProductName,
-                            Application.ProductVersion
-                        ),
+                        $"{Application.ProductName} {Application.ProductVersion}",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
+                }
+            }
+        }
+
+        private void WindowForm_Resize(object sender, EventArgs e)
+        {
+            if (window.ClientSize.Width <= 0 || window.ClientSize.Height <= 0)
+            {
+                return;
+            }
+
+            lock (renderLock)
+            {
+                try
+                {
+                    if (canvas.Bitmap.Width < window.ClientSize.Width || canvas.Bitmap.Height < window.ClientSize.Height)
+                    {
+                        Canvas oldCanvas = canvas;
+
+                        Canvas newCanvas = new Canvas(window.ClientSize.Width, window.ClientSize.Height);
+
+                        using (Graphics g = Graphics.FromImage(newCanvas.Bitmap))
+                        {
+                            g.DrawImage(oldCanvas.Bitmap, 0, 0);
+                        }
+
+                        canvas = newCanvas;
+
+                        oldCanvas.Dispose();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(
+                        ex.Message,
+                        $"{Application.ProductName} {Application.ProductVersion}",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error
                     );
@@ -337,6 +335,14 @@ namespace Reallukee.GWC
                 return false;
             }
 
+            windowThreadFlag = false;
+
+            renderThreadFlag = false;
+
+            // windowThread.Join();
+
+            // renderThread.Join();
+
             if (window.IsHandleCreated)
             {
                 Application.Exit();
@@ -361,32 +367,40 @@ namespace Reallukee.GWC
             }
         }
 
-        public bool DrawBorderRectangle(int x, int y, int width, int height)
+        public Color BorderColor
         {
-            if (renderBuffer.Count > MaxRenderBufferLength)
+            get
             {
-                return false;
+                return canvas.BorderColor;
             }
 
-            IFigure borderRectangle = new BorderRectangle(BorderColor, x, y, width, height);
+            set
+            {
+                canvas.BorderColor = value;
+            }
+        }
 
-            renderBuffer.Enqueue(borderRectangle);
+        public Color FillColor
+        {
+            get
+            {
+                return canvas.FillColor;
+            }
 
-            return true;
+            set
+            {
+                canvas.FillColor = value;
+            }
+        }
+
+        public bool DrawBorderRectangle(int x, int y, int width, int height)
+        {
+            return canvas.DrawBorderRectangle(x, y, width, height);
         }
 
         public bool DrawFillRectangle(int x, int y, int width, int height)
         {
-            if (renderBuffer.Count > MaxRenderBufferLength)
-            {
-                return false;
-            }
-
-            IFigure fillRectangle = new FillRectangle(FillColor, x, y, width, height);
-
-            renderBuffer.Enqueue(fillRectangle);
-
-            return true;
+            return canvas.DrawFillRectangle(x, y, width, height);
         }
     }
 }

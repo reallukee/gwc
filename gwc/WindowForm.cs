@@ -31,6 +31,22 @@ namespace Reallukee.GWC
             DoubleBuffered = true;
 
             StartPosition = FormStartPosition.CenterScreen;
+
+            SetStyle(ControlStyles.ResizeRedraw,                 true);
+            SetStyle(ControlStyles.UserPaint,                    true);
+            SetStyle(ControlStyles.AllPaintingInWmPaint,         true);
+            SetStyle(ControlStyles.SupportsTransparentBackColor, true);
+            SetStyle(ControlStyles.OptimizedDoubleBuffer,        true);
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+        }
+
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
         }
     }
 }

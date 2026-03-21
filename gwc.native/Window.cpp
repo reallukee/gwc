@@ -9,17 +9,15 @@
 #include "Window.hpp"
 #include "window_macros.hpp"
 
-#include "WindowHandler.clr.hpp"
+#include "gwc.clr.hpp"
 
 #ifdef __cplusplus
 
-using namespace Reallukee::GWC::Interop;
-
 namespace gwc
 {
-    Window::Window()
+    Window::Window(int width, int height)
     {
-        IntPtr managedHandle = WindowHandler::alloc();
+        IntPtr managedHandle = WindowHandler::Alloc(width, height);
 
         void* nativeHandle = reinterpret_cast<void*>(managedHandle.ToPointer());
 
@@ -32,42 +30,49 @@ namespace gwc
 
         IntPtr managedHandle = IntPtr(nativeHandle);
 
-        if (WindowHandler::isNull(managedHandle))
+        if (WindowHandler::IsNull(managedHandle))
         {
             return;
         }
 
-        WindowHandler::free(managedHandle);
+        WindowHandler::Free(managedHandle);
+    }
+
+    bool Window::isInitialized()
+    {
+        void* nativeHandle = window;
+
+        return nativeHandle != nullptr;
     }
 
     bool Window::open()
     {
-        INVOKE_CPP_BOOL(window, Open());
+        INVOKE_WINDOW_BOOL_CPP(window, Open());
     }
 
     bool Window::shutdown()
     {
-        INVOKE_CPP_BOOL(window, Shutdown());
+        INVOKE_WINDOW_BOOL_CPP(window, Shutdown());
     }
 
     bool Window::isOpen()
     {
-        INVOKE_CPP_BOOL(window, IsOpen);
+        INVOKE_WINDOW_BOOL_CPP(window, IsOpen);
     }
 
     bool Window::isShutdown()
     {
-        INVOKE_CPP_BOOL(window, IsShutdown);
+        INVOKE_WINDOW_BOOL_CPP(window, IsShutdown);
     }
 
     bool Window::drawBorderRectangle(int x, int y, int width, int height)
     {
-        INVOKE_CPP_BOOL(window, DrawBorderRectangle(x, y, width, height));
+        INVOKE_WINDOW_BOOL_CPP(window, DrawBorderRectangle(x, y, width, height));
     }
 
     bool Window::drawFillRectangle(int x, int y, int width, int height)
     {
-        INVOKE_CPP_BOOL(window, DrawFillRectangle(x, y, width, height));
+        INVOKE_WINDOW_BOOL_CPP(window, DrawFillRectangle(x, y, width, height));
     }
 }
 

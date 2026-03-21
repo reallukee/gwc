@@ -13,33 +13,33 @@
 
 #ifdef __cplusplus
 
-#ifndef INVOKE_CPP_VOID
-#define INVOKE_CPP_VOID(window, target) \
+#ifndef INVOKE_WINDOW_VOID_CPP
+#define INVOKE_WINDOW_VOID_CPP(window, target) \
     void* nativeHandle = window; \
     \
     IntPtr managedHandle = IntPtr(nativeHandle); \
     \
-    if (WindowHandler::isNull(managedHandle)) \
+    if (WindowHandler::IsNull(managedHandle)) \
     { \
         return; \
-    }\
+    } \
     \
-    WindowHandler::invoke(managedHandle)->target;
-#endif // !INVOKE_CPP_VOID
+    WindowHandler::Invoke(managedHandle)->target;
+#endif // !INVOKE_WINDOW_VOID_CPP
 
-#ifndef INVOKE_CPP_BOOL
-#define INVOKE_CPP_BOOL(window, target) \
+#ifndef INVOKE_WINDOW_BOOL_CPP
+#define INVOKE_WINDOW_BOOL_CPP(window, target) \
     void* nativeHandle = window; \
     \
     IntPtr managedHandle = IntPtr(nativeHandle); \
     \
-    if (WindowHandler::isNull(managedHandle)) \
+    if (WindowHandler::IsNull(managedHandle)) \
     { \
         return false; \
     } \
     \
-    return WindowHandler::invoke(managedHandle)->target;
-#endif // !INVOKE_CPP_BOOL
+    return WindowHandler::Invoke(managedHandle)->target;
+#endif // !INVOKE_WINDOW_BOOL_CPP
 
 #endif // __cplusplus
 

@@ -28,7 +28,7 @@ namespace Reallukee.GWC
     {
         static void Main(string[] args)
         {
-            Window window = new Window();
+            Window window = new Window(800, 600);
 
             window.Open();
 
@@ -37,9 +37,15 @@ namespace Reallukee.GWC
                 window.DrawFillRectangle(50, 50, 100, 100);
                 window.DrawBorderRectangle(50, 50, 100, 100);
 
-                Console.ReadKey();
+                Console.WriteLine("Press any key to exit...");
+
+                Console.ReadKey(true);
 
                 window.Shutdown();
+            }
+            else
+            {
+                Console.WriteLine("Oh :(!");
             }
         }
     }

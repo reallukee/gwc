@@ -13,6 +13,8 @@
 
 #include "export.h"
 
+#include <windows.h>
+
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdio.h>

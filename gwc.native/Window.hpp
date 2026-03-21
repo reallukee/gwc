@@ -15,6 +15,8 @@
 
 #include "header.hpp"
 
+#define _WINDOW void*
+
 namespace gwc
 {
     class GWC_CPP_API Window
@@ -22,12 +24,14 @@ namespace gwc
 
     private:
 
-        void* window;
+        _WINDOW window;
 
     public:
 
-        Window ();
+        Window (int width, int height);
         ~Window();
+
+        bool isInitialized();
 
         bool open    ();
         bool shutdown();
