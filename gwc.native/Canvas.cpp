@@ -1,9 +1,13 @@
 //
+// :.:.:.:.:.
 // GWC.Native
+// v0.1.0
+// :.:.:.:.:.
 //
-//  Version : 0.1.0
-//  MIT License
-//  Canvas.cpp
+// https://github.com/reallukee/gwc
+//
+// canvas.cpp
+//  Licenza MIT
 //
 
 #include "Canvas.hpp"

@@ -1,9 +1,13 @@
 //
+// :.:.:.:.:.
 // GWC.Native
+// v0.1.0
+// :.:.:.:.:.
 //
-//  Version : 0.1.0
-//  MIT License
-//  WINDOW.c
+// https://github.com/reallukee/gwc
+//
+// WINDOW.c
+//  Licenza MIT
 //
 
 #include "WINDOW.h"

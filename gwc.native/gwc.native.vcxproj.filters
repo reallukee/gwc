@@ -27,6 +27,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="resource.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
     <ClInclude Include="header.clr.hpp">
       <Filter>File di intestazione</Filter>
     </ClInclude>
@@ -49,7 +52,7 @@
       <Filter>File di intestazione\C++ API</Filter>
     </ClInclude>
     <ClInclude Include="canvas_macros.hpp">
-      <Filter>File di intestazione</Filter>
+      <Filter>File di intestazione\C++ API</Filter>
     </ClInclude>
     <ClInclude Include="Canvas.hpp">
       <Filter>File di intestazione\C++ API</Filter>
@@ -80,9 +83,6 @@
     </ClInclude>
     <ClInclude Include="WINDOW.h">
       <Filter>File di intestazione\C API</Filter>
-    </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>File di intestazione</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

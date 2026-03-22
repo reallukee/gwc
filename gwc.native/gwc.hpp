@@ -1,9 +1,13 @@
 //
+// :.:.:.:.:.
 // GWC.Native
+// v0.1.0
+// :.:.:.:.:.
 //
-//  Version : 0.1.0
-//  MIT License
-//  gwc.hpp
+// https://github.com/reallukee/gwc
+//
+// gwc.hpp
+//  Licenza MIT
 //
 
 #pragma once
@@ -12,6 +16,18 @@
 #define GWC_API_HPP
 
 #ifdef __cplusplus
+
+//
+// Ciao!
+//
+// Questo è l'header dell'API C++ di GWC!
+// La versione attesa dell'API è:
+//
+//  0.1.0
+//
+
+#define _GWC_VERSION     "010"
+#define _GWC_MIN_VERSION "010"
 
 #include "Canvas.hpp"
 #include "Window.hpp"

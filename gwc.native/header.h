@@ -1,9 +1,13 @@
 //
+// :.:.:.:.:.
 // GWC.Native
+// v0.1.0
+// :.:.:.:.:.
 //
-//  Version : 0.1.0
-//  MIT License
-//  header.h
+// https://github.com/reallukee/gwc
+//
+// header.h
+//  Licenza MIT
 //
 
 #pragma once

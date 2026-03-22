@@ -1,12 +1,16 @@
 //
+// :.:.:.:.:.
 // GWC.Native
+// v0.1.0
+// :.:.:.:.:.
 //
-//  Version : 0.1.0
-//  MIT License
-//  main.c
+// https://github.com/reallukee/gwc
+//
+// main.c
+//  Licenza MIT
 //
 
-#include "..\gwc.native\gwc.h"
+#include <gwc.h>
 
 #include <conio.h>
 

@@ -1,9 +1,13 @@
 //
+// :.:.:.:.:.
 // GWC.Native
+// v0.1.0
+// :.:.:.:.:.
 //
-//  Version : 0.1.0
-//  MIT License
-//  window_macros.hpp
+// https://github.com/reallukee/gwc
+//
+// window_macros.hpp
+//  Licenza MIT
 //
 
 #pragma once

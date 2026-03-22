@@ -1,9 +1,13 @@
 //
+// :.:.:.:.:.
 // GWC.Native
+// v0.1.0
+// :.:.:.:.:.
 //
-//  Version : 0.1.0
-//  MIT License
-//  header.clr.hpp
+// https://github.com/reallukee/gwc
+//
+// header.clr.hpp
+//  Licenza MIT
 //
 
 #pragma once

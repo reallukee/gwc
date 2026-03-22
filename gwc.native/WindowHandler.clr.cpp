@@ -1,9 +1,13 @@
 //
+// :.:.:.:.:.
 // GWC.Native
+// v0.1.0
+// :.:.:.:.:.
 //
-//  Version : 0.1.0
-//  MIT License
-//  WindowHandler.clr.cpp
+// https://github.com/reallukee/gwc
+//
+// WindowHandler.clr.cpp
+//  Licenza MIT
 //
 
 #include "WindowHandler.clr.hpp"
