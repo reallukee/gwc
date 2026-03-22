@@ -1,9 +1,13 @@
 //
+// :.:.:.
 // GWC
+// v0.1.0
+// :.:.:.
 //
-//  Version : 0.1.0
-//  MIT License
-//  BorderRectangle.cs
+// https://github.com/reallukee/gwc
+//
+// BorderRectangle.cs
+//  Licenza MIT
 //
 
 using System;
@@ -53,11 +57,10 @@ namespace Reallukee.GWC
 
         public void Render(Graphics g)
         {
-            Pen border = new Pen(borderColor);
-
-            g.DrawRectangle(border, X, Y, Width, Height);
-
-            border.Dispose();
+            using (Pen border = new Pen(borderColor))
+            {
+                g.DrawRectangle(border, X, Y, Width, Height);
+            }
         }
 
         public override bool Equals(object obj)
@@ -78,7 +81,18 @@ namespace Reallukee.GWC
 
         public override int GetHashCode()
         {
-            return BorderColor.GetHashCode() ^ X ^ Y ^ Width ^ Height;
+            unchecked
+            {
+                int hash = 17;
+
+                hash = hash * 23 + borderColor.GetHashCode();
+                hash = hash * 23 + X;
+                hash = hash * 23 + Y;
+                hash = hash * 23 + Width;
+                hash = hash * 23 + Height;
+
+                return hash;
+            }
         }
 
         public override string ToString()

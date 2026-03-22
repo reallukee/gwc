@@ -1,9 +1,13 @@
 //
+// :.:.:.
 // GWC
+// v0.1.0
+// :.:.:.
 //
-//  Version : 0.1.0
-//  MIT License
-//  FillRectangle.cs
+// https://github.com/reallukee/gwc
+//
+// FillRectangle.cs
+//  Licenza MIT
 //
 
 using System;
@@ -53,11 +57,10 @@ namespace Reallukee.GWC
 
         public void Render(Graphics g)
         {
-            SolidBrush fill = new SolidBrush(fillColor);
-
-            g.FillRectangle(fill, X, Y, Width, Height);
-
-            fill.Dispose();
+            using (SolidBrush fill = new SolidBrush(fillColor))
+            {
+                g.FillRectangle(fill, X, Y, Width, Height);
+            }
         }
 
         public override bool Equals(object obj)
@@ -78,7 +81,18 @@ namespace Reallukee.GWC
 
         public override int GetHashCode()
         {
-            return FillColor.GetHashCode() ^ X ^ Y ^ Width ^ Height;
+            unchecked
+            {
+                int hash = 17;
+
+                hash = hash * 23 + fillColor.GetHashCode();
+                hash = hash * 23 + X;
+                hash = hash * 23 + Y;
+                hash = hash * 23 + Width;
+                hash = hash * 23 + Height;
+
+                return hash;
+            }
         }
 
         public override string ToString()

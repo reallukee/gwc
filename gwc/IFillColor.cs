@@ -1,9 +1,13 @@
 //
+// :.:.:.
 // GWC
+// v0.1.0
+// :.:.:.
 //
-//  Version : 0.1.0
-//  MIT License
-//  IFillColor.cs
+// https://github.com/reallukee/gwc
+//
+// IFillColor.cs
+//  Licenza MIT
 //
 
 using System;

@@ -1,9 +1,13 @@
 //
+// :.:.:.
 // GWC
+// v0.1.0
+// :.:.:.
 //
-//  Version : 0.1.0
-//  MIT License
-//  IBorderColor.cs
+// https://github.com/reallukee/gwc
+//
+// IBorderColor.cs
+//  Licenza MIT
 //
 
 using System;
@@ -29,7 +33,6 @@ namespace Reallukee.GWC
         Color BorderColor
         {
             get;
-
             set;
         }
     }

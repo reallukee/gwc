@@ -1,9 +1,13 @@
 //
+// :.:.:.
 // GWC
+// v0.1.0
+// :.:.:.
 //
-//  Version : 0.1.0
-//  MIT License
-//  Canvas.cs
+// https://github.com/reallukee/gwc
+//
+// Canvas.cs
+//  Licenza MIT
 //
 
 using System;
@@ -30,10 +34,22 @@ namespace Reallukee.GWC
 
         public Canvas(int width, int height)
         {
+            if (width <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(width), "");
+            }
+
+            if (height <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(height), "");
+            }
+
             bitmap = new Bitmap(width, height);
 
             buffer = new ConcurrentQueue<IFigure>();
         }
+
+        public Canvas() : this(800, 600) {}
 
         ~Canvas()
         {
@@ -47,6 +63,8 @@ namespace Reallukee.GWC
                 bitmap.Dispose();
             }
         }
+
+
 
         private Bitmap bitmap;
 
@@ -108,32 +126,34 @@ namespace Reallukee.GWC
             }
         }
 
-        public bool DrawBorderRectangle(int x, int y, int width, int height)
+
+
+        public bool DrawFigure(IFigure figure)
         {
             if (buffer.Count > MaxRenderBufferLength)
             {
                 return false;
             }
 
-            IFigure borderRectangle = new BorderRectangle(BorderColor, x, y, width, height);
-
-            buffer.Enqueue(borderRectangle);
+            buffer.Enqueue(figure);
 
             return true;
         }
 
+
+
+        public bool DrawBorderRectangle(int x, int y, int width, int height)
+        {
+            IFigure borderRectangle = new BorderRectangle(BorderColor, x, y, width, height);
+
+            return DrawFigure(borderRectangle);
+        }
+
         public bool DrawFillRectangle(int x, int y, int width, int height)
         {
-            if (buffer.Count > MaxRenderBufferLength)
-            {
-                return false;
-            }
-
             IFigure fillRectangle = new FillRectangle(FillColor, x, y, width, height);
 
-            buffer.Enqueue(fillRectangle);
-
-            return true;
+            return DrawFigure(fillRectangle);
         }
     }
 }

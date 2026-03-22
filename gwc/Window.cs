@@ -1,9 +1,13 @@
 //
+// :.:.:.
 // GWC
+// v0.1.0
+// :.:.:.
 //
-//  Version : 0.1.0
-//  MIT License
-//  Window.cs
+// https://github.com/reallukee/gwc
+//
+// Window.cs
+//  Licenza MIT
 //
 
 using System;
@@ -28,10 +32,22 @@ namespace Reallukee.GWC
     {
         public Window(int width, int height)
         {
+            if (width <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(width), "");
+            }
+
+            if (height <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(height), "");
+            }
+
             InitWindow(width, height);
 
             InitRender(width, height);
         }
+
+        public Window() : this(800, 600) { }
 
         ~Window()
         {
@@ -45,6 +61,8 @@ namespace Reallukee.GWC
                 canvas.Dispose();
             }
         }
+
+
 
         private WindowForm    window;
         private Canvas        canvas;
@@ -74,6 +92,8 @@ namespace Reallukee.GWC
             windowThread = new Thread(WindowThreadLoop);
 
             windowThreadFlag = true;
+
+            windowLock = new object();
         }
 
         private void InitRender(int width, int height)
@@ -92,6 +112,8 @@ namespace Reallukee.GWC
 
             renderLock = new object();
         }
+
+
 
         private void WindowThreadLoop()
         {
@@ -166,6 +188,8 @@ namespace Reallukee.GWC
                 }
             }
         }
+
+
 
         private static int refreshRate = 60;
 
@@ -245,6 +269,8 @@ namespace Reallukee.GWC
             }
         }
 
+
+
         private void WindowForm_Paint(object sender, PaintEventArgs e)
         {
             if (window.ClientSize.Width <= 0 || window.ClientSize.Height <= 0)
@@ -309,6 +335,8 @@ namespace Reallukee.GWC
             }
         }
 
+
+
         public bool Open()
         {
             if (windowThread.IsAlive || renderThread.IsAlive)
@@ -367,40 +395,23 @@ namespace Reallukee.GWC
             }
         }
 
+
+
         public Color BorderColor
         {
-            get
-            {
-                return canvas.BorderColor;
-            }
-
-            set
-            {
-                canvas.BorderColor = value;
-            }
+            get => canvas.BorderColor;
+            set => canvas.BorderColor = value;
         }
 
         public Color FillColor
         {
-            get
-            {
-                return canvas.FillColor;
-            }
-
-            set
-            {
-                canvas.FillColor = value;
-            }
+            get => canvas.FillColor;
+            set => canvas.FillColor = value;
         }
 
-        public bool DrawBorderRectangle(int x, int y, int width, int height)
-        {
-            return canvas.DrawBorderRectangle(x, y, width, height);
-        }
+        public bool DrawFigure(IFigure figure) => canvas.DrawFigure(figure);
 
-        public bool DrawFillRectangle(int x, int y, int width, int height)
-        {
-            return canvas.DrawFillRectangle(x, y, width, height);
-        }
+        public bool DrawBorderRectangle(int x, int y, int width, int height) => canvas.DrawBorderRectangle(x, y, width, height);
+        public bool DrawFillRectangle(int x, int y, int width, int height)   => canvas.DrawFillRectangle(x, y, width, height);
     }
 }

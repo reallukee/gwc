@@ -1,9 +1,13 @@
 //
+// :.:.:.
 // GWC
+// v0.1.0
+// :.:.:.
 //
-//  Version : 0.1.0
-//  MIT License
-//  WindowForm.cs
+// https://github.com/reallukee/gwc
+//
+// WindowForm.cs
+//  Licenza MIT
 //
 
 using System;
