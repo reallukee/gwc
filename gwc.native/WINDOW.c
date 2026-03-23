@@ -10,14 +10,16 @@
 //  Licenza MIT
 //
 
+#include "gwc.clr.hpp"
+
 #include "WINDOW.h"
 #include "window_macros.h"
-
-#include "gwc.clr.hpp"
 
 typedef struct WINDOW {
     void* window;
 } WINDOW;
+
+
 
 WINDOW* window_new(int width, int height)
 {
@@ -61,7 +63,9 @@ void window_delete(WINDOW* window)
     free(window);
 }
 
-bool window_isInitialized(WINDOW* window)
+
+
+bool window_isInitialized(const WINDOW* window)
 {
     if (window == NULL)
     {
@@ -73,32 +77,180 @@ bool window_isInitialized(WINDOW* window)
 
 
 
-bool window_open(WINDOW* window)
+int window_getRefreshRate()
+{
+    return GWC::Window::RefreshRate;
+}
+
+void window_setRefreshRate(int value)
+{
+    GWC::Window::RefreshRate = value;
+}
+
+int window_getDutyCycle()
+{
+    return GWC::Window::DutyCycle;
+}
+
+void window_setDutyCycle(int value)
+{
+    GWC::Window::DutyCycle = value;
+}
+
+double window_getFrameTime()
+{
+    return GWC::Window::FrameTime;
+}
+
+double window_getUtilFrameTime()
+{
+    return GWC::Window::UtilFrameTime;
+}
+
+
+
+bool window_open(const WINDOW* window)
 {
     INVOKE_WINDOW_BOOL_C(window, Open());
 }
 
-bool window_shutdown(WINDOW* window)
+bool window_shutdown(const WINDOW* window)
 {
     INVOKE_WINDOW_BOOL_C(window, Shutdown());
 }
 
-bool window_isOpen(WINDOW* window)
+bool window_isOpen(const WINDOW* window)
 {
     INVOKE_WINDOW_BOOL_C(window, IsOpen);
 }
 
-bool window_isShutdown(WINDOW* window)
+bool window_isShutdown(const WINDOW* window)
 {
     INVOKE_WINDOW_BOOL_C(window, IsShutdown);
 }
 
-bool window_drawBorderRectangle(WINDOW* window, int x, int y, int width, int height)
+
+
+COLOR* window_getBorderColor(const WINDOW* window)
+{
+    if (window == NULL)
+    {
+        return color_new(0, 0, 0, 0);
+    }
+
+    void* nativeHandle = window->window;
+
+    IntPtr managedHandle = IntPtr(nativeHandle);
+
+    if (WindowHandler::IsNull(managedHandle))
+    {
+        throw gcnew NullReferenceException("");
+    }
+
+    Drawing::Color^ managedBorderColor = WindowHandler::Invoke(managedHandle)->BorderColor;
+
+    COLOR* nativeColor = color_new(
+        (int)managedBorderColor->A,
+        (int)managedBorderColor->R,
+        (int)managedBorderColor->G,
+        (int)managedBorderColor->B
+    );
+
+    return nativeColor;
+}
+
+void window_setBorderColor(const WINDOW* window, const COLOR* color)
+{
+    if (window == NULL || color == NULL)
+    {
+        return;
+    }
+
+    void* nativeHandle = window->window;
+
+    IntPtr managedHandle = IntPtr(nativeHandle);
+
+    if (WindowHandler::IsNull(managedHandle))
+    {
+        throw gcnew NullReferenceException("");
+    }
+
+    const COLOR* nativeColor = color;
+
+    Drawing::Color managedColor = Drawing::Color::FromArgb(
+        color_getAlpha(nativeColor),
+        color_getRed(nativeColor),
+        color_getBlue(nativeColor),
+        color_getGreen(nativeColor)
+    );
+
+    WindowHandler::Invoke(managedHandle)->BorderColor = managedColor;
+}
+
+COLOR* window_getFillColor(const WINDOW* window)
+{
+    if (window == NULL)
+    {
+        return color_new(0, 0, 0, 0);
+    }
+
+    void* nativeHandle = window->window;
+
+    IntPtr managedHandle = IntPtr(nativeHandle);
+
+    if (WindowHandler::IsNull(managedHandle))
+    {
+        throw gcnew NullReferenceException("");
+    }
+
+    Drawing::Color^ managedBorderColor = WindowHandler::Invoke(managedHandle)->FillColor;
+
+    COLOR* nativeColor = color_new(
+        (int)managedBorderColor->A,
+        (int)managedBorderColor->R,
+        (int)managedBorderColor->G,
+        (int)managedBorderColor->B
+    );
+
+    return nativeColor;
+}
+
+void window_setFillColor(const WINDOW* window, const COLOR* color)
+{
+    if (window == NULL || color == NULL)
+    {
+        return;
+    }
+
+    void* nativeHandle = window->window;
+
+    IntPtr managedHandle = IntPtr(nativeHandle);
+
+    if (WindowHandler::IsNull(managedHandle))
+    {
+        throw gcnew NullReferenceException("");
+    }
+
+    const COLOR* nativeColor = color;
+
+    Drawing::Color managedColor = Drawing::Color::FromArgb(
+        color_getAlpha(nativeColor),
+        color_getRed(nativeColor),
+        color_getBlue(nativeColor),
+        color_getGreen(nativeColor)
+    );
+
+    WindowHandler::Invoke(managedHandle)->FillColor = managedColor;
+}
+
+
+
+bool window_drawBorderRectangle(const WINDOW* window, int x, int y, int width, int height)
 {
     INVOKE_WINDOW_BOOL_C(window, DrawBorderRectangle(x, y, width, height));
 }
 
-bool window_drawFillRectangle(WINDOW* window, int x, int y, int width, int height)
+bool window_drawFillRectangle(const WINDOW* window, int x, int y, int width, int height)
 {
     INVOKE_WINDOW_BOOL_C(window, DrawFillRectangle(x, y, width, height));
 }

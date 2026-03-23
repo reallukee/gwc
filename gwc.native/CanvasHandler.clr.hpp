@@ -31,8 +31,12 @@ namespace Interop
     public:
 
         static IntPtr  Alloc (int width, int height);
+        static IntPtr  Alloc ();
+
         static bool    Free  (IntPtr handle);
+
         static bool    IsNull(IntPtr handle);
+
         static Canvas^ Invoke(IntPtr handle);
 
     private:

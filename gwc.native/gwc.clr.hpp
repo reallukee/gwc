@@ -20,6 +20,8 @@
 #include "CanvasHandler.clr.hpp"
 #include "WindowHandler.clr.hpp"
 
+using namespace Reallukee;
+using namespace Reallukee::GWC;
 using namespace Reallukee::GWC::Interop;
 
 #endif // __cplusplus_cli

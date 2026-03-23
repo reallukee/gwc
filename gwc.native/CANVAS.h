@@ -17,7 +17,11 @@
 
 #include "header.h"
 
+#include "COLOR.h"
+
 typedef struct CANVAS CANVAS;
+
+
 
 GWC_C_EXTERN
 GWC_C_API
@@ -29,21 +33,45 @@ GWC_C_API
 void canvas_delete(
     CANVAS* canvas);
 
+
+
 GWC_C_EXTERN
 GWC_C_API
 bool canvas_isInitialized(
-    CANVAS* canvas);
+    const CANVAS* canvas);
+
+
+
+GWC_C_EXTERN
+GWC_C_API
+COLOR* canvas_getBorderColor(
+    const CANVAS* canvas);
+
+GWC_C_EXTERN
+GWC_C_API
+void canvas_setBorderColor(
+    const CANVAS* canvas, const COLOR* color);
+
+GWC_C_EXTERN
+GWC_C_API
+COLOR* canvas_getFillColor(
+    const CANVAS* canvas);
+
+GWC_C_EXTERN
+GWC_C_API
+void canvas_setFillColor(
+    const CANVAS* canvas, const COLOR* color);
 
 
 
 GWC_C_EXTERN
 GWC_C_API
 bool canvas_drawBorderRectangle(
-    CANVAS* canvas, int x, int y, int width, int height);
+    const CANVAS* canvas, int x, int y, int width, int height);
 
 GWC_C_EXTERN
 GWC_C_API
 bool canvas_drawFillRectangle(
-    CANVAS* canvas, int x, int y, int width, int height);
+    const CANVAS* canvas, int x, int y, int width, int height);
 
 #endif // !GWC_CANVAS_H

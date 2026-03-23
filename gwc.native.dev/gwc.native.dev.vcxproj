@@ -246,6 +246,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AssemblyInfo.clr.hpp" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="..\gwc.native\header.clr.hpp" />
     <ClInclude Include="..\gwc.native\gwc.clr.hpp" />
@@ -254,6 +255,7 @@
     <ClInclude Include="..\gwc.native\export.hpp" />
     <ClInclude Include="..\gwc.native\header.hpp" />
     <ClInclude Include="..\gwc.native\gwc.hpp" />
+    <ClInclude Include="..\gwc.native\Color.hpp" />
     <ClInclude Include="..\gwc.native\canvas_macros.hpp" />
     <ClInclude Include="..\gwc.native\Canvas.hpp" />
     <ClInclude Include="..\gwc.native\window_macros.hpp" />
@@ -261,42 +263,25 @@
     <ClInclude Include="..\gwc.native\export.h" />
     <ClInclude Include="..\gwc.native\header.h" />
     <ClInclude Include="..\gwc.native\gwc.h" />
+    <ClInclude Include="..\gwc.native\COLOR.h" />
     <ClInclude Include="..\gwc.native\canvas_macros.h" />
     <ClInclude Include="..\gwc.native\CANVAS.h" />
     <ClInclude Include="..\gwc.native\window_macros.h" />
     <ClInclude Include="..\gwc.native\WINDOW.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AssemblyInfo.clr.cpp" />
     <ClCompile Include="..\gwc.native\CanvasHandler.clr.cpp" />
     <ClCompile Include="..\gwc.native\WindowHandler.clr.cpp" />
     <ClCompile Include="..\gwc.native\gwc.cpp" />
+    <ClCompile Include="..\gwc.native\Color.cpp" />
     <ClCompile Include="..\gwc.native\Canvas.cpp" />
     <ClCompile Include="..\gwc.native\Window.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="..\gwc.native\gwc.c">
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsCpp</CompileAs>
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsCpp</CompileAs>
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsCpp</CompileAs>
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsCpp</CompileAs>
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">CompileAsCpp</CompileAs>
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">CompileAsCpp</CompileAs>
-    </ClCompile>
-    <ClCompile Include="..\gwc.native\CANVAS.c">
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsCpp</CompileAs>
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsCpp</CompileAs>
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsCpp</CompileAs>
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsCpp</CompileAs>
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">CompileAsCpp</CompileAs>
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">CompileAsCpp</CompileAs>
-    </ClCompile>
-    <ClCompile Include="..\gwc.native\WINDOW.c">
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsCpp</CompileAs>
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsCpp</CompileAs>
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsCpp</CompileAs>
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsCpp</CompileAs>
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">CompileAsCpp</CompileAs>
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">CompileAsCpp</CompileAs>
-    </ClCompile>
+    <ClCompile Include="..\gwc.native\gwc.c" />
+    <ClCompile Include="..\gwc.native\COLOR.c" />
+    <ClCompile Include="..\gwc.native\CANVAS.c" />
+    <ClCompile Include="..\gwc.native\WINDOW.c" />
     <ClCompile Include="main.c" />
   </ItemGroup>
   <ItemGroup>
