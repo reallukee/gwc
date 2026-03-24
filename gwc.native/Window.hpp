@@ -19,6 +19,8 @@
 
 #include "header.hpp"
 
+#include "Color.hpp"
+
 #define _WINDOW void*
 
 namespace gwc
@@ -33,15 +35,27 @@ namespace gwc
     public:
 
         Window (int width, int height);
+        Window ();
         ~Window();
 
         bool isInitialized();
 
+        static int    getRefreshRate  ();
+        static void   setRefreshRate  (int value);
+        static int    getDutyCycle    ();
+        static void   setDutyCycle    (int value);
+        static double getFrameTime    ();
+        static double getUtilFrameTime();
+
         bool open    ();
         bool shutdown();
-
         bool isOpen    ();
         bool isShutdown();
+
+        Color getBorderColor();
+        void  setBorderColor(Color color);
+        Color getFillColor  ();
+        void  setFillColor  (Color color);
 
         bool drawBorderRectangle(int x, int y, int width, int height);
         bool drawFillRectangle  (int x, int y, int width, int height);

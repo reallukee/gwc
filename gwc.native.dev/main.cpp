@@ -22,9 +22,15 @@ using namespace std;
 
 int main(int argc, const char* argv[])
 {
+    Window::setRefreshRate(60);
+    Window::setDutyCycle(80);
+
     Window* window = new Window(800, 600);
 
     window->open();
+
+    window->setFillColor(Color(100, 0, 255, 0));
+    window->setBorderColor(Color(100, 0, 128, 0));
 
     if (!window->isInitialized())
     {

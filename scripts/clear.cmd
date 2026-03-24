@@ -1,13 +1,15 @@
+:: :.:.:.:.:
+:: clear.cmd
+:: :.:.:.:.:
+
 @ECHO OFF
+SETLOCAL ENABLEDELAYEDEXPANSION
 
-SET CURRENT_DIR=%CD%
+PUSHD "%~dp0.."
 
-CD /D "%~dp0.."
+IF EXIST .vs RMDIR /S /Q .vs
+IF EXIST obj RMDIR /S /Q obj
 
-IF EXIST ".vs" RD /S /Q ".vs"
-IF EXIST "bin" RD /S /Q "bin"
-IF EXIST "obj" RD /S /Q "obj"
-
-CD %CURRENT_DIR%
+POPD
 
 EXIT /B 0

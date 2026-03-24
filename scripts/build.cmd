@@ -1,20 +1,33 @@
+:: :.:.:.:.:
+:: build.cmd
+:: :.:.:.:.:
+
 @ECHO OFF
+SETLOCAL ENABLEDELAYEDEXPANSION
 
-SET CURRENT_DIR=%CD%
+PUSHD "%~dp0.."
 
-CD /D "%~dp0.."
+IF EXIST "%PROGRAMFILES%\Microsoft Visual Studio\18\Community\Common7\Tools\vsdevcmd" (
+    CALL "%PROGRAMFILES%\Microsoft Visual Studio\18\Community\Common7\Tools\vsdevcmd" >NUL
+) ELSE (
+    IF EXIST "%PROGRAMFILES% (x86)\Microsoft Visual Studio\18\BuildTools\Common7\Tools\vsdevcmd" (
+        CALL "%PROGRAMFILES% (x86)\Microsoft Visual Studio\18\BuildTools\Common7\Tools\vsdevcmd" >NUL
+    ) ELSE (
+        EXIT /B 1
+    )
+)
 
-CALL "%PROGRAMFILES%\Microsoft Visual Studio\18\Community\Common7\Tools\vsdevcmd"
+msbuild gwc.sln /t:gwc /p:Configuration=Release /p:Platform=x86
+msbuild gwc.sln /t:gwc /p:Configuration=Release /p:Platform=x64
+msbuild gwc.sln /t:gwc /p:Configuration=Release /p:Platform=ARM64
 
-CALL "%PROGRAMFILES% (x86)\Microsoft Visual Studio\18\BuildTools\Common7\Tools\vsdevcmd"
+msbuild gwc.sln /t:gwc_mono /p:Configuration=Release /p:Platform=x86
+msbuild gwc.sln /t:gwc_mono /p:Configuration=Release /p:Platform=x64
 
-msbuild gwc.sln /p:Configuration=Release /p:Platform=x86 /t:gwc
-msbuild gwc.sln /p:Configuration=Release /p:Platform=x86 /t:gwc_native
-msbuild gwc.sln /p:Configuration=Release /p:Platform=x64 /t:gwc
-msbuild gwc.sln /p:Configuration=Release /p:Platform=x64 /t:gwc_native
-msbuild gwc.sln /p:Configuration=Release /p:Platform=arm64 /t:gwc
-msbuild gwc.sln /p:Configuration=Release /p:Platform=arm64 /t:gwc_native
+msbuild gwc.sln /t:gwc_native /p:Configuration=Release /p:Platform=x64
+msbuild gwc.sln /t:gwc_native /p:Configuration=Release /p:Platform=x86
+msbuild gwc.sln /t:gwc_native /p:Configuration=Release /p:Platform=ARM64
 
-CD %CURRENT_DIR%
+POPD
 
 EXIT /B 0

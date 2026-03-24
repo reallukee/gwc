@@ -19,6 +19,8 @@
 
 #include "header.hpp"
 
+#include "Color.hpp"
+
 #define _CANVAS void*
 
 namespace gwc
@@ -33,12 +35,18 @@ namespace gwc
     public:
 
         Canvas (int width, int height);
+        Canvas ();
         ~Canvas();
 
         bool isInitialized();
 
+        Color getBorderColor();
+        void  setBorderColor(Color color);
+        Color getFillColor  ();
+        void  setFillColor  (Color color);
+
         bool drawBorderRectangle(int x, int y, int width, int height);
-        bool drawFillRectangle(int x, int y, int width, int height);
+        bool drawFillRectangle  (int x, int y, int width, int height);
 
     };
 }

@@ -31,6 +31,19 @@ namespace Interop
         return nativeHandle;
     }
 
+    IntPtr CanvasHandler::Alloc()
+    {
+        Canvas^ canvas = gcnew Canvas();
+
+        GCHandle managedHandle = GCHandle::Alloc(canvas);
+
+        IntPtr nativeHandle = GCHandle::ToIntPtr(managedHandle);
+
+        return nativeHandle;
+    }
+
+
+
     bool CanvasHandler::Free(IntPtr handle)
     {
         if (handle == IntPtr::Zero)
@@ -47,12 +60,16 @@ namespace Interop
         return true;
     }
 
+
+
     bool CanvasHandler::IsNull(IntPtr handle)
     {
         IntPtr nativeHandle = handle;
 
         return nativeHandle == IntPtr::Zero;
     }
+
+
 
     Canvas^ CanvasHandler::Invoke(IntPtr handle)
     {
@@ -69,6 +86,8 @@ namespace Interop
 
         return canvas;
     }
+
+
 
     CanvasHandler::CanvasHandler() {}
 

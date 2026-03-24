@@ -1,28 +1,29 @@
 <Solution>
   <Configurations>
-    <Platform Name="Any CPU" />
     <Platform Name="ARM64" />
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
   <Folder Name="/dev/">
-    <Project Path="gwc.dev/gwc.dev.csproj">
+    <Project Path="gwc.dev/gwc.dev.csproj" Id="15893ee7-47aa-40f8-84ce-4109e981496d">
       <Platform Solution="*|ARM64" Project="ARM64" />
       <Platform Solution="*|x64" Project="x64" />
       <Platform Solution="*|x86" Project="x86" />
     </Project>
-    <Project Path="gwc.dev/gwc.mono.dev.csproj">
+    <Project Path="gwc.dev/gwc.mono.dev.csproj" Id="0bdcfd9a-76c0-4b63-b397-135ff1e97371">
+      <Platform Solution="*|ARM64" Project="x64" />
       <Platform Solution="*|x64" Project="x64" />
       <Platform Solution="*|x86" Project="x86" />
     </Project>
     <Project Path="gwc.native.dev/gwc.native.dev.vcxproj" />
   </Folder>
-  <Project Path="gwc/gwc.csproj">
+  <Project Path="gwc/gwc.csproj" Id="e3352e34-8033-4f44-ae88-7e053e6d11e7">
     <Platform Solution="*|ARM64" Project="ARM64" />
     <Platform Solution="*|x64" Project="x64" />
     <Platform Solution="*|x86" Project="x86" />
   </Project>
-  <Project Path="gwc/gwc.mono.csproj">
+  <Project Path="gwc/gwc.mono.csproj" Id="67cce870-ec0c-49d9-bd50-879d62a03bf0">
+    <Platform Solution="*|ARM64" Project="x64" />
     <Platform Solution="*|x64" Project="x64" />
     <Platform Solution="*|x86" Project="x86" />
   </Project>

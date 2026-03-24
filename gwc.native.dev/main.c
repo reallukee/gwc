@@ -19,9 +19,21 @@
 /*
 int main(int argc, const char* argv[])
 {
+    window_setRefreshRate(60);
+    window_setDutyCycle(80);
+
     WINDOW* window = window_new(800, 600);
 
     window_open(window);
+
+    COLOR* fillColor = color_new(100, 0, 255, 0);
+    COLOR* bordercolor = color_new(100, 0, 128, 0);
+
+    window_setFillColor(window, fillColor);
+    window_setBorderColor(window, bordercolor);
+
+    free(fillColor);
+    free(bordercolor);
 
     if (!window_isInitialized(window))
     {

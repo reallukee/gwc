@@ -29,6 +29,7 @@
 #define _GWC_VERSION     "010"
 #define _GWC_MIN_VERSION "010"
 
+#include "Color.hpp"
 #include "Canvas.hpp"
 #include "Window.hpp"
 

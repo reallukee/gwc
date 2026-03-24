@@ -31,6 +31,19 @@ namespace Interop
         return nativeHandle;
     }
 
+    IntPtr WindowHandler::Alloc()
+    {
+        Window^ window = gcnew Window();
+
+        GCHandle managedHandle = GCHandle::Alloc(window);
+
+        IntPtr nativeHandle = GCHandle::ToIntPtr(managedHandle);
+
+        return nativeHandle;
+    }
+
+
+
     bool WindowHandler::Free(IntPtr handle)
     {
         if (handle == IntPtr::Zero)
@@ -47,12 +60,16 @@ namespace Interop
         return true;
     }
 
+
+
     bool WindowHandler::IsNull(IntPtr handle)
     {
         IntPtr nativeHandle = handle;
 
         return nativeHandle == IntPtr::Zero;
     }
+
+
 
     Window^ WindowHandler::Invoke(IntPtr handle)
     {
@@ -69,6 +86,8 @@ namespace Interop
 
         return window;
     }
+
+
 
     WindowHandler::WindowHandler() {}
 
