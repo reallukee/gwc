@@ -51,6 +51,8 @@ namespace Reallukee.GWC
             {
                 Console.WriteLine("Oh :(!");
             }
+
+            window.Dispose();
         }
     }
 }
