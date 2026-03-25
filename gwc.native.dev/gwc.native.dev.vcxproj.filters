@@ -57,6 +57,9 @@
     <ClInclude Include="..\gwc.native\Color.hpp">
       <Filter>File di intestazione\C++ API</Filter>
     </ClInclude>
+    <ClInclude Include="..\gwc.native\Render.hpp">
+      <Filter>File di intestazione\C++ API</Filter>
+    </ClInclude>
     <ClInclude Include="..\gwc.native\canvas_macros.hpp">
       <Filter>File di intestazione\C++ API</Filter>
     </ClInclude>
@@ -79,6 +82,9 @@
       <Filter>File di intestazione\C API</Filter>
     </ClInclude>
     <ClInclude Include="..\gwc.native\COLOR.h">
+      <Filter>File di intestazione\C API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gwc.native\RENDER.h">
       <Filter>File di intestazione\C API</Filter>
     </ClInclude>
     <ClInclude Include="..\gwc.native\canvas_macros.h">
@@ -110,6 +116,9 @@
     <ClCompile Include="..\gwc.native\COLOR.cpp">
       <Filter>File di origine\C++ API</Filter>
     </ClCompile>
+    <ClCompile Include="..\gwc.native\Render.cpp">
+      <Filter>File di origine\C++ API</Filter>
+    </ClCompile>
     <ClCompile Include="..\gwc.native\Canvas.cpp">
       <Filter>File di origine\C++ API</Filter>
     </ClCompile>
@@ -123,6 +132,9 @@
       <Filter>File di origine\C API</Filter>
     </ClCompile>
     <ClCompile Include="..\gwc.native\COLOR.c">
+      <Filter>File di origine\C API</Filter>
+    </ClCompile>
+    <ClCompile Include="..\gwc.native\RENDER.c">
       <Filter>File di origine\C API</Filter>
     </ClCompile>
     <ClCompile Include="..\gwc.native\CANVAS.c">

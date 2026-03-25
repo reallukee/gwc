@@ -28,6 +28,7 @@
 #define _GWC_MIN_VERSION "010"
 
 #include "COLOR.h"
+#include "RENDER.h"
 #include "CANVAS.h"
 #include "WINDOW.h"
 

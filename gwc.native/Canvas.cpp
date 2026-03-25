@@ -156,6 +156,16 @@ namespace gwc
 
 
 
+    bool Canvas::drawBorderSquare(int x, int y, int side)
+    {
+        INVOKE_CANVAS_BOOL_CPP(canvas, DrawBorderSquare(x, y, side));
+    }
+
+    bool Canvas::drawFillSquare(int x, int y, int side)
+    {
+        INVOKE_CANVAS_BOOL_CPP(canvas, DrawFillSquare(x, y, side));
+    }
+
     bool Canvas::drawBorderRectangle(int x, int y, int width, int height)
     {
         INVOKE_CANVAS_BOOL_CPP(canvas, DrawBorderRectangle(x, y, width, height));

@@ -57,6 +57,9 @@
     <ClInclude Include="Color.hpp">
       <Filter>File di intestazione\C++ API</Filter>
     </ClInclude>
+    <ClInclude Include="Render.hpp">
+      <Filter>File di intestazione\C++ API</Filter>
+    </ClInclude>
     <ClInclude Include="canvas_macros.hpp">
       <Filter>File di intestazione\C++ API</Filter>
     </ClInclude>
@@ -79,6 +82,9 @@
       <Filter>File di intestazione\C API</Filter>
     </ClInclude>
     <ClInclude Include="COLOR.h">
+      <Filter>File di intestazione\C API</Filter>
+    </ClInclude>
+    <ClInclude Include="RENDER.h">
       <Filter>File di intestazione\C API</Filter>
     </ClInclude>
     <ClInclude Include="canvas_macros.h">
@@ -110,6 +116,9 @@
     <ClCompile Include="Color.cpp">
       <Filter>File di origine\C++ API</Filter>
     </ClCompile>
+    <ClCompile Include="Render.cpp">
+      <Filter>File di origine\C++ API</Filter>
+    </ClCompile>
     <ClCompile Include="Canvas.cpp">
       <Filter>File di origine\C++ API</Filter>
     </ClCompile>
@@ -120,6 +129,9 @@
       <Filter>File di origine\C API</Filter>
     </ClCompile>
     <ClCompile Include="COLOR.c">
+      <Filter>File di origine\C API</Filter>
+    </ClCompile>
+    <ClCompile Include="RENDER.c">
       <Filter>File di origine\C API</Filter>
     </ClCompile>
     <ClCompile Include="CANVAS.c">

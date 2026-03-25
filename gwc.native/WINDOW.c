@@ -77,38 +77,6 @@ bool window_isInitialized(const WINDOW* window)
 
 
 
-int window_getRefreshRate()
-{
-    return GWC::Window::RefreshRate;
-}
-
-void window_setRefreshRate(int value)
-{
-    GWC::Window::RefreshRate = value;
-}
-
-int window_getDutyCycle()
-{
-    return GWC::Window::DutyCycle;
-}
-
-void window_setDutyCycle(int value)
-{
-    GWC::Window::DutyCycle = value;
-}
-
-double window_getFrameTime()
-{
-    return GWC::Window::FrameTime;
-}
-
-double window_getUtilFrameTime()
-{
-    return GWC::Window::UtilFrameTime;
-}
-
-
-
 bool window_open(const WINDOW* window)
 {
     INVOKE_WINDOW_BOOL_C(window, Open());
@@ -244,6 +212,16 @@ void window_setFillColor(const WINDOW* window, const COLOR* color)
 }
 
 
+
+bool window_drawBorderSquare(const WINDOW* window, int x, int y, int side)
+{
+    INVOKE_WINDOW_BOOL_C(window, DrawBorderSquare(x, y, side));
+}
+
+bool window_drawFillSquare(const WINDOW* window, int x, int y, int side)
+{
+    INVOKE_WINDOW_BOOL_C(window, DrawFillSquare(x, y, side));
+}
 
 bool window_drawBorderRectangle(const WINDOW* window, int x, int y, int width, int height)
 {

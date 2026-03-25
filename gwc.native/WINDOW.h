@@ -21,8 +21,6 @@
 
 typedef struct WINDOW WINDOW;
 
-
-
 GWC_C_EXTERN
 GWC_C_API
 WINDOW* window_new(
@@ -39,34 +37,6 @@ GWC_C_EXTERN
 GWC_C_API
 bool window_isInitialized(
     const WINDOW* window);
-
-
-
-GWC_C_EXTERN
-GWC_C_API
-int window_getRefreshRate();
-
-GWC_C_EXTERN
-GWC_C_API
-void window_setRefreshRate(
-    int value);
-
-GWC_C_EXTERN
-GWC_C_API
-int window_getDutyCycle();
-
-GWC_C_EXTERN
-GWC_C_API
-void window_setDutyCycle(
-    int value);
-
-GWC_C_EXTERN
-GWC_C_API
-double window_getFrameTime();
-
-GWC_C_EXTERN
-GWC_C_API
-double window_getUtilFrameTime();
 
 
 
@@ -113,6 +83,16 @@ void window_setFillColor(
     const WINDOW* window, const COLOR* color);
 
 
+
+GWC_C_EXTERN
+GWC_C_API
+bool window_drawBorderSquare(
+    const WINDOW* window, int x, int y, int side);
+
+GWC_C_EXTERN
+GWC_C_API
+bool window_drawFillSquare(
+    const WINDOW* window, int x, int y, int side);
 
 GWC_C_EXTERN
 GWC_C_API

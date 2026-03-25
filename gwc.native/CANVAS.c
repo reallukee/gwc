@@ -191,6 +191,16 @@ void canvas_setFillColor(const CANVAS* canvas, const COLOR* color)
 
 
 
+bool canvas_drawBorderSquare(const CANVAS* canvas, int x, int y, int side)
+{
+    INVOKE_CANVAS_BOOL_C(canvas, DrawBorderSquare(x, y, side));
+}
+
+bool canvas_drawFillSquare(const CANVAS* canvas, int x, int y, int side)
+{
+    INVOKE_CANVAS_BOOL_C(canvas, DrawFillSquare(x, y, side));
+}
+
 bool canvas_drawBorderRectangle(const CANVAS* canvas, int x, int y, int width, int height)
 {
     INVOKE_CANVAS_BOOL_C(canvas, DrawBorderRectangle(x, y, width, height));

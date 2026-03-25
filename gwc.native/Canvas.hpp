@@ -25,7 +25,7 @@
 
 namespace gwc
 {
-    class GWC_CPP_API Canvas
+    class GWC_CPP_API Canvas sealed
     {
 
     private:
@@ -45,6 +45,8 @@ namespace gwc
         Color getFillColor  ();
         void  setFillColor  (Color color);
 
+        bool drawBorderSquare   (int x, int y, int side);
+        bool drawFillSquare     (int x, int y, int side);
         bool drawBorderRectangle(int x, int y, int width, int height);
         bool drawFillRectangle  (int x, int y, int width, int height);
 

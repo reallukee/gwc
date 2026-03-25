@@ -21,8 +21,6 @@
 
 typedef struct CANVAS CANVAS;
 
-
-
 GWC_C_EXTERN
 GWC_C_API
 CANVAS* canvas_new(
@@ -63,6 +61,16 @@ void canvas_setFillColor(
     const CANVAS* canvas, const COLOR* color);
 
 
+
+GWC_C_EXTERN
+GWC_C_API
+bool canvas_drawBorderSquare(
+    const CANVAS* canvas, int x, int y, int side);
+
+GWC_C_EXTERN
+GWC_C_API
+bool canvas_drawFillSquare(
+    const CANVAS* canvas, int x, int y, int side);
 
 GWC_C_EXTERN
 GWC_C_API

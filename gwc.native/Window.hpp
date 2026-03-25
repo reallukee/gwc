@@ -25,7 +25,7 @@
 
 namespace gwc
 {
-    class GWC_CPP_API Window
+    class GWC_CPP_API Window sealed
     {
 
     private:
@@ -40,15 +40,9 @@ namespace gwc
 
         bool isInitialized();
 
-        static int    getRefreshRate  ();
-        static void   setRefreshRate  (int value);
-        static int    getDutyCycle    ();
-        static void   setDutyCycle    (int value);
-        static double getFrameTime    ();
-        static double getUtilFrameTime();
-
         bool open    ();
         bool shutdown();
+
         bool isOpen    ();
         bool isShutdown();
 
@@ -57,6 +51,8 @@ namespace gwc
         Color getFillColor  ();
         void  setFillColor  (Color color);
 
+        bool drawBorderSquare   (int x, int y, int side);
+        bool drawFillSquare     (int x, int y, int side);
         bool drawBorderRectangle(int x, int y, int width, int height);
         bool drawFillRectangle  (int x, int y, int width, int height);
 

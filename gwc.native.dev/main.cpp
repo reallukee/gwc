@@ -22,8 +22,8 @@ using namespace std;
 
 int main(int argc, const char* argv[])
 {
-    Window::setRefreshRate(60);
-    Window::setDutyCycle(80);
+    Render::setRefreshRate(60);
+    Render::setDutyCycle(80);
 
     Window* window = new Window(800, 600);
 

@@ -62,38 +62,6 @@ namespace gwc
 
 
 
-    int Window::getRefreshRate()
-    {
-        return GWC::Window::RefreshRate;
-    }
-
-    void Window::setRefreshRate(int value)
-    {
-        GWC::Window::RefreshRate = value;
-    }
-
-    int Window::getDutyCycle()
-    {
-        return GWC::Window::DutyCycle;
-    }
-
-    void Window::setDutyCycle(int value)
-    {
-        GWC::Window::DutyCycle = value;
-    }
-
-    double Window::getFrameTime()
-    {
-        return GWC::Window::FrameTime;
-    }
-
-    double Window::getUtilFrameTime()
-    {
-        return GWC::Window::UtilFrameTime;
-    }
-
-
-
     bool Window::open()
     {
         INVOKE_WINDOW_BOOL_CPP(window, Open());
@@ -103,6 +71,8 @@ namespace gwc
     {
         INVOKE_WINDOW_BOOL_CPP(window, Shutdown());
     }
+
+
 
     bool Window::isOpen()
     {
@@ -209,6 +179,16 @@ namespace gwc
     }
 
 
+
+    bool Window::drawBorderSquare(int x, int y, int side)
+    {
+        INVOKE_WINDOW_BOOL_CPP(window, DrawBorderSquare(x, y, side));
+    }
+
+    bool Window::drawFillSquare(int x, int y, int side)
+    {
+        INVOKE_WINDOW_BOOL_CPP(window, DrawFillSquare(x, y, side));
+    }
 
     bool Window::drawBorderRectangle(int x, int y, int width, int height)
     {

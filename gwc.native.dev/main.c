@@ -19,8 +19,8 @@
 /*
 int main(int argc, const char* argv[])
 {
-    window_setRefreshRate(60);
-    window_setDutyCycle(80);
+    render_setRefreshRate(60);
+    render_setDutyCycle(80);
 
     WINDOW* window = window_new(800, 600);
 

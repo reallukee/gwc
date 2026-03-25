@@ -244,6 +244,7 @@
     <ClInclude Include="header.hpp" />
     <ClInclude Include="gwc.hpp" />
     <ClInclude Include="Color.hpp" />
+    <ClInclude Include="Render.hpp" />
     <ClInclude Include="canvas_macros.hpp" />
     <ClInclude Include="Canvas.hpp" />
     <ClInclude Include="window_macros.hpp" />
@@ -252,6 +253,7 @@
     <ClInclude Include="header.h" />
     <ClInclude Include="gwc.h" />
     <ClInclude Include="COLOR.h" />
+    <ClInclude Include="RENDER.h" />
     <ClInclude Include="canvas_macros.h" />
     <ClInclude Include="CANVAS.h" />
     <ClInclude Include="window_macros.h" />
@@ -263,10 +265,12 @@
     <ClCompile Include="WindowHandler.clr.cpp" />
     <ClCompile Include="gwc.cpp" />
     <ClCompile Include="Color.cpp" />
+    <ClCompile Include="Render.cpp" />
     <ClCompile Include="Canvas.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="gwc.c" />
     <ClCompile Include="COLOR.c" />
+    <ClCompile Include="RENDER.c" />
     <ClCompile Include="CANVAS.c" />
     <ClCompile Include="WINDOW.c" />
   </ItemGroup>
