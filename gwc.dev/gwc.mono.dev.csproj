@@ -62,6 +62,7 @@
     <Compile Include="..\gwc\Rectangle.cs" />
     <Compile Include="..\gwc\BorderRectangle.cs" />
     <Compile Include="..\gwc\FillRectangle.cs" />
+    <Compile Include="..\gwc\Render.cs" />
     <Compile Include="..\gwc\WindowForm.cs">
       <SubType>Form</SubType>
     </Compile>

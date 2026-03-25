@@ -91,8 +91,6 @@ namespace Reallukee.GWC
 
             windowThread = new Thread(WindowThreadLoop);
 
-            windowThreadFlag = true;
-
             windowLock = new object();
         }
 
@@ -107,8 +105,6 @@ namespace Reallukee.GWC
             {
                 IsBackground = true
             };
-
-            renderThreadFlag = true;
 
             renderLock = new object();
         }
@@ -137,6 +133,8 @@ namespace Reallukee.GWC
             {
                 double renderElapsedTime = 0;
 
+                double renderRemainingTime = 0;
+
                 if (window.IsHandleCreated && !canvas.Buffer.IsEmpty)
                 {
                     lock (renderLock)
@@ -147,11 +145,11 @@ namespace Reallukee.GWC
 
                             using (Graphics g = Graphics.FromImage(canvas.Bitmap))
                             {
-                                while (canvas.Buffer.TryDequeue(out var figure))
+                                while (canvas.Buffer.TryDequeue(out IFigure figure))
                                 {
                                     figure.Render(g);
 
-                                    if (renderStopwatch.Elapsed.TotalMilliseconds > UtilFrameTime)
+                                    if (renderStopwatch.Elapsed.TotalMilliseconds > Render.UtilFrameTime)
                                     {
                                         break;
                                     }
@@ -180,92 +178,12 @@ namespace Reallukee.GWC
                     }));
                 }
 
-                double renderRemainingTime = FrameTime - renderElapsedTime;
+                renderRemainingTime = Render.FrameTime - renderElapsedTime;
 
                 if (renderRemainingTime > 0)
                 {
                     Thread.Sleep((int)renderRemainingTime);
                 }
-            }
-        }
-
-
-
-        private static int refreshRate = 60;
-
-        public static int RefreshRate
-        {
-            get
-            {
-                return refreshRate;
-            }
-
-            set
-            {
-                if (value < 0 || value > 120)
-                {
-                    return;
-                }
-
-                refreshRate = value;
-
-                FrameTime = 1000.0 / value;
-
-                UtilFrameTime = DutyCycle / 100.0 * FrameTime;
-            }
-        }
-
-        private static int dutyCycle = 80;
-
-        public static int DutyCycle
-        {
-            get
-            {
-                return dutyCycle;
-            }
-
-            set
-            {
-                if (value < 0 || value > 100)
-                {
-                    return;
-                }
-
-                dutyCycle = value;
-
-                FrameTime = 1000.0 / RefreshRate;
-
-                UtilFrameTime = value / 100.0 * FrameTime;
-            }
-        }
-
-        private static double frameTime = 16.66;
-
-        public static double FrameTime
-        {
-            get
-            {
-                return frameTime;
-            }
-
-            private set
-            {
-                frameTime = value;
-            }
-        }
-
-        private static double utilFrameTime = 13.32;
-
-        public static double UtilFrameTime
-        {
-            get
-            {
-                return utilFrameTime;
-            }
-
-            private set
-            {
-                utilFrameTime = value;
             }
         }
 
@@ -344,8 +262,10 @@ namespace Reallukee.GWC
                 return false;
             }
 
-            windowThread.Start();
+            windowThreadFlag = true;
+            renderThreadFlag = true;
 
+            windowThread.Start();
             renderThread.Start();
 
             while (!window.IsHandleCreated)
@@ -363,36 +283,28 @@ namespace Reallukee.GWC
                 return false;
             }
 
-            windowThreadFlag = false;
+            if (!window.IsHandleCreated)
+            {
+                return false;
+            }
 
+            windowThreadFlag = false;
             renderThreadFlag = false;
 
-            // windowThread.Join();
-
-            // renderThread.Join();
-
-            if (window.IsHandleCreated)
-            {
-                Application.Exit();
-            }
+            windowThread.Join();
+            renderThread.Join();
 
             return true;
         }
 
         public bool IsOpen
         {
-           get
-           {
-                return window.IsHandleCreated;
-           }
+           get => window.IsHandleCreated;
         }
 
         public bool IsShutdown
         {
-            get
-            {
-                return !window.IsHandleCreated;
-            }
+            get => !window.IsHandleCreated;
         }
 
 
@@ -411,7 +323,9 @@ namespace Reallukee.GWC
 
         public bool DrawFigure(IFigure figure) => canvas.DrawFigure(figure);
 
+        public bool DrawBorderSquare(int x, int y, int side) => canvas.DrawBorderSquare(x, y, side);
+        public bool DrawFillSquare  (int x, int y, int side) => canvas.DrawFillSquare  (x, y, side);
         public bool DrawBorderRectangle(int x, int y, int width, int height) => canvas.DrawBorderRectangle(x, y, width, height);
-        public bool DrawFillRectangle(int x, int y, int width, int height)   => canvas.DrawFillRectangle(x, y, width, height);
+        public bool DrawFillRectangle  (int x, int y, int width, int height) => canvas.DrawFillRectangle  (x, y, width, height);
     }
 }

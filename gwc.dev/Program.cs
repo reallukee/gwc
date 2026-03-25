@@ -32,9 +32,15 @@ namespace Reallukee.GWC
     {
         static void Main(string[] args)
         {
+            Render.RefreshRate = 60;
+            Render.DutyCycle = 80;
+
             Window window = new Window(800, 600);
 
             window.Open();
+
+            window.FillColor = Color.FromArgb(100, 0, 255, 0);
+            window.BorderColor = Color.FromArgb(100, 0, 128, 0);
 
             if (window.IsOpen)
             {

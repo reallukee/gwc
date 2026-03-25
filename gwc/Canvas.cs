@@ -30,7 +30,7 @@ namespace Reallukee.GWC
 {
     public sealed class Canvas : IDisposable, IFillColor, IBorderColor
     {
-        public const int MaxRenderBufferLength = 10000;
+        internal const int MaxBufferLength = 10000;
 
         public Canvas(int width, int height)
         {
@@ -68,69 +68,41 @@ namespace Reallukee.GWC
 
         private Bitmap bitmap;
 
-        public Bitmap Bitmap
+        internal Bitmap Bitmap
         {
-            get
-            {
-                return bitmap;
-            }
-
-            set
-            {
-                bitmap = value;
-            }
+            get => bitmap;
+            set => bitmap = value;
         }
 
         private ConcurrentQueue<IFigure> buffer;
 
-        public ConcurrentQueue<IFigure> Buffer
+        internal ConcurrentQueue<IFigure> Buffer
         {
-            get
-            {
-                return buffer;
-            }
-
-            set
-            {
-                buffer = value;
-            }
+            get => buffer;
+            set => buffer = value;
         }
 
         private Color fillColor;
 
         public Color FillColor
         {
-            get
-            {
-                return fillColor;
-            }
-
-            set
-            {
-                fillColor = value;
-            }
+            get => fillColor;
+            set => fillColor = value;
         }
 
         private Color borderColor;
 
         public Color BorderColor
         {
-            get
-            {
-                return borderColor;
-            }
-
-            set
-            {
-                borderColor = value;
-            }
+            get => borderColor;
+            set => borderColor = value;
         }
 
 
 
         public bool DrawFigure(IFigure figure)
         {
-            if (buffer.Count > MaxRenderBufferLength)
+            if (buffer.Count > MaxBufferLength)
             {
                 return false;
             }
@@ -141,6 +113,9 @@ namespace Reallukee.GWC
         }
 
 
+
+        public bool DrawBorderSquare(int x, int y, int side) => DrawBorderRectangle(x, y, side, side);
+        public bool DrawFillSquare  (int x, int y, int side) => DrawFillRectangle  (x, y, side, side);
 
         public bool DrawBorderRectangle(int x, int y, int width, int height)
         {

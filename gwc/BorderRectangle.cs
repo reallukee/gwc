@@ -44,15 +44,8 @@ namespace Reallukee.GWC
 
         public Color BorderColor
         {
-            get
-            {
-                return borderColor;
-            }
-
-            set
-            {
-                borderColor = value;
-            }
+            get => borderColor;
+            set => borderColor = value;
         }
 
         public void Render(Graphics g)

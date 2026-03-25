@@ -42,15 +42,5 @@ namespace Reallukee.GWC
             SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             SetStyle(ControlStyles.OptimizedDoubleBuffer,        true);
         }
-
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            base.OnPaint(e);
-        }
-
-        protected override void OnResize(EventArgs e)
-        {
-            base.OnResize(e);
-        }
     }
 }
