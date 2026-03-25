@@ -1,5 +1,5 @@
 # All files
 * text=auto eol=crlf
 
-# Scripts shouldn't be counted in the code base's statistics
+# Scripts
 *.cmd linguist-detectable=false

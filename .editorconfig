@@ -15,15 +15,16 @@ indent_size = 2
 [*.sln]
 indent_style = tab
 
-[*.{slnx,csproj,vbproj,fsproj,vcxproj,vcxproj.filters,resx,props,config}]
+[*.{slnx,csproj,vbproj,fsproj,vcxproj,vcxproj.filters,resx,props,config,vstemplate}]
 indent_size = 2
 
-[*.{sln,csproj,vbproj,fsproj,vcxproj,vcxproj.filters,resx,props,config}]
+[*.{sln,slnx,csproj,vbproj,fsproj,vcxproj,vcxproj.filters,resx,props,config,vstemplate}]
 charset = utf-8-bom
 
+# Resources
 [*.rc]
 charset = utf-16le
 trim_trailing_whitespace = false
 
-[resource.{h,hxx}]
+[resource.{h,hpp}]
 trim_trailing_whitespace = false

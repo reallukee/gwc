@@ -16,6 +16,16 @@ ipch/
 # Compilation
 [Bb]in/
 [Oo]bj/
+x86/
+x64/
+ARM64/
+
+# Template
+include/
+static/
+shared/
+
+*.zip
 
 # Repository
 *.temp/
