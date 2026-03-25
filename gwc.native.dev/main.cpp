@@ -29,15 +29,15 @@ int main(int argc, const char* argv[])
 
     window->open();
 
-    window->setFillColor(Color(100, 0, 255, 0));
-    window->setBorderColor(Color(100, 0, 128, 0));
-
     if (!window->isInitialized())
     {
         delete window;
 
         return 1;
     }
+
+    window->setFillColor(Color(100, 0, 255, 0));
+    window->setBorderColor(Color(100, 0, 128, 0));
 
     if (window->isOpen())
     {
