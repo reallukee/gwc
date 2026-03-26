@@ -1,0 +1,14 @@
+export.h
+header.h
+gwc.h
+COLOR.h
+RENDER.h
+CANVAS.h
+WINDOW.h
+export.hpp
+header.hpp
+gwc.hpp
+Color.hpp
+Render.hpp
+Canvas.hpp
+Window.hpp

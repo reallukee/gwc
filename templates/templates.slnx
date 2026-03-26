@@ -1,0 +1,11 @@
+<Solution>
+  <Configurations>
+    <Platform Name="ARM64" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="GWC.C.Application/GWC.C.Application.vcxproj" />
+  <Project Path="GWC.Cpp.Application/GWC.Cpp.Application.vcxproj" />
+  <Project Path="GWC.C.EmptyApplication/GWC.C.EmptyApplication.vcxproj" />
+  <Project Path="GWC.Cpp.EmptyApplication/GWC.Cpp.EmptyApplication.vcxproj" />
+</Solution>

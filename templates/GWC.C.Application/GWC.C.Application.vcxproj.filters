@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="File di origine">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="File di intestazione">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="File di risorse">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="GWC">
+      <UniqueIdentifier>{c8e8eb07-f592-481d-8488-13d20cbe50da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GWC\Include">
+      <UniqueIdentifier>{7d6d436c-22ff-4ab2-8747-3513eea653bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GWC\Static">
+      <UniqueIdentifier>{ccf6d912-6b6d-4162-a377-c1781c3170be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GWC\Shared">
+      <UniqueIdentifier>{71b81c35-4518-4623-b753-fa22d217e6d2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.c">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\export.h">
+      <Filter>GWC\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\header.h">
+      <Filter>GWC\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gwc.h">
+      <Filter>GWC\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\COLOR.h">
+      <Filter>GWC\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\RENDER.h">
+      <Filter>GWC\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CANVAS.h">
+      <Filter>GWC\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\WINDOW.h">
+      <Filter>GWC\Include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shared\gwc.native-d-x86.dll">
+      <Filter>GWC\Shared</Filter>
+    </None>
+    <None Include="shared\gwc.native-d-x64.dll">
+      <Filter>GWC\Shared</Filter>
+    </None>
+    <None Include="shared\gwc.native-d-ARM64.dll">
+      <Filter>GWC\Shared</Filter>
+    </None>
+    <None Include="shared\gwc.native-x86.dll">
+      <Filter>GWC\Shared</Filter>
+    </None>
+    <None Include="shared\gwc.native-x64.dll">
+      <Filter>GWC\Shared</Filter>
+    </None>
+    <None Include="shared\gwc.native-ARM64.dll">
+      <Filter>GWC\Shared</Filter>
+    </None>
+    <None Include="shared\gwc-d-x86.dll">
+      <Filter>GWC\Shared</Filter>
+    </None>
+    <None Include="shared\gwc-d-x64.dll">
+      <Filter>GWC\Shared</Filter>
+    </None>
+    <None Include="shared\gwc-d-ARM64.dll">
+      <Filter>GWC\Shared</Filter>
+    </None>
+    <None Include="shared\gwc-x86.dll">
+      <Filter>GWC\Shared</Filter>
+    </None>
+    <None Include="shared\gwc-x64.dll">
+      <Filter>GWC\Shared</Filter>
+    </None>
+    <None Include="shared\gwc-ARM64.dll">
+      <Filter>GWC\Shared</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="static\gwc.native-d-x86.lib">
+      <Filter>GWC\Static</Filter>
+    </Library>
+    <Library Include="static\gwc.native-d-x64.lib">
+      <Filter>GWC\Static</Filter>
+    </Library>
+    <Library Include="static\gwc.native-d-ARM64.lib">
+      <Filter>GWC\Static</Filter>
+    </Library>
+    <Library Include="static\gwc.native-x86.lib">
+      <Filter>GWC\Static</Filter>
+    </Library>
+    <Library Include="static\gwc.native-x64.lib">
+      <Filter>GWC\Static</Filter>
+    </Library>
+    <Library Include="static\gwc.native-ARM64.lib">
+      <Filter>GWC\Static</Filter>
+    </Library>
+  </ItemGroup>
+</Project>
