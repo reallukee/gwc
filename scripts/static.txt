@@ -1,0 +1,6 @@
+x86\Debug\gwc.native-d-x86.lib
+x64\Debug\gwc.native-d-x64.lib
+ARM64\Debug\gwc.native-d-ARM64.lib
+x86\Release\gwc.native-x86.lib
+x64\Release\gwc.native-x64.lib
+ARM64\Release\gwc.native-ARM64.lib

@@ -35,12 +35,13 @@ Nessuna Pretesa, Solo Chill!
 > [!WARNING]
 > CI STO LAVORANDO!
 
-* [Requisiti](#0-requisiti)
-* [Progetto](#1-progetto)
+## Requisiti
 
+* [Windows](#windows)
+* [Linux](#linux)
+* [macOS](#macos)
 
-
-## 0. Requisiti
+## Windows
 
 * .NET Framework
   * .NET Framework 4.8.1 Runtime
@@ -49,103 +50,40 @@ Nessuna Pretesa, Solo Chill!
   * Microsoft Visual C++ v14 Redistributable (x64)
   * Microsoft Visual C++ v14 Redistributable (x86)
   * Microsoft Visual C++ v14 Redistributable (arm64)
-* Windows 10
 
+## Linux
 
+> [!WARNING]
+> `GWC` è supportata su Linux tramite `Mono` (Verificato).<br />
+> `GWC.Native` è **FORSE** supportata su Linux con `Wine` (Non verificato).
 
-## 1. Progetto
+> [!WARNING]
+> ARM64 non è supportato da Mono!
 
-### API C
+> [!IMPORTANT]
+> GWC è fortemente legata a Windows. Questi sono layer di compatibilità.
+> Non è assicurato un comportamento corretto!
 
-```c
-// GWC 0.1.0
+* Mono Runtime 6.8.0+<br />
+  (System.Drawing.dll e System.Windows.Forms.dll devono essere
+  presenti!)
 
-#include <gwc.h>
+## macOS
 
-int main(int argc, const char* argv[])
-{
-    WINDOW* window = window_new(800, 600);
+> [!WARNING]
+> `GWC` è supportata su macOS tramite `Mono` (Verificato).<br />
+> `GWC.Native` è **FORSE** supportata su macOS con `Wine` (Non verificato).
 
-    window_open(window);
+> [!WARNING]
+> ARM64 non è supportato da Mono!
 
-    if (!window_isInitialized(window))
-    {
-        window_delete(window);
+> [!IMPORTANT]
+> GWC è fortemente legata a Windows. Questi sono layer di compatibilità.
+> Non è assicurato un comportamento corretto!
 
-        return 1;
-    }
-
-    if (window_isOpen(window))
-    {
-        window_drawFillRectangle(window, 50, 50, 100, 100);
-        window_drawBorderRectangle(window, 50, 50, 100, 100);
-
-        printf("Press any key to exit...\n");
-
-        _getch();
-
-        window_shutdown(window);
-    }
-    else
-    {
-        printf("Oh :(\n");
-    }
-
-    window_delete(window);
-
-    return 0;
-}
-```
-
-### API C++
-
-```cpp
-// GWC 0.1.0
-
-#include <gwc.hpp>
-
-#include <conio.h>
-
-#include <iostream>
-
-using namespace gwc;
-
-using namespace std;
-
-int main(int argc, const char* argv[])
-{
-    Window* window = new Window(800, 600);
-
-    window->open();
-
-    if (!window->isInitialized())
-    {
-        delete window;
-
-        return 1;
-    }
-
-    if (window->isOpen())
-    {
-        window->drawFillRectangle(50, 50, 100, 100);
-        window->drawBorderRectangle(50, 50, 100, 100);
-
-        cout << "Press any key to exit..." << endl;
-
-        _getch();
-
-        window->shutdown();
-    }
-    else
-    {
-        cout << "Oh :(" << endl;
-    }
-
-    delete window;
-
-    return 0;
-}
-```
+* Mono Runtime 6.8.0+<br />
+  (System.Drawing.dll e System.Windows.Forms.dll devono essere
+  presenti!)
 
 
 
@@ -154,14 +92,13 @@ int main(int argc, const char* argv[])
 > [!WARNING]
 > CI STO LAVORANDO!
 
-* [Prerequisiti](#0-prerequisiti)
-* [Sorgente](#1-sorgente)
-* [Configurazione](#2-configurazione)
+* [Prerequisiti](#1-prerequisiti)
+* [Sorgente](#2-sorgente)
 * [Compilazione](#3-compilazione)
 
 
 
-## 0. Prerequisiti
+## 1. Prerequisiti
 
 * `git`
 * [Visual Studio 2026](https://aka.ms/vs/stable/vs_Community.exe)
@@ -182,7 +119,7 @@ In Visual Studio Installer:
 
 
 
-## 1. Sorgente
+## 2. Sorgente
 
 ```
 git clone https://github.com/reallukee/gwc.git
@@ -190,7 +127,7 @@ git clone https://github.com/reallukee/gwc.git
 
 
 
-## 2. Configurazione
+## 3. Compilazione
 
 ```cmd
 REM Visual Studio 2026
@@ -200,22 +137,20 @@ REM Build Tools per Visual Studio 2026
 CALL "%PROGRAMFILES% (x86)\Microsoft Visual Studio\18\BuildTools\Common7\Tools\vsdevcmd"
 ```
 
-
-
-## 3. Compilazione
-
 ```cmd
-REM GWC x86
-msbuild gwc.sln /p:Configuration=Release /p:Platform=x86 /t:gwc
-msbuild gwc.sln /p:Configuration=Release /p:Platform=x86 /t:gwc_native
+REM GWC
+msbuild gwc.sln /t:gwc /p:Configuration=Release /p:Platform=x86
+msbuild gwc.sln /t:gwc /p:Configuration=Release /p:Platform=x64
+msbuild gwc.sln /t:gwc /p:Configuration=Release /p:Platform=ARM64
 
-REM GWC x64
-msbuild gwc.sln /p:Configuration=Release /p:Platform=x64 /t:gwc
-msbuild gwc.sln /p:Configuration=Release /p:Platform=x64 /t:gwc_native
+REM GWC.Mono
+msbuild gwc.sln /t:gwc_mono /p:Configuration=Release /p:Platform=x86
+msbuild gwc.sln /t:gwc_mono /p:Configuration=Release /p:Platform=x64
 
-REM GWC arm64
-msbuild gwc.sln /p:Configuration=Release /p:Platform=arm64 /t:gwc
-msbuild gwc.sln /p:Configuration=Release /p:Platform=arm64 /t:gwc_native
+REM GWC.Native
+msbuild gwc.sln /t:gwc_native /p:Configuration=Release /p:Platform=x64
+msbuild gwc.sln /t:gwc_native /p:Configuration=Release /p:Platform=x86
+msbuild gwc.sln /t:gwc_native /p:Configuration=Release /p:Platform=ARM64
 ```
 
 
