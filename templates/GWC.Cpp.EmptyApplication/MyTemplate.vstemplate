@@ -1,6 +1,6 @@
 ﻿<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
   <TemplateData>
-    <Name>GWC C++ Empty Application (0.1.0)</Name>
+    <Name>GWC C++ Empty Application (0.1.1)</Name>
     <Description>
       Fornisce un template per la creazione di un'Applicazione GWC vuota in C++.
 GWC è un progetto Open-Source mantenuto su https://github.com/reallukee/gwc.
@@ -24,7 +24,7 @@ GWC è un progetto Open-Source mantenuto su https://github.com/reallukee/gwc.
   <TemplateContent>
     <CustomParameters>
       <CustomParameter Name="$gwc_identifier$" Value="GWC.Native" />
-      <CustomParameter Name="$gwc_version$" Value="0.1.0" />
+      <CustomParameter Name="$gwc_version$" Value="0.1.1" />
     </CustomParameters>
     <Project TargetFileName="GWC.Cpp.EmptyApplication.vcxproj" File="GWC.Cpp.EmptyApplication.vcxproj" ReplaceParameters="true">
       <ProjectItem ReplaceParameters="false" TargetFileName="$projectname$.vcxproj.filters">GWC.Cpp.EmptyApplication.vcxproj.filters</ProjectItem>
