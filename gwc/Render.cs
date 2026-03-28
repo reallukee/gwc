@@ -1,7 +1,7 @@
 //
 // :.:.:.
 // GWC
-// v0.1.0
+// v0.1.1
 // :.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -38,7 +38,7 @@ namespace Reallukee.GWC
 
             set
             {
-                if (value < 0 || value > 120)
+                if (value < 30 || value > 60)
                 {
                     return;
                 }

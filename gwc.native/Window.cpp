@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.1.0
+// v0.1.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -88,94 +88,22 @@ namespace gwc
 
     Color Window::getBorderColor()
     {
-        void* nativeHandle = window;
-
-        IntPtr managedHandle = IntPtr(nativeHandle);
-
-        if (WindowHandler::IsNull(managedHandle))
-        {
-            throw gcnew NullReferenceException("");
-        }
-
-        Drawing::Color^ managedBorderColor = WindowHandler::Invoke(managedHandle)->BorderColor;
-
-        Color nativeColor = Color(
-            (int)managedBorderColor->A,
-            (int)managedBorderColor->R,
-            (int)managedBorderColor->G,
-            (int)managedBorderColor->B
-        );
-
-        return nativeColor;
+        INVOKE_WINDOW_GET_COLOR_CPP(window, BorderColor);
     }
 
     void Window::setBorderColor(Color color)
     {
-        void* nativeHandle = window;
-
-        IntPtr managedHandle = IntPtr(nativeHandle);
-
-        if (WindowHandler::IsNull(managedHandle))
-        {
-            throw gcnew NullReferenceException("");
-        }
-
-        Color nativeColor = color;
-
-        Drawing::Color managedColor = Drawing::Color::FromArgb(
-            nativeColor.getAlpha(),
-            nativeColor.getRed(),
-            nativeColor.getBlue(),
-            nativeColor.getGreen()
-        );
-
-        WindowHandler::Invoke(managedHandle)->BorderColor = managedColor;
+        INVOKE_WINDOW_SET_COLOR_CPP(window, BorderColor, color);
     }
 
     Color Window::getFillColor()
     {
-        void* nativeHandle = window;
-
-        IntPtr managedHandle = IntPtr(nativeHandle);
-
-        if (WindowHandler::IsNull(managedHandle))
-        {
-            throw gcnew NullReferenceException("");
-        }
-
-        Drawing::Color^ managedFillColor = WindowHandler::Invoke(managedHandle)->FillColor;
-
-        Color nativeColor = Color(
-            (int)managedFillColor->A,
-            (int)managedFillColor->R,
-            (int)managedFillColor->G,
-            (int)managedFillColor->B
-        );
-
-        return nativeColor;
+        INVOKE_WINDOW_GET_COLOR_CPP(window, FillColor);
     }
 
     void Window::setFillColor(Color color)
     {
-        void* nativeHandle = window;
-
-        IntPtr managedHandle = IntPtr(nativeHandle);
-
-        if (WindowHandler::IsNull(managedHandle))
-        {
-            throw gcnew NullReferenceException("");
-        }
-
-        Color nativeColor = color;
-
-        Drawing::Color managedColor = Drawing::Color::FromArgb(
-            nativeColor.getAlpha(),
-            nativeColor.getRed(),
-            nativeColor.getBlue(),
-            nativeColor.getGreen()
-        );
-
-        WindowHandler::Invoke(managedHandle)->FillColor = managedColor;
+        INVOKE_WINDOW_SET_COLOR_CPP(window, FillColor, color);
     }
 
 

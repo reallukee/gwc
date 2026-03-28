@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.1.0
+// v0.1.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -23,11 +23,11 @@
 // Questo è l'header dell'API C++ di GWC!
 // La versione attesa dell'API è:
 //
-//  0.1.0
+//  0.1.1
 //
 
-#define _GWC_VERSION     "010"
-#define _GWC_MIN_VERSION "010"
+#define _GWC_VERSION     "011"
+#define _GWC_MIN_VERSION "011"
 
 #include "Color.hpp"
 #include "Render.hpp"

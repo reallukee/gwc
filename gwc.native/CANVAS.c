@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.1.0
+// v0.1.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -79,114 +79,22 @@ bool canvas_isInitialized(const CANVAS* canvas)
 
 COLOR* canvas_getBorderColor(const CANVAS* canvas)
 {
-    if (canvas == NULL)
-    {
-        return color_new(0, 0, 0, 0);
-    }
-
-    void* nativeHandle = canvas->canvas;
-
-    IntPtr managedHandle = IntPtr(nativeHandle);
-
-    if (CanvasHandler::IsNull(managedHandle))
-    {
-        throw gcnew NullReferenceException("");
-    }
-
-    Drawing::Color^ managedBorderColor = CanvasHandler::Invoke(managedHandle)->BorderColor;
-
-    COLOR* nativeColor = color_new(
-        (int)managedBorderColor->A,
-        (int)managedBorderColor->R,
-        (int)managedBorderColor->G,
-        (int)managedBorderColor->B
-    );
-
-    return nativeColor;
+    INVOKE_CANVAS_GET_COLOR_C(canvas, BorderColor);
 }
 
 void canvas_setBorderColor(const CANVAS* canvas, const COLOR* color)
 {
-    if (canvas == NULL || color == NULL)
-    {
-        return;
-    }
-
-    void* nativeHandle = canvas->canvas;
-
-    IntPtr managedHandle = IntPtr(nativeHandle);
-
-    if (CanvasHandler::IsNull(managedHandle))
-    {
-        throw gcnew NullReferenceException("");
-    }
-
-    const COLOR* nativeColor = color;
-
-    Drawing::Color managedColor = Drawing::Color::FromArgb(
-        color_getAlpha(nativeColor),
-        color_getRed  (nativeColor),
-        color_getBlue (nativeColor),
-        color_getGreen(nativeColor)
-    );
-
-    CanvasHandler::Invoke(managedHandle)->BorderColor = managedColor;
+    INVOKE_CANVAS_SET_COLOR_C(canvas, BorderColor, color);
 }
 
 COLOR* canvas_getFillColor(const CANVAS* canvas)
 {
-    if (canvas == NULL)
-    {
-        return color_new(0, 0, 0, 0);
-    }
-
-    void* nativeHandle = canvas->canvas;
-
-    IntPtr managedHandle = IntPtr(nativeHandle);
-
-    if (CanvasHandler::IsNull(managedHandle))
-    {
-        throw gcnew NullReferenceException("");
-    }
-
-    Drawing::Color^ managedBorderColor = CanvasHandler::Invoke(managedHandle)->FillColor;
-
-    COLOR* nativeColor = color_new(
-        (int)managedBorderColor->A,
-        (int)managedBorderColor->R,
-        (int)managedBorderColor->G,
-        (int)managedBorderColor->B
-    );
-
-    return nativeColor;
+    INVOKE_CANVAS_GET_COLOR_C(canvas, FillColor);
 }
 
 void canvas_setFillColor(const CANVAS* canvas, const COLOR* color)
 {
-    if (canvas == NULL || color == NULL)
-    {
-        return;
-    }
-
-    void* nativeHandle = canvas->canvas;
-
-    IntPtr managedHandle = IntPtr(nativeHandle);
-
-    if (CanvasHandler::IsNull(managedHandle))
-    {
-        throw gcnew NullReferenceException("");
-    }
-
-    const COLOR* nativeColor = color;
-
-    Drawing::Color managedColor = Drawing::Color::FromArgb(
-        color_getAlpha(nativeColor),
-        color_getRed  (nativeColor),
-        color_getBlue (nativeColor),
-        color_getGreen(nativeColor)
-    );
-
-    CanvasHandler::Invoke(managedHandle)->FillColor = managedColor;
+    INVOKE_CANVAS_SET_COLOR_C(canvas, FillColor, color);
 }
 
 

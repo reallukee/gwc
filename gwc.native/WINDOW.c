@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.1.0
+// v0.1.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -101,114 +101,22 @@ bool window_isShutdown(const WINDOW* window)
 
 COLOR* window_getBorderColor(const WINDOW* window)
 {
-    if (window == NULL)
-    {
-        return color_new(0, 0, 0, 0);
-    }
-
-    void* nativeHandle = window->window;
-
-    IntPtr managedHandle = IntPtr(nativeHandle);
-
-    if (WindowHandler::IsNull(managedHandle))
-    {
-        throw gcnew NullReferenceException("");
-    }
-
-    Drawing::Color^ managedBorderColor = WindowHandler::Invoke(managedHandle)->BorderColor;
-
-    COLOR* nativeColor = color_new(
-        (int)managedBorderColor->A,
-        (int)managedBorderColor->R,
-        (int)managedBorderColor->G,
-        (int)managedBorderColor->B
-    );
-
-    return nativeColor;
+    INVOKE_WINDOW_GET_COLOR_C(window, BorderColor);
 }
 
 void window_setBorderColor(const WINDOW* window, const COLOR* color)
 {
-    if (window == NULL || color == NULL)
-    {
-        return;
-    }
-
-    void* nativeHandle = window->window;
-
-    IntPtr managedHandle = IntPtr(nativeHandle);
-
-    if (WindowHandler::IsNull(managedHandle))
-    {
-        throw gcnew NullReferenceException("");
-    }
-
-    const COLOR* nativeColor = color;
-
-    Drawing::Color managedColor = Drawing::Color::FromArgb(
-        color_getAlpha(nativeColor),
-        color_getRed(nativeColor),
-        color_getBlue(nativeColor),
-        color_getGreen(nativeColor)
-    );
-
-    WindowHandler::Invoke(managedHandle)->BorderColor = managedColor;
+    INVOKE_WINDOW_SET_COLOR_C(window, BorderColor, color);
 }
 
 COLOR* window_getFillColor(const WINDOW* window)
 {
-    if (window == NULL)
-    {
-        return color_new(0, 0, 0, 0);
-    }
-
-    void* nativeHandle = window->window;
-
-    IntPtr managedHandle = IntPtr(nativeHandle);
-
-    if (WindowHandler::IsNull(managedHandle))
-    {
-        throw gcnew NullReferenceException("");
-    }
-
-    Drawing::Color^ managedBorderColor = WindowHandler::Invoke(managedHandle)->FillColor;
-
-    COLOR* nativeColor = color_new(
-        (int)managedBorderColor->A,
-        (int)managedBorderColor->R,
-        (int)managedBorderColor->G,
-        (int)managedBorderColor->B
-    );
-
-    return nativeColor;
+    INVOKE_WINDOW_GET_COLOR_C(window, FillColor);
 }
 
 void window_setFillColor(const WINDOW* window, const COLOR* color)
 {
-    if (window == NULL || color == NULL)
-    {
-        return;
-    }
-
-    void* nativeHandle = window->window;
-
-    IntPtr managedHandle = IntPtr(nativeHandle);
-
-    if (WindowHandler::IsNull(managedHandle))
-    {
-        throw gcnew NullReferenceException("");
-    }
-
-    const COLOR* nativeColor = color;
-
-    Drawing::Color managedColor = Drawing::Color::FromArgb(
-        color_getAlpha(nativeColor),
-        color_getRed(nativeColor),
-        color_getBlue(nativeColor),
-        color_getGreen(nativeColor)
-    );
-
-    WindowHandler::Invoke(managedHandle)->FillColor = managedColor;
+    INVOKE_WINDOW_SET_COLOR_C(window, FillColor, color);
 }
 
 

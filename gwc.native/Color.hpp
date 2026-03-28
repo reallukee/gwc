@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.1.0
+// v0.1.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -28,22 +28,22 @@ namespace gwc
 
         int alpha;
         int red;
-        int blue;
         int green;
+        int blue;
 
     public:
 
-        Color (int alpha, int red, int blue, int green);
+        Color (int alpha, int red, int green, int blue);
         ~Color();
 
         int  getAlpha();
         void setAlpha(int value);
         int  getRed  ();
         void setRed  (int value);
-        int  getBlue ();
-        void setBlue (int value);
         int  getGreen();
         void setGreen(int value);
+        int  getBlue ();
+        void setBlue (int value);
 
     };
 }

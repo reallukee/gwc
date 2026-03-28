@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.1.0
+// v0.1.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -16,13 +16,13 @@ typedef struct COLOR
 {
     int alpha;
     int red;
-    int blue;
     int green;
+    int blue;
 } COLOR;
 
 
 
-COLOR* color_new(int alpha, int red, int blue, int green)
+COLOR* color_new(int alpha, int red, int green, int blue)
 {
     COLOR* color = (COLOR*)calloc(1, sizeof(COLOR));
 
@@ -41,20 +41,20 @@ COLOR* color_new(int alpha, int red, int blue, int green)
         red = 255;
     }
 
-    if (blue < 0 || blue > 255)
-    {
-        blue = 255;
-    }
-
     if (green < 0 || green > 255)
     {
         green = 255;
     }
 
+    if (blue < 0 || blue > 255)
+    {
+        blue = 255;
+    }
+
     color->alpha = alpha;
     color->red   = red;
-    color->blue  = blue;
     color->green = green;
+    color->blue  = blue;
 
     return color;
 }
@@ -96,21 +96,6 @@ void color_setRed(COLOR* color, int value)
     color->red = value;
 }
 
-int color_getBlue(const COLOR* color)
-{
-    return color->blue;
-}
-
-void color_setBlue(COLOR* color, int value)
-{
-    if (value < 0 || value > 255)
-    {
-        return;
-    }
-
-    color->blue = value;
-}
-
 int color_getGreen(const COLOR* color)
 {
     return color->green;
@@ -124,4 +109,19 @@ void color_setGreen(COLOR* color, int value)
     }
 
     color->green = value;
+}
+
+int color_getBlue(const COLOR* color)
+{
+    return color->blue;
+}
+
+void color_setBlue(COLOR* color, int value)
+{
+    if (value < 0 || value > 255)
+    {
+        return;
+    }
+
+    color->blue = value;
 }

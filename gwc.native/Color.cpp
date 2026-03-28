@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.1.0
+// v0.1.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -16,7 +16,7 @@
 
 namespace gwc
 {
-    Color::Color(int alpha, int red, int blue, int green)
+    Color::Color(int alpha, int red, int green, int blue)
     {
         if (alpha < 0 || alpha > 100)
         {
@@ -28,20 +28,20 @@ namespace gwc
             red = 255;
         }
 
-        if (blue < 0 || blue > 255)
-        {
-            blue = 255;
-        }
-
         if (green < 0 || green > 255)
         {
             green = 255;
         }
 
+        if (blue < 0 || blue > 255)
+        {
+            blue = 255;
+        }
+
         this->alpha = alpha;
         this->red   = red;
-        this->blue  = blue;
         this->green = green;
+        this->blue  = blue;
     }
 
     Color::~Color() {}
@@ -78,21 +78,6 @@ namespace gwc
         red = value;
     }
 
-    int Color::getBlue()
-    {
-        return blue;
-    }
-
-    void Color::setBlue(int value)
-    {
-        if (value < 0 || value > 255)
-        {
-            return;
-        }
-
-        blue = value;
-    }
-
     int Color::getGreen()
     {
         return green;
@@ -106,6 +91,21 @@ namespace gwc
         }
 
         green = value;
+    }
+
+    int Color::getBlue()
+    {
+        return blue;
+    }
+
+    void Color::setBlue(int value)
+    {
+        if (value < 0 || value > 255)
+        {
+            return;
+        }
+
+        blue = value;
     }
 }
 

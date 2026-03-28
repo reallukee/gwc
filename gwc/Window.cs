@@ -1,7 +1,7 @@
 //
 // :.:.:.
 // GWC
-// v0.1.0
+// v0.1.1
 // :.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -47,7 +47,7 @@ namespace Reallukee.GWC
             InitRender(width, height);
         }
 
-        public Window() : this(800, 600) { }
+        public Window() : this(800, 600) {}
 
         ~Window()
         {
@@ -291,8 +291,10 @@ namespace Reallukee.GWC
             windowThreadFlag = false;
             renderThreadFlag = false;
 
-            windowThread.Join();
-            renderThread.Join();
+            windowThread.Join(100);
+            renderThread.Join(100);
+
+            Application.Exit();
 
             return true;
         }
