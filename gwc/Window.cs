@@ -1,7 +1,7 @@
 //
 // :.:.:.
 // GWC
-// v0.1.1
+// v0.2.0
 // :.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -88,6 +88,16 @@ namespace Reallukee.GWC
 
             window.Paint  += WindowForm_Paint;
             window.Resize += WindowForm_Resize;
+
+            window.KeyDown   += WindowForm_KeyDown;
+            window.KeyUp     += WindowForm_KeyUp;
+            window.MouseDown += WindowForm_MouseDown;
+            window.MouseUp   += WindowForm_MouseUp;
+
+            keyDownEvent   = new AutoResetEvent(false);
+            keyUpEvent     = new AutoResetEvent(false);
+            mouseDownEvent = new AutoResetEvent(false);
+            mouseUpEvent   = new AutoResetEvent(false);
 
             windowThread = new Thread(WindowThreadLoop);
 
@@ -255,6 +265,13 @@ namespace Reallukee.GWC
 
 
 
+        public void Wait(int milliseconds)
+        {
+            Thread.Sleep(milliseconds);
+        }
+
+
+
         public bool Open()
         {
             if (windowThread.IsAlive || renderThread.IsAlive)
@@ -308,6 +325,198 @@ namespace Reallukee.GWC
         {
             get => !window.IsHandleCreated;
         }
+
+
+
+        private AutoResetEvent keyDownEvent;
+        private AutoResetEvent keyUpEvent;
+
+        private int hasKeyDown = 0;
+        private int hasKeyUp   = 0;
+
+        private void WindowForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            LastKeyDown = e.KeyValue;
+
+            Interlocked.Exchange(ref hasKeyDown, 1);
+
+            keyDownEvent.Set();
+        }
+
+        private void WindowForm_KeyUp(object sender, KeyEventArgs e)
+        {
+            LastKeyUp = e.KeyValue;
+
+            Interlocked.Exchange(ref hasKeyUp, 1);
+
+            keyUpEvent.Set();
+        }
+
+        private int lastKeyDown = -1;
+
+        public int LastKeyDown
+        {
+            get         => lastKeyDown;
+            private set => lastKeyDown = value;
+        }
+
+        private int lastKeyUp = -1;
+
+        public int LastKeyUp
+        {
+            get         => lastKeyUp;
+            private set => lastKeyUp = value;
+        }
+
+        public bool IsKeyDownAvailable => hasKeyDown == 1;
+        public bool IsKeyUpAvailable   => hasKeyUp   == 1;
+
+        public void ResetKeyDown() => LastKeyDown = -1;
+        public void ResetKeyUp  () => LastKeyUp   = -1;
+
+        public bool ConsumeKeyDown(out int key)
+        {
+            if (Interlocked.Exchange(ref hasKeyDown, 0) == 1)
+            {
+                key = lastKeyDown;
+
+                return true;
+            }
+
+            key = -1;
+
+            return false;
+        }
+
+        public bool ConsumeKeyUp(out int key)
+        {
+            if (Interlocked.Exchange(ref hasKeyUp, 0) == 1)
+            {
+                key = LastKeyUp;
+
+                return true;
+            }
+
+            key = -1;
+
+            return false;
+        }
+
+        public bool DiscardKeyDown() => ConsumeKeyDown(out int keys);
+        public bool DiscardKeyUp  () => ConsumeKeyUp  (out int keys);
+
+        public void WaitKeyDown() => keyDownEvent.WaitOne();
+        public void WaitKeyUp  () => keyUpEvent  .WaitOne();
+
+
+
+        private AutoResetEvent mouseDownEvent;
+        private AutoResetEvent mouseUpEvent;
+
+        private int hasMouseDown = 0;
+        private int hasMouseUp   = 0;
+
+        private void WindowForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            LastMouseDownLocation = new Point(e.X, e.Y);
+            LastMouseDownButton   = (int)e.Button;
+
+            Interlocked.Exchange(ref hasMouseDown, 1);
+
+            mouseDownEvent.Set();
+        }
+
+        private void WindowForm_MouseUp(object sender, MouseEventArgs e)
+        {
+            LastMouseUpLocation = new Point(e.X, e.Y);
+            LastMouseUpButton   = (int)e.Button;
+
+            Interlocked.Exchange(ref hasMouseUp, 1);
+
+            mouseUpEvent.Set();
+        }
+
+        private Point lastMouseDownLocation;
+
+        public Point LastMouseDownLocation
+        {
+            get         => lastMouseDownLocation;
+            private set => lastMouseDownLocation = value;
+        }
+
+        private int lastMouseDownButton = -1;
+
+        public int LastMouseDownButton
+        {
+            get         => lastMouseDownButton;
+            private set => lastMouseDownButton = value;
+        }
+
+        private Point lastMouseUpLocation;
+
+        public Point LastMouseUpLocation
+        {
+            get         => lastMouseUpLocation;
+            private set => lastMouseUpLocation = value;
+        }
+
+        private int lastMouseUpButton = -1;
+
+        public int LastMouseUpButton
+        {
+            get         => lastMouseUpButton;
+            private set => lastMouseUpButton = value;
+        }
+
+        public bool IsMouseDownAvailable => lastMouseDownButton != -1;
+        public bool IsMouseUpAvailable   => lastMouseUpButton   != -1;
+
+        public void ResetMouseDown()
+        {
+            LastMouseDownLocation = new Point(-1, -1);
+            LastMouseDownButton   = -1;
+        }
+
+        public void ResetMouseUp()
+        {
+            LastMouseUpLocation = new Point(-1, -1);
+            LastMouseUpButton   = -1;
+        }
+
+        public bool ConsumeMouseDown(out Point location, out int button)
+        {
+            if (Interlocked.Exchange(ref hasMouseDown, 0) == 1)
+            {
+                location = LastMouseDownLocation;
+                button   = LastMouseDownButton;
+
+                return true;
+            }
+
+            location = new Point(-1, -1);
+            button   = -1;
+
+            return false;
+        }
+
+        public bool ConsumeMouseUp(out Point location, out int button)
+        {
+            if (Interlocked.Exchange(ref hasMouseUp, 0) == 1)
+            {
+                location = LastMouseUpLocation;
+                button   = LastMouseUpButton;
+
+                return true;
+            }
+
+            location = new Point(-1, -1);
+            button   = -1;
+
+            return false;
+        }
+
+        public void WaitMouseDown() => mouseDownEvent.WaitOne();
+        public void WaitMouseUp()   => mouseUpEvent.  WaitOne();
 
 
 
