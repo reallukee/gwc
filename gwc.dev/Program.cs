@@ -32,8 +32,8 @@ namespace Reallukee.GWC
     {
         static void Main(string[] args)
         {
-            Render.RefreshRate = 60;
-            Render.DutyCycle   = 80;
+            Render.SetDefaultRefreshRate();
+            Render.SetDefaultDutyCycle  ();
 
             Window window = new Window(800, 600);
 
@@ -47,15 +47,22 @@ namespace Reallukee.GWC
             {
                 bool keyDown = window.ConsumeKeyDown(out int key);
 
-                if (key == 27)
-                {
-                    loop = false;
-
-                    continue;
-                }
-
                 if (keyDown)
                 {
+                    if (key == 27)
+                    {
+                        loop = false;
+
+                        continue;
+                    }
+
+                    if (key == 73)
+                    {
+                        ShowInfo(window);
+
+                        continue;
+                    }
+
                     Console.WriteLine($"Pressed: {key}");
 
                     window.BorderColor = GenerateRandomColor();
@@ -88,6 +95,16 @@ namespace Reallukee.GWC
             Color randomColor = Color.FromArgb(alpha, red, green, blue);
 
             return randomColor;
+        }
+
+        static void ShowInfo(Window window)
+        {
+            Console.WriteLine($"Window Width  : {window.WindowWidth}");
+            Console.WriteLine($"Window Height : {window.WindowHeight}");
+            Console.WriteLine($"Render Width  : {window.RenderWidth}");
+            Console.WriteLine($"Render Height : {window.RenderHeight}");
+            Console.WriteLine($"Canvas Width  : {window.CanvasWidth}");
+            Console.WriteLine($"Canvas height : {window.CanvasHeight}");
         }
     }
 }

@@ -1,7 +1,7 @@
 //
 // :.:.:.
 // GWC
-// v0.1.0
+// v0.2.0
 // :.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -36,17 +36,17 @@ namespace Reallukee.GWC
         {
             if (width <= 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(width), "");
+                throw new ArgumentOutOfRangeException(nameof(width), "Width cannot be negative.");
             }
 
             if (height <= 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(height), "");
+                throw new ArgumentOutOfRangeException(nameof(height), "Height cannot be negative.");
             }
 
-            bitmap = new Bitmap(width, height);
+            InitBitmap(width, height);
 
-            buffer = new ConcurrentQueue<IFigure>();
+            InitBuffer(width, height);
         }
 
         public Canvas() : this(800, 600) {}
@@ -58,10 +58,27 @@ namespace Reallukee.GWC
 
         public void Dispose()
         {
-            if (bitmap != null)
-            {
-                bitmap.Dispose();
-            }
+            bitmap?.Dispose();
+        }
+
+
+
+        private object bitmapLock;
+
+        private object bufferLock;
+
+        private void InitBitmap(int width, int height)
+        {
+            bitmap = new Bitmap(width, height);
+
+            bitmapLock = new object();
+        }
+
+        private void InitBuffer(int width, int height)
+        {
+            buffer = new ConcurrentQueue<IFigure>();
+
+            bufferLock = new object();
         }
 
 
@@ -96,6 +113,30 @@ namespace Reallukee.GWC
         {
             get => borderColor;
             set => borderColor = value;
+        }
+
+
+
+        public int Width
+        {
+            get
+            {
+                lock (bitmapLock)
+                {
+                    return bitmap.Width;
+                }
+            }
+        }
+
+        public int Height
+        {
+            get
+            {
+                lock (bitmapLock)
+                {
+                    return bitmap.Height;
+                }
+            }
         }
 
 

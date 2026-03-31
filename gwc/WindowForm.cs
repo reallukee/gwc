@@ -1,7 +1,7 @@
 //
 // :.:.:.
 // GWC
-// v0.1.0
+// v0.2.0
 // :.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -41,6 +41,18 @@ namespace Reallukee.GWC
             SetStyle(ControlStyles.AllPaintingInWmPaint,         true);
             SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             SetStyle(ControlStyles.OptimizedDoubleBuffer,        true);
+
+            handleCreated   = new ManualResetEventSlim(false);
+            handleDestroyed = new ManualResetEventSlim(false);
         }
+
+        private ManualResetEventSlim handleCreated;
+        private ManualResetEventSlim handleDestroyed;
+
+        protected override void OnHandleCreated  (EventArgs e) => handleCreated  .Set();
+        protected override void OnHandleDestroyed(EventArgs e) => handleDestroyed.Set();
+
+        public void WaitHandleCreated()   => handleCreated  .Wait();
+        public void WaitHandleDestroyed() => handleDestroyed.Wait();
     }
 }
