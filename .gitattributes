@@ -3,3 +3,5 @@
 
 # Scripts
 *.cmd linguist-detectable=false
+*.sh  linguist-detectable=false eol=lf
+*.ps1 linguist-detectable=false

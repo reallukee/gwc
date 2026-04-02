@@ -28,3 +28,10 @@ trim_trailing_whitespace = false
 
 [resource.{h,hpp}]
 trim_trailing_whitespace = false
+
+[*.{resx,Designer.cs}]
+trim_trailing_whitespace = false
+
+# Scripts
+[*.sh]
+end_of_line = lf
