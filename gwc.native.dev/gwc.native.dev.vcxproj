@@ -255,6 +255,7 @@
     <ClInclude Include="..\gwc.native\export.hpp" />
     <ClInclude Include="..\gwc.native\header.hpp" />
     <ClInclude Include="..\gwc.native\gwc.hpp" />
+    <ClInclude Include="..\gwc.native\types.hpp" />
     <ClInclude Include="..\gwc.native\Color.hpp" />
     <ClInclude Include="..\gwc.native\Render.hpp" />
     <ClInclude Include="..\gwc.native\canvas_macros.hpp" />
@@ -264,6 +265,7 @@
     <ClInclude Include="..\gwc.native\export.h" />
     <ClInclude Include="..\gwc.native\header.h" />
     <ClInclude Include="..\gwc.native\gwc.h" />
+    <ClInclude Include="..\gwc.native\types.h" />
     <ClInclude Include="..\gwc.native\COLOR.h" />
     <ClInclude Include="..\gwc.native\RENDER.h" />
     <ClInclude Include="..\gwc.native\canvas_macros.h" />

@@ -243,6 +243,7 @@
     <ClInclude Include="export.hpp" />
     <ClInclude Include="header.hpp" />
     <ClInclude Include="gwc.hpp" />
+    <ClInclude Include="types.hpp" />
     <ClInclude Include="Color.hpp" />
     <ClInclude Include="Render.hpp" />
     <ClInclude Include="canvas_macros.hpp" />
@@ -252,6 +253,7 @@
     <ClInclude Include="export.h" />
     <ClInclude Include="header.h" />
     <ClInclude Include="gwc.h" />
+    <ClInclude Include="types.h" />
     <ClInclude Include="COLOR.h" />
     <ClInclude Include="RENDER.h" />
     <ClInclude Include="canvas_macros.h" />

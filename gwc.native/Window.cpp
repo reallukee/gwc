@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.1.1
+// v0.2.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -23,7 +23,7 @@ namespace gwc
     {
         IntPtr managedHandle = WindowHandler::Alloc(width, height);
 
-        void* nativeHandle = reinterpret_cast<void*>(managedHandle.ToPointer());
+        CLRWindow nativeHandle = reinterpret_cast<CLRWindow>(managedHandle.ToPointer());
 
         window = nativeHandle;
     }
@@ -32,14 +32,14 @@ namespace gwc
     {
         IntPtr managedHandle = WindowHandler::Alloc();
 
-        void* nativeHandle = reinterpret_cast<void*>(managedHandle.ToPointer());
+        CLRWindow nativeHandle = reinterpret_cast<CLRWindow>(managedHandle.ToPointer());
 
         window = nativeHandle;
     }
 
     Window::~Window()
     {
-        void* nativeHandle = window;
+        CLRWindow nativeHandle = window;
 
         IntPtr managedHandle = IntPtr(nativeHandle);
 
@@ -55,7 +55,7 @@ namespace gwc
 
     bool Window::isInitialized()
     {
-        void* nativeHandle = window;
+        CLRWindow nativeHandle = window;
 
         return nativeHandle != nullptr;
     }
@@ -64,68 +64,165 @@ namespace gwc
 
     bool Window::open()
     {
-        INVOKE_WINDOW_BOOL_CPP(window, Open());
+        CCI_WINDOW_BOOL_CPP(window, Open());
     }
 
     bool Window::shutdown()
     {
-        INVOKE_WINDOW_BOOL_CPP(window, Shutdown());
+        CCI_WINDOW_BOOL_CPP(window, Shutdown());
     }
 
 
 
     bool Window::isOpen()
     {
-        INVOKE_WINDOW_BOOL_CPP(window, IsOpen);
+        CCI_WINDOW_BOOL_CPP(window, IsOpen);
     }
 
     bool Window::isShutdown()
     {
-        INVOKE_WINDOW_BOOL_CPP(window, IsShutdown);
+        CCI_WINDOW_BOOL_CPP(window, IsShutdown);
     }
 
 
 
     Color Window::getBorderColor()
     {
-        INVOKE_WINDOW_GET_COLOR_CPP(window, BorderColor);
+    CCI_WINDOW_GET_COLOR_CPP(window, BorderColor);
     }
 
     void Window::setBorderColor(Color color)
     {
-        INVOKE_WINDOW_SET_COLOR_CPP(window, BorderColor, color);
+        CCI_WINDOW_SET_COLOR_CPP(window, BorderColor, color);
     }
 
     Color Window::getFillColor()
     {
-        INVOKE_WINDOW_GET_COLOR_CPP(window, FillColor);
+        CCI_WINDOW_GET_COLOR_CPP(window, FillColor);
     }
 
     void Window::setFillColor(Color color)
     {
-        INVOKE_WINDOW_SET_COLOR_CPP(window, FillColor, color);
+        CCI_WINDOW_SET_COLOR_CPP(window, FillColor, color);
+    }
+
+
+
+    void Window::wait(int milliseconds)
+    {
+        CCI_WINDOW_VOID_CPP(window, Wait(milliseconds));
+    }
+
+
+
+    int Window::getWindowWidth()
+    {
+        CCI_WINDOW_INT_CPP(window, WindowWidth);
+    }
+
+    int Window::getWindowHeight()
+    {
+        CCI_WINDOW_INT_CPP(window, WindowHeight);
+    }
+
+    int Window::getRenderWidth()
+    {
+        CCI_WINDOW_INT_CPP(window, RenderWidth);
+    }
+
+    int Window::getRenderHeight()
+    {
+        CCI_WINDOW_INT_CPP(window, RenderHeight);
+    }
+
+
+
+    bool Window::isKeyDownAvailable()
+    {
+        CCI_WINDOW_BOOL_CPP(window, IsKeyDownAvailable);
+    }
+
+    void Window::resetKeyDown()
+    {
+        CCI_WINDOW_VOID_CPP(window, ResetKeyDown());
+    }
+
+    bool Window::consumeKeyDown(int& key)
+    {
+        CCI_WINDOW_BOOL_CPP(window, ConsumeKeyDown(key));
+    }
+
+    bool Window::discardKeyDown()
+    {
+        CCI_WINDOW_BOOL_CPP(window, DiscardKeyDown());
+    }
+
+    void Window::waitKeyDown()
+    {
+        CCI_WINDOW_VOID_CPP(window, WaitKeyDown());
+    }
+
+
+
+    bool Window::isKeyUpAvailable()
+    {
+        CCI_WINDOW_BOOL_CPP(window, IsKeyUpAvailable);
+    }
+
+    void Window::resetKeyUp()
+    {
+        CCI_WINDOW_VOID_CPP(window, ResetKeyUp());
+    }
+
+    bool Window::consumeKeyUp(int& key)
+    {
+        CCI_WINDOW_BOOL_CPP(window, ConsumeKeyUp(key));
+    }
+
+    bool Window::discardKeyUp()
+    {
+        CCI_WINDOW_BOOL_CPP(window, DiscardKeyUp());
+    }
+
+    void Window::waitKeyUp()
+    {
+        CCI_WINDOW_VOID_CPP(window, WaitKeyUp());
+    }
+
+
+
+    int Window::getCanvasWidth()
+    {
+        CCI_WINDOW_INT_CPP(window, CanvasWidth);
+    }
+
+    int Window::getCanvasHeight()
+    {
+        CCI_WINDOW_INT_CPP(window, CanvasHeight);
     }
 
 
 
     bool Window::drawBorderSquare(int x, int y, int side)
     {
-        INVOKE_WINDOW_BOOL_CPP(window, DrawBorderSquare(x, y, side));
+        CCI_WINDOW_BOOL_CPP(window, DrawBorderSquare(x, y, side));
     }
 
     bool Window::drawFillSquare(int x, int y, int side)
     {
-        INVOKE_WINDOW_BOOL_CPP(window, DrawFillSquare(x, y, side));
+        CCI_WINDOW_BOOL_CPP(window, DrawFillSquare(x, y, side));
     }
+
+
 
     bool Window::drawBorderRectangle(int x, int y, int width, int height)
     {
-        INVOKE_WINDOW_BOOL_CPP(window, DrawBorderRectangle(x, y, width, height));
+        CCI_WINDOW_BOOL_CPP(window, DrawBorderRectangle(x, y, width, height));
     }
 
     bool Window::drawFillRectangle(int x, int y, int width, int height)
     {
-        INVOKE_WINDOW_BOOL_CPP(window, DrawFillRectangle(x, y, width, height));
+        CCI_WINDOW_BOOL_CPP(window, DrawFillRectangle(x, y, width, height));
     }
 }
 

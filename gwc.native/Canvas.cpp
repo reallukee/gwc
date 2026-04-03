@@ -1,12 +1,12 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.1.1
+// v0.2.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
 //
-// canvas.cpp
+// Canvas.cpp
 //  Licenza MIT
 //
 
@@ -23,7 +23,7 @@ namespace gwc
     {
         IntPtr managedHandle = CanvasHandler::Alloc(width, height);
 
-        void* nativeHandle = reinterpret_cast<void*>(managedHandle.ToPointer());
+        CLRCanvas nativeHandle = reinterpret_cast<CLRCanvas>(managedHandle.ToPointer());
 
         canvas = nativeHandle;
     }
@@ -32,14 +32,14 @@ namespace gwc
     {
         IntPtr managedHandle = CanvasHandler::Alloc();
 
-        void* nativeHandle = reinterpret_cast<void*>(managedHandle.ToPointer());
+        CLRCanvas nativeHandle = reinterpret_cast<CLRCanvas>(managedHandle.ToPointer());
 
         canvas = nativeHandle;
     }
 
     Canvas::~Canvas()
     {
-        void* nativeHandle = canvas;
+        CLRCanvas nativeHandle = canvas;
 
         IntPtr managedHandle = IntPtr(nativeHandle);
 
@@ -55,7 +55,7 @@ namespace gwc
 
     bool Canvas::isInitialized()
     {
-        void* nativeHandle = canvas;
+        CLRCanvas nativeHandle = canvas;
 
         return nativeHandle != nullptr;
     }
@@ -64,44 +64,58 @@ namespace gwc
 
     Color Canvas::getBorderColor()
     {
-        INVOKE_CANVAS_GET_COLOR_CPP(canvas, BorderColor);
+        CCI_CANVAS_GET_COLOR_CPP(canvas, BorderColor);
     }
 
     void Canvas::setBorderColor(Color color)
     {
-        INVOKE_CANVAS_SET_COLOR_CPP(canvas, BorderColor, color);
+        CCI_CANVAS_SET_COLOR_CPP(canvas, BorderColor, color);
     }
 
     Color Canvas::getFillColor()
     {
-        INVOKE_CANVAS_GET_COLOR_CPP(canvas, FillColor);
+        CCI_CANVAS_GET_COLOR_CPP(canvas, FillColor);
     }
 
     void Canvas::setFillColor(Color color)
     {
-        INVOKE_CANVAS_SET_COLOR_CPP(canvas, FillColor, color);
+        CCI_CANVAS_SET_COLOR_CPP(canvas, FillColor, color);
+    }
+
+
+
+    int Canvas::getWidth()
+    {
+        CCI_CANVAS_INT_CPP(canvas, Width);
+    }
+
+    int Canvas::getHeight()
+    {
+        CCI_CANVAS_INT_CPP(canvas, Height);
     }
 
 
 
     bool Canvas::drawBorderSquare(int x, int y, int side)
     {
-        INVOKE_CANVAS_BOOL_CPP(canvas, DrawBorderSquare(x, y, side));
+        CCI_CANVAS_BOOL_CPP(canvas, DrawBorderSquare(x, y, side));
     }
 
     bool Canvas::drawFillSquare(int x, int y, int side)
     {
-        INVOKE_CANVAS_BOOL_CPP(canvas, DrawFillSquare(x, y, side));
+        CCI_CANVAS_BOOL_CPP(canvas, DrawFillSquare(x, y, side));
     }
+
+
 
     bool Canvas::drawBorderRectangle(int x, int y, int width, int height)
     {
-        INVOKE_CANVAS_BOOL_CPP(canvas, DrawBorderRectangle(x, y, width, height));
+        CCI_CANVAS_BOOL_CPP(canvas, DrawBorderRectangle(x, y, width, height));
     }
 
     bool Canvas::drawFillRectangle(int x, int y, int width, int height)
     {
-        INVOKE_CANVAS_BOOL_CPP(canvas, DrawFillRectangle(x, y, width, height));
+        CCI_CANVAS_BOOL_CPP(canvas, DrawFillRectangle(x, y, width, height));
     }
 }
 

@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.1.1
+// v0.2.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -16,7 +16,7 @@
 #include "window_macros.h"
 
 typedef struct WINDOW {
-    void* window;
+    CLRWindow window;
 } WINDOW;
 
 
@@ -32,7 +32,7 @@ WINDOW* window_new(int width, int height)
         return NULL;
     }
 
-    void* nativeHandle = reinterpret_cast<void*>(managedHandle.ToPointer());
+    CLRWindow nativeHandle = reinterpret_cast<CLRWindow>(managedHandle.ToPointer());
 
     window->window = nativeHandle;
 
@@ -46,7 +46,7 @@ void window_delete(WINDOW* window)
         return;
     }
 
-    void* nativeHandle = window->window;
+    CLRWindow nativeHandle = window->window;
 
     if (nativeHandle != NULL)
     {
@@ -79,64 +79,189 @@ bool window_isInitialized(const WINDOW* window)
 
 bool window_open(const WINDOW* window)
 {
-    INVOKE_WINDOW_BOOL_C(window, Open());
+    CCI_WINDOW_BOOL_C(window, Open());
 }
 
 bool window_shutdown(const WINDOW* window)
 {
-    INVOKE_WINDOW_BOOL_C(window, Shutdown());
+    CCI_WINDOW_BOOL_C(window, Shutdown());
 }
+
+
 
 bool window_isOpen(const WINDOW* window)
 {
-    INVOKE_WINDOW_BOOL_C(window, IsOpen);
+    CCI_WINDOW_BOOL_C(window, IsOpen);
 }
 
 bool window_isShutdown(const WINDOW* window)
 {
-    INVOKE_WINDOW_BOOL_C(window, IsShutdown);
+    CCI_WINDOW_BOOL_C(window, IsShutdown);
 }
 
 
 
 COLOR* window_getBorderColor(const WINDOW* window)
 {
-    INVOKE_WINDOW_GET_COLOR_C(window, BorderColor);
+    CCI_WINDOW_GET_COLOR_C(window, BorderColor);
 }
 
 void window_setBorderColor(const WINDOW* window, const COLOR* color)
 {
-    INVOKE_WINDOW_SET_COLOR_C(window, BorderColor, color);
+    CCI_WINDOW_SET_COLOR_C(window, BorderColor, color);
 }
 
 COLOR* window_getFillColor(const WINDOW* window)
 {
-    INVOKE_WINDOW_GET_COLOR_C(window, FillColor);
+    CCI_WINDOW_GET_COLOR_C(window, FillColor);
 }
 
 void window_setFillColor(const WINDOW* window, const COLOR* color)
 {
-    INVOKE_WINDOW_SET_COLOR_C(window, FillColor, color);
+    CCI_WINDOW_SET_COLOR_C(window, FillColor, color);
+}
+
+
+
+void window_wait(const WINDOW* window, int milliseconds)
+{
+    CCI_WINDOW_VOID_C(window, Wait(milliseconds));
+}
+
+
+
+int window_getWindowWidth(const WINDOW* window)
+{
+    CCI_WINDOW_INT_C(window, WindowWidth);
+}
+
+int window_getWindowHeight(const WINDOW* window)
+{
+    CCI_WINDOW_INT_C(window, WindowHeight);
+}
+
+int window_getRenderWidth(const WINDOW* window)
+{
+    CCI_WINDOW_INT_C(window, RenderWidth);
+}
+
+int window_getRenderHeight(const WINDOW* window)
+{
+    CCI_WINDOW_INT_C(window, RenderHeight);
+}
+
+
+
+bool window_isKeyDownAvailable(const WINDOW* window)
+{
+    CCI_WINDOW_BOOL_C(window, IsKeyDownAvailable);
+}
+
+void window_resetKeyDown(const WINDOW* window)
+{
+    CCI_WINDOW_VOID_C(window, ResetKeyDown());
+}
+
+bool window_consumeKeyDown(const WINDOW* window, int* key)
+{
+    CC_WINDOW_BOOL_C(window);
+
+    if (key == NULL)
+    {
+        return false;
+    }
+
+    int _key;
+
+    bool result = WindowHandler::Invoke(managedHandle)->ConsumeKeyDown(_key);
+
+    *key = _key;
+
+    return result;
+}
+
+bool window_discardKeyDown(const WINDOW* window)
+{
+    CCI_WINDOW_BOOL_C(window, DiscardKeyDown());
+}
+
+void window_waitKeyDown(const WINDOW* window)
+{
+    CCI_WINDOW_VOID_C(window, WaitKeyDown());
+}
+
+
+
+bool window_isKeyUpAvailable(const WINDOW* window)
+{
+    CCI_WINDOW_BOOL_C(window, IsKeyUpAvailable);
+}
+
+void window_resetKeyUp(const WINDOW* window)
+{
+    CCI_WINDOW_VOID_C(window, ResetKeyUp());
+}
+
+bool window_consumeKeyUp(const WINDOW* window, int* key)
+{
+    CC_WINDOW_BOOL_C(window);
+
+    if (key == NULL)
+    {
+        return false;
+    }
+
+    int _key;
+
+    bool result = WindowHandler::Invoke(managedHandle)->ConsumeKeyUp(_key);
+
+    *key = _key;
+
+    return result;
+}
+
+bool window_discardKeyUp(const WINDOW* window)
+{
+    CCI_WINDOW_BOOL_C(window, DiscardKeyUp());
+}
+
+void window_waitKeyUp(const WINDOW* window)
+{
+    CCI_WINDOW_VOID_C(window, WaitKeyUp());
+}
+
+
+
+int window_getCanvasWidth(const WINDOW* window)
+{
+    CCI_WINDOW_INT_C(window, CanvasWidth);
+}
+
+int window_getCanvasHeight(const WINDOW* window)
+{
+    CCI_WINDOW_INT_C(window, CanvasHeight);
 }
 
 
 
 bool window_drawBorderSquare(const WINDOW* window, int x, int y, int side)
 {
-    INVOKE_WINDOW_BOOL_C(window, DrawBorderSquare(x, y, side));
+    CCI_WINDOW_BOOL_C(window, DrawBorderSquare(x, y, side));
 }
 
 bool window_drawFillSquare(const WINDOW* window, int x, int y, int side)
 {
-    INVOKE_WINDOW_BOOL_C(window, DrawFillSquare(x, y, side));
+    CCI_WINDOW_BOOL_C(window, DrawFillSquare(x, y, side));
 }
+
+
 
 bool window_drawBorderRectangle(const WINDOW* window, int x, int y, int width, int height)
 {
-    INVOKE_WINDOW_BOOL_C(window, DrawBorderRectangle(x, y, width, height));
+    CCI_WINDOW_BOOL_C(window, DrawBorderRectangle(x, y, width, height));
 }
 
 bool window_drawFillRectangle(const WINDOW* window, int x, int y, int width, int height)
 {
-    INVOKE_WINDOW_BOOL_C(window, DrawFillRectangle(x, y, width, height));
+    CCI_WINDOW_BOOL_C(window, DrawFillRectangle(x, y, width, height));
 }

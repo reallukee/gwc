@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.1.1
+// v0.2.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -12,44 +12,77 @@
 
 #pragma once
 
-#ifndef WINDOW_MACROS_HPP
-#define WINDOW_MACROS_HPP
+#ifndef GWC_WINDOW_MACROS_HPP
+#define GWC_WINDOW_MACROS_HPP
 
 #ifdef __cplusplus
 
 #include "Color.hpp"
 
-#ifndef INVOKE_WINDOW_VOID_CPP
-#define INVOKE_WINDOW_VOID_CPP(window, target) \
-    void* nativeHandle = window; \
+#ifndef CC_WINDOW_VOID_CPP
+#define CC_WINDOW_VOID_CPP(window) \
+    CLRWindow nativeHandle = window; \
     \
     IntPtr managedHandle = IntPtr(nativeHandle); \
     \
     if (WindowHandler::IsNull(managedHandle)) \
     { \
         return; \
-    } \
-    \
-    WindowHandler::Invoke(managedHandle)->target;
-#endif // !INVOKE_WINDOW_VOID_CPP
+    }
+#endif // !CC_WINDOW_VOID_CPP
 
-#ifndef INVOKE_WINDOW_BOOL_CPP
-#define INVOKE_WINDOW_BOOL_CPP(window, target) \
-    void* nativeHandle = window; \
+#ifndef CC_WINDOW_BOOL_CPP
+#define CC_WINDOW_BOOL_CPP(window) \
+    CLRWindow nativeHandle = window; \
     \
     IntPtr managedHandle = IntPtr(nativeHandle); \
     \
     if (WindowHandler::IsNull(managedHandle)) \
     { \
         return false; \
-    } \
+    }
+#endif // !CC_WINDOW_BOOL_CPP
+
+#ifndef CC_WINDOW_INT_CPP
+#define CC_WINDOW_INT_CPP(window) \
+    CLRWindow nativeHandle = window; \
+    \
+    IntPtr managedHandle = IntPtr(nativeHandle); \
+    \
+    if (WindowHandler::IsNull(managedHandle)) \
+    { \
+        return -1; \
+    }
+#endif // !CC_WINDOW_INT_CPP
+
+
+
+#ifndef CCI_WINDOW_VOID_CPP
+#define CCI_WINDOW_VOID_CPP(window, target) \
+    CC_WINDOW_VOID_CPP(window) \
+    \
+    WindowHandler::Invoke(managedHandle)->target;
+#endif // !CCI_WINDOW_VOID_CPP
+
+#ifndef CCI_WINDOW_BOOL_CPP
+#define CCI_WINDOW_BOOL_CPP(window, target) \
+    CC_WINDOW_BOOL_CPP(window) \
     \
     return WindowHandler::Invoke(managedHandle)->target;
-#endif // !INVOKE_WINDOW_BOOL_CPP
+#endif // !CCI_WINDOW_BOOL_CPP
 
-#ifndef INVOKE_WINDOW_GET_COLOR_CPP
-#define INVOKE_WINDOW_GET_COLOR_CPP(window, target) \
-    void* nativeHandle = window; \
+#ifndef CCI_WINDOW_INT_CPP
+#define CCI_WINDOW_INT_CPP(window, target) \
+    CC_WINDOW_INT_CPP(window) \
+    \
+    return WindowHandler::Invoke(managedHandle)->target;
+#endif // !CCI_WINDOW_INT_CPP
+
+
+
+#ifndef CCI_WINDOW_GET_COLOR_CPP
+#define CCI_WINDOW_GET_COLOR_CPP(window, target) \
+    CLRWindow nativeHandle = window; \
     \
     IntPtr managedHandle = IntPtr(nativeHandle); \
     \
@@ -68,11 +101,11 @@
     ); \
     \
     return nativeColor;
-#endif // !INVOKE_WINDOW_GET_COLOR_CPP
+#endif // !CCI_WINDOW_GET_COLOR_CPP
 
-#ifndef INVOKE_WINDOW_SET_COLOR_CPP
-#define INVOKE_WINDOW_SET_COLOR_CPP(window, target, color) \
-    void* nativeHandle = window; \
+#ifndef CCI_WINDOW_SET_COLOR_CPP
+#define CCI_WINDOW_SET_COLOR_CPP(window, target, color) \
+    CLRWindow nativeHandle = window; \
     \
     IntPtr managedHandle = IntPtr(nativeHandle); \
     \
@@ -91,8 +124,8 @@
     ); \
     \
     WindowHandler::Invoke(managedHandle)->target = managedColor;
-#endif // !INVOKE_WINDOW_SET_COLOR_CPP
+#endif // !CCI_WINDOW_SET_COLOR_CPP
 
 #endif // __cplusplus
 
-#endif // !WINDOW_MACROS_HPP
+#endif // !GWC_WINDOW_MACROS_HPP

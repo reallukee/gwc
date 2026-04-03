@@ -19,11 +19,17 @@
     <Filter Include="File di intestazione\C++ API">
       <UniqueIdentifier>{c596c727-4d01-4fbf-ba4a-53b05ec48acd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="File di intestazione\CLR API">
+      <UniqueIdentifier>{ef1166b4-f4dd-41f0-af27-54f870ba1242}</UniqueIdentifier>
+    </Filter>
     <Filter Include="File di origine\C API">
       <UniqueIdentifier>{8fb5ff14-8c0f-4908-8cde-ef839b227edd}</UniqueIdentifier>
     </Filter>
     <Filter Include="File di origine\C++ API">
       <UniqueIdentifier>{9ca3dfc9-fc98-431c-85d0-2e30c21d6b20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File di origine\CLR">
+      <UniqueIdentifier>{9cd6d9ac-bc01-41ca-8c52-89c4ed9440ca}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -34,16 +40,16 @@
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="header.clr.hpp">
-      <Filter>File di intestazione</Filter>
+      <Filter>File di intestazione\CLR API</Filter>
     </ClInclude>
     <ClInclude Include="gwc.clr.hpp">
-      <Filter>File di intestazione</Filter>
+      <Filter>File di intestazione\CLR API</Filter>
     </ClInclude>
     <ClInclude Include="CanvasHandler.clr.hpp">
-      <Filter>File di intestazione</Filter>
+      <Filter>File di intestazione\CLR API</Filter>
     </ClInclude>
     <ClInclude Include="WindowHandler.clr.hpp">
-      <Filter>File di intestazione</Filter>
+      <Filter>File di intestazione\CLR API</Filter>
     </ClInclude>
     <ClInclude Include="export.hpp">
       <Filter>File di intestazione\C++ API</Filter>
@@ -52,6 +58,9 @@
       <Filter>File di intestazione\C++ API</Filter>
     </ClInclude>
     <ClInclude Include="gwc.hpp">
+      <Filter>File di intestazione\C++ API</Filter>
+    </ClInclude>
+    <ClInclude Include="types.hpp">
       <Filter>File di intestazione\C++ API</Filter>
     </ClInclude>
     <ClInclude Include="Color.hpp">
@@ -81,6 +90,9 @@
     <ClInclude Include="gwc.h">
       <Filter>File di intestazione\C API</Filter>
     </ClInclude>
+    <ClInclude Include="types.h">
+      <Filter>File di intestazione\C API</Filter>
+    </ClInclude>
     <ClInclude Include="COLOR.h">
       <Filter>File di intestazione\C API</Filter>
     </ClInclude>
@@ -105,10 +117,10 @@
       <Filter>File di origine</Filter>
     </ClCompile>
     <ClCompile Include="CanvasHandler.clr.cpp">
-      <Filter>File di origine</Filter>
+      <Filter>File di origine\CLR</Filter>
     </ClCompile>
     <ClCompile Include="WindowHandler.clr.cpp">
-      <Filter>File di origine</Filter>
+      <Filter>File di origine\CLR</Filter>
     </ClCompile>
     <ClCompile Include="gwc.cpp">
       <Filter>File di origine\C++ API</Filter>

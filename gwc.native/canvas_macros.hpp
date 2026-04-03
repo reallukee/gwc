@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.1.1
+// v0.2.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -12,44 +12,77 @@
 
 #pragma once
 
-#ifndef CANVAS_MACROS_HPP
-#define CANVAS_MACROS_HPP
+#ifndef GWC_CANVAS_MACROS_HPP
+#define GWC_CANVAS_MACROS_HPP
 
 #ifdef __cplusplus
 
 #include "Color.hpp"
 
-#ifndef INVOKE_CANVAS_VOID_CPP
-#define INVOKE_CANVAS_VOID_CPP(canvas, target) \
-    void* nativeHandle = canvas; \
+#ifndef CC_CANVAS_VOID_CPP
+#define CC_CANVAS_VOID_CPP(canvas) \
+    CLRCanvas nativeHandle = canvas; \
     \
     IntPtr managedHandle = IntPtr(nativeHandle); \
     \
     if (CanvasHandler::IsNull(managedHandle)) \
     { \
         return; \
-    } \
-    \
-    CanvasHandler::Invoke(managedHandle)->target;
-#endif // !INVOKE_CANVAS_VOID_CPP
+    }
+#endif // !CC_CANVAS_VOID_CPP
 
-#ifndef INVOKE_CANVAS_BOOL_CPP
-#define INVOKE_CANVAS_BOOL_CPP(canvas, target) \
-    void* nativeHandle = canvas; \
+#ifndef CC_CANVAS_BOOL_CPP
+#define CC_CANVAS_BOOL_CPP(canvas) \
+    CLRCanvas nativeHandle = canvas; \
     \
     IntPtr managedHandle = IntPtr(nativeHandle); \
     \
     if (CanvasHandler::IsNull(managedHandle)) \
     { \
         return false; \
-    } \
+    }
+#endif // !CC_CANVAS_BOOL_CPP
+
+#ifndef CC_CANVAS_INT_CPP
+#define CC_CANVAS_INT_CPP(canvas) \
+    CLRCanvas nativeHandle = canvas; \
+    \
+    IntPtr managedHandle = IntPtr(nativeHandle); \
+    \
+    if (CanvasHandler::IsNull(managedHandle)) \
+    { \
+        return -1; \
+    }
+#endif // !CC_CANVAS_INT_CPP
+
+
+
+#ifndef CCI_CANVAS_VOID_CPP
+#define CCI_CANVAS_VOID_CPP(canvas, target) \
+    CC_CANVAS_VOID_CPP(canvas) \
+    \
+    CanvasHandler::Invoke(managedHandle)->target;
+#endif // !CCI_CANVAS_VOID_CPP
+
+#ifndef CCI_CANVAS_BOOL_CPP
+#define CCI_CANVAS_BOOL_CPP(canvas, target) \
+    CC_CANVAS_BOOL_CPP(canvas) \
     \
     return CanvasHandler::Invoke(managedHandle)->target;
-#endif // !INVOKE_CANVAS_BOOL_CPP
+#endif // !CCI_CANVAS_BOOL_CPP
 
-#ifndef INVOKE_CANVAS_GET_COLOR_CPP
-#define INVOKE_CANVAS_GET_COLOR_CPP(canvas, target) \
-    void* nativeHandle = canvas; \
+#ifndef CCI_CANVAS_INT_CPP
+#define CCI_CANVAS_INT_CPP(canvas, target) \
+    CC_CANVAS_INT_CPP(canvas) \
+    \
+    return CanvasHandler::Invoke(managedHandle)->target;
+#endif // !CCI_CANVAS_INT_CPP
+
+
+
+#ifndef CCI_CANVAS_GET_COLOR_CPP
+#define CCI_CANVAS_GET_COLOR_CPP(canvas, target) \
+    CLRCanvas nativeHandle = canvas; \
     \
     IntPtr managedHandle = IntPtr(nativeHandle); \
     \
@@ -68,11 +101,11 @@
     ); \
     \
     return nativeColor;
-#endif // !INVOKE_CANVAS_GET_COLOR_CPP
+#endif // !CCI_CANVAS_GET_COLOR_CPP
 
-#ifndef INVOKE_CANVAS_SET_COLOR_CPP
-#define INVOKE_CANVAS_SET_COLOR_CPP(canvas, target, color) \
-    void* nativeHandle = canvas; \
+#ifndef CCI_CANVAS_SET_COLOR_CPP
+#define CCI_CANVAS_SET_COLOR_CPP(canvas, target, color) \
+    CLRCanvas nativeHandle = canvas; \
     \
     IntPtr managedHandle = IntPtr(nativeHandle); \
     \
@@ -91,8 +124,8 @@
     ); \
     \
     CanvasHandler::Invoke(managedHandle)->BorderColor = managedColor;
-#endif // !INVOKE_CANVAS_SET_COLOR_CPP
+#endif // !CCI_CANVAS_SET_COLOR_CPP
 
 #endif // __cplusplus
 
-#endif // !CANVAS_MACROS_HPP
+#endif // !GWC_CANVAS_MACROS_HPP

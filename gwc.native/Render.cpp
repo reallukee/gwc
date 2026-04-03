@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.1.0
+// v0.2.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -28,6 +28,13 @@ namespace gwc
         GWC::Render::RefreshRate = value;
     }
 
+    void Render::setDefaultRefreshRate()
+    {
+        GWC::Render::SetDefaultRefreshRate();
+    }
+
+
+
     int Render::getDutyCycle()
     {
         return GWC::Render::DutyCycle;
@@ -38,6 +45,13 @@ namespace gwc
         GWC::Render::DutyCycle = value;
     }
 
+    void Render::setDefaultDutyCycle()
+    {
+        GWC::Render::SetDefaultDutyCycle();
+    }
+
+
+
     double Render::getFrameTime()
     {
         return GWC::Render::FrameTime;
@@ -47,6 +61,12 @@ namespace gwc
     {
         return GWC::Render::UtilFrameTime;
     }
+
+
+
+    Render::Render() {}
+
+    Render::~Render() {}
 }
 
 #endif // __cplusplus
