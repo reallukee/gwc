@@ -1,6 +1,7 @@
 export.h
 header.h
 gwc.h
+types.h
 COLOR.h
 RENDER.h
 CANVAS.h
@@ -8,6 +9,7 @@ WINDOW.h
 export.hpp
 header.hpp
 gwc.hpp
+types.hpp
 Color.hpp
 Render.hpp
 Canvas.hpp
