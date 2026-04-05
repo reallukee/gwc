@@ -1,7 +1,7 @@
 //
 // :.:.:.
 // GWC
-// v0.1.1
+// v0.2.0
 // :.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -51,6 +51,8 @@ namespace Reallukee.GWC
             }
         }
 
+        public static void SetDefaultRefreshRate() => RefreshRate = 60;
+
         private static int dutyCycle = 80;
 
         public static int DutyCycle
@@ -59,7 +61,7 @@ namespace Reallukee.GWC
 
             set
             {
-                if (value < 0 || value > 100)
+                if (value < 10 || value > 90)
                 {
                     return;
                 }
@@ -71,6 +73,8 @@ namespace Reallukee.GWC
                 UtilFrameTime = value / 100.0 * FrameTime;
             }
         }
+
+        public static void SetDefaultDutyCycle() => DutyCycle = 80;
 
         private static double frameTime = 16.66;
 

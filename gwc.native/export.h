@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.1.0
+// v0.2.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -22,9 +22,14 @@
 #endif // __cplusplus
 
 #ifdef GWC_LIBRARY
-    #define GWC_C_API __declspec(dllexport)
+    #define GWC_C_DLL __declspec(dllexport)
+
+    #define GWC_C_API GWC_C_EXTERN GWC_C_DLL
 #else
-    #define GWC_C_API __declspec(dllimport)
+    #define GWC_C_DLL __declspec(dllimport)
+
+    #define GWC_C_API GWC_C_EXTERN GWC_C_DLL
 #endif // GWC_LIBRARY
+
 
 #endif // !GWC_EXPORT_H

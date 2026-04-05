@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.1.1
+// v0.2.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -16,7 +16,7 @@
 #include "canvas_macros.h"
 
 typedef struct CANVAS {
-    void* canvas;
+    CLRCanvas canvas;
 } CANVAS;
 
 
@@ -32,7 +32,7 @@ CANVAS* canvas_new(int width, int height)
         return NULL;
     }
 
-    void* nativeHandle = reinterpret_cast<void*>(managedHandle.ToPointer());
+    CLRCanvas nativeHandle = reinterpret_cast<CLRCanvas>(managedHandle.ToPointer());
 
     canvas->canvas = nativeHandle;
 
@@ -46,7 +46,7 @@ void canvas_delete(CANVAS* canvas)
         return;
     }
 
-    void* nativeHandle = canvas->canvas;
+    CLRCanvas nativeHandle = canvas->canvas;
 
     if (nativeHandle)
     {
@@ -77,44 +77,58 @@ bool canvas_isInitialized(const CANVAS* canvas)
 
 
 
-COLOR* canvas_getBorderColor(const CANVAS* canvas)
+Color* canvas_getBorderColor(const CANVAS* canvas)
 {
-    INVOKE_CANVAS_GET_COLOR_C(canvas, BorderColor);
+    CCI_CANVAS_GET_COLOR_C(canvas, BorderColor);
 }
 
-void canvas_setBorderColor(const CANVAS* canvas, const COLOR* color)
+void canvas_setBorderColor(const CANVAS* canvas, const Color* color)
 {
-    INVOKE_CANVAS_SET_COLOR_C(canvas, BorderColor, color);
+    CCI_CANVAS_SET_COLOR_C(canvas, BorderColor, color);
 }
 
-COLOR* canvas_getFillColor(const CANVAS* canvas)
+Color* canvas_getFillColor(const CANVAS* canvas)
 {
-    INVOKE_CANVAS_GET_COLOR_C(canvas, FillColor);
+    CCI_CANVAS_GET_COLOR_C(canvas, FillColor);
 }
 
-void canvas_setFillColor(const CANVAS* canvas, const COLOR* color)
+void canvas_setFillColor(const CANVAS* canvas, const Color* color)
 {
-    INVOKE_CANVAS_SET_COLOR_C(canvas, FillColor, color);
+    CCI_CANVAS_SET_COLOR_C(canvas, FillColor, color);
+}
+
+
+
+int canvas_getWidth(const CANVAS* canvas)
+{
+    CCI_CANVAS_INT_C(canvas, Width);
+}
+
+int canvas_getHeight(const CANVAS* canvas)
+{
+    CCI_CANVAS_INT_C(canvas, Height);
 }
 
 
 
 bool canvas_drawBorderSquare(const CANVAS* canvas, int x, int y, int side)
 {
-    INVOKE_CANVAS_BOOL_C(canvas, DrawBorderSquare(x, y, side));
+    CCI_CANVAS_BOOL_C(canvas, DrawBorderSquare(x, y, side));
 }
 
 bool canvas_drawFillSquare(const CANVAS* canvas, int x, int y, int side)
 {
-    INVOKE_CANVAS_BOOL_C(canvas, DrawFillSquare(x, y, side));
+    CCI_CANVAS_BOOL_C(canvas, DrawFillSquare(x, y, side));
 }
+
+
 
 bool canvas_drawBorderRectangle(const CANVAS* canvas, int x, int y, int width, int height)
 {
-    INVOKE_CANVAS_BOOL_C(canvas, DrawBorderRectangle(x, y, width, height));
+    CCI_CANVAS_BOOL_C(canvas, DrawBorderRectangle(x, y, width, height));
 }
 
 bool canvas_drawFillRectangle(const CANVAS* canvas, int x, int y, int width, int height)
 {
-    INVOKE_CANVAS_BOOL_C(canvas, DrawFillRectangle(x, y, width, height));
+    CCI_CANVAS_BOOL_C(canvas, DrawFillRectangle(x, y, width, height));
 }

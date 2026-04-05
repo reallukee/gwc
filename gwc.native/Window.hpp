@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.1.0
+// v0.2.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -18,19 +18,14 @@
 #ifdef __cplusplus
 
 #include "header.hpp"
-
+#include "types.hpp"
 #include "Color.hpp"
-
-#define _WINDOW void*
+#include "Point.hpp"
 
 namespace gwc
 {
     class GWC_CPP_API Window sealed
     {
-
-    private:
-
-        _WINDOW window;
 
     public:
 
@@ -51,10 +46,49 @@ namespace gwc
         Color getFillColor  ();
         void  setFillColor  (Color color);
 
-        bool drawBorderSquare   (int x, int y, int side);
-        bool drawFillSquare     (int x, int y, int side);
+        void wait(int milliseconds);
+
+        int getWindowWidth ();
+        int getWindowHeight();
+        int getRenderWidth ();
+        int getRenderHeight();
+
+        bool isKeyDownAvailable();
+        void resetKeyDown      ();
+        bool consumeKeyDown    (int& key);
+        bool discardKeyDown    ();
+        void waitKeyDown       ();
+
+        bool isKeyUpAvailable();
+        void resetKeyUp      ();
+        bool consumeKeyUp    (int& key);
+        bool discardKeyUp    ();
+        void waitKeyUp       ();
+
+        bool isMouseDownAvailable();
+        void resetMouseDown      ();
+        bool consumeMouseDown    (Point& location, int& button);
+        bool discardMouseDown    ();
+        void waitMouseDown       ();
+
+        bool isMouseUpAvailable();
+        void resetMouseUp      ();
+        bool consumeMouseUp    (Point& location, int& button);
+        bool discardMouseUp    ();
+        void waitMouseUp       ();
+
+        int getCanvasWidth ();
+        int getCanvasHeight();
+
+        bool drawBorderSquare(int x, int y, int side);
+        bool drawFillSquare  (int x, int y, int side);
+
         bool drawBorderRectangle(int x, int y, int width, int height);
         bool drawFillRectangle  (int x, int y, int width, int height);
+
+    private:
+
+        CLRWindow window;
 
     };
 }

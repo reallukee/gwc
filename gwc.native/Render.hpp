@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.1.0
+// v0.2.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -26,10 +26,14 @@ namespace gwc
 
     public:
 
-        static int    getRefreshRate  ();
-        static void   setRefreshRate  (int value);
-        static int    getDutyCycle    ();
-        static void   setDutyCycle    (int value);
+        static int  getRefreshRate       ();
+        static void setRefreshRate       (int value);
+        static void setDefaultRefreshRate();
+
+        static int  getDutyCycle       ();
+        static void setDutyCycle       (int value);
+        static void setDefaultDutyCycle();
+
         static double getFrameTime    ();
         static double getUtilFrameTime();
 

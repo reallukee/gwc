@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.1.0
+// v0.2.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -16,70 +16,30 @@
 #define GWC_CANVAS_H
 
 #include "header.h"
-
+#include "types.h"
 #include "COLOR.h"
 
 typedef struct CANVAS CANVAS;
 
-GWC_C_EXTERN
-GWC_C_API
-CANVAS* canvas_new(
-    int width, int height);
+typedef CANVAS CNV;
 
-GWC_C_EXTERN
-GWC_C_API
-void canvas_delete(
-    CANVAS* canvas);
+GWC_C_API CANVAS* canvas_new   (int width, int height);
+GWC_C_API void    canvas_delete(CANVAS* canvas);
 
+GWC_C_API bool canvas_isInitialized(const CANVAS* canvas);
 
+GWC_C_API Color* canvas_getBorderColor(const CANVAS* canvas);
+GWC_C_API void   canvas_setBorderColor(const CANVAS* canvas, const Color* color);
+GWC_C_API Color* canvas_getFillColor  (const CANVAS* canvas);
+GWC_C_API void   canvas_setFillColor  (const CANVAS* canvas, const Color* color);
 
-GWC_C_EXTERN
-GWC_C_API
-bool canvas_isInitialized(
-    const CANVAS* canvas);
+GWC_C_API int canvas_getWidth (const CANVAS* canvas);
+GWC_C_API int canvas_getHeight(const CANVAS* canvas);
 
+GWC_C_API bool canvas_drawBorderSquare(const CANVAS* canvas, int x, int y, int side);
+GWC_C_API bool canvas_drawFillSquare  (const CANVAS* canvas, int x, int y, int side);
 
-
-GWC_C_EXTERN
-GWC_C_API
-COLOR* canvas_getBorderColor(
-    const CANVAS* canvas);
-
-GWC_C_EXTERN
-GWC_C_API
-void canvas_setBorderColor(
-    const CANVAS* canvas, const COLOR* color);
-
-GWC_C_EXTERN
-GWC_C_API
-COLOR* canvas_getFillColor(
-    const CANVAS* canvas);
-
-GWC_C_EXTERN
-GWC_C_API
-void canvas_setFillColor(
-    const CANVAS* canvas, const COLOR* color);
-
-
-
-GWC_C_EXTERN
-GWC_C_API
-bool canvas_drawBorderSquare(
-    const CANVAS* canvas, int x, int y, int side);
-
-GWC_C_EXTERN
-GWC_C_API
-bool canvas_drawFillSquare(
-    const CANVAS* canvas, int x, int y, int side);
-
-GWC_C_EXTERN
-GWC_C_API
-bool canvas_drawBorderRectangle(
-    const CANVAS* canvas, int x, int y, int width, int height);
-
-GWC_C_EXTERN
-GWC_C_API
-bool canvas_drawFillRectangle(
-    const CANVAS* canvas, int x, int y, int width, int height);
+GWC_C_API bool canvas_drawBorderRectangle(const CANVAS* canvas, int x, int y, int width, int height);
+GWC_C_API bool canvas_drawFillRectangle  (const CANVAS* canvas, int x, int y, int width, int height);
 
 #endif // !GWC_CANVAS_H

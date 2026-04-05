@@ -1,7 +1,7 @@
 //
 // :.:.:.
 // GWC
-// v0.1.1
+// v0.2.0
 // :.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -34,12 +34,12 @@ namespace Reallukee.GWC
         {
             if (width <= 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(width), "");
+                throw new ArgumentOutOfRangeException(nameof(width), "Width cannot be negative.");
             }
 
             if (height <= 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(height), "");
+                throw new ArgumentOutOfRangeException(nameof(height), "Height cannot be negative.");
             }
 
             InitWindow(width, height);
@@ -56,24 +56,22 @@ namespace Reallukee.GWC
 
         public void Dispose()
         {
-            if (canvas != null)
-            {
-                canvas.Dispose();
-            }
+            canvas?.Dispose();
         }
 
 
 
         private WindowForm    window;
-        private Canvas        canvas;
 
         private Thread        windowThread;
         private volatile bool windowThreadFlag;
-        object                windowLock;
+        private object        windowLock;
+
+        private Canvas        canvas;
 
         private Thread        renderThread;
         private volatile bool renderThreadFlag;
-        object                renderLock;
+        private object        renderLock;
 
         private void InitWindow(int width, int height)
         {
@@ -81,13 +79,27 @@ namespace Reallukee.GWC
 
             window.Text        = $"{Application.ProductName} {Application.ProductVersion}";
             window.Icon        = Properties.Resources.AppIcon;
+            window.ForeColor   = Color.Black;
+            window.BackColor   = Color.White;
             window.MinimumSize = new Size(0, 0);
             window.MaximumSize = new Size(0, 0);
             window.Size        = new Size(width, height);
             window.ClientSize  = new Size(width, height);
 
-            window.Paint  += WindowForm_Paint;
-            window.Resize += WindowForm_Resize;
+            window.Paint       += WindowForm_Paint;
+            window.ResizeBegin += WindowForm_ResizeBegin;
+            window.Resize      += WindowForm_Resize;
+            window.ResizeEnd   += WindowForm_ResizeEnd;
+
+            window.KeyDown   += WindowForm_KeyDown;
+            window.KeyUp     += WindowForm_KeyUp;
+            window.MouseDown += WindowForm_MouseDown;
+            window.MouseUp   += WindowForm_MouseUp;
+
+            keyDownEvent   = new AutoResetEvent(false);
+            keyUpEvent     = new AutoResetEvent(false);
+            mouseDownEvent = new AutoResetEvent(false);
+            mouseUpEvent   = new AutoResetEvent(false);
 
             windowThread = new Thread(WindowThreadLoop);
 
@@ -117,11 +129,6 @@ namespace Reallukee.GWC
 
             Application.SetCompatibleTextRenderingDefault(false);
 
-            while (window == null)
-            {
-                Thread.Sleep(100);
-            }
-
             Application.Run(window);
         }
 
@@ -135,7 +142,7 @@ namespace Reallukee.GWC
 
                 double renderRemainingTime = 0;
 
-                if (window.IsHandleCreated && !canvas.Buffer.IsEmpty)
+                if (window.IsHandleCreated)
                 {
                     lock (renderLock)
                     {
@@ -191,7 +198,7 @@ namespace Reallukee.GWC
 
         private void WindowForm_Paint(object sender, PaintEventArgs e)
         {
-            if (window.ClientSize.Width <= 0 || window.ClientSize.Height <= 0)
+            if (RenderWidth <= 0 || RenderHeight <= 0)
             {
                 return;
             }
@@ -214,9 +221,11 @@ namespace Reallukee.GWC
             }
         }
 
+        private void WindowForm_ResizeBegin(object sender, EventArgs e) {}
+
         private void WindowForm_Resize(object sender, EventArgs e)
         {
-            if (window.ClientSize.Width <= 0 || window.ClientSize.Height <= 0)
+            if (CanvasWidth >= RenderWidth || CanvasHeight >= RenderHeight)
             {
                 return;
             }
@@ -225,21 +234,18 @@ namespace Reallukee.GWC
             {
                 try
                 {
-                    if (canvas.Bitmap.Width < window.ClientSize.Width || canvas.Bitmap.Height < window.ClientSize.Height)
+                    Canvas oldCanvas = canvas;
+
+                    Canvas newCanvas = new Canvas(RenderWidth, RenderHeight);
+
+                    using (Graphics g = Graphics.FromImage(newCanvas.Bitmap))
                     {
-                        Canvas oldCanvas = canvas;
-
-                        Canvas newCanvas = new Canvas(window.ClientSize.Width, window.ClientSize.Height);
-
-                        using (Graphics g = Graphics.FromImage(newCanvas.Bitmap))
-                        {
-                            g.DrawImage(oldCanvas.Bitmap, 0, 0);
-                        }
-
-                        canvas = newCanvas;
-
-                        oldCanvas.Dispose();
+                        g.DrawImage(oldCanvas.Bitmap, 0, 0);
                     }
+
+                    canvas = newCanvas;
+
+                    oldCanvas.Dispose();
                 }
                 catch (Exception ex)
                 {
@@ -252,6 +258,8 @@ namespace Reallukee.GWC
                 }
             }
         }
+
+        private void WindowForm_ResizeEnd(object sender, EventArgs e) {}
 
 
 
@@ -268,9 +276,11 @@ namespace Reallukee.GWC
             windowThread.Start();
             renderThread.Start();
 
-            while (!window.IsHandleCreated)
+            window.WaitHandleCreated();
+
+            if (!window.IsHandleCreated)
             {
-                Thread.Sleep(100);
+                return false;
             }
 
             return true;
@@ -296,6 +306,8 @@ namespace Reallukee.GWC
 
             Application.Exit();
 
+            window.WaitHandleDestroyed();
+
             return true;
         }
 
@@ -310,6 +322,238 @@ namespace Reallukee.GWC
         }
 
 
+
+        public void Wait(int milliseconds)
+        {
+            if (milliseconds < 0)
+            {
+                return;
+            }
+
+            Thread.Sleep(milliseconds);
+        }
+
+
+
+        public int WindowWidth
+        {
+            get
+            {
+                if (window.InvokeRequired)
+                {
+                    return (int)window.Invoke(new Func<int>(() =>
+                        window.Width
+                    ));
+                }
+
+                return window.Width;
+            }
+        }
+
+        public int WindowHeight
+        {
+            get
+            {
+                if (window.InvokeRequired)
+                {
+                    return (int)window.Invoke(new Func<int>(() =>
+                        window.Height
+                    ));
+                }
+
+                return window.Height;
+            }
+        }
+
+        public int RenderWidth
+        {
+            get
+            {
+                if (window.InvokeRequired)
+                {
+                    return (int)window.Invoke(new Func<int>(() =>
+                        window.ClientSize.Width
+                    ));
+                }
+
+                return window.ClientSize.Width;
+            }
+        }
+
+        public int RenderHeight
+        {
+            get
+            {
+                if (window.InvokeRequired)
+                {
+                    return (int)window.Invoke(new Func<int>(() =>
+                        window.ClientSize.Height
+                    ));
+                }
+
+                return window.ClientSize.Height;
+            }
+        }
+
+
+
+        private AutoResetEvent keyDownEvent;
+        private AutoResetEvent keyUpEvent;
+
+        private int lastKeyDown = -1;
+        private int lastKeyUp   = -1;
+
+        private int hasKeyDown = 0;
+        private int hasKeyUp   = 0;
+
+        private void WindowForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            lastKeyDown = e.KeyValue;
+
+            Interlocked.Exchange(ref hasKeyDown, 1);
+
+            keyDownEvent.Set();
+        }
+
+        private void WindowForm_KeyUp(object sender, KeyEventArgs e)
+        {
+            lastKeyUp = e.KeyValue;
+
+            Interlocked.Exchange(ref hasKeyUp, 1);
+
+            keyUpEvent.Set();
+        }
+
+        public bool IsKeyDownAvailable => hasKeyDown == 1;
+        public bool IsKeyUpAvailable   => hasKeyUp   == 1;
+
+        public void ResetKeyDown() => lastKeyDown = -1;
+        public void ResetKeyUp  () => lastKeyUp   = -1;
+
+        public bool ConsumeKeyDown(out int key)
+        {
+            if (Interlocked.Exchange(ref hasKeyDown, 0) == 1)
+            {
+                key = lastKeyDown;
+
+                return true;
+            }
+
+            key = -1;
+
+            return false;
+        }
+
+        public bool ConsumeKeyUp(out int key)
+        {
+            if (Interlocked.Exchange(ref hasKeyUp, 0) == 1)
+            {
+                key = lastKeyUp;
+
+                return true;
+            }
+
+            key = -1;
+
+            return false;
+        }
+
+        public bool DiscardKeyDown() => ConsumeKeyDown(out int keys);
+        public bool DiscardKeyUp  () => ConsumeKeyUp  (out int keys);
+
+        public void WaitKeyDown() => keyDownEvent.WaitOne();
+        public void WaitKeyUp  () => keyUpEvent  .WaitOne();
+
+
+
+        private AutoResetEvent mouseDownEvent;
+        private AutoResetEvent mouseUpEvent;
+
+        private Point lastMouseDownLocation = new Point(-1, -1);
+        private int   lastMouseDownButton   = -1;
+        private Point lastMouseUpLocation   = new Point(-1, -1);
+        private int   lastMouseUpButton     = -1;
+
+        private int hasMouseDown = 0;
+        private int hasMouseUp   = 0;
+
+        private void WindowForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            lastMouseDownLocation = new Point(e.X, e.Y);
+            lastMouseDownButton   = (int)e.Button;
+
+            Interlocked.Exchange(ref hasMouseDown, 1);
+
+            mouseDownEvent.Set();
+        }
+
+        private void WindowForm_MouseUp(object sender, MouseEventArgs e)
+        {
+            lastMouseUpLocation = new Point(e.X, e.Y);
+            lastMouseUpButton   = (int)e.Button;
+
+            Interlocked.Exchange(ref hasMouseUp, 1);
+
+            mouseUpEvent.Set();
+        }
+
+        public bool IsMouseDownAvailable => lastMouseDownButton != -1;
+        public bool IsMouseUpAvailable   => lastMouseUpButton   != -1;
+
+        public void ResetMouseDown()
+        {
+            lastMouseDownLocation = new Point(-1, -1);
+            lastMouseDownButton   = -1;
+        }
+
+        public void ResetMouseUp()
+        {
+            lastMouseUpLocation = new Point(-1, -1);
+            lastMouseUpButton   = -1;
+        }
+
+        public bool ConsumeMouseDown(out Point location, out int button)
+        {
+            if (Interlocked.Exchange(ref hasMouseDown, 0) == 1)
+            {
+                location = lastMouseDownLocation;
+                button   = lastMouseDownButton;
+
+                return true;
+            }
+
+            location = new Point(-1, -1);
+            button   = -1;
+
+            return false;
+        }
+
+        public bool ConsumeMouseUp(out Point location, out int button)
+        {
+            if (Interlocked.Exchange(ref hasMouseUp, 0) == 1)
+            {
+                location = lastMouseUpLocation;
+                button   = lastMouseUpButton;
+
+                return true;
+            }
+
+            location = new Point(-1, -1);
+            button   = -1;
+
+            return false;
+        }
+
+        public bool DiscardMouseDown() => ConsumeMouseDown(out Point location, out int button);
+        public bool DiscardMouseUp()   => ConsumeMouseUp  (out Point location, out int button);
+
+        public void WaitMouseDown() => mouseDownEvent.WaitOne();
+        public void WaitMouseUp()   => mouseUpEvent.  WaitOne();
+
+
+
+        public int CanvasWidth  => canvas.Width;
+        public int CanvasHeight => canvas.Height;
 
         public Color BorderColor
         {

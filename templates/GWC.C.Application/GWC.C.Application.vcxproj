@@ -248,7 +248,9 @@ IF NOT EXIST "$(OutputPath)gwc.native-$(PlatformTarget).dll" COPY "$(ProjectDir)
     <ClInclude Include="include\export.h" />
     <ClInclude Include="include\header.h" />
     <ClInclude Include="include\gwc.h" />
+    <ClInclude Include="include\types.h" />
     <ClInclude Include="include\COLOR.h" />
+    <ClInclude Include="include\POINT.h" />
     <ClInclude Include="include\RENDER.h" />
     <ClInclude Include="include\CANVAS.h" />
     <ClInclude Include="include\WINDOW.h" />

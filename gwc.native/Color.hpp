@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.1.1
+// v0.2.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -21,8 +21,25 @@
 
 namespace gwc
 {
-    class GWC_CPP_API Color
+    class GWC_CPP_API Color sealed
     {
+
+    public:
+
+        Color (int alpha, int red, int green, int blue);
+        ~Color();
+
+        int  getAlpha() const;
+        void setAlpha(int value);
+        int  getRed  () const;
+        void setRed  (int value);
+        int  getGreen() const;
+        void setGreen(int value);
+        int  getBlue () const;
+        void setBlue (int value);
+
+        bool operator==(const Color& other) const;
+        bool operator!=(const Color& other) const;
 
     private:
 
@@ -30,20 +47,6 @@ namespace gwc
         int red;
         int green;
         int blue;
-
-    public:
-
-        Color (int alpha, int red, int green, int blue);
-        ~Color();
-
-        int  getAlpha();
-        void setAlpha(int value);
-        int  getRed  ();
-        void setRed  (int value);
-        int  getGreen();
-        void setGreen(int value);
-        int  getBlue ();
-        void setBlue (int value);
 
     };
 }

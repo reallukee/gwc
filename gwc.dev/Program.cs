@@ -1,7 +1,7 @@
 //
 // :.:.:.
 // GWC
-// v0.1.0
+// v0.2.0
 // :.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -32,33 +32,79 @@ namespace Reallukee.GWC
     {
         static void Main(string[] args)
         {
-            Render.RefreshRate = 60;
-            Render.DutyCycle = 80;
+            Render.SetDefaultRefreshRate();
+            Render.SetDefaultDutyCycle();
 
             Window window = new Window(800, 600);
 
             window.Open();
 
-            window.FillColor = Color.FromArgb(100, 0, 255, 0);
-            window.BorderColor = Color.FromArgb(100, 0, 128, 0);
+            bool loop = true;
+
+            Console.WriteLine("Press \"ESC\" to exit...");
+
+            while (window.IsOpen && loop)
+            {
+                bool keyDown = window.ConsumeKeyDown(out int key);
+
+                if (keyDown)
+                {
+                    if (key == 27)
+                    {
+                        loop = false;
+
+                        continue;
+                    }
+
+                    if (key == 73)
+                    {
+                        ShowInfo(window);
+
+                        continue;
+                    }
+
+                    Console.WriteLine($"Pressed: {key}");
+
+                    window.BorderColor = GenerateRandomColor();
+                    window.FillColor   = GenerateRandomColor();
+
+                    window.DrawFillRectangle  (100, 100, 100, 100);
+                    window.DrawBorderRectangle(100, 100, 100, 100);
+                }
+
+                window.Wait(100);
+            }
 
             if (window.IsOpen)
             {
-                window.DrawFillRectangle(50, 50, 100, 100);
-                window.DrawBorderRectangle(50, 50, 100, 100);
-
-                Console.WriteLine("Press any key to exit...");
-
-                Console.ReadKey(true);
-
                 window.Shutdown();
-            }
-            else
-            {
-                Console.WriteLine("Oh :(!");
             }
 
             window.Dispose();
+        }
+
+        static Color GenerateRandomColor()
+        {
+            Random random = new Random();
+
+            int alpha = random.Next(0, 100 + 1);
+            int red   = random.Next(0, 255 + 1);
+            int blue  = random.Next(0, 255 + 1);
+            int green = random.Next(0, 255 + 1);
+
+            Color randomColor = Color.FromArgb(alpha, red, green, blue);
+
+            return randomColor;
+        }
+
+        static void ShowInfo(Window window)
+        {
+            Console.WriteLine($"Window Width  : {window.WindowWidth}");
+            Console.WriteLine($"Window Height : {window.WindowHeight}");
+            Console.WriteLine($"Render Width  : {window.RenderWidth}");
+            Console.WriteLine($"Render Height : {window.RenderHeight}");
+            Console.WriteLine($"Canvas Width  : {window.CanvasWidth}");
+            Console.WriteLine($"Canvas height : {window.CanvasHeight}");
         }
     }
 }
