@@ -33,7 +33,7 @@ namespace Reallukee.GWC
         static void Main(string[] args)
         {
             Render.SetDefaultRefreshRate();
-            Render.SetDefaultDutyCycle  ();
+            Render.SetDefaultDutyCycle();
 
             Window window = new Window(800, 600);
 

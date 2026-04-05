@@ -77,22 +77,22 @@ bool canvas_isInitialized(const CANVAS* canvas)
 
 
 
-COLOR* canvas_getBorderColor(const CANVAS* canvas)
+Color* canvas_getBorderColor(const CANVAS* canvas)
 {
     CCI_CANVAS_GET_COLOR_C(canvas, BorderColor);
 }
 
-void canvas_setBorderColor(const CANVAS* canvas, const COLOR* color)
+void canvas_setBorderColor(const CANVAS* canvas, const Color* color)
 {
     CCI_CANVAS_SET_COLOR_C(canvas, BorderColor, color);
 }
 
-COLOR* canvas_getFillColor(const CANVAS* canvas)
+Color* canvas_getFillColor(const CANVAS* canvas)
 {
     CCI_CANVAS_GET_COLOR_C(canvas, FillColor);
 }
 
-void canvas_setFillColor(const CANVAS* canvas, const COLOR* color)
+void canvas_setFillColor(const CANVAS* canvas, const Color* color)
 {
     CCI_CANVAS_SET_COLOR_C(canvas, FillColor, color);
 }

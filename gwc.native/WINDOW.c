@@ -101,22 +101,22 @@ bool window_isShutdown(const WINDOW* window)
 
 
 
-COLOR* window_getBorderColor(const WINDOW* window)
+Color* window_getBorderColor(const WINDOW* window)
 {
     CCI_WINDOW_GET_COLOR_C(window, BorderColor);
 }
 
-void window_setBorderColor(const WINDOW* window, const COLOR* color)
+void window_setBorderColor(const WINDOW* window, const Color* color)
 {
     CCI_WINDOW_SET_COLOR_C(window, BorderColor, color);
 }
 
-COLOR* window_getFillColor(const WINDOW* window)
+Color* window_getFillColor(const WINDOW* window)
 {
     CCI_WINDOW_GET_COLOR_C(window, FillColor);
 }
 
-void window_setFillColor(const WINDOW* window, const COLOR* color)
+void window_setFillColor(const WINDOW* window, const Color* color)
 {
     CCI_WINDOW_SET_COLOR_C(window, FillColor, color);
 }
@@ -228,6 +228,80 @@ bool window_discardKeyUp(const WINDOW* window)
 void window_waitKeyUp(const WINDOW* window)
 {
     CCI_WINDOW_VOID_C(window, WaitKeyUp());
+}
+
+
+
+bool window_isMouseDownAvailable(const WINDOW* window)
+{
+    CCI_WINDOW_BOOL_C(window, IsMouseDownAvailable);
+}
+
+void window_resetMouseDown(const WINDOW* window)
+{
+    CCI_WINDOW_VOID_C(window, ResetMouseDown());
+}
+
+bool window_consumeMouseDown(const WINDOW* window, Point** location, int* button)
+{
+    CC_WINDOW_BOOL_C(window);
+
+    Drawing::Point _location;
+    int            _button;
+
+    bool result = WindowHandler::Invoke(managedHandle)->ConsumeMouseDown(_location, _button);
+
+    *location = point_new(_location.X, _location.Y);
+    *button   = _button;
+
+    return result;
+}
+
+bool window_discardMouseDown(const WINDOW* window)
+{
+    CCI_WINDOW_BOOL_C(window, DiscardMouseDown());
+}
+
+void window_waitMouseDown(const WINDOW* window)
+{
+    CCI_WINDOW_VOID_C(window, WaitMouseDown());
+}
+
+
+
+bool window_isMouseUpAvailable(const WINDOW* window)
+{
+    CCI_WINDOW_BOOL_C(window, IsMouseUpAvailable);
+}
+
+void window_resetMouseUp(const WINDOW* window)
+{
+    CCI_WINDOW_VOID_C(window, ResetMouseUp());
+}
+
+bool window_consumeMouseUp(const WINDOW* window, Point** location, int* button)
+{
+    CC_WINDOW_BOOL_C(window);
+
+    Drawing::Point _location;
+    int            _button;
+
+    bool result = WindowHandler::Invoke(managedHandle)->ConsumeMouseUp(_location, _button);
+
+    *location = point_new(_location.X, _location.Y);
+    *button   = _button;
+
+    return result;
+}
+
+bool window_discardMouseUp(const WINDOW* window)
+{
+    CCI_WINDOW_BOOL_C(window, DiscardMouseUp());
+}
+
+void window_waitMouseUp(const WINDOW* window)
+{
+    CCI_WINDOW_VOID_C(window, WaitMouseUp());
 }
 
 

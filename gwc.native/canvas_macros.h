@@ -96,7 +96,7 @@
     \
     Drawing::Color^ managedBorderColor = CanvasHandler::Invoke(managedHandle)->target; \
     \
-    COLOR* nativeColor = color_new( \
+    Color* nativeColor = color_new( \
         (int)managedBorderColor->A, \
         (int)managedBorderColor->R, \
         (int)managedBorderColor->G, \
@@ -122,7 +122,7 @@
         throw gcnew NullReferenceException(""); \
     } \
     \
-    const COLOR* nativeColor = color; \
+    const Color* nativeColor = color; \
     \
     Drawing::Color managedColor = Drawing::Color::FromArgb( \
         color_getAlpha(nativeColor), \

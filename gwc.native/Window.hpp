@@ -20,6 +20,7 @@
 #include "header.hpp"
 #include "types.hpp"
 #include "Color.hpp"
+#include "Point.hpp"
 
 namespace gwc
 {
@@ -63,6 +64,18 @@ namespace gwc
         bool consumeKeyUp    (int& key);
         bool discardKeyUp    ();
         void waitKeyUp       ();
+
+        bool isMouseDownAvailable();
+        void resetMouseDown      ();
+        bool consumeMouseDown    (Point& location, int& button);
+        bool discardMouseDown    ();
+        void waitMouseDown       ();
+
+        bool isMouseUpAvailable();
+        void resetMouseUp      ();
+        bool consumeMouseUp    (Point& location, int& button);
+        bool discardMouseUp    ();
+        void waitMouseUp       ();
 
         int getCanvasWidth ();
         int getCanvasHeight();

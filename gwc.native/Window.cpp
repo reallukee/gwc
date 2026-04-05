@@ -191,6 +191,80 @@ namespace gwc
 
 
 
+    bool Window::isMouseDownAvailable()
+    {
+        CCI_WINDOW_BOOL_CPP(window, IsMouseDownAvailable);
+    }
+
+    void Window::resetMouseDown()
+    {
+        CCI_WINDOW_VOID_CPP(window, ResetMouseDown());
+    }
+
+    bool Window::consumeMouseDown(Point& location, int& button)
+    {
+        CC_WINDOW_BOOL_CPP(window);
+
+        Drawing::Point _location;
+        int            _button;
+
+        bool result = WindowHandler::Invoke(managedHandle)->ConsumeMouseDown(_location, _button);
+
+        location = Point(_location.X, _location.Y);
+        button   = _button;
+
+        return result;
+    }
+
+    bool Window::discardMouseDown()
+    {
+        CCI_WINDOW_BOOL_CPP(window, DiscardMouseDown());
+    }
+
+    void Window::waitMouseDown()
+    {
+        CCI_WINDOW_VOID_CPP(window, WaitMouseDown());
+    }
+
+
+
+    bool Window::isMouseUpAvailable()
+    {
+        CCI_WINDOW_BOOL_CPP(window, IsMouseUpAvailable);
+    }
+
+    void Window::resetMouseUp()
+    {
+        CCI_WINDOW_VOID_CPP(window, ResetMouseUp());
+    }
+
+    bool Window::consumeMouseUp(Point& location, int& button)
+    {
+        CC_WINDOW_BOOL_CPP(window);
+
+        Drawing::Point _location;
+        int            _button;
+
+        bool result = WindowHandler::Invoke(managedHandle)->ConsumeMouseUp(_location, _button);
+
+        location = Point(_location.X, _location.Y);
+        button   = _button;
+
+        return result;
+    }
+
+    bool Window::discardMouseUp()
+    {
+        CCI_WINDOW_BOOL_CPP(window, DiscardMouseUp());
+    }
+
+    void Window::waitMouseUp()
+    {
+        CCI_WINDOW_VOID_CPP(window, WaitMouseUp());
+    }
+
+
+
     int Window::getCanvasWidth()
     {
         CCI_WINDOW_INT_CPP(window, CanvasWidth);

@@ -21,15 +21,17 @@
 
 typedef struct CANVAS CANVAS;
 
+typedef CANVAS CNV;
+
 GWC_C_API CANVAS* canvas_new   (int width, int height);
 GWC_C_API void    canvas_delete(CANVAS* canvas);
 
 GWC_C_API bool canvas_isInitialized(const CANVAS* canvas);
 
-GWC_C_API COLOR* canvas_getBorderColor(const CANVAS* canvas);
-GWC_C_API void   canvas_setBorderColor(const CANVAS* canvas, const COLOR* color);
-GWC_C_API COLOR* canvas_getFillColor  (const CANVAS* canvas);
-GWC_C_API void   canvas_setFillColor  (const CANVAS* canvas, const COLOR* color);
+GWC_C_API Color* canvas_getBorderColor(const CANVAS* canvas);
+GWC_C_API void   canvas_setBorderColor(const CANVAS* canvas, const Color* color);
+GWC_C_API Color* canvas_getFillColor  (const CANVAS* canvas);
+GWC_C_API void   canvas_setFillColor  (const CANVAS* canvas, const Color* color);
 
 GWC_C_API int canvas_getWidth (const CANVAS* canvas);
 GWC_C_API int canvas_getHeight(const CANVAS* canvas);

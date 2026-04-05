@@ -13,11 +13,14 @@
 #include <gwc.hpp>
 
 #include <iostream>
+#include <ctime>
+#include <cstdlib>
 
 using namespace gwc;
 
 using namespace std;
 
+Color generateRandomColor();
 void showInfo(Window* window);
 
 int main(int argc, const char* argv[])
@@ -64,10 +67,10 @@ int main(int argc, const char* argv[])
 
             cout << "Pressed: " << key << endl;
 
-            window->setBorderColor(Color(100, 0, 128, 0));
-            window->setFillColor  (Color(100, 0, 255, 0));
+            window->setBorderColor(generateRandomColor());
+            window->setFillColor(generateRandomColor());
 
-            window->drawFillRectangle  (50, 50, 100, 100);
+            window->drawFillRectangle(50, 50, 100, 100);
             window->drawBorderRectangle(50, 50, 100, 100);
         }
 
@@ -82,6 +85,20 @@ int main(int argc, const char* argv[])
     delete window;
 
     return 0;
+}
+
+Color generateRandomColor()
+{
+    srand((unsigned int)time(NULL));
+
+    int alpha = rand() % 100 + 1;
+    int red   = rand() % 255 + 1;
+    int blue  = rand() % 255 + 1;
+    int green = rand() % 255 + 1;
+
+    Color color = Color(alpha, red, green, blue);
+
+    return color;
 }
 
 void showInfo(Window* window)

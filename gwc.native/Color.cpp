@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.1.1
+// v0.2.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -48,7 +48,7 @@ namespace gwc
 
 
 
-    int Color::getAlpha()
+    int Color::getAlpha() const
     {
         return alpha;
     }
@@ -63,7 +63,7 @@ namespace gwc
         alpha = value;
     }
 
-    int Color::getRed()
+    int Color::getRed() const
     {
         return red;
     }
@@ -78,7 +78,7 @@ namespace gwc
         red = value;
     }
 
-    int Color::getGreen()
+    int Color::getGreen() const
     {
         return green;
     }
@@ -93,7 +93,7 @@ namespace gwc
         green = value;
     }
 
-    int Color::getBlue()
+    int Color::getBlue() const
     {
         return blue;
     }
@@ -106,6 +106,24 @@ namespace gwc
         }
 
         blue = value;
+    }
+
+
+
+    bool Color::operator==(const Color& other) const
+    {
+        return alpha == other.alpha &&
+               red   == other.red   &&
+               green == other.green &&
+               blue  == other.blue;
+    }
+
+    bool Color::operator!=(const Color& other) const
+    {
+        return alpha != other.alpha &&
+               red   != other.red   &&
+               green != other.green &&
+               blue  != other.blue;
     }
 }
 

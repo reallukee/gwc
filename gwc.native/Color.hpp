@@ -21,7 +21,7 @@
 
 namespace gwc
 {
-    class GWC_CPP_API Color
+    class GWC_CPP_API Color sealed
     {
 
     public:
@@ -29,14 +29,17 @@ namespace gwc
         Color (int alpha, int red, int green, int blue);
         ~Color();
 
-        int  getAlpha();
+        int  getAlpha() const;
         void setAlpha(int value);
-        int  getRed  ();
+        int  getRed  () const;
         void setRed  (int value);
-        int  getGreen();
+        int  getGreen() const;
         void setGreen(int value);
-        int  getBlue ();
+        int  getBlue () const;
         void setBlue (int value);
+
+        bool operator==(const Color& other) const;
+        bool operator!=(const Color& other) const;
 
     private:
 

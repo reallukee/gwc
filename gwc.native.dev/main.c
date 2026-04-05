@@ -12,9 +12,12 @@
 
 #include <gwc.h>
 
+#include <stdio.h>
+#include <time.h>
 #include <stdlib.h>
 
 /*
+Color* generateRandomColor();
 void showInfo(const WINDOW* window);
 
 int main(int argc, const char* argv[])
@@ -61,16 +64,16 @@ int main(int argc, const char* argv[])
 
             printf("Pressed: %d\n", key);
 
-            COLOR* fillColor   = color_new(100, 0, 255, 0);
-            COLOR* bordercolor = color_new(100, 0, 128, 0);
+            Color* bordercolor = generateRandomColor();
+            Color* fillColor = generateRandomColor();
 
-            window_setFillColor  (window, fillColor);
             window_setBorderColor(window, bordercolor);
+            window_setFillColor(window, fillColor);
 
             color_delete(fillColor);
             color_delete(bordercolor);
 
-            window_drawFillRectangle  (window, 50, 50, 100, 100);
+            window_drawFillRectangle(window, 50, 50, 100, 100);
             window_drawBorderRectangle(window, 50, 50, 100, 100);
         }
 
@@ -87,7 +90,21 @@ int main(int argc, const char* argv[])
     return 0;
 }
 
-void showInfo(WINDOW* window)
+Color* generateRandomColor()
+{
+    srand((unsigned int)time(NULL));
+
+    int alpha = rand() % 100 + 1;
+    int red   = rand() % 255 + 1;
+    int blue  = rand() % 255 + 1;
+    int green = rand() % 255 + 1;
+
+    Color* color = color_new(alpha, red, green, blue);
+
+    return color;
+}
+
+void showInfo(const WINDOW* window)
 {
     printf("Window Width  : %d", window_getWindowWidth(window));
     printf("Window Height : %d", window_getCanvasHeight(window));

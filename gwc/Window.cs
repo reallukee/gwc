@@ -323,7 +323,15 @@ namespace Reallukee.GWC
 
 
 
-        public void Wait(int milliseconds) => Thread.Sleep(milliseconds);
+        public void Wait(int milliseconds)
+        {
+            if (milliseconds < 0)
+            {
+                return;
+            }
+
+            Thread.Sleep(milliseconds);
+        }
 
 
 
@@ -535,6 +543,9 @@ namespace Reallukee.GWC
 
             return false;
         }
+
+        public bool DiscardMouseDown() => ConsumeMouseDown(out Point location, out int button);
+        public bool DiscardMouseUp()   => ConsumeMouseUp  (out Point location, out int button);
 
         public void WaitMouseDown() => mouseDownEvent.WaitOne();
         public void WaitMouseUp()   => mouseUpEvent.  WaitOne();
