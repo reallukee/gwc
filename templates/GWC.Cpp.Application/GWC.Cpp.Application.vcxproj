@@ -250,6 +250,7 @@ IF NOT EXIST "$(OutputPath)gwc.native-$(PlatformTarget).dll" COPY "$(ProjectDir)
     <ClInclude Include="include\gwc.hpp" />
     <ClInclude Include="include\types.hpp" />
     <ClInclude Include="include\Color.hpp" />
+    <ClInclude Include="include\Point.hpp" />
     <ClInclude Include="include\Render.hpp" />
     <ClInclude Include="include\Canvas.hpp" />
     <ClInclude Include="include\Window.hpp" />

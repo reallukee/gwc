@@ -42,6 +42,9 @@
     <ClInclude Include="include\COLOR.h">
       <Filter>GWC\Include</Filter>
     </ClInclude>
+    <ClInclude Include="include\POINT.h">
+      <Filter>GWC\Include</Filter>
+    </ClInclude>
     <ClInclude Include="include\RENDER.h">
       <Filter>GWC\Include</Filter>
     </ClInclude>

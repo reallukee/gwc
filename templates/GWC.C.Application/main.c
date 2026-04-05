@@ -4,7 +4,11 @@
 
 #include <gwc.h>
 
+#include <stdio.h>
+#include <time.h>
 #include <stdlib.h>
+
+Color* generateRandomColor();
 
 int main(int argc, const char* argv[])
 {
@@ -47,11 +51,11 @@ int main(int argc, const char* argv[])
 
             printf("Pressed: %d\n", key);
 
-            COLOR* fillColor   = color_new(100, 0, 255, 0);
-            COLOR* bordercolor = color_new(100, 0, 128, 0);
+            Color* bordercolor = generateRandomColor();
+            Color* fillColor = generateRandomColor();
 
-            window_setFillColor(window, fillColor);
             window_setBorderColor(window, bordercolor);
+            window_setFillColor(window, fillColor);
 
             color_delete(fillColor);
             color_delete(bordercolor);
@@ -71,4 +75,18 @@ int main(int argc, const char* argv[])
     window_delete(window);
 
     return 0;
+}
+
+Color* generateRandomColor()
+{
+    srand((unsigned int)time(NULL));
+
+    int alpha = rand() % 100 + 1;
+    int red   = rand() % 255 + 1;
+    int blue  = rand() % 255 + 1;
+    int green = rand() % 255 + 1;
+
+    Color* color = color_new(alpha, red, green, blue);
+
+    return color;
 }

@@ -34,6 +34,7 @@ GWC è un progetto Open-Source mantenuto su https://github.com/reallukee/gwc.
         <ProjectItem ReplaceParameters="false" TargetFileName="gwc.hpp">gwc.hpp</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="types.hpp">types.hpp</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="Color.hpp">Color.hpp</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="Point.hpp">Point.hpp</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="Render.hpp">Render.hpp</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="Canvas.hpp">Canvas.hpp</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="Window.hpp">Window.hpp</ProjectItem>

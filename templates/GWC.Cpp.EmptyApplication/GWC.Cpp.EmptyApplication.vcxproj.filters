@@ -42,6 +42,9 @@
     <ClInclude Include="include\Color.hpp">
       <Filter>GWC\Include</Filter>
     </ClInclude>
+    <ClInclude Include="include\Point.hpp">
+      <Filter>GWC\Include</Filter>
+    </ClInclude>
     <ClInclude Include="include\Render.hpp">
       <Filter>GWC\Include</Filter>
     </ClInclude>
