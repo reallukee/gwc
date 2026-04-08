@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.1.1
+// v0.2.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -23,21 +23,23 @@
 // Questo è l'header dell'API C++ di GWC!
 // La versione attesa dell'API è:
 //
-//  0.1.1
+//  0.2.0
 //
 
-#define _GWC_VERSION     "011"
-#define _GWC_MIN_VERSION "011"
+#define GWC_VERSION_INCLUDE     "020"
+#define GWC_MIN_VERSION_INCLUDE "020"
 
+#include "types.hpp"
 #include "Color.hpp"
+#include "Point.hpp"
 #include "Render.hpp"
 #include "Canvas.hpp"
 #include "Window.hpp"
 
 namespace gwc
 {
-    GWC_CPP_EXTERN GWC_CPP_API const char GWC_VERSION[];
-    GWC_CPP_EXTERN GWC_CPP_API const char GWC_MIN_VERSION[];
+    GWC_CPP_EXTERN GWC_CPP_DLL const char GWC_VERSION[];
+    GWC_CPP_EXTERN GWC_CPP_DLL const char GWC_MIN_VERSION[];
 }
 
 #endif // __cplusplus
