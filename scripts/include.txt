@@ -3,6 +3,7 @@ header.h
 gwc.h
 types.h
 COLOR.h
+POINT.h
 RENDER.h
 CANVAS.h
 WINDOW.h
@@ -11,6 +12,7 @@ header.hpp
 gwc.hpp
 types.hpp
 Color.hpp
+Point.hpp
 Render.hpp
 Canvas.hpp
 Window.hpp
