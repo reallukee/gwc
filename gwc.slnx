@@ -1,4 +1,4 @@
-<Solution>
+﻿<Solution>
   <Configurations>
     <Platform Name="ARM64" />
     <Platform Name="x64" />
@@ -15,11 +15,6 @@
       <Platform Solution="*|x64" Project="x64" />
       <Platform Solution="*|x86" Project="x86" />
     </Project>
-    <Project Path="gwc.dev/gwc.sdkstyle.dev.csproj">
-      <Platform Solution="*|ARM64" Project="arm64" />
-      <Platform Solution="*|x64" Project="x64" />
-      <Platform Solution="*|x86" Project="x86" />
-    </Project>
     <Project Path="gwc.dev/gwc.mono.dev.csproj" Id="0bdcfd9a-76c0-4b63-b397-135ff1e97371">
       <Platform Solution="*|ARM64" Project="x64" />
       <Platform Solution="*|x64" Project="x64" />
@@ -29,11 +24,6 @@
   </Folder>
   <Project Path="gwc/gwc.csproj" Id="e3352e34-8033-4f44-ae88-7e053e6d11e7">
     <Platform Solution="*|ARM64" Project="ARM64" />
-    <Platform Solution="*|x64" Project="x64" />
-    <Platform Solution="*|x86" Project="x86" />
-  </Project>
-  <Project Path="gwc/gwc.sdkstyle.csproj">
-    <Platform Solution="*|ARM64" Project="arm64" />
     <Platform Solution="*|x64" Project="x64" />
     <Platform Solution="*|x86" Project="x86" />
   </Project>
