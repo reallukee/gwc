@@ -1,7 +1,7 @@
 //
 // :.:.:.
 // GWC
-// v0.2.0
+// v0.2.1
 // :.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -30,6 +30,11 @@ namespace Reallukee.GWC
 {
     public sealed class Window : IDisposable
     {
+        private const int MaxKeyDownBufferLength   = 100;
+        private const int MaxKeyUpBufferLength     = 100;
+        private const int MaxMouseDownBufferLength = 100;
+        private const int MaxMouseUpBufferLength   = 100;
+
         public Window(int width, int height)
         {
             if (width <= 0)
@@ -100,6 +105,11 @@ namespace Reallukee.GWC
             keyUpEvent     = new AutoResetEvent(false);
             mouseDownEvent = new AutoResetEvent(false);
             mouseUpEvent   = new AutoResetEvent(false);
+
+            keyDownBuffer   = new ConcurrentQueue<Keys>();
+            keyUpBuffer     = new ConcurrentQueue<Keys>();
+            mouseDownBuffer = new ConcurrentQueue<(Point, MouseButtons)>();
+            mouseUpBuffer   = new ConcurrentQueue<(Point, MouseButtons)>();
 
             windowThread = new Thread(WindowThreadLoop);
 
@@ -400,15 +410,24 @@ namespace Reallukee.GWC
         private AutoResetEvent keyDownEvent;
         private AutoResetEvent keyUpEvent;
 
-        private int lastKeyDown = -1;
-        private int lastKeyUp   = -1;
+        private ConcurrentQueue<Keys> keyDownBuffer;
+        private ConcurrentQueue<Keys> keyUpBuffer;
 
         private int hasKeyDown = 0;
         private int hasKeyUp   = 0;
 
         private void WindowForm_KeyDown(object sender, KeyEventArgs e)
         {
-            lastKeyDown = e.KeyValue;
+            if (keyDownBuffer.Count <= MaxKeyDownBufferLength)
+            {
+                keyDownBuffer.Enqueue(e.KeyData);
+
+                IsKeyDownLost = false;
+            }
+            else
+            {
+                IsKeyDownLost = true;
+            }
 
             Interlocked.Exchange(ref hasKeyDown, 1);
 
@@ -417,7 +436,16 @@ namespace Reallukee.GWC
 
         private void WindowForm_KeyUp(object sender, KeyEventArgs e)
         {
-            lastKeyUp = e.KeyValue;
+            if (keyUpBuffer.Count <= MaxKeyUpBufferLength)
+            {
+                keyUpBuffer.Enqueue(e.KeyData);
+
+                IsKeyUpLost = false;
+            }
+            else
+            {
+                IsKeyUpLost = true;
+            }
 
             Interlocked.Exchange(ref hasKeyUp, 1);
 
@@ -427,60 +455,91 @@ namespace Reallukee.GWC
         public bool IsKeyDownAvailable => hasKeyDown == 1;
         public bool IsKeyUpAvailable   => hasKeyUp   == 1;
 
-        public void ResetKeyDown() => lastKeyDown = -1;
-        public void ResetKeyUp  () => lastKeyUp   = -1;
+        public void FlushKeyDown() => Interlocked.Exchange(ref keyDownBuffer, new ConcurrentQueue<Keys>());
+        public void FlushKeyUp  () => Interlocked.Exchange(ref keyUpBuffer,   new ConcurrentQueue<Keys>());
 
-        public bool ConsumeKeyDown(out int key)
+        public bool ConsumeKeyDown(out Keys modifiers, out Keys key)
         {
             if (Interlocked.Exchange(ref hasKeyDown, 0) == 1)
             {
-                key = lastKeyDown;
+                if (keyDownBuffer.TryDequeue(out Keys keyData))
+                {
+                    modifiers = keyData & Keys.Modifiers;
+                    key       = keyData & Keys.KeyCode;
 
-                return true;
+                    return true;
+                }
             }
 
-            key = -1;
+            modifiers = Keys.None;
+            key       = Keys.None;
 
             return false;
         }
 
-        public bool ConsumeKeyUp(out int key)
+        public bool ConsumeKeyUp(out Keys modifiers, out Keys key)
         {
             if (Interlocked.Exchange(ref hasKeyUp, 0) == 1)
             {
-                key = lastKeyUp;
+                if (keyUpBuffer.TryDequeue(out Keys keyData))
+                {
+                    modifiers = keyData & Keys.Modifiers;
+                    key       = keyData & Keys.KeyCode;
 
-                return true;
+                    return true;
+                }
             }
 
-            key = -1;
+            modifiers = Keys.None;
+            key       = Keys.None;
 
             return false;
         }
 
-        public bool DiscardKeyDown() => ConsumeKeyDown(out int keys);
-        public bool DiscardKeyUp  () => ConsumeKeyUp  (out int keys);
+        public bool DiscardKeyDown() => ConsumeKeyDown(out Keys _, out Keys _);
+        public bool DiscardKeyUp  () => ConsumeKeyUp  (out Keys _, out Keys _);
 
         public void WaitKeyDown() => keyDownEvent.WaitOne();
         public void WaitKeyUp  () => keyUpEvent  .WaitOne();
+
+        public bool IsKeyDownLost
+        {
+            get;
+            private set;
+        }
+
+        public bool IsKeyUpLost
+        {
+            get;
+            private set;
+        }
+
+        public bool IsKeyDownBufferFull => keyDownBuffer.Count == MaxKeyDownBufferLength;
+        public bool IsKeyUpBufferFull   => keyUpBuffer  .Count == MaxKeyUpBufferLength;
 
 
 
         private AutoResetEvent mouseDownEvent;
         private AutoResetEvent mouseUpEvent;
 
-        private Point lastMouseDownLocation = new Point(-1, -1);
-        private int   lastMouseDownButton   = -1;
-        private Point lastMouseUpLocation   = new Point(-1, -1);
-        private int   lastMouseUpButton     = -1;
+        private ConcurrentQueue<(Point, MouseButtons)> mouseDownBuffer;
+        private ConcurrentQueue<(Point, MouseButtons)> mouseUpBuffer;
 
         private int hasMouseDown = 0;
         private int hasMouseUp   = 0;
 
         private void WindowForm_MouseDown(object sender, MouseEventArgs e)
         {
-            lastMouseDownLocation = new Point(e.X, e.Y);
-            lastMouseDownButton   = (int)e.Button;
+            if (mouseDownBuffer.Count <= MaxMouseDownBufferLength)
+            {
+                mouseDownBuffer.Enqueue((new Point(e.X, e.Y), e.Button));
+
+                IsMouseDownLost = false;
+            }
+            else
+            {
+                IsMouseDownLost = true;
+            }
 
             Interlocked.Exchange(ref hasMouseDown, 1);
 
@@ -489,66 +548,86 @@ namespace Reallukee.GWC
 
         private void WindowForm_MouseUp(object sender, MouseEventArgs e)
         {
-            lastMouseUpLocation = new Point(e.X, e.Y);
-            lastMouseUpButton   = (int)e.Button;
+            if (mouseUpBuffer.Count <= MaxMouseUpBufferLength)
+            {
+                mouseUpBuffer.Enqueue((new Point(e.X, e.Y), e.Button));
+
+                IsMouseUpLost = false;
+            }
+            else
+            {
+                IsMouseUpLost = true;
+            }
 
             Interlocked.Exchange(ref hasMouseUp, 1);
 
             mouseUpEvent.Set();
         }
 
-        public bool IsMouseDownAvailable => lastMouseDownButton != -1;
-        public bool IsMouseUpAvailable   => lastMouseUpButton   != -1;
+        public bool IsMouseDownAvailable => hasMouseDown == 1;
+        public bool IsMouseUpAvailable   => hasMouseUp   == 1;
 
-        public void ResetMouseDown()
-        {
-            lastMouseDownLocation = new Point(-1, -1);
-            lastMouseDownButton   = -1;
-        }
+        public void FlushMouseDown() => Interlocked.Exchange(ref mouseDownBuffer, new ConcurrentQueue<(Point, MouseButtons)>());
+        public void FlushMouseUp  () => Interlocked.Exchange(ref mouseUpBuffer,   new ConcurrentQueue<(Point, MouseButtons)>());
 
-        public void ResetMouseUp()
-        {
-            lastMouseUpLocation = new Point(-1, -1);
-            lastMouseUpButton   = -1;
-        }
-
-        public bool ConsumeMouseDown(out Point location, out int button)
+        public bool ConsumeMouseDown(out Point location, out MouseButtons button)
         {
             if (Interlocked.Exchange(ref hasMouseDown, 0) == 1)
             {
-                location = lastMouseDownLocation;
-                button   = lastMouseDownButton;
+                if (mouseDownBuffer.TryDequeue(out (Point, MouseButtons) mouseData))
+                {
+                    location = mouseData.Item1;
+                    button   = mouseData.Item2;
 
-                return true;
+                    return true;
+                }
             }
 
             location = new Point(-1, -1);
-            button   = -1;
+            button   = MouseButtons.None;
 
             return false;
         }
 
-        public bool ConsumeMouseUp(out Point location, out int button)
+        public bool ConsumeMouseUp(out Point location, out MouseButtons button)
         {
             if (Interlocked.Exchange(ref hasMouseUp, 0) == 1)
             {
-                location = lastMouseUpLocation;
-                button   = lastMouseUpButton;
+                if (mouseUpBuffer.TryDequeue(out (Point, MouseButtons) mouseData))
+                {
+                    location = mouseData.Item1;
+                    button   = mouseData.Item2;
 
-                return true;
+                    return true;
+                }
             }
 
             location = new Point(-1, -1);
-            button   = -1;
+            button   = MouseButtons.None;
 
             return false;
         }
 
-        public bool DiscardMouseDown() => ConsumeMouseDown(out Point location, out int button);
-        public bool DiscardMouseUp()   => ConsumeMouseUp  (out Point location, out int button);
+        public bool DiscardMouseDown() => ConsumeMouseDown(out Point _, out MouseButtons _);
+        public bool DiscardMouseUp()   => ConsumeMouseUp  (out Point _, out MouseButtons _);
 
         public void WaitMouseDown() => mouseDownEvent.WaitOne();
-        public void WaitMouseUp()   => mouseUpEvent.  WaitOne();
+        public void WaitMouseUp()   => mouseUpEvent  .WaitOne();
+
+        public bool IsMouseDownLost
+        {
+            get;
+            private set;
+        }
+
+        public bool IsMouseUpLost
+        {
+            get;
+            private set;
+        }
+
+        public bool IsMouseDownBufferFull => mouseDownBuffer.Count == MaxMouseDownBufferLength;
+        public bool IsMouseUpBufferFull   => mouseUpBuffer  .Count == MaxMouseUpBufferLength;
 
 
 

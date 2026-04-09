@@ -1,7 +1,7 @@
 //
 // :.:.:.
 // GWC
-// v0.2.0
+// v0.2.1
 // :.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -45,30 +45,30 @@ namespace Reallukee.GWC
 
             while (window.IsOpen && loop)
             {
-                bool keyDown = window.ConsumeKeyDown(out int key);
+                bool keyDown = window.ConsumeKeyDown(out Keys modifiers, out Keys key);
 
                 if (keyDown)
                 {
-                    if (key == 27)
+                    if (key == Keys.Escape)
                     {
                         loop = false;
 
                         continue;
                     }
 
-                    if (key == 73)
+                    if (key == Keys.I)
                     {
                         ShowInfo(window);
 
                         continue;
                     }
 
-                    Console.WriteLine($"Pressed: {key}");
+                    Console.WriteLine($"Pressed: {modifiers}, {key}");
 
                     window.BorderColor = GenerateRandomColor();
-                    window.FillColor   = GenerateRandomColor();
+                    window.FillColor = GenerateRandomColor();
 
-                    window.DrawFillRectangle  (100, 100, 100, 100);
+                    window.DrawFillRectangle(100, 100, 100, 100);
                     window.DrawBorderRectangle(100, 100, 100, 100);
                 }
 
