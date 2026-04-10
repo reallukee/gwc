@@ -17,7 +17,7 @@
 
 #include "header.h"
 
-enum MouseButtons
+typedef enum MouseButtons
 {
     MOUSEBUTTONS_NONE     = 0,
     MOUSEBUTTONS_LEFT     = 1048576,
@@ -25,6 +25,6 @@ enum MouseButtons
     MOUSEBUTTONS_MIDDLE   = 4194304,
     MOUSEBUTTONS_XBUTTON1 = 8388608,
     MOUSEBUTTONS_XBUTTON2 = 16777216
-};
+} MouseButtons;
 
 #endif // !GWC_MOUSEBUTTONS_H

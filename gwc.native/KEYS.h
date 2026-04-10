@@ -17,7 +17,7 @@
 
 #include "header.h"
 
-enum Keys
+typedef enum Keys
 {
     KEYS_NONE               = 0,
     KEYS_LBUTTON            = 1,
@@ -196,6 +196,6 @@ enum Keys
     KEYS_CONTROL            = 131072,
     KEYS_ALT                = 262144,
     KEYS_MODIFIERS          = -65536,
-};
+} Keys;
 
 #endif // !GWC_KEYS_H
