@@ -40,20 +40,21 @@ int main(int argc, const char* argv[])
 
     while (window->isOpen() && loop)
     {
-        int key = -1;
+        Keys modifiers = Keys::None;
+        Keys key = Keys::None;
 
-        bool keyDown = window->consumeKeyDown(key);
+        bool keyDown = window->consumeKeyDown(modifiers, key);
 
         if (keyDown)
         {
-            if (key == 27)
+            if (key == Keys::Escape)
             {
                 loop = false;
 
                 continue;
             }
 
-            cout << "Pressed: " << key << endl;
+            cout << "Pressed: " << static_cast<int>(modifiers) << ", " << static_cast<int>(key) << endl;
 
             window->setBorderColor(generateRandomColor());
             window->setFillColor(generateRandomColor());

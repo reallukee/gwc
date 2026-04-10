@@ -56,6 +56,12 @@
     <ClInclude Include="include\CANVAS.h">
       <Filter>GWC\Include</Filter>
     </ClInclude>
+    <ClInclude Include="include\KEYS.h">
+      <Filter>GWC\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MOUSEBUTTONS.h">
+      <Filter>GWC\Include</Filter>
+    </ClInclude>
     <ClInclude Include="include\WINDOW.h">
       <Filter>GWC\Include</Filter>
     </ClInclude>

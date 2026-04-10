@@ -250,6 +250,8 @@ IF NOT EXIST "$(OutputPath)gwc.native-$(PlatformTarget).dll" COPY "$(ProjectDir)
     <ClInclude Include="include\POINT.h" />
     <ClInclude Include="include\RENDER.h" />
     <ClInclude Include="include\CANVAS.h" />
+    <ClInclude Include="include\KEYS.h" />
+    <ClInclude Include="include\MOUSEBUTTONS.h" />
     <ClInclude Include="include\WINDOW.h" />
   </ItemGroup>
   <ItemGroup>

@@ -6,6 +6,8 @@ COLOR.h
 POINT.h
 RENDER.h
 CANVAS.h
+KEYS.h
+MOUSEBUTTONS.h
 WINDOW.h
 export.hpp
 header.hpp
@@ -15,4 +17,6 @@ Color.hpp
 Point.hpp
 Render.hpp
 Canvas.hpp
+Keys.hpp
+MouseButtons.hpp
 Window.hpp

@@ -36,20 +36,21 @@ int main(int argc, const char* argv[])
 
     while (window_isOpen(window) && loop)
     {
-        int key = -1;
+        Keys modifiers = KEYS_NONE;
+        Keys key = KEYS_NONE;
 
-        bool keyDown = window_consumeKeyDown(window, &key);
+        bool keyDown = window_consumeKeyDown(window, &modifiers, &key);
 
         if (keyDown)
         {
-            if (key == 27)
+            if (key == KEYS_ESCAPE)
             {
                 loop = false;
 
                 continue;
             }
 
-            printf("Pressed: %d\n", key);
+            printf("Pressed: %d, %d\n", modifiers, key);
 
             Color* bordercolor = generateRandomColor();
             Color* fillColor = generateRandomColor();
