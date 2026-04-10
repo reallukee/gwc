@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.2.0
+// v0.2.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -16,8 +16,8 @@
 
 namespace gwc
 {
-    const char GWC_VERSION[]     = "0.2.0";
-    const char GWC_MIN_VERSION[] = "0.2.0";
+    const char GWC_VERSION[]     = "0.2.1";
+    const char GWC_MIN_VERSION[] = "0.2.1";
 }
 
 #endif // __cplusplus

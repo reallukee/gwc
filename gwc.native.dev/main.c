@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.2.0
+// v0.2.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -42,27 +42,28 @@ int main(int argc, const char* argv[])
 
     while (window_isOpen(window) && loop)
     {
-        int key = -1;
+        Keys modifiers = KEYS_NONE;
+        Keys key = KEYS_NONE;
 
-        bool keyDown = window_consumeKeyDown(window, &key);
+        bool keyDown = window_consumeKeyDown(window, &modifiers, &key);
 
         if (keyDown)
         {
-            if (key == 27)
+            if (key == KEYS_ESCAPE)
             {
                 loop = false;
 
                 continue;
             }
 
-            if (key == 73)
+            if (key == KEYS_I)
             {
                 showInfo(window);
 
                 continue;
             }
 
-            printf("Pressed: %d\n", key);
+            printf("Pressed: %d, %d\n", modifiers, key);
 
             Color* bordercolor = generateRandomColor();
             Color* fillColor = generateRandomColor();

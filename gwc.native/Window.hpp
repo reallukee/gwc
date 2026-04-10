@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.2.0
+// v0.2.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -21,6 +21,8 @@
 #include "types.hpp"
 #include "Color.hpp"
 #include "Point.hpp"
+#include "Keys.hpp"
+#include "MouseButtons.hpp"
 
 namespace gwc
 {
@@ -53,29 +55,37 @@ namespace gwc
         int getRenderWidth ();
         int getRenderHeight();
 
-        bool isKeyDownAvailable();
-        void resetKeyDown      ();
-        bool consumeKeyDown    (int& key);
-        bool discardKeyDown    ();
-        void waitKeyDown       ();
+        bool isKeyDownAvailable ();
+        void flushKeyDown       ();
+        bool consumeKeyDown     (Keys& modifiers, Keys& key);
+        bool discardKeyDown     ();
+        void waitKeyDown        ();
+        bool isKeyDownLost      ();
+        bool isKeyDownBufferFull();
 
-        bool isKeyUpAvailable();
-        void resetKeyUp      ();
-        bool consumeKeyUp    (int& key);
-        bool discardKeyUp    ();
-        void waitKeyUp       ();
+        bool isKeyUpAvailable ();
+        void flushKeyUp       ();
+        bool consumeKeyUp     (Keys& modifiers, Keys& key);
+        bool discardKeyUp     ();
+        void waitKeyUp        ();
+        bool isKeyUpLost      ();
+        bool isKeyUpBufferFull();
 
-        bool isMouseDownAvailable();
-        void resetMouseDown      ();
-        bool consumeMouseDown    (Point& location, int& button);
-        bool discardMouseDown    ();
-        void waitMouseDown       ();
+        bool isMouseDownAvailable ();
+        void flushMouseDown       ();
+        bool consumeMouseDown     (Point& location, MouseButtons& button);
+        bool discardMouseDown     ();
+        void waitMouseDown        ();
+        bool isMouseDownLost      ();
+        bool isMouseDownBufferFull();
 
-        bool isMouseUpAvailable();
-        void resetMouseUp      ();
-        bool consumeMouseUp    (Point& location, int& button);
-        bool discardMouseUp    ();
-        void waitMouseUp       ();
+        bool isMouseUpAvailable ();
+        void flushMouseUp       ();
+        bool consumeMouseUp     (Point& location, MouseButtons& button);
+        bool discardMouseUp     ();
+        void waitMouseUp        ();
+        bool isMouseUpLost      ();
+        bool isMouseUpBufferFull();
 
         int getCanvasWidth ();
         int getCanvasHeight();

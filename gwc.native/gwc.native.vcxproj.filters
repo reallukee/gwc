@@ -78,6 +78,12 @@
     <ClInclude Include="Canvas.hpp">
       <Filter>File di intestazione\C++ API</Filter>
     </ClInclude>
+    <ClInclude Include="Keys.hpp">
+      <Filter>File di intestazione\C++ API</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseButtons.hpp">
+      <Filter>File di intestazione\C++ API</Filter>
+    </ClInclude>
     <ClInclude Include="window_macros.hpp">
       <Filter>File di intestazione\C++ API</Filter>
     </ClInclude>
@@ -109,6 +115,12 @@
       <Filter>File di intestazione\C API</Filter>
     </ClInclude>
     <ClInclude Include="CANVAS.h">
+      <Filter>File di intestazione\C API</Filter>
+    </ClInclude>
+    <ClInclude Include="KEYS.h">
+      <Filter>File di intestazione\C API</Filter>
+    </ClInclude>
+    <ClInclude Include="MOUSEBUTTONS.h">
       <Filter>File di intestazione\C API</Filter>
     </ClInclude>
     <ClInclude Include="window_macros.h">

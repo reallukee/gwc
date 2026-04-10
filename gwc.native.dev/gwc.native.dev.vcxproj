@@ -261,6 +261,8 @@
     <ClInclude Include="..\gwc.native\Render.hpp" />
     <ClInclude Include="..\gwc.native\canvas_macros.hpp" />
     <ClInclude Include="..\gwc.native\Canvas.hpp" />
+    <ClInclude Include="..\gwc.native\Keys.hpp" />
+    <ClInclude Include="..\gwc.native\MouseButtons.hpp" />
     <ClInclude Include="..\gwc.native\window_macros.hpp" />
     <ClInclude Include="..\gwc.native\Window.hpp" />
     <ClInclude Include="..\gwc.native\export.h" />
@@ -272,6 +274,8 @@
     <ClInclude Include="..\gwc.native\RENDER.h" />
     <ClInclude Include="..\gwc.native\canvas_macros.h" />
     <ClInclude Include="..\gwc.native\CANVAS.h" />
+    <ClInclude Include="..\gwc.native\KEYS.h" />
+    <ClInclude Include="..\gwc.native\MOUSEBUTTONS.h" />
     <ClInclude Include="..\gwc.native\window_macros.h" />
     <ClInclude Include="..\gwc.native\WINDOW.h" />
   </ItemGroup>

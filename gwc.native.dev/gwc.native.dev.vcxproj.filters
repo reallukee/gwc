@@ -78,6 +78,12 @@
     <ClInclude Include="..\gwc.native\Canvas.hpp">
       <Filter>File di intestazione\C++ API</Filter>
     </ClInclude>
+    <ClInclude Include="..\gwc.native\Keys.hpp">
+      <Filter>File di intestazione\C++ API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gwc.native\MouseButtons.hpp">
+      <Filter>File di intestazione\C++ API</Filter>
+    </ClInclude>
     <ClInclude Include="..\gwc.native\window_macros.hpp">
       <Filter>File di intestazione\C++ API</Filter>
     </ClInclude>
@@ -109,6 +115,12 @@
       <Filter>File di intestazione\C API</Filter>
     </ClInclude>
     <ClInclude Include="..\gwc.native\CANVAS.h">
+      <Filter>File di intestazione\C API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gwc.native\KEYS.h">
+      <Filter>File di intestazione\C API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gwc.native\MOUSEBUTTONS.h">
       <Filter>File di intestazione\C API</Filter>
     </ClInclude>
     <ClInclude Include="..\gwc.native\window_macros.h">

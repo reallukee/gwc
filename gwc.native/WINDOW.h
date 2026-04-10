@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.2.0
+// v0.2.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -19,6 +19,8 @@
 #include "types.h"
 #include "COLOR.h"
 #include "POINT.h"
+#include "KEYS.h"
+#include "MOUSEBUTTONS.h"
 
 typedef struct WINDOW WINDOW;
 
@@ -47,29 +49,37 @@ GWC_C_API int window_getWindowHeight(const WINDOW* window);
 GWC_C_API int window_getRenderWidth (const WINDOW* window);
 GWC_C_API int window_getRenderHeight(const WINDOW* window);
 
-GWC_C_API bool window_isKeyDownAvailable(const WINDOW* window);
-GWC_C_API void window_resetKeyDown      (const WINDOW* window);
-GWC_C_API bool window_consumeKeyDown    (const WINDOW* window, int* key);
-GWC_C_API bool window_discardKeyDown    (const WINDOW* window);
-GWC_C_API void window_waitKeyDown       (const WINDOW* window);
+GWC_C_API bool window_isKeyDownAvailable (const WINDOW* window);
+GWC_C_API void window_flushKeyDown       (const WINDOW* window);
+GWC_C_API bool window_consumeKeyDown     (const WINDOW* window, Keys* modifiers, Keys* key);
+GWC_C_API bool window_discardKeyDown     (const WINDOW* window);
+GWC_C_API void window_waitKeyDown        (const WINDOW* window);
+GWC_C_API bool window_isKeyDownLost      (const WINDOW* window);
+GWC_C_API bool window_isKeyDownBufferFull(const WINDOW* window);
 
-GWC_C_API bool window_isKeyUpAvailable(const WINDOW* window);
-GWC_C_API void window_resetKeyUp      (const WINDOW* window);
-GWC_C_API bool window_consumeKeyUp    (const WINDOW* window, int* key);
-GWC_C_API bool window_discardKeyUp    (const WINDOW* window);
-GWC_C_API void window_waitKeyUp       (const WINDOW* window);
+GWC_C_API bool window_isKeyUpAvailable (const WINDOW* window);
+GWC_C_API void window_flushKeyUp       (const WINDOW* window);
+GWC_C_API bool window_consumeKeyUp     (const WINDOW* window, Keys* modifiers, Keys* key);
+GWC_C_API bool window_discardKeyUp     (const WINDOW* window);
+GWC_C_API void window_waitKeyUp        (const WINDOW* window);
+GWC_C_API bool window_isKeyUpLost      (const WINDOW* window);
+GWC_C_API bool window_isKeyUpBufferFull(const WINDOW* window);
 
-GWC_C_API bool window_isMouseDownAvailable(const WINDOW* window);
-GWC_C_API void window_resetMouseDown      (const WINDOW* window);
-GWC_C_API bool window_consumeMouseDown    (const WINDOW* window, Point** location, int* button);
-GWC_C_API bool window_discardMouseDown    (const WINDOW* window);
-GWC_C_API void window_waitMouseDown       (const WINDOW* window);
+GWC_C_API bool window_isMouseDownAvailable (const WINDOW* window);
+GWC_C_API void window_flushMouseDown       (const WINDOW* window);
+GWC_C_API bool window_consumeMouseDown     (const WINDOW* window, Point** location, MouseButtons* button);
+GWC_C_API bool window_discardMouseDown     (const WINDOW* window);
+GWC_C_API void window_waitMouseDown        (const WINDOW* window);
+GWC_C_API bool window_isMouseDownLost      (const WINDOW* window);
+GWC_C_API bool window_isMouseDownBufferFull(const WINDOW* window);
 
-GWC_C_API bool window_isMouseUpAvailable(const WINDOW* window);
-GWC_C_API void window_resetMouseUp      (const WINDOW* window);
-GWC_C_API bool window_consumeMouseUp    (const WINDOW* window, Point** location, int* button);
-GWC_C_API bool window_discardMouseUp    (const WINDOW* window);
-GWC_C_API void window_waitMouseUp       (const WINDOW* window);
+GWC_C_API bool window_isMouseUpAvailable (const WINDOW* window);
+GWC_C_API void window_flushMouseUp       (const WINDOW* window);
+GWC_C_API bool window_consumeMouseUp     (const WINDOW* window, Point** location, MouseButtons* button);
+GWC_C_API bool window_discardMouseUp     (const WINDOW* window);
+GWC_C_API void window_waitMouseUp        (const WINDOW* window);
+GWC_C_API bool window_isMouseUpLost      (const WINDOW* window);
+GWC_C_API bool window_isMouseUpBufferFull(const WINDOW* window);
 
 GWC_C_API int window_getCanvasWidth (const WINDOW* window);
 GWC_C_API int window_getCanvasHeight(const WINDOW* window);

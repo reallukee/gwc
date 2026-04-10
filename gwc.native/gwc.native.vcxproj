@@ -249,6 +249,8 @@
     <ClInclude Include="Render.hpp" />
     <ClInclude Include="canvas_macros.hpp" />
     <ClInclude Include="Canvas.hpp" />
+    <ClInclude Include="Keys.hpp" />
+    <ClInclude Include="MouseButtons.hpp" />
     <ClInclude Include="window_macros.hpp" />
     <ClInclude Include="Window.hpp" />
     <ClInclude Include="export.h" />
@@ -260,6 +262,8 @@
     <ClInclude Include="RENDER.h" />
     <ClInclude Include="canvas_macros.h" />
     <ClInclude Include="CANVAS.h" />
+    <ClInclude Include="KEYS.h" />
+    <ClInclude Include="MOUSEBUTTONS.h" />
     <ClInclude Include="window_macros.h" />
     <ClInclude Include="WINDOW.h" />
   </ItemGroup>
