@@ -6,7 +6,7 @@
 //
 // https://github.com/reallukee/gwc
 //
-// Rectangle.cs
+// FillEllipse.cs
 //  Licenza MIT
 //
 
@@ -28,47 +28,27 @@ using System.Windows.Forms;
 
 namespace Reallukee.GWC
 {
-    internal class Rectangle : IFigure
+    internal class FillEllipse : Ellipse, IRenderable, IFillColor
     {
-        public Rectangle(int x, int y, int width, int height)
+        public FillEllipse(Color fillColor, int x, int y, int width, int height) : base(x, y, width, height)
         {
-            this.X      = x;
-            this.Y      = y;
-            this.Width  = width;
-            this.Height = height;
+            FillColor = fillColor;
         }
 
-        public Rectangle(Point location, Size size)
+        public FillEllipse(Color fillColor, Point location, Size size) : base(location, size)
         {
-            this.X      = location.X;
-            this.Y      = location.Y;
-            this.Width  = size.Width;
-            this.Height = size.Height;
+            FillColor = fillColor;
         }
 
-        public Rectangle() : this(0, 0, 0, 0) { }
+        public FillEllipse(int x, int y, int width, int height) : this(Color.Green, x, y, width, height) { }
+
+        public FillEllipse(Point location, Size size) : this(Color.Green, location, size) { }
+
+        public FillEllipse() : this(Color.Green, 0, 0, 0, 0) { }
 
 
 
-        public int X
-        {
-            get;
-            set;
-        }
-
-        public int Y
-        {
-            get;
-            set;
-        }
-
-        public int Width
-        {
-            get;
-            set;
-        }
-
-        public int Height
+        public Color FillColor
         {
             get;
             set;
@@ -76,12 +56,17 @@ namespace Reallukee.GWC
 
 
 
-        public Size  Size     => new Size (Width, Height);
-        public Point Location => new Point(X, Y);
+        public void Render(Graphics g)
+        {
+            using (SolidBrush fill = new SolidBrush(FillColor))
+            {
+                g.FillEllipse(fill, X - Width / 2, Y - Height / 2, Width, Height);
+            }
+        }
 
 
 
-        public static bool operator ==(Rectangle left, Rectangle right)
+        public static bool operator ==(FillEllipse left, FillEllipse right)
         {
             if (ReferenceEquals(left, right))
             {
@@ -93,13 +78,18 @@ namespace Reallukee.GWC
                 return false;
             }
 
-            return left.X      == right.X      &&
-                   left.Y      == right.Y      &&
-                   left.Width  == right.Width  &&
-                   left.Height == right.Height;
+            Ellipse baseLeft = left;
+            Ellipse baseRight = right;
+
+            if (baseLeft == baseRight)
+            {
+                return left.FillColor == right.FillColor;
+            }
+
+            return false;
         }
 
-        public static bool operator !=(Rectangle left, Rectangle right)
+        public static bool operator !=(FillEllipse left, FillEllipse right)
         {
             return !(left == right);
         }
@@ -108,7 +98,7 @@ namespace Reallukee.GWC
 
         public override bool Equals(object obj)
         {
-            Rectangle other = obj as Rectangle;
+            FillEllipse other = obj as FillEllipse;
 
             return this == other;
         }
@@ -119,6 +109,7 @@ namespace Reallukee.GWC
             {
                 int hash = 17;
 
+                hash = hash * 23 + FillColor.GetHashCode();
                 hash = hash * 23 + X;
                 hash = hash * 23 + Y;
                 hash = hash * 23 + Width;
@@ -131,7 +122,8 @@ namespace Reallukee.GWC
         public override string ToString()
         {
             return string.Format(
-                "Rectangle: X={0}, Y={1}, Width={2}, Height={3}",
+                "FillEllipse: FillColor={0}, X={1}, Y={2}, Width={3}, Height={4}",
+                FillColor,
                 X,
                 Y,
                 Width,

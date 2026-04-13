@@ -6,7 +6,7 @@
 //
 // https://github.com/reallukee/gwc
 //
-// Rectangle.cs
+// BorderEllipse.cs
 //  Licenza MIT
 //
 
@@ -28,47 +28,27 @@ using System.Windows.Forms;
 
 namespace Reallukee.GWC
 {
-    internal class Rectangle : IFigure
+    internal class BorderEllipse : Ellipse, IRenderable, IBorderColor
     {
-        public Rectangle(int x, int y, int width, int height)
+        public BorderEllipse(Color borderColor, int x, int y, int width, int height) : base(x, y, width, height)
         {
-            this.X      = x;
-            this.Y      = y;
-            this.Width  = width;
-            this.Height = height;
+            BorderColor = borderColor;
         }
 
-        public Rectangle(Point location, Size size)
+        public BorderEllipse(Color borderColor, Point location, Size size) : base(location, size)
         {
-            this.X      = location.X;
-            this.Y      = location.Y;
-            this.Width  = size.Width;
-            this.Height = size.Height;
+            BorderColor = borderColor;
         }
 
-        public Rectangle() : this(0, 0, 0, 0) { }
+        public BorderEllipse(int x, int y, int width, int height) : this(Color.Black, x, y, width, height) { }
+
+        public BorderEllipse(Point location, Size size) : this(Color.Black, location, size) { }
+
+        public BorderEllipse() : this(Color.Black, 0, 0, 0, 0) { }
 
 
 
-        public int X
-        {
-            get;
-            set;
-        }
-
-        public int Y
-        {
-            get;
-            set;
-        }
-
-        public int Width
-        {
-            get;
-            set;
-        }
-
-        public int Height
+        public Color BorderColor
         {
             get;
             set;
@@ -76,12 +56,17 @@ namespace Reallukee.GWC
 
 
 
-        public Size  Size     => new Size (Width, Height);
-        public Point Location => new Point(X, Y);
+        public void Render(Graphics g)
+        {
+            using (Pen border = new Pen(BorderColor))
+            {
+                g.DrawEllipse(border, X - Width / 2, Y - Height / 2, Width, Height);
+            }
+        }
 
 
 
-        public static bool operator ==(Rectangle left, Rectangle right)
+        public static bool operator ==(BorderEllipse left, BorderEllipse right)
         {
             if (ReferenceEquals(left, right))
             {
@@ -93,13 +78,18 @@ namespace Reallukee.GWC
                 return false;
             }
 
-            return left.X      == right.X      &&
-                   left.Y      == right.Y      &&
-                   left.Width  == right.Width  &&
-                   left.Height == right.Height;
+            Ellipse baseLeft = left;
+            Ellipse baseRight = right;
+
+            if (baseLeft == baseRight)
+            {
+                return left.BorderColor == right.BorderColor;
+            }
+
+            return false;
         }
 
-        public static bool operator !=(Rectangle left, Rectangle right)
+        public static bool operator !=(BorderEllipse left, BorderEllipse right)
         {
             return !(left == right);
         }
@@ -108,7 +98,7 @@ namespace Reallukee.GWC
 
         public override bool Equals(object obj)
         {
-            Rectangle other = obj as Rectangle;
+            BorderEllipse other = obj as BorderEllipse;
 
             return this == other;
         }
@@ -119,6 +109,7 @@ namespace Reallukee.GWC
             {
                 int hash = 17;
 
+                hash = hash * 23 + BorderColor.GetHashCode();
                 hash = hash * 23 + X;
                 hash = hash * 23 + Y;
                 hash = hash * 23 + Width;
@@ -131,7 +122,8 @@ namespace Reallukee.GWC
         public override string ToString()
         {
             return string.Format(
-                "Rectangle: X={0}, Y={1}, Width={2}, Height={3}",
+                "BorderEllipse: BorderColor={0}, X={1}, Y={2}, Width={3}, Height={4}",
+                BorderColor,
                 X,
                 Y,
                 Width,

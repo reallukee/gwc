@@ -1,7 +1,7 @@
 //
 // :.:.:.
 // GWC
-// v0.1.0
+// v0.3.0
 // :.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -28,8 +28,9 @@ using System.Windows.Forms;
 
 namespace Reallukee.GWC
 {
-    public interface IFigure
+    internal interface IFigure
     {
-        void Render(Graphics g);
+        Point Location { get; }
+        Size  Size     { get; }
     }
 }

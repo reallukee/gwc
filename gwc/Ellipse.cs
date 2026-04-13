@@ -6,7 +6,7 @@
 //
 // https://github.com/reallukee/gwc
 //
-// Rectangle.cs
+// Ellipse.cs
 //  Licenza MIT
 //
 
@@ -28,9 +28,9 @@ using System.Windows.Forms;
 
 namespace Reallukee.GWC
 {
-    internal class Rectangle : IFigure
+    internal class Ellipse : IFigure
     {
-        public Rectangle(int x, int y, int width, int height)
+        public Ellipse(int x, int y, int width, int height)
         {
             this.X      = x;
             this.Y      = y;
@@ -38,7 +38,7 @@ namespace Reallukee.GWC
             this.Height = height;
         }
 
-        public Rectangle(Point location, Size size)
+        public Ellipse(Point location, Size size)
         {
             this.X      = location.X;
             this.Y      = location.Y;
@@ -46,7 +46,7 @@ namespace Reallukee.GWC
             this.Height = size.Height;
         }
 
-        public Rectangle() : this(0, 0, 0, 0) { }
+        public Ellipse() : this(0, 0, 0, 0) { }
 
 
 
@@ -81,7 +81,7 @@ namespace Reallukee.GWC
 
 
 
-        public static bool operator ==(Rectangle left, Rectangle right)
+        public static bool operator ==(Ellipse left, Ellipse right)
         {
             if (ReferenceEquals(left, right))
             {
@@ -99,7 +99,7 @@ namespace Reallukee.GWC
                    left.Height == right.Height;
         }
 
-        public static bool operator !=(Rectangle left, Rectangle right)
+        public static bool operator !=(Ellipse left, Ellipse right)
         {
             return !(left == right);
         }
@@ -108,7 +108,7 @@ namespace Reallukee.GWC
 
         public override bool Equals(object obj)
         {
-            Rectangle other = obj as Rectangle;
+            Ellipse other = obj as Ellipse;
 
             return this == other;
         }
@@ -131,7 +131,7 @@ namespace Reallukee.GWC
         public override string ToString()
         {
             return string.Format(
-                "Rectangle: X={0}, Y={1}, Width={2}, Height={3}",
+                "Ellipse: X={0}, Y={1}, Width={2}, Height={3}",
                 X,
                 Y,
                 Width,

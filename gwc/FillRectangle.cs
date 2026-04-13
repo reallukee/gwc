@@ -1,7 +1,7 @@
 //
 // :.:.:.
 // GWC
-// v0.1.0
+// v0.3.0
 // :.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -28,48 +28,79 @@ using System.Windows.Forms;
 
 namespace Reallukee.GWC
 {
-    public class FillRectangle : Rectangle, IFigure, IFillColor
+    internal class FillRectangle : Rectangle, IRenderable, IFillColor
     {
         public FillRectangle(Color fillColor, int x, int y, int width, int height) : base(x, y, width, height)
         {
             FillColor = fillColor;
         }
 
-        public FillRectangle(int x, int y, int width, int height) : base(x, y, width, height)
+        public FillRectangle(Color fillColor, Point location, Size size) : base(location, size)
         {
-            FillColor = Color.Red;
+            FillColor = fillColor;
         }
 
-        private Color fillColor;
+        public FillRectangle(int x, int y, int width, int height) : this(Color.Green, x, y, width, height) { }
+
+        public FillRectangle(Point location, Size size) : this(Color.Green, location, size) { }
+
+        public FillRectangle() : this(Color.Green, 0, 0, 0, 0) { }
+
+
 
         public Color FillColor
         {
-            get => fillColor;
-            set => fillColor = value;
+            get;
+            set;
         }
+
+
 
         public void Render(Graphics g)
         {
-            using (SolidBrush fill = new SolidBrush(fillColor))
+            using (SolidBrush fill = new SolidBrush(FillColor))
             {
                 g.FillRectangle(fill, X, Y, Width, Height);
             }
         }
 
-        public override bool Equals(object obj)
-        {
-            FillRectangle borderRectangle = obj as FillRectangle;
 
-            if (borderRectangle == null)
+
+        public static bool operator ==(FillRectangle left, FillRectangle right)
+        {
+            if (ReferenceEquals(left, right))
+            {
+                return true;
+            }
+
+            if (left == null || right == null)
             {
                 return false;
             }
 
-            return FillColor == borderRectangle.fillColor &&
-                   X         == borderRectangle.X         &&
-                   Y         == borderRectangle.Y         &&
-                   Width     == borderRectangle.Width     &&
-                   Height    == borderRectangle.Height;
+            Rectangle baseLeft = left;
+            Rectangle baseRight = right;
+
+            if (baseLeft == baseRight)
+            {
+                return left.FillColor == right.FillColor;
+            }
+
+            return false;
+        }
+
+        public static bool operator !=(FillRectangle left, FillRectangle right)
+        {
+            return !(left == right);
+        }
+
+
+
+        public override bool Equals(object obj)
+        {
+            FillRectangle other = obj as FillRectangle;
+
+            return this == other;
         }
 
         public override int GetHashCode()
@@ -78,7 +109,7 @@ namespace Reallukee.GWC
             {
                 int hash = 17;
 
-                hash = hash * 23 + fillColor.GetHashCode();
+                hash = hash * 23 + FillColor.GetHashCode();
                 hash = hash * 23 + X;
                 hash = hash * 23 + Y;
                 hash = hash * 23 + Width;

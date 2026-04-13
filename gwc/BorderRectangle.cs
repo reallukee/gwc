@@ -1,7 +1,7 @@
 //
 // :.:.:.
 // GWC
-// v0.1.0
+// v0.3.0
 // :.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -28,48 +28,79 @@ using System.Windows.Forms;
 
 namespace Reallukee.GWC
 {
-    public class BorderRectangle : Rectangle, IFigure, IBorderColor
+    internal class BorderRectangle : Rectangle, IRenderable, IBorderColor
     {
         public BorderRectangle(Color borderColor, int x, int y, int width, int height) : base(x, y, width, height)
         {
             BorderColor = borderColor;
         }
 
-        public BorderRectangle(int x, int y, int width, int height) : base(x, y, width, height)
+        public BorderRectangle(Color borderColor, Point location, Size size) : base(location, size)
         {
-            BorderColor = Color.Black;
+            BorderColor = borderColor;
         }
 
-        private Color borderColor;
+        public BorderRectangle(int x, int y, int width, int height) : this(Color.Black, x, y, width, height) { }
+
+        public BorderRectangle(Point location, Size size) : this(Color.Black, location, size) { }
+
+        public BorderRectangle() : this(Color.Black, 0, 0, 0, 0) { }
+
+
 
         public Color BorderColor
         {
-            get => borderColor;
-            set => borderColor = value;
+            get;
+            set;
         }
+
+
 
         public void Render(Graphics g)
         {
-            using (Pen border = new Pen(borderColor))
+            using (Pen border = new Pen(BorderColor))
             {
                 g.DrawRectangle(border, X, Y, Width, Height);
             }
         }
 
-        public override bool Equals(object obj)
-        {
-            BorderRectangle borderRectangle = obj as BorderRectangle;
 
-            if (borderRectangle == null)
+
+        public static bool operator ==(BorderRectangle left, BorderRectangle right)
+        {
+            if (ReferenceEquals(left, right))
+            {
+                return true;
+            }
+
+            if (left == null || right == null)
             {
                 return false;
             }
 
-            return BorderColor == borderRectangle.borderColor &&
-                   X           == borderRectangle.X           &&
-                   Y           == borderRectangle.Y           &&
-                   Width       == borderRectangle.Width       &&
-                   Height      == borderRectangle.Height;
+            Rectangle baseLeft = left;
+            Rectangle baseRight = right;
+
+            if (baseLeft == baseRight)
+            {
+                return left.BorderColor == right.BorderColor;
+            }
+
+            return false;
+        }
+
+        public static bool operator !=(BorderRectangle left, BorderRectangle right)
+        {
+            return !(left == right);
+        }
+
+
+
+        public override bool Equals(object obj)
+        {
+            BorderRectangle other = obj as BorderRectangle;
+
+            return this == other;
         }
 
         public override int GetHashCode()
@@ -78,7 +109,7 @@ namespace Reallukee.GWC
             {
                 int hash = 17;
 
-                hash = hash * 23 + borderColor.GetHashCode();
+                hash = hash * 23 + BorderColor.GetHashCode();
                 hash = hash * 23 + X;
                 hash = hash * 23 + Y;
                 hash = hash * 23 + Width;

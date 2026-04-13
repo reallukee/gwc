@@ -1,0 +1,100 @@
+//
+// :.:.:.
+// GWC
+// v0.3.0
+// :.:.:.
+//
+// https://github.com/reallukee/gwc
+//
+// CanvasHandler.cs
+//  Licenza MIT
+//
+
+using System;
+using System.Collections;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Globalization;
+using System.Reflection;
+using System.Resources;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading;
+
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace Reallukee.GWC.Interop
+{
+    internal static class CanvasHandler
+    {
+        public static IntPtr Alloc(int width, int height)
+        {
+            Canvas window = new Canvas(width, height);
+
+            GCHandle managedHandle = GCHandle.Alloc(window);
+
+            IntPtr nativeHandle = GCHandle.ToIntPtr(managedHandle);
+
+            return nativeHandle;
+        }
+
+        public static IntPtr Alloc()
+        {
+            Canvas window = new Canvas();
+
+            GCHandle managedHandle = GCHandle.Alloc(window);
+
+            IntPtr nativeHandle = GCHandle.ToIntPtr(managedHandle);
+
+            return nativeHandle;
+        }
+
+
+
+        public static bool Free(IntPtr handle)
+        {
+            if (handle == IntPtr.Zero)
+            {
+                return false;
+            }
+
+            IntPtr nativeHandle = handle;
+
+            GCHandle managedHandle = GCHandle.FromIntPtr(nativeHandle);
+
+            managedHandle.Free();
+
+            return true;
+        }
+
+
+
+        public static bool IsNull(IntPtr handle)
+        {
+            IntPtr nativeHandle = handle;
+
+            return nativeHandle == IntPtr.Zero;
+        }
+
+
+
+        public static Canvas Invoke(IntPtr handle)
+        {
+            if (handle == IntPtr.Zero)
+            {
+                return null;
+            }
+
+            IntPtr nativeHandle = handle;
+
+            GCHandle managedHandle = GCHandle.FromIntPtr(nativeHandle);
+
+            Canvas window = (Canvas)managedHandle.Target;
+
+            return window;
+        }
+    }
+}

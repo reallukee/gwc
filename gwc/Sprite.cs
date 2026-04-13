@@ -6,7 +6,7 @@
 //
 // https://github.com/reallukee/gwc
 //
-// Canvas.cs
+// Sprite.cs
 //  Licenza MIT
 //
 
@@ -28,11 +28,11 @@ using System.Windows.Forms;
 
 namespace Reallukee.GWC
 {
-    public sealed class Canvas : IDisposable, IRenderable, IBorderColor, IFillColor
+    public sealed class Sprite : IDisposable, IRenderable, IFillColor, IBorderColor
     {
         internal const int MaxBufferLength = 10000;
 
-        public Canvas(int width, int height)
+        public Sprite(int width, int height)
         {
             if (width <= 0)
             {
@@ -56,9 +56,9 @@ namespace Reallukee.GWC
             FillColor   = Color.Green;
         }
 
-        public Canvas() : this(800, 600) { }
+        public Sprite() : this(800, 600) { }
 
-        ~Canvas()
+        ~Sprite()
         {
             Dispose();
         }

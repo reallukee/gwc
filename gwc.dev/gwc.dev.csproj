@@ -57,17 +57,25 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="..\gwc\IFigure.cs" />
+    <Compile Include="..\gwc\IRenderable.cs" />
     <Compile Include="..\gwc\IBorderColor.cs" />
     <Compile Include="..\gwc\IFillColor.cs" />
     <Compile Include="..\gwc\Rectangle.cs" />
+    <Compile Include="..\gwc\Ellipse.cs" />
     <Compile Include="..\gwc\BorderRectangle.cs" />
+    <Compile Include="..\gwc\BorderEllipse.cs" />
     <Compile Include="..\gwc\FillRectangle.cs" />
+    <Compile Include="..\gwc\FillEllipse.cs" />
     <Compile Include="..\gwc\Render.cs" />
     <Compile Include="..\gwc\WindowForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="..\gwc\Sprite.cs" />
+    <Compile Include="..\gwc\SpriteHandler.cs" />
     <Compile Include="..\gwc\Canvas.cs" />
+    <Compile Include="..\gwc\CanvasHandler.cs" />
     <Compile Include="..\gwc\Window.cs" />
+    <Compile Include="..\gwc\WindowHandler.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>

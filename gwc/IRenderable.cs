@@ -6,7 +6,7 @@
 //
 // https://github.com/reallukee/gwc
 //
-// IBorderColor.cs
+// IRenderable.cs
 //  Licenza MIT
 //
 
@@ -28,12 +28,8 @@ using System.Windows.Forms;
 
 namespace Reallukee.GWC
 {
-    internal interface IBorderColor
+    internal interface IRenderable : IFigure
     {
-        Color BorderColor
-        {
-            get;
-            set;
-        }
+        void Render(Graphics g);
     }
 }
