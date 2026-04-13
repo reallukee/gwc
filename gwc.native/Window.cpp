@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.1.0
+// v0.2.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -23,7 +23,7 @@ namespace gwc
     {
         IntPtr managedHandle = WindowHandler::Alloc(width, height);
 
-        void* nativeHandle = reinterpret_cast<void*>(managedHandle.ToPointer());
+        CLRWindow nativeHandle = reinterpret_cast<CLRWindow>(managedHandle.ToPointer());
 
         window = nativeHandle;
     }
@@ -32,14 +32,14 @@ namespace gwc
     {
         IntPtr managedHandle = WindowHandler::Alloc();
 
-        void* nativeHandle = reinterpret_cast<void*>(managedHandle.ToPointer());
+        CLRWindow nativeHandle = reinterpret_cast<CLRWindow>(managedHandle.ToPointer());
 
         window = nativeHandle;
     }
 
     Window::~Window()
     {
-        void* nativeHandle = window;
+        CLRWindow nativeHandle = window;
 
         IntPtr managedHandle = IntPtr(nativeHandle);
 
@@ -55,169 +55,326 @@ namespace gwc
 
     bool Window::isInitialized()
     {
-        void* nativeHandle = window;
+        CLRWindow nativeHandle = window;
 
         return nativeHandle != nullptr;
     }
 
 
 
-    int Window::getRefreshRate()
-    {
-        return GWC::Window::RefreshRate;
-    }
-
-    void Window::setRefreshRate(int value)
-    {
-        GWC::Window::RefreshRate = value;
-    }
-
-    int Window::getDutyCycle()
-    {
-        return GWC::Window::DutyCycle;
-    }
-
-    void Window::setDutyCycle(int value)
-    {
-        GWC::Window::DutyCycle = value;
-    }
-
-    double Window::getFrameTime()
-    {
-        return GWC::Window::FrameTime;
-    }
-
-    double Window::getUtilFrameTime()
-    {
-        return GWC::Window::UtilFrameTime;
-    }
-
-
-
     bool Window::open()
     {
-        INVOKE_WINDOW_BOOL_CPP(window, Open());
+        CCI_WINDOW_BOOL_CPP(window, Open());
     }
 
     bool Window::shutdown()
     {
-        INVOKE_WINDOW_BOOL_CPP(window, Shutdown());
+        CCI_WINDOW_BOOL_CPP(window, Shutdown());
     }
+
+
 
     bool Window::isOpen()
     {
-        INVOKE_WINDOW_BOOL_CPP(window, IsOpen);
+        CCI_WINDOW_BOOL_CPP(window, IsOpen);
     }
 
     bool Window::isShutdown()
     {
-        INVOKE_WINDOW_BOOL_CPP(window, IsShutdown);
+        CCI_WINDOW_BOOL_CPP(window, IsShutdown);
     }
 
 
 
     Color Window::getBorderColor()
     {
-        void* nativeHandle = window;
-
-        IntPtr managedHandle = IntPtr(nativeHandle);
-
-        if (WindowHandler::IsNull(managedHandle))
-        {
-            throw gcnew NullReferenceException("");
-        }
-
-        Drawing::Color^ managedBorderColor = WindowHandler::Invoke(managedHandle)->BorderColor;
-
-        Color nativeColor = Color(
-            (int)managedBorderColor->A,
-            (int)managedBorderColor->R,
-            (int)managedBorderColor->G,
-            (int)managedBorderColor->B
-        );
-
-        return nativeColor;
+    CCI_WINDOW_GET_COLOR_CPP(window, BorderColor);
     }
 
     void Window::setBorderColor(Color color)
     {
-        void* nativeHandle = window;
-
-        IntPtr managedHandle = IntPtr(nativeHandle);
-
-        if (WindowHandler::IsNull(managedHandle))
-        {
-            throw gcnew NullReferenceException("");
-        }
-
-        Color nativeColor = color;
-
-        Drawing::Color managedColor = Drawing::Color::FromArgb(
-            nativeColor.getAlpha(),
-            nativeColor.getRed(),
-            nativeColor.getBlue(),
-            nativeColor.getGreen()
-        );
-
-        WindowHandler::Invoke(managedHandle)->BorderColor = managedColor;
+        CCI_WINDOW_SET_COLOR_CPP(window, BorderColor, color);
     }
 
     Color Window::getFillColor()
     {
-        void* nativeHandle = window;
-
-        IntPtr managedHandle = IntPtr(nativeHandle);
-
-        if (WindowHandler::IsNull(managedHandle))
-        {
-            throw gcnew NullReferenceException("");
-        }
-
-        Drawing::Color^ managedFillColor = WindowHandler::Invoke(managedHandle)->FillColor;
-
-        Color nativeColor = Color(
-            (int)managedFillColor->A,
-            (int)managedFillColor->R,
-            (int)managedFillColor->G,
-            (int)managedFillColor->B
-        );
-
-        return nativeColor;
+        CCI_WINDOW_GET_COLOR_CPP(window, FillColor);
     }
 
     void Window::setFillColor(Color color)
     {
-        void* nativeHandle = window;
+        CCI_WINDOW_SET_COLOR_CPP(window, FillColor, color);
+    }
 
-        IntPtr managedHandle = IntPtr(nativeHandle);
 
-        if (WindowHandler::IsNull(managedHandle))
-        {
-            throw gcnew NullReferenceException("");
-        }
 
-        Color nativeColor = color;
+    void Window::wait(int milliseconds)
+    {
+        CCI_WINDOW_VOID_CPP(window, Wait(milliseconds));
+    }
 
-        Drawing::Color managedColor = Drawing::Color::FromArgb(
-            nativeColor.getAlpha(),
-            nativeColor.getRed(),
-            nativeColor.getBlue(),
-            nativeColor.getGreen()
+
+
+    int Window::getWindowWidth()
+    {
+        CCI_WINDOW_INT_CPP(window, WindowWidth);
+    }
+
+    int Window::getWindowHeight()
+    {
+        CCI_WINDOW_INT_CPP(window, WindowHeight);
+    }
+
+    int Window::getRenderWidth()
+    {
+        CCI_WINDOW_INT_CPP(window, RenderWidth);
+    }
+
+    int Window::getRenderHeight()
+    {
+        CCI_WINDOW_INT_CPP(window, RenderHeight);
+    }
+
+
+
+    bool Window::isKeyDownAvailable()
+    {
+        CCI_WINDOW_BOOL_CPP(window, IsKeyDownAvailable);
+    }
+
+    void Window::flushKeyDown()
+    {
+        CCI_WINDOW_VOID_CPP(window, FlushKeyDown());
+    }
+
+    bool Window::consumeKeyDown(Keys& modifiers, Keys& key)
+    {
+        CC_WINDOW_BOOL_CPP(window);
+
+        Windows::Forms::Keys managedModifiers;
+        Windows::Forms::Keys managedKey;
+
+        bool result = WindowHandler::Invoke(managedHandle)->ConsumeKeyDown(
+            managedModifiers, managedKey
         );
 
-        WindowHandler::Invoke(managedHandle)->FillColor = managedColor;
+        int rawModifiers = static_cast<int>(managedModifiers);
+        int rawKey       = static_cast<int>(managedKey);
+
+        modifiers = static_cast<Keys>(rawModifiers);
+        key       = static_cast<Keys>(rawKey);
+
+        return result;
+    }
+
+    bool Window::discardKeyDown()
+    {
+        CCI_WINDOW_BOOL_CPP(window, DiscardKeyDown());
+    }
+
+    void Window::waitKeyDown()
+    {
+        CCI_WINDOW_VOID_CPP(window, WaitKeyDown());
+    }
+
+    bool Window::isKeyDownLost()
+    {
+        CCI_WINDOW_BOOL_CPP(window, IsKeyDownLost);
+    }
+
+    bool Window::isKeyDownBufferFull()
+    {
+        CCI_WINDOW_BOOL_CPP(window, IsKeyDownBufferFull);
+    }
+
+
+
+    bool Window::isKeyUpAvailable()
+    {
+        CCI_WINDOW_BOOL_CPP(window, IsKeyUpAvailable);
+    }
+
+    void Window::flushKeyUp()
+    {
+        CCI_WINDOW_VOID_CPP(window, FlushKeyUp());
+    }
+
+    bool Window::consumeKeyUp(Keys& modifiers, Keys& key)
+    {
+        CC_WINDOW_BOOL_CPP(window);
+
+        Windows::Forms::Keys managedModifiers;
+        Windows::Forms::Keys managedKey;
+
+        bool result = WindowHandler::Invoke(managedHandle)->ConsumeKeyUp(
+            managedModifiers, managedKey
+        );
+
+        int rawModifiers = static_cast<int>(managedModifiers);
+        int rawKey       = static_cast<int>(managedKey);
+
+        modifiers = static_cast<Keys>(rawModifiers);
+        key       = static_cast<Keys>(rawKey);
+
+        return result;
+    }
+
+    bool Window::discardKeyUp()
+    {
+        CCI_WINDOW_BOOL_CPP(window, DiscardKeyUp());
+    }
+
+    void Window::waitKeyUp()
+    {
+        CCI_WINDOW_VOID_CPP(window, WaitKeyUp());
+    }
+
+    bool Window::isKeyUpLost()
+    {
+        CCI_WINDOW_BOOL_CPP(window, IsKeyUpLost);
+    }
+
+    bool Window::isKeyUpBufferFull()
+    {
+        CCI_WINDOW_BOOL_CPP(window, IsKeyUpBufferFull);
+    }
+
+
+
+    bool Window::isMouseDownAvailable()
+    {
+        CCI_WINDOW_BOOL_CPP(window, IsMouseDownAvailable);
+    }
+
+    void Window::flushMouseDown()
+    {
+        CCI_WINDOW_VOID_CPP(window, FlushMouseDown());
+    }
+
+    bool Window::consumeMouseDown(Point& location, MouseButtons& button)
+    {
+        CC_WINDOW_BOOL_CPP(window);
+
+        Drawing::Point               managedLocation;
+        Windows::Forms::MouseButtons managedButton;
+
+        bool result = WindowHandler::Invoke(managedHandle)->ConsumeMouseDown(
+            managedLocation, managedButton
+        );
+
+        int rawButton = static_cast<int>(managedButton);
+
+        location = Point(managedLocation.X, managedLocation.Y);
+        button   = static_cast<MouseButtons>(rawButton);
+
+        return result;
+    }
+
+    bool Window::discardMouseDown()
+    {
+        CCI_WINDOW_BOOL_CPP(window, DiscardMouseDown());
+    }
+
+    void Window::waitMouseDown()
+    {
+        CCI_WINDOW_VOID_CPP(window, WaitMouseDown());
+    }
+
+    bool Window::isMouseDownLost()
+    {
+        CCI_WINDOW_BOOL_CPP(window, IsMouseDownLost);
+    }
+
+    bool Window::isMouseDownBufferFull()
+    {
+        CCI_WINDOW_BOOL_CPP(window, IsMouseDownBufferFull);
+    }
+
+
+
+    bool Window::isMouseUpAvailable()
+    {
+        CCI_WINDOW_BOOL_CPP(window, IsMouseUpAvailable);
+    }
+
+    void Window::flushMouseUp()
+    {
+        CCI_WINDOW_VOID_CPP(window, FlushMouseUp());
+    }
+
+    bool Window::consumeMouseUp(Point& location, MouseButtons& button)
+    {
+        CC_WINDOW_BOOL_CPP(window);
+
+        Drawing::Point               managedLocation;
+        Windows::Forms::MouseButtons managedButton;
+
+        bool result = WindowHandler::Invoke(managedHandle)->ConsumeMouseUp(
+            managedLocation, managedButton
+        );
+
+        int rawButton = static_cast<int>(managedButton);
+
+        location = Point(managedLocation.X, managedLocation.Y);
+        button   = static_cast<MouseButtons>(rawButton);
+
+        return result;
+    }
+
+    bool Window::discardMouseUp()
+    {
+        CCI_WINDOW_BOOL_CPP(window, DiscardMouseUp());
+    }
+
+    void Window::waitMouseUp()
+    {
+        CCI_WINDOW_VOID_CPP(window, WaitMouseUp());
+    }
+
+    bool Window::isMouseUpLost()
+    {
+        CCI_WINDOW_BOOL_CPP(window, IsMouseUpLost);
+    }
+
+    bool Window::isMouseUpBufferFull()
+    {
+        CCI_WINDOW_BOOL_CPP(window, IsMouseUpBufferFull);
+    }
+
+
+
+    int Window::getCanvasWidth()
+    {
+        CCI_WINDOW_INT_CPP(window, CanvasWidth);
+    }
+
+    int Window::getCanvasHeight()
+    {
+        CCI_WINDOW_INT_CPP(window, CanvasHeight);
+    }
+
+
+
+    bool Window::drawBorderSquare(int x, int y, int side)
+    {
+        CCI_WINDOW_BOOL_CPP(window, DrawBorderSquare(x, y, side));
+    }
+
+    bool Window::drawFillSquare(int x, int y, int side)
+    {
+        CCI_WINDOW_BOOL_CPP(window, DrawFillSquare(x, y, side));
     }
 
 
 
     bool Window::drawBorderRectangle(int x, int y, int width, int height)
     {
-        INVOKE_WINDOW_BOOL_CPP(window, DrawBorderRectangle(x, y, width, height));
+        CCI_WINDOW_BOOL_CPP(window, DrawBorderRectangle(x, y, width, height));
     }
 
     bool Window::drawFillRectangle(int x, int y, int width, int height)
     {
-        INVOKE_WINDOW_BOOL_CPP(window, DrawFillRectangle(x, y, width, height));
+        CCI_WINDOW_BOOL_CPP(window, DrawFillRectangle(x, y, width, height));
     }
 }
 

@@ -1,0 +1,86 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net481</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>gwc</AssemblyName>
+    <AssemblyTitle>GWC</AssemblyTitle>
+    <RootNamespace>Reallukee.GWC</RootNamespace>
+
+    <ImplicitUsings>disable</ImplicitUsings>
+
+    <Platforms>x86;x64;arm64</Platforms>
+    <Nullable>disable</Nullable>
+
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <PackageId>GWC</PackageId>
+    <Title>GWC</Title>
+    <Version>0.2.1</Version>
+    <Authors>Luca Pollicino</Authors>
+    <Company>Luca Pollicino</Company>
+    <Product>GWC</Product>
+    <Description>A C#, C++ and C graphics library written in C#, C++ and C</Description>
+    <Copyright>Luca Pollicino</Copyright>
+    <PackageProjectUrl>https://reallukee.altervista.org/gwc</PackageProjectUrl>
+    <PackageIcon>gwc.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/reallukee/gwc</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>c;cpp;c-sharp;desktop;library</PackageTags>
+    <PackageReleaseNotes>GWC 0.2.1</PackageReleaseNotes>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <AssemblyName>$(AssemblyName)-d-$(Platform)</AssemblyName>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <AssemblyName>$(AssemblyName)-$(Platform)</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\gwc\*.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\assets\gwc.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+      <Link>nuget\icon.png</Link>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+      <Link>nuget\README.md</Link>
+    </None>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+      <Link>nuget\LICENSE</Link>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

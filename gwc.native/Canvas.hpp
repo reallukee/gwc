@@ -1,12 +1,12 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.1.0
+// v0.2.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
 //
-// canvas.hpp
+// Canvas.hpp
 //  Licenza MIT
 //
 
@@ -18,19 +18,13 @@
 #ifdef  __cplusplus
 
 #include "header.hpp"
-
+#include "types.hpp"
 #include "Color.hpp"
-
-#define _CANVAS void*
 
 namespace gwc
 {
-    class GWC_CPP_API Canvas
+    class GWC_CPP_API Canvas sealed
     {
-
-    private:
-
-        _CANVAS canvas;
 
     public:
 
@@ -45,8 +39,18 @@ namespace gwc
         Color getFillColor  ();
         void  setFillColor  (Color color);
 
+        int getWidth ();
+        int getHeight();
+
+        bool drawBorderSquare(int x, int y, int side);
+        bool drawFillSquare  (int x, int y, int side);
+
         bool drawBorderRectangle(int x, int y, int width, int height);
         bool drawFillRectangle  (int x, int y, int width, int height);
+
+    private:
+
+        CLRCanvas canvas;
 
     };
 }

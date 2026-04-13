@@ -3,6 +3,9 @@
 ipch/
 
 *.vcxproj.user
+*.csproj.user
+*.vbproj.user
+*.fsproj.user
 *.aps
 
 # Binary
@@ -16,14 +19,16 @@ ipch/
 # Compilation
 [Bb]in/
 [Oo]bj/
-x86/
-x64/
-ARM64/
+[Xx]86/
+[Xx]64/
+[Aa][Rr][Mm]32/
+[Aa][Rr][Mm]64/
 
 # Template
 include/
 static/
 shared/
+nuget/
 
 *.zip
 

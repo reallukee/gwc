@@ -19,11 +19,17 @@
     <Filter Include="File di intestazione\C++ API">
       <UniqueIdentifier>{c596c727-4d01-4fbf-ba4a-53b05ec48acd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="File di intestazione\CLR API">
+      <UniqueIdentifier>{ef1166b4-f4dd-41f0-af27-54f870ba1242}</UniqueIdentifier>
+    </Filter>
     <Filter Include="File di origine\C API">
       <UniqueIdentifier>{8fb5ff14-8c0f-4908-8cde-ef839b227edd}</UniqueIdentifier>
     </Filter>
     <Filter Include="File di origine\C++ API">
       <UniqueIdentifier>{9ca3dfc9-fc98-431c-85d0-2e30c21d6b20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File di origine\CLR">
+      <UniqueIdentifier>{9cd6d9ac-bc01-41ca-8c52-89c4ed9440ca}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -34,16 +40,16 @@
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="..\gwc.native\header.clr.hpp">
-      <Filter>File di intestazione</Filter>
+      <Filter>File di intestazione\CLR API</Filter>
     </ClInclude>
     <ClInclude Include="..\gwc.native\gwc.clr.hpp">
-      <Filter>File di intestazione</Filter>
+      <Filter>File di intestazione\CLR API</Filter>
     </ClInclude>
     <ClInclude Include="..\gwc.native\CanvasHandler.clr.hpp">
-      <Filter>File di intestazione</Filter>
+      <Filter>File di intestazione\CLR API</Filter>
     </ClInclude>
     <ClInclude Include="..\gwc.native\WindowHandler.clr.hpp">
-      <Filter>File di intestazione</Filter>
+      <Filter>File di intestazione\CLR API</Filter>
     </ClInclude>
     <ClInclude Include="..\gwc.native\export.hpp">
       <Filter>File di intestazione\C++ API</Filter>
@@ -54,13 +60,28 @@
     <ClInclude Include="..\gwc.native\gwc.hpp">
       <Filter>File di intestazione\C++ API</Filter>
     </ClInclude>
+    <ClInclude Include="..\gwc.native\types.hpp">
+      <Filter>File di intestazione\C++ API</Filter>
+    </ClInclude>
     <ClInclude Include="..\gwc.native\Color.hpp">
+      <Filter>File di intestazione\C++ API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gwc.native\Point.hpp">
+      <Filter>File di intestazione\C++ API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gwc.native\Render.hpp">
       <Filter>File di intestazione\C++ API</Filter>
     </ClInclude>
     <ClInclude Include="..\gwc.native\canvas_macros.hpp">
       <Filter>File di intestazione\C++ API</Filter>
     </ClInclude>
     <ClInclude Include="..\gwc.native\Canvas.hpp">
+      <Filter>File di intestazione\C++ API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gwc.native\Keys.hpp">
+      <Filter>File di intestazione\C++ API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gwc.native\MouseButtons.hpp">
       <Filter>File di intestazione\C++ API</Filter>
     </ClInclude>
     <ClInclude Include="..\gwc.native\window_macros.hpp">
@@ -78,13 +99,28 @@
     <ClInclude Include="..\gwc.native\gwc.h">
       <Filter>File di intestazione\C API</Filter>
     </ClInclude>
+    <ClInclude Include="..\gwc.native\types.h">
+      <Filter>File di intestazione\C API</Filter>
+    </ClInclude>
     <ClInclude Include="..\gwc.native\COLOR.h">
+      <Filter>File di intestazione\C API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gwc.native\POINT.h">
+      <Filter>File di intestazione\C API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gwc.native\RENDER.h">
       <Filter>File di intestazione\C API</Filter>
     </ClInclude>
     <ClInclude Include="..\gwc.native\canvas_macros.h">
       <Filter>File di intestazione\C API</Filter>
     </ClInclude>
     <ClInclude Include="..\gwc.native\CANVAS.h">
+      <Filter>File di intestazione\C API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gwc.native\KEYS.h">
+      <Filter>File di intestazione\C API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gwc.native\MOUSEBUTTONS.h">
       <Filter>File di intestazione\C API</Filter>
     </ClInclude>
     <ClInclude Include="..\gwc.native\window_macros.h">
@@ -99,15 +135,21 @@
       <Filter>File di origine</Filter>
     </ClCompile>
     <ClCompile Include="..\gwc.native\CanvasHandler.clr.cpp">
-      <Filter>File di origine</Filter>
+      <Filter>File di origine\CLR</Filter>
     </ClCompile>
     <ClCompile Include="..\gwc.native\WindowHandler.clr.cpp">
-      <Filter>File di origine</Filter>
+      <Filter>File di origine\CLR</Filter>
     </ClCompile>
     <ClCompile Include="..\gwc.native\gwc.cpp">
       <Filter>File di origine\C++ API</Filter>
     </ClCompile>
-    <ClCompile Include="..\gwc.native\COLOR.cpp">
+    <ClCompile Include="..\gwc.native\Color.cpp">
+      <Filter>File di origine\C++ API</Filter>
+    </ClCompile>
+    <ClCompile Include="..\gwc.native\Point.cpp">
+      <Filter>File di origine\C++ API</Filter>
+    </ClCompile>
+    <ClCompile Include="..\gwc.native\Render.cpp">
       <Filter>File di origine\C++ API</Filter>
     </ClCompile>
     <ClCompile Include="..\gwc.native\Canvas.cpp">
@@ -123,6 +165,12 @@
       <Filter>File di origine\C API</Filter>
     </ClCompile>
     <ClCompile Include="..\gwc.native\COLOR.c">
+      <Filter>File di origine\C API</Filter>
+    </ClCompile>
+    <ClCompile Include="..\gwc.native\POINT.c">
+      <Filter>File di origine\C API</Filter>
+    </ClCompile>
+    <ClCompile Include="..\gwc.native\RENDER.c">
       <Filter>File di origine\C API</Filter>
     </ClCompile>
     <ClCompile Include="..\gwc.native\CANVAS.c">

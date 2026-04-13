@@ -1,8 +1,8 @@
 ﻿<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
   <TemplateData>
-    <Name>GWC C Application (0.1.0)</Name>
+    <Name>GWC C Application (0.2.1)</Name>
     <Description>
-      Fornisce un template per la creazione di un'Applicazione GWC in C.
+      Fornisce un template per la creazione di un'applicazione GWC in C.
 GWC è un progetto Open-Source mantenuto su https://github.com/reallukee/gwc.
     </Description>
     <ProjectType>VC</ProjectType>
@@ -24,7 +24,7 @@ GWC è un progetto Open-Source mantenuto su https://github.com/reallukee/gwc.
   <TemplateContent>
     <CustomParameters>
       <CustomParameter Name="$gwc_identifier$" Value="GWC.Native" />
-      <CustomParameter Name="$gwc_version$" Value="0.1.0" />
+      <CustomParameter Name="$gwc_version$" Value="0.2.1" />
     </CustomParameters>
     <Project TargetFileName="GWC.C.Application.vcxproj" File="GWC.C.Application.vcxproj" ReplaceParameters="true">
       <ProjectItem ReplaceParameters="false" TargetFileName="$projectname$.vcxproj.filters">GWC.C.Application.vcxproj.filters</ProjectItem>
@@ -33,9 +33,13 @@ GWC è un progetto Open-Source mantenuto su https://github.com/reallukee/gwc.
         <ProjectItem ReplaceParameters="false" TargetFileName="export.h">export.h</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="header.h">header.h</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="gwc.h">gwc.h</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="types.h">types.h</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="COLOR.h">COLOR.h</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="POINT.h">POINT.h</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="RENDER.h">RENDER.h</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="CANVAS.h">CANVAS.h</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="KEYS.h">KEYS.h</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="MOUSEBUTTONS.h">MOUSEBUTTONS.h</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="WINDOW.h">WINDOW.h</ProjectItem>
       </Folder>
       <Folder Name="static" TargetFolderName="static">

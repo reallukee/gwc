@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.1.0
+// v0.2.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -18,19 +18,16 @@
 #ifdef __cplusplus
 
 #include "header.hpp"
-
+#include "types.hpp"
 #include "Color.hpp"
-
-#define _WINDOW void*
+#include "Point.hpp"
+#include "Keys.hpp"
+#include "MouseButtons.hpp"
 
 namespace gwc
 {
-    class GWC_CPP_API Window
+    class GWC_CPP_API Window sealed
     {
-
-    private:
-
-        _WINDOW window;
 
     public:
 
@@ -40,15 +37,9 @@ namespace gwc
 
         bool isInitialized();
 
-        static int    getRefreshRate  ();
-        static void   setRefreshRate  (int value);
-        static int    getDutyCycle    ();
-        static void   setDutyCycle    (int value);
-        static double getFrameTime    ();
-        static double getUtilFrameTime();
-
         bool open    ();
         bool shutdown();
+
         bool isOpen    ();
         bool isShutdown();
 
@@ -57,8 +48,57 @@ namespace gwc
         Color getFillColor  ();
         void  setFillColor  (Color color);
 
+        void wait(int milliseconds);
+
+        int getWindowWidth ();
+        int getWindowHeight();
+        int getRenderWidth ();
+        int getRenderHeight();
+
+        bool isKeyDownAvailable ();
+        void flushKeyDown       ();
+        bool consumeKeyDown     (Keys& modifiers, Keys& key);
+        bool discardKeyDown     ();
+        void waitKeyDown        ();
+        bool isKeyDownLost      ();
+        bool isKeyDownBufferFull();
+
+        bool isKeyUpAvailable ();
+        void flushKeyUp       ();
+        bool consumeKeyUp     (Keys& modifiers, Keys& key);
+        bool discardKeyUp     ();
+        void waitKeyUp        ();
+        bool isKeyUpLost      ();
+        bool isKeyUpBufferFull();
+
+        bool isMouseDownAvailable ();
+        void flushMouseDown       ();
+        bool consumeMouseDown     (Point& location, MouseButtons& button);
+        bool discardMouseDown     ();
+        void waitMouseDown        ();
+        bool isMouseDownLost      ();
+        bool isMouseDownBufferFull();
+
+        bool isMouseUpAvailable ();
+        void flushMouseUp       ();
+        bool consumeMouseUp     (Point& location, MouseButtons& button);
+        bool discardMouseUp     ();
+        void waitMouseUp        ();
+        bool isMouseUpLost      ();
+        bool isMouseUpBufferFull();
+
+        int getCanvasWidth ();
+        int getCanvasHeight();
+
+        bool drawBorderSquare(int x, int y, int side);
+        bool drawFillSquare  (int x, int y, int side);
+
         bool drawBorderRectangle(int x, int y, int width, int height);
         bool drawFillRectangle  (int x, int y, int width, int height);
+
+    private:
+
+        CLRWindow window;
 
     };
 }

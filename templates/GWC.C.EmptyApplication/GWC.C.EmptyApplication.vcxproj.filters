@@ -36,13 +36,25 @@
     <ClInclude Include="include\gwc.h">
       <Filter>GWC\Include</Filter>
     </ClInclude>
+    <ClInclude Include="include\types.h">
+      <Filter>GWC\Include</Filter>
+    </ClInclude>
     <ClInclude Include="include\COLOR.h">
+      <Filter>GWC\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\POINT.h">
       <Filter>GWC\Include</Filter>
     </ClInclude>
     <ClInclude Include="include\RENDER.h">
       <Filter>GWC\Include</Filter>
     </ClInclude>
     <ClInclude Include="include\CANVAS.h">
+      <Filter>GWC\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\KEYS.h">
+      <Filter>GWC\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MOUSEBUTTONS.h">
       <Filter>GWC\Include</Filter>
     </ClInclude>
     <ClInclude Include="include\WINDOW.h">

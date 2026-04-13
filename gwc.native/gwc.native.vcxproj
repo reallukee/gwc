@@ -243,17 +243,27 @@
     <ClInclude Include="export.hpp" />
     <ClInclude Include="header.hpp" />
     <ClInclude Include="gwc.hpp" />
+    <ClInclude Include="types.hpp" />
     <ClInclude Include="Color.hpp" />
+    <ClInclude Include="Point.hpp" />
+    <ClInclude Include="Render.hpp" />
     <ClInclude Include="canvas_macros.hpp" />
     <ClInclude Include="Canvas.hpp" />
+    <ClInclude Include="Keys.hpp" />
+    <ClInclude Include="MouseButtons.hpp" />
     <ClInclude Include="window_macros.hpp" />
     <ClInclude Include="Window.hpp" />
     <ClInclude Include="export.h" />
     <ClInclude Include="header.h" />
     <ClInclude Include="gwc.h" />
+    <ClInclude Include="types.h" />
     <ClInclude Include="COLOR.h" />
+    <ClInclude Include="POINT.h" />
+    <ClInclude Include="RENDER.h" />
     <ClInclude Include="canvas_macros.h" />
     <ClInclude Include="CANVAS.h" />
+    <ClInclude Include="KEYS.h" />
+    <ClInclude Include="MOUSEBUTTONS.h" />
     <ClInclude Include="window_macros.h" />
     <ClInclude Include="WINDOW.h" />
   </ItemGroup>
@@ -263,10 +273,14 @@
     <ClCompile Include="WindowHandler.clr.cpp" />
     <ClCompile Include="gwc.cpp" />
     <ClCompile Include="Color.cpp" />
+    <ClCompile Include="Point.cpp" />
+    <ClCompile Include="Render.cpp" />
     <ClCompile Include="Canvas.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="gwc.c" />
     <ClCompile Include="COLOR.c" />
+    <ClCompile Include="POINT.c" />
+    <ClCompile Include="RENDER.c" />
     <ClCompile Include="CANVAS.c" />
     <ClCompile Include="WINDOW.c" />
   </ItemGroup>

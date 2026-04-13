@@ -1,12 +1,12 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.1.0
+// v0.2.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
 //
-// canvas.cpp
+// Canvas.cpp
 //  Licenza MIT
 //
 
@@ -23,7 +23,7 @@ namespace gwc
     {
         IntPtr managedHandle = CanvasHandler::Alloc(width, height);
 
-        void* nativeHandle = reinterpret_cast<void*>(managedHandle.ToPointer());
+        CLRCanvas nativeHandle = reinterpret_cast<CLRCanvas>(managedHandle.ToPointer());
 
         canvas = nativeHandle;
     }
@@ -32,14 +32,14 @@ namespace gwc
     {
         IntPtr managedHandle = CanvasHandler::Alloc();
 
-        void* nativeHandle = reinterpret_cast<void*>(managedHandle.ToPointer());
+        CLRCanvas nativeHandle = reinterpret_cast<CLRCanvas>(managedHandle.ToPointer());
 
         canvas = nativeHandle;
     }
 
     Canvas::~Canvas()
     {
-        void* nativeHandle = canvas;
+        CLRCanvas nativeHandle = canvas;
 
         IntPtr managedHandle = IntPtr(nativeHandle);
 
@@ -55,7 +55,7 @@ namespace gwc
 
     bool Canvas::isInitialized()
     {
-        void* nativeHandle = canvas;
+        CLRCanvas nativeHandle = canvas;
 
         return nativeHandle != nullptr;
     }
@@ -64,106 +64,58 @@ namespace gwc
 
     Color Canvas::getBorderColor()
     {
-        void* nativeHandle = canvas;
-
-        IntPtr managedHandle = IntPtr(nativeHandle);
-
-        if (CanvasHandler::IsNull(managedHandle))
-        {
-            throw gcnew NullReferenceException("");
-        }
-
-        Drawing::Color^ managedBorderColor = CanvasHandler::Invoke(managedHandle)->BorderColor;
-
-        Color nativeColor = Color(
-            (int)managedBorderColor->A,
-            (int)managedBorderColor->R,
-            (int)managedBorderColor->G,
-            (int)managedBorderColor->B
-        );
-
-        return nativeColor;
+        CCI_CANVAS_GET_COLOR_CPP(canvas, BorderColor);
     }
 
     void Canvas::setBorderColor(Color color)
     {
-        void* nativeHandle = canvas;
-
-        IntPtr managedHandle = IntPtr(nativeHandle);
-
-        if (CanvasHandler::IsNull(managedHandle))
-        {
-            throw gcnew NullReferenceException("");
-        }
-
-        Color nativeColor = color;
-
-        Drawing::Color managedColor = Drawing::Color::FromArgb(
-            nativeColor.getAlpha(),
-            nativeColor.getRed(),
-            nativeColor.getBlue(),
-            nativeColor.getGreen()
-        );
-
-        CanvasHandler::Invoke(managedHandle)->BorderColor = managedColor;
+        CCI_CANVAS_SET_COLOR_CPP(canvas, BorderColor, color);
     }
 
     Color Canvas::getFillColor()
     {
-        void* nativeHandle = canvas;
-
-        IntPtr managedHandle = IntPtr(nativeHandle);
-
-        if (CanvasHandler::IsNull(managedHandle))
-        {
-            throw gcnew NullReferenceException("");
-        }
-
-        Drawing::Color^ managedFillColor = CanvasHandler::Invoke(managedHandle)->FillColor;
-
-        Color nativeColor = Color(
-            (int)managedFillColor->A,
-            (int)managedFillColor->R,
-            (int)managedFillColor->G,
-            (int)managedFillColor->B
-        );
-
-        return nativeColor;
+        CCI_CANVAS_GET_COLOR_CPP(canvas, FillColor);
     }
 
     void Canvas::setFillColor(Color color)
     {
-        void* nativeHandle = canvas;
+        CCI_CANVAS_SET_COLOR_CPP(canvas, FillColor, color);
+    }
 
-        IntPtr managedHandle = IntPtr(nativeHandle);
 
-        if (CanvasHandler::IsNull(managedHandle))
-        {
-            throw gcnew NullReferenceException("");
-        }
 
-        Color nativeColor = color;
+    int Canvas::getWidth()
+    {
+        CCI_CANVAS_INT_CPP(canvas, Width);
+    }
 
-        Drawing::Color managedColor = Drawing::Color::FromArgb(
-            nativeColor.getAlpha(),
-            nativeColor.getRed(),
-            nativeColor.getBlue(),
-            nativeColor.getGreen()
-        );
+    int Canvas::getHeight()
+    {
+        CCI_CANVAS_INT_CPP(canvas, Height);
+    }
 
-        CanvasHandler::Invoke(managedHandle)->FillColor = managedColor;
+
+
+    bool Canvas::drawBorderSquare(int x, int y, int side)
+    {
+        CCI_CANVAS_BOOL_CPP(canvas, DrawBorderSquare(x, y, side));
+    }
+
+    bool Canvas::drawFillSquare(int x, int y, int side)
+    {
+        CCI_CANVAS_BOOL_CPP(canvas, DrawFillSquare(x, y, side));
     }
 
 
 
     bool Canvas::drawBorderRectangle(int x, int y, int width, int height)
     {
-        INVOKE_CANVAS_BOOL_CPP(canvas, DrawBorderRectangle(x, y, width, height));
+        CCI_CANVAS_BOOL_CPP(canvas, DrawBorderRectangle(x, y, width, height));
     }
 
     bool Canvas::drawFillRectangle(int x, int y, int width, int height)
     {
-        INVOKE_CANVAS_BOOL_CPP(canvas, DrawFillRectangle(x, y, width, height));
+        CCI_CANVAS_BOOL_CPP(canvas, DrawFillRectangle(x, y, width, height));
     }
 }
 

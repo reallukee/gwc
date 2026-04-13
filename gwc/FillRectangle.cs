@@ -44,15 +44,8 @@ namespace Reallukee.GWC
 
         public Color FillColor
         {
-            get
-            {
-                return fillColor;
-            }
-
-            set
-            {
-                fillColor = value;
-            }
+            get => fillColor;
+            set => fillColor = value;
         }
 
         public void Render(Graphics g)

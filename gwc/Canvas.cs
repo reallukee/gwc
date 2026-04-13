@@ -1,7 +1,7 @@
 //
 // :.:.:.
 // GWC
-// v0.1.0
+// v0.2.0
 // :.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -30,23 +30,23 @@ namespace Reallukee.GWC
 {
     public sealed class Canvas : IDisposable, IFillColor, IBorderColor
     {
-        public const int MaxRenderBufferLength = 10000;
+        internal const int MaxBufferLength = 10000;
 
         public Canvas(int width, int height)
         {
             if (width <= 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(width), "");
+                throw new ArgumentOutOfRangeException(nameof(width), "Width cannot be negative.");
             }
 
             if (height <= 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(height), "");
+                throw new ArgumentOutOfRangeException(nameof(height), "Height cannot be negative.");
             }
 
-            bitmap = new Bitmap(width, height);
+            InitBitmap(width, height);
 
-            buffer = new ConcurrentQueue<IFigure>();
+            InitBuffer(width, height);
         }
 
         public Canvas() : this(800, 600) {}
@@ -58,71 +58,84 @@ namespace Reallukee.GWC
 
         public void Dispose()
         {
-            if (bitmap != null)
-            {
-                bitmap.Dispose();
-            }
+            bitmap?.Dispose();
+        }
+
+
+
+        private object bitmapLock;
+
+        private object bufferLock;
+
+        private void InitBitmap(int width, int height)
+        {
+            bitmap = new Bitmap(width, height);
+
+            bitmapLock = new object();
+        }
+
+        private void InitBuffer(int width, int height)
+        {
+            buffer = new ConcurrentQueue<IFigure>();
+
+            bufferLock = new object();
         }
 
 
 
         private Bitmap bitmap;
 
-        public Bitmap Bitmap
+        internal Bitmap Bitmap
         {
-            get
-            {
-                return bitmap;
-            }
-
-            set
-            {
-                bitmap = value;
-            }
+            get => bitmap;
+            set => bitmap = value;
         }
 
         private ConcurrentQueue<IFigure> buffer;
 
-        public ConcurrentQueue<IFigure> Buffer
+        internal ConcurrentQueue<IFigure> Buffer
         {
-            get
-            {
-                return buffer;
-            }
-
-            set
-            {
-                buffer = value;
-            }
+            get => buffer;
+            set => buffer = value;
         }
 
         private Color fillColor;
 
         public Color FillColor
         {
-            get
-            {
-                return fillColor;
-            }
-
-            set
-            {
-                fillColor = value;
-            }
+            get => fillColor;
+            set => fillColor = value;
         }
 
         private Color borderColor;
 
         public Color BorderColor
         {
+            get => borderColor;
+            set => borderColor = value;
+        }
+
+
+
+        public int Width
+        {
             get
             {
-                return borderColor;
+                lock (bitmapLock)
+                {
+                    return bitmap.Width;
+                }
             }
+        }
 
-            set
+        public int Height
+        {
+            get
             {
-                borderColor = value;
+                lock (bitmapLock)
+                {
+                    return bitmap.Height;
+                }
             }
         }
 
@@ -130,7 +143,7 @@ namespace Reallukee.GWC
 
         public bool DrawFigure(IFigure figure)
         {
-            if (buffer.Count > MaxRenderBufferLength)
+            if (buffer.Count > MaxBufferLength)
             {
                 return false;
             }
@@ -141,6 +154,9 @@ namespace Reallukee.GWC
         }
 
 
+
+        public bool DrawBorderSquare(int x, int y, int side) => DrawBorderRectangle(x, y, side, side);
+        public bool DrawFillSquare  (int x, int y, int side) => DrawFillRectangle  (x, y, side, side);
 
         public bool DrawBorderRectangle(int x, int y, int width, int height)
         {

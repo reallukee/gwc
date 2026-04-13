@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.1.0
+// v0.2.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -17,60 +17,21 @@
 
 #include "header.h"
 
-typedef struct COLOR COLOR;
+typedef struct Color Color;
 
+GWC_C_API Color* color_new   (int alpha, int red, int green, int blue);
+GWC_C_API void   color_delete(Color* color);
 
+GWC_C_API int  color_getAlpha(const Color* color);
+GWC_C_API void color_setAlpha(Color* color, int value);
+GWC_C_API int  color_getRed  (const Color* color);
+GWC_C_API void color_setRed  (Color* color, int value);
+GWC_C_API int  color_getGreen(const Color* color);
+GWC_C_API void color_setGreen(Color* color, int value);
+GWC_C_API int  color_getBlue (const Color* color);
+GWC_C_API void color_setBlue (Color* color, int value);
 
-GWC_C_EXTERN
-GWC_C_API
-COLOR* color_new(
-    int alpha, int red, int blue, int green);
-
-GWC_C_EXTERN
-GWC_C_API
-void color_delete(
-    COLOR* color);
-
-
-
-GWC_C_EXTERN
-GWC_C_API
-int color_getAlpha(
-    const COLOR* color);
-
-GWC_C_EXTERN
-GWC_C_API
-void color_setAlpha(
-    COLOR* color, int value);
-
-GWC_C_EXTERN
-GWC_C_API
-int color_getRed(
-    const COLOR* color);
-
-GWC_C_EXTERN
-GWC_C_API
-void color_setRed(
-    COLOR* color, int value);
-
-GWC_C_EXTERN
-GWC_C_API
-int color_getBlue(
-    const COLOR* color);
-
-GWC_C_EXTERN
-GWC_C_API
-void color_setBlue(
-    COLOR* color, int value);
-
-GWC_C_EXTERN
-GWC_C_API
-int color_getGreen(
-    const COLOR* color);
-
-GWC_C_EXTERN
-GWC_C_API
-void color_setGreen(
-    COLOR* color, int value);
+GWC_C_API bool color_equal   (const Color* color, const Color* other);
+GWC_C_API bool color_notequal(const Color* color, const Color* other);
 
 #endif // !GWC_COLOR_H

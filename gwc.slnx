@@ -1,9 +1,14 @@
-<Solution>
+﻿<Solution>
   <Configurations>
     <Platform Name="ARM64" />
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
+  <Folder Name="/solution/">
+    <File Path=".editorconfig" />
+    <File Path="Directory.Build.props" />
+    <File Path="README.md" />
+  </Folder>
   <Folder Name="/dev/">
     <Project Path="gwc.dev/gwc.dev.csproj" Id="15893ee7-47aa-40f8-84ce-4109e981496d">
       <Platform Solution="*|ARM64" Project="ARM64" />

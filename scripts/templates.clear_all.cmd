@@ -19,6 +19,8 @@ FOR /F %%D in (scripts\templates.txt) DO (
     SET     X64=templates\%%D\x64
     SET   ARM64=templates\%%D\ARM64
 
+    SET TEMPLATE=templates\%%D-!VERSION!.zip
+
     IF EXIST !INCLUDE! RMDIR /S /Q !INCLUDE! >NUL
     IF EXIST !STATIC!  RMDIR /S /Q !STATIC!  >NUL
     IF EXIST !SHARED!  RMDIR /S /Q !SHARED!  >NUL
@@ -26,7 +28,7 @@ FOR /F %%D in (scripts\templates.txt) DO (
     IF EXIST !X64!     RMDIR /S /Q !X64!     >NUL
     IF EXIST !ARM64!   RMDIR /S /Q !ARM64!   >NUL
 
-    IF EXIST templates\%%D.zip DEL templates\%%D-!VERSION!.zip
+    IF EXIST !TEMPLATE! DEL !TEMPLATE! >NUL
 )
 
 POPD

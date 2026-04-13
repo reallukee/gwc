@@ -7,12 +7,19 @@ SETLOCAL ENABLEDELAYEDEXPANSION
 
 PUSHD "%~dp0.."
 
-IF EXIST templates\.vs   RMDIR /S /Q templates\.vs
-IF EXIST templates\bin   RMDIR /S /Q templates\bin
-IF EXIST templates\obj   RMDIR /S /Q templates\obj
-IF EXIST templates\x86   RMDIR /S /Q templates\x86
-IF EXIST templates\x64   RMDIR /S /Q templates\x64
-IF EXIST templates\ARM64 RMDIR /S /Q templates\ARM64
+SET    VS=templates\.vs
+SET   BIN=templates\bin
+SET   OBJ=templates\obj
+SET   X86=templates\x86
+SET   X64=templates\x64
+SET ARM64=templates\ARM64
+
+IF EXIST    !VS! RMDIR /S /Q !VS!
+IF EXIST   !BIN! RMDIR /S /Q !BIN!
+IF EXIST   !OBJ! RMDIR /S /Q !OBJ!
+IF EXIST   !X86! RMDIR /S /Q !X86!
+IF EXIST   !X64! RMDIR /S /Q !X64!
+IF EXIST !ARM64! RMDIR /S /Q !ARM64!
 
 POPD
 
