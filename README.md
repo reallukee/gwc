@@ -54,13 +54,13 @@ graph TD
 
 ## GWC
 
-* Libreria Managed Core con interfaccia API 100% Managed
+* Libreria Core Managed con interfaccia API 100% Managed
 * Scritta in C#
 * Espone l'API .NET
 
 ## GWC.Native
 
-* Libreria Mixed Wrapper con interfaccia API 100% Native
+* Libreria Wrapper Mixed con interfaccia API 100% Native
 * Scritta in C++/CLI, C++ e C
 * Espone l'API C/C++
 
@@ -217,10 +217,12 @@ int main(int argc, const char* argv[])
 > [!WARNING]
 > `GWC` è supportata su Linux/macOS tramite `Mono`.
 
+* Mono Runtime 6.12.0
+
 > [!WARNING]
 > `GWC.Native` è supportata su Linux/macOS tramite `Wine`.
 
-* Mono Runtime 6.12.0
+* Wine 10
 
 
 
@@ -323,9 +325,9 @@ msbuild gwc.sln /t:gwc_mono /p:Configuration=Release /p:Platform=x64
 
 # Download
 
-> [Ultima release (GitHub)](https://github.com/reallukee/gwc/releases)
+> [Ultima release (`github.com`)](https://github.com/reallukee/gwc/releases/latest)
 
-> [Ultima release](https://reallukee.altervista.org/gwc/#latest)
+> [Ultima release (`reallukee.altervista.org`)](https://reallukee.altervista.org/gwc/#latest)
 
 
 
