@@ -31,7 +31,7 @@
     <ProjectGuid>{3F011596-9C5F-2265-C9BD-9FD536C1D6E6}</ProjectGuid>
     <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
-    <RootNamespace>GWC</RootNamespace>
+    <RootNamespace>GWC.Native.Dev</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -250,6 +250,7 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="..\gwc.native\header.clr.hpp" />
     <ClInclude Include="..\gwc.native\gwc.clr.hpp" />
+    <ClInclude Include="..\gwc.native\SpriteHandler.clr.hpp" />
     <ClInclude Include="..\gwc.native\CanvasHandler.clr.hpp" />
     <ClInclude Include="..\gwc.native\WindowHandler.clr.hpp" />
     <ClInclude Include="..\gwc.native\export.hpp" />
@@ -281,6 +282,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.clr.cpp" />
+    <ClCompile Include="..\gwc.native\SpriteHandler.clr.cpp" />
     <ClCompile Include="..\gwc.native\CanvasHandler.clr.cpp" />
     <ClCompile Include="..\gwc.native\WindowHandler.clr.cpp" />
     <ClCompile Include="..\gwc.native\gwc.cpp" />

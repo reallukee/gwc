@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.2.0
+// v0.3.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -64,9 +64,9 @@ namespace gwc
 
 
 
-    Render::Render() {}
+    Render::Render() { }
 
-    Render::~Render() {}
+    Render::~Render() { }
 }
 
 #endif // __cplusplus

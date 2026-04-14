@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.2.1
+// v0.3.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -18,7 +18,6 @@
 
 /*
 Color* generateRandomColor();
-void showInfo(const WINDOW* window);
 
 int main(int argc, const char* argv[])
 {
@@ -56,13 +55,6 @@ int main(int argc, const char* argv[])
                 continue;
             }
 
-            if (key == KEYS_I)
-            {
-                showInfo(window);
-
-                continue;
-            }
-
             printf("Pressed: %d, %d\n", modifiers, key);
 
             Color* bordercolor = generateRandomColor();
@@ -88,6 +80,8 @@ int main(int argc, const char* argv[])
 
     window_delete(window);
 
+    exit(0);
+
     return 0;
 }
 
@@ -103,15 +97,5 @@ Color* generateRandomColor()
     Color* color = color_new(alpha, red, green, blue);
 
     return color;
-}
-
-void showInfo(const WINDOW* window)
-{
-    printf("Window Width  : %d", window_getWindowWidth(window));
-    printf("Window Height : %d", window_getCanvasHeight(window));
-    printf("Render Width  : %d", window_getRenderWidth(window));
-    printf("Render Height : %d", window_getRenderHeight(window));
-    printf("Canvas Width  : %d", window_getCanvasWidth(window));
-    printf("Canvas Height : %d", window_getCanvasHeight(window));
 }
 */
