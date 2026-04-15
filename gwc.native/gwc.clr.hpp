@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.1.0
+// v0.3.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -17,6 +17,7 @@
 
 #ifdef __cplusplus_cli
 
+#include "SpriteHandler.clr.hpp"
 #include "CanvasHandler.clr.hpp"
 #include "WindowHandler.clr.hpp"
 

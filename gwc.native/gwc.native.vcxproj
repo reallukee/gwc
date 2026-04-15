@@ -102,43 +102,43 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)obj\$(MSBuildProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
+    <OutDir>..\bin\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir>..\obj\$(MSBuildProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)-d-$(PlatformTarget)</TargetName>
     <LinkIncremental>false</LinkIncremental>
     <EnableManagedIncrementalBuild>false</EnableManagedIncrementalBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)obj\$(MSBuildProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
+    <OutDir>..\bin\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir>..\obj\$(MSBuildProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)-$(PlatformTarget)</TargetName>
     <LinkIncremental>false</LinkIncremental>
     <EnableManagedIncrementalBuild>false</EnableManagedIncrementalBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)obj\$(MSBuildProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
+    <OutDir>..\bin\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir>..\obj\$(MSBuildProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)-d-$(PlatformTarget)</TargetName>
     <LinkIncremental>false</LinkIncremental>
     <EnableManagedIncrementalBuild>false</EnableManagedIncrementalBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)obj\$(MSBuildProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
+    <OutDir>..\bin\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir>..\obj\$(MSBuildProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)-$(PlatformTarget)</TargetName>
     <LinkIncremental>false</LinkIncremental>
     <EnableManagedIncrementalBuild>false</EnableManagedIncrementalBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
-    <OutDir>$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)obj\$(MSBuildProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
+    <OutDir>..\bin\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir>..\obj\$(MSBuildProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)-d-$(PlatformTarget)</TargetName>
     <LinkIncremental>false</LinkIncremental>
     <EnableManagedIncrementalBuild>false</EnableManagedIncrementalBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
-    <OutDir>$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)obj\$(MSBuildProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
+    <OutDir>..\bin\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir>..\obj\$(MSBuildProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)-$(PlatformTarget)</TargetName>
     <LinkIncremental>false</LinkIncremental>
     <EnableManagedIncrementalBuild>false</EnableManagedIncrementalBuild>
@@ -247,11 +247,13 @@
     <ClInclude Include="types.hpp" />
     <ClInclude Include="Color.hpp" />
     <ClInclude Include="Point.hpp" />
-    <ClInclude Include="Render.hpp" />
-    <ClInclude Include="canvas_macros.hpp" />
-    <ClInclude Include="Canvas.hpp" />
     <ClInclude Include="Keys.hpp" />
     <ClInclude Include="MouseButtons.hpp" />
+    <ClInclude Include="Render.hpp" />
+    <ClInclude Include="sprite_macros.hpp" />
+    <ClInclude Include="Sprite.hpp" />
+    <ClInclude Include="canvas_macros.hpp" />
+    <ClInclude Include="Canvas.hpp" />
     <ClInclude Include="window_macros.hpp" />
     <ClInclude Include="Window.hpp" />
     <ClInclude Include="export.h" />
@@ -260,11 +262,13 @@
     <ClInclude Include="types.h" />
     <ClInclude Include="COLOR.h" />
     <ClInclude Include="POINT.h" />
-    <ClInclude Include="RENDER.h" />
-    <ClInclude Include="canvas_macros.h" />
-    <ClInclude Include="CANVAS.h" />
     <ClInclude Include="KEYS.h" />
     <ClInclude Include="MOUSEBUTTONS.h" />
+    <ClInclude Include="RENDER.h" />
+    <ClInclude Include="sprite_macros.h" />
+    <ClInclude Include="SPRITE.h" />
+    <ClInclude Include="canvas_macros.h" />
+    <ClInclude Include="CANVAS.h" />
     <ClInclude Include="window_macros.h" />
     <ClInclude Include="WINDOW.h" />
   </ItemGroup>
@@ -277,12 +281,14 @@
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="Render.cpp" />
+    <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Canvas.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="gwc.c" />
     <ClCompile Include="COLOR.c" />
     <ClCompile Include="POINT.c" />
     <ClCompile Include="RENDER.c" />
+    <ClCompile Include="SPRITE.c" />
     <ClCompile Include="CANVAS.c" />
     <ClCompile Include="WINDOW.c" />
   </ItemGroup>

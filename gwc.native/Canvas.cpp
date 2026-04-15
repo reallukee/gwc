@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.2.0
+// v0.3.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -116,6 +116,37 @@ namespace gwc
     bool Canvas::drawFillRectangle(int x, int y, int width, int height)
     {
         CCI_CANVAS_BOOL_CPP(canvas, DrawFillRectangle(x, y, width, height));
+    }
+
+
+
+    bool Canvas::drawBorderCircle(int x, int y, int radius)
+    {
+        CCI_CANVAS_BOOL_CPP(canvas, DrawBorderCircle(x, y, radius));
+    }
+
+    bool Canvas::drawFillCircle(int x, int y, int radius)
+    {
+        CCI_CANVAS_BOOL_CPP(canvas, DrawFillCircle(x, y, radius));
+    }
+
+
+
+    bool Canvas::drawBorderEllipse(int x, int y, int width, int height)
+    {
+        CCI_CANVAS_BOOL_CPP(canvas, DrawBorderEllipse(x, y, width, height));
+    }
+
+    bool Canvas::drawFillEllipse(int x, int y, int width, int height)
+    {
+        CCI_CANVAS_BOOL_CPP(canvas, DrawFillEllipse(x, y, width, height));
+    }
+
+
+
+    void Canvas::render()
+    {
+        CCI_CANVAS_VOID_CPP(canvas, Render());
     }
 }
 

@@ -6,14 +6,14 @@
 //
 // https://github.com/reallukee/gwc
 //
-// Canvas.hpp
+// Sprite.hpp
 //  Licenza MIT
 //
 
 #pragma once
 
-#ifndef GWC_CANVAS_HPP
-#define GWC_CANVAS_HPP
+#ifndef GWC_SPRITE_HPP
+#define GWC_SPRITE_HPP
 
 #ifdef  __cplusplus
 
@@ -23,14 +23,14 @@
 
 namespace gwc
 {
-    class GWC_CPP_API Canvas sealed
+    class GWC_CPP_API Sprite sealed
     {
 
     public:
 
-        Canvas (int width, int height);
-        Canvas ();
-        ~Canvas();
+        Sprite (int width, int height);
+        Sprite ();
+        ~Sprite();
 
         bool isInitialized();
 
@@ -58,11 +58,11 @@ namespace gwc
 
     private:
 
-        CLRCanvas canvas;
+        CLRSprite sprite;
 
     };
 }
 
 #endif //  __cplusplus
 
-#endif // !GWC_CANVAS_HPP
+#endif // !GWC_SPRITE_HPP

@@ -72,19 +72,25 @@
     <ClInclude Include="..\gwc.native\Point.hpp">
       <Filter>File di intestazione\C++ API</Filter>
     </ClInclude>
+    <ClInclude Include="..\gwc.native\Keys.hpp">
+      <Filter>File di intestazione\C++ API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gwc.native\MouseButtons.hpp">
+      <Filter>File di intestazione\C++ API</Filter>
+    </ClInclude>
     <ClInclude Include="..\gwc.native\Render.hpp">
+      <Filter>File di intestazione\C++ API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gwc.native\sprite_macros.hpp">
+      <Filter>File di intestazione\C++ API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gwc.native\Sprite.hpp">
       <Filter>File di intestazione\C++ API</Filter>
     </ClInclude>
     <ClInclude Include="..\gwc.native\canvas_macros.hpp">
       <Filter>File di intestazione\C++ API</Filter>
     </ClInclude>
     <ClInclude Include="..\gwc.native\Canvas.hpp">
-      <Filter>File di intestazione\C++ API</Filter>
-    </ClInclude>
-    <ClInclude Include="..\gwc.native\Keys.hpp">
-      <Filter>File di intestazione\C++ API</Filter>
-    </ClInclude>
-    <ClInclude Include="..\gwc.native\MouseButtons.hpp">
       <Filter>File di intestazione\C++ API</Filter>
     </ClInclude>
     <ClInclude Include="..\gwc.native\window_macros.hpp">
@@ -111,19 +117,25 @@
     <ClInclude Include="..\gwc.native\POINT.h">
       <Filter>File di intestazione\C API</Filter>
     </ClInclude>
+    <ClInclude Include="..\gwc.native\KEYS.h">
+      <Filter>File di intestazione\C API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gwc.native\MOUSEBUTTONS.h">
+      <Filter>File di intestazione\C API</Filter>
+    </ClInclude>
     <ClInclude Include="..\gwc.native\RENDER.h">
+      <Filter>File di intestazione\C API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gwc.native\sprite_macros.h">
+      <Filter>File di intestazione\C API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gwc.native\SPRITE.h">
       <Filter>File di intestazione\C API</Filter>
     </ClInclude>
     <ClInclude Include="..\gwc.native\canvas_macros.h">
       <Filter>File di intestazione\C API</Filter>
     </ClInclude>
     <ClInclude Include="..\gwc.native\CANVAS.h">
-      <Filter>File di intestazione\C API</Filter>
-    </ClInclude>
-    <ClInclude Include="..\gwc.native\KEYS.h">
-      <Filter>File di intestazione\C API</Filter>
-    </ClInclude>
-    <ClInclude Include="..\gwc.native\MOUSEBUTTONS.h">
       <Filter>File di intestazione\C API</Filter>
     </ClInclude>
     <ClInclude Include="..\gwc.native\window_macros.h">
@@ -158,6 +170,9 @@
     <ClCompile Include="..\gwc.native\Render.cpp">
       <Filter>File di origine\C++ API</Filter>
     </ClCompile>
+    <ClCompile Include="..\gwc.native\Sprite.cpp">
+      <Filter>File di origine\C++ API</Filter>
+    </ClCompile>
     <ClCompile Include="..\gwc.native\Canvas.cpp">
       <Filter>File di origine\C++ API</Filter>
     </ClCompile>
@@ -177,6 +192,9 @@
       <Filter>File di origine\C API</Filter>
     </ClCompile>
     <ClCompile Include="..\gwc.native\RENDER.c">
+      <Filter>File di origine\C API</Filter>
+    </ClCompile>
+    <ClCompile Include="..\gwc.native\SPRITE.c">
       <Filter>File di origine\C API</Filter>
     </ClCompile>
     <ClCompile Include="..\gwc.native\CANVAS.c">
