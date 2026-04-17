@@ -57,17 +57,25 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="IFigure.cs" />
+    <Compile Include="IRenderable.cs" />
     <Compile Include="IBorderColor.cs" />
     <Compile Include="IFillColor.cs" />
     <Compile Include="Rectangle.cs" />
+    <Compile Include="Ellipse.cs" />
     <Compile Include="BorderRectangle.cs" />
+    <Compile Include="BorderEllipse.cs" />
     <Compile Include="FillRectangle.cs" />
+    <Compile Include="FillEllipse.cs" />
     <Compile Include="Render.cs" />
     <Compile Include="WindowForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Sprite.cs" />
+    <Compile Include="SpriteHandler.cs" />
     <Compile Include="Canvas.cs" />
+    <Compile Include="CanvasHandler.cs" />
     <Compile Include="Window.cs" />
+    <Compile Include="WindowHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

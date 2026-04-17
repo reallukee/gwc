@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.2.0
+// v0.3.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -118,9 +118,9 @@
     \
     Drawing::Color managedColor = Drawing::Color::FromArgb( \
         nativeColor.getAlpha(), \
-        nativeColor.getRed(), \
+        nativeColor.getRed  (), \
         nativeColor.getGreen(), \
-        nativeColor.getBlue() \
+        nativeColor.getBlue () \
     ); \
     \
     CanvasHandler::Invoke(managedHandle)->BorderColor = managedColor;

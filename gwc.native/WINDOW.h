@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.2.1
+// v0.3.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -89,5 +89,11 @@ GWC_C_API bool window_drawFillSquare  (const WINDOW* window, int x, int y, int s
 
 GWC_C_API bool window_drawBorderRectangle(const WINDOW* window, int x, int y, int width, int height);
 GWC_C_API bool window_drawFillRectangle  (const WINDOW* window, int x, int y, int width, int height);
+
+GWC_C_API bool window_drawBorderCircle(const WINDOW* window, int x, int y, int radius);
+GWC_C_API bool window_drawFillCircle  (const WINDOW* window, int x, int y, int radius);
+
+GWC_C_API bool window_drawBorderEllipse(const WINDOW* window, int x, int y, int width, int height);
+GWC_C_API bool window_drawFillEllipse  (const WINDOW* window, int x, int y, int width, int height);
 
 #endif // !GWC_WINDOW_H

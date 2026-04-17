@@ -50,16 +50,19 @@
     <ClInclude Include="include\POINT.h">
       <Filter>GWC\Include</Filter>
     </ClInclude>
-    <ClInclude Include="include\RENDER.h">
-      <Filter>GWC\Include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\CANVAS.h">
-      <Filter>GWC\Include</Filter>
-    </ClInclude>
     <ClInclude Include="include\KEYS.h">
       <Filter>GWC\Include</Filter>
     </ClInclude>
     <ClInclude Include="include\MOUSEBUTTONS.h">
+      <Filter>GWC\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\RENDER.h">
+      <Filter>GWC\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SPRITE.h">
+      <Filter>GWC\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CANVAS.h">
       <Filter>GWC\Include</Filter>
     </ClInclude>
     <ClInclude Include="include\WINDOW.h">

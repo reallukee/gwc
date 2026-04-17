@@ -1,7 +1,7 @@
 //
 // :.:.:.
 // GWC
-// v0.2.1
+// v0.3.0
 // :.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -30,21 +30,26 @@ namespace Reallukee.GWC
 {
     public sealed class Window : IDisposable
     {
-        private const int MaxKeyDownBufferLength   = 100;
-        private const int MaxKeyUpBufferLength     = 100;
-        private const int MaxMouseDownBufferLength = 100;
-        private const int MaxMouseUpBufferLength   = 100;
+        internal const int MaxKeyDownBufferLength = 100;
+        internal const int MaxKeyUpBufferLength   = 100;
+
+        internal const int MaxMouseDownBufferLength = 100;
+        internal const int MaxMouseUpBufferLength   = 100;
 
         public Window(int width, int height)
         {
             if (width <= 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(width), "Width cannot be negative.");
+                throw new ArgumentOutOfRangeException(
+                    nameof(width), "Width cannot be zero or negative."
+                );
             }
 
             if (height <= 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(height), "Height cannot be negative.");
+                throw new ArgumentOutOfRangeException(
+                    nameof(height), "Height cannot be zero or negative."
+                );
             }
 
             InitWindow(width, height);
@@ -52,7 +57,7 @@ namespace Reallukee.GWC
             InitRender(width, height);
         }
 
-        public Window() : this(800, 600) {}
+        public Window() : this(800, 600) { }
 
         ~Window()
         {
@@ -96,22 +101,25 @@ namespace Reallukee.GWC
             window.Resize      += WindowForm_Resize;
             window.ResizeEnd   += WindowForm_ResizeEnd;
 
-            window.KeyDown   += WindowForm_KeyDown;
-            window.KeyUp     += WindowForm_KeyUp;
-            window.MouseDown += WindowForm_MouseDown;
-            window.MouseUp   += WindowForm_MouseUp;
+            window.KeyDown     += WindowForm_KeyDown;
+            window.KeyUp       += WindowForm_KeyUp;
+            window.MouseDown   += WindowForm_MouseDown;
+            window.MouseUp     += WindowForm_MouseUp;
 
-            keyDownEvent   = new AutoResetEvent(false);
-            keyUpEvent     = new AutoResetEvent(false);
-            mouseDownEvent = new AutoResetEvent(false);
-            mouseUpEvent   = new AutoResetEvent(false);
+            keyDownEvent       = new AutoResetEvent(false);
+            keyUpEvent         = new AutoResetEvent(false);
+            mouseDownEvent     = new AutoResetEvent(false);
+            mouseUpEvent       = new AutoResetEvent(false);
 
-            keyDownBuffer   = new ConcurrentQueue<Keys>();
-            keyUpBuffer     = new ConcurrentQueue<Keys>();
-            mouseDownBuffer = new ConcurrentQueue<(Point, MouseButtons)>();
-            mouseUpBuffer   = new ConcurrentQueue<(Point, MouseButtons)>();
+            keyDownBuffer      = new ConcurrentQueue<Keys>();
+            keyUpBuffer        = new ConcurrentQueue<Keys>();
+            mouseDownBuffer    = new ConcurrentQueue<(Point, MouseButtons)>();
+            mouseUpBuffer      = new ConcurrentQueue<(Point, MouseButtons)>();
 
-            windowThread = new Thread(WindowThreadLoop);
+            windowThread = new Thread(WindowThreadLoop)
+            {
+                IsBackground = true
+            };
 
             windowLock = new object();
         }
@@ -121,7 +129,7 @@ namespace Reallukee.GWC
             canvas = new Canvas(width, height);
 
             canvas.BorderColor = Color.Black;
-            canvas.FillColor   = Color.Red;
+            canvas.FillColor   = Color.Green;
 
             renderThread = new Thread(RenderThreadLoop)
             {
@@ -135,11 +143,26 @@ namespace Reallukee.GWC
 
         private void WindowThreadLoop()
         {
-            Application.EnableVisualStyles();
+            try
+            {
+                while (windowThreadFlag)
+                {
+                    Application.EnableVisualStyles();
 
-            Application.SetCompatibleTextRenderingDefault(false);
+                    Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.Run(window);
+                    Application.Run(window);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    ex.Message,
+                    $"{Application.ProductName} {Application.ProductVersion}",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
         }
 
         private void RenderThreadLoop()
@@ -162,9 +185,9 @@ namespace Reallukee.GWC
 
                             using (Graphics g = Graphics.FromImage(canvas.Bitmap))
                             {
-                                while (canvas.Buffer.TryDequeue(out IFigure figure))
+                                while (canvas.Buffer.TryDequeue(out IRenderable renderable))
                                 {
-                                    figure.Render(g);
+                                    renderable.Render(g);
 
                                     if (renderStopwatch.Elapsed.TotalMilliseconds > Render.UtilFrameTime)
                                     {
@@ -197,7 +220,7 @@ namespace Reallukee.GWC
 
                 renderRemainingTime = Render.FrameTime - renderElapsedTime;
 
-                if (renderRemainingTime > 0)
+                if (renderRemainingTime >= 0)
                 {
                     Thread.Sleep((int)renderRemainingTime);
                 }
@@ -231,7 +254,10 @@ namespace Reallukee.GWC
             }
         }
 
-        private void WindowForm_ResizeBegin(object sender, EventArgs e) {}
+        private void WindowForm_ResizeBegin(object sender, EventArgs e)
+        {
+
+        }
 
         private void WindowForm_Resize(object sender, EventArgs e)
         {
@@ -269,13 +295,21 @@ namespace Reallukee.GWC
             }
         }
 
-        private void WindowForm_ResizeEnd(object sender, EventArgs e) {}
+        private void WindowForm_ResizeEnd(object sender, EventArgs e)
+        {
+
+        }
 
 
 
         public bool Open()
         {
             if (windowThread.IsAlive || renderThread.IsAlive)
+            {
+                return false;
+            }
+
+            if (window.IsHandleCreated)
             {
                 return false;
             }
@@ -288,13 +322,10 @@ namespace Reallukee.GWC
 
             window.WaitHandleCreated();
 
-            if (!window.IsHandleCreated)
-            {
-                return false;
-            }
-
             return true;
         }
+
+        public bool IsOpen => window.IsHandleCreated;
 
         public bool Shutdown()
         {
@@ -321,25 +352,12 @@ namespace Reallukee.GWC
             return true;
         }
 
-        public bool IsOpen
-        {
-           get => window.IsHandleCreated;
-        }
-
-        public bool IsShutdown
-        {
-            get => !window.IsHandleCreated;
-        }
+        public bool IsShutdown => !window.IsHandleCreated;
 
 
 
         public void Wait(int milliseconds)
         {
-            if (milliseconds < 0)
-            {
-                return;
-            }
-
             Thread.Sleep(milliseconds);
         }
 
@@ -455,8 +473,15 @@ namespace Reallukee.GWC
         public bool IsKeyDownAvailable => hasKeyDown == 1;
         public bool IsKeyUpAvailable   => hasKeyUp   == 1;
 
-        public void FlushKeyDown() => Interlocked.Exchange(ref keyDownBuffer, new ConcurrentQueue<Keys>());
-        public void FlushKeyUp  () => Interlocked.Exchange(ref keyUpBuffer,   new ConcurrentQueue<Keys>());
+        public void FlushKeyDown()
+        {
+            Interlocked.Exchange(ref keyDownBuffer, new ConcurrentQueue<Keys>());
+        }
+
+        public void FlushKeyUp()
+        {
+            Interlocked.Exchange(ref keyUpBuffer, new ConcurrentQueue<Keys>());
+        }
 
         public bool ConsumeKeyDown(out Keys modifiers, out Keys key)
         {
@@ -496,11 +521,25 @@ namespace Reallukee.GWC
             return false;
         }
 
-        public bool DiscardKeyDown() => ConsumeKeyDown(out Keys _, out Keys _);
-        public bool DiscardKeyUp  () => ConsumeKeyUp  (out Keys _, out Keys _);
+        public bool DiscardKeyDown()
+        {
+            return ConsumeKeyDown(out Keys _, out Keys _);
+        }
 
-        public void WaitKeyDown() => keyDownEvent.WaitOne();
-        public void WaitKeyUp  () => keyUpEvent  .WaitOne();
+        public bool DiscardKeyUp()
+        {
+            return ConsumeKeyUp(out Keys _, out Keys _);
+        }
+
+        public void WaitKeyDown()
+        {
+            keyDownEvent.WaitOne();
+        }
+
+        public void WaitKeyUp()
+        {
+            keyUpEvent.WaitOne();
+        }
 
         public bool IsKeyDownLost
         {
@@ -567,8 +606,15 @@ namespace Reallukee.GWC
         public bool IsMouseDownAvailable => hasMouseDown == 1;
         public bool IsMouseUpAvailable   => hasMouseUp   == 1;
 
-        public void FlushMouseDown() => Interlocked.Exchange(ref mouseDownBuffer, new ConcurrentQueue<(Point, MouseButtons)>());
-        public void FlushMouseUp  () => Interlocked.Exchange(ref mouseUpBuffer,   new ConcurrentQueue<(Point, MouseButtons)>());
+        public void FlushMouseDown()
+        {
+            Interlocked.Exchange(ref mouseDownBuffer, new ConcurrentQueue<(Point, MouseButtons)>());
+        }
+
+        public void FlushMouseUp()
+        {
+            Interlocked.Exchange(ref mouseUpBuffer, new ConcurrentQueue<(Point, MouseButtons)>());
+        }
 
         public bool ConsumeMouseDown(out Point location, out MouseButtons button)
         {
@@ -608,11 +654,25 @@ namespace Reallukee.GWC
             return false;
         }
 
-        public bool DiscardMouseDown() => ConsumeMouseDown(out Point _, out MouseButtons _);
-        public bool DiscardMouseUp()   => ConsumeMouseUp  (out Point _, out MouseButtons _);
+        public bool DiscardMouseDown()
+        {
+            return ConsumeMouseDown(out Point _, out MouseButtons _);
+        }
 
-        public void WaitMouseDown() => mouseDownEvent.WaitOne();
-        public void WaitMouseUp()   => mouseUpEvent  .WaitOne();
+        public bool DiscardMouseUp()
+        {
+            return ConsumeMouseUp(out Point _, out MouseButtons _);
+        }
+
+        public void WaitMouseDown()
+        {
+            mouseDownEvent.WaitOne();
+        }
+
+        public void WaitMouseUp()
+        {
+            mouseUpEvent.WaitOne();
+        }
 
         public bool IsMouseDownLost
         {
@@ -634,6 +694,8 @@ namespace Reallukee.GWC
         public int CanvasWidth  => canvas.Width;
         public int CanvasHeight => canvas.Height;
 
+
+
         public Color BorderColor
         {
             get => canvas.BorderColor;
@@ -646,11 +708,59 @@ namespace Reallukee.GWC
             set => canvas.FillColor = value;
         }
 
-        public bool DrawFigure(IFigure figure) => canvas.DrawFigure(figure);
 
-        public bool DrawBorderSquare(int x, int y, int side) => canvas.DrawBorderSquare(x, y, side);
-        public bool DrawFillSquare  (int x, int y, int side) => canvas.DrawFillSquare  (x, y, side);
-        public bool DrawBorderRectangle(int x, int y, int width, int height) => canvas.DrawBorderRectangle(x, y, width, height);
-        public bool DrawFillRectangle  (int x, int y, int width, int height) => canvas.DrawFillRectangle  (x, y, width, height);
+
+        internal bool DrawRenderable(IRenderable renderable)
+        {
+            return canvas.DrawRenderable(renderable);
+        }
+
+
+
+        public bool DrawBorderSquare(int x, int y, int side)
+        {
+            return canvas.DrawBorderSquare(x, y, side);
+        }
+
+        public bool DrawFillSquare(int x, int y, int side)
+        {
+            return canvas.DrawFillSquare(x, y, side);
+        }
+
+
+
+        public bool DrawBorderRectangle(int x, int y, int width, int height)
+        {
+            return canvas.DrawBorderRectangle(x, y, width, height);
+        }
+
+        public bool DrawFillRectangle(int x, int y, int width, int height)
+        {
+            return canvas.DrawFillRectangle(x, y, width, height);
+        }
+
+
+
+        public bool DrawBorderCircle(int x, int y, int radius)
+        {
+            return canvas.DrawBorderCircle(x, y, radius);
+        }
+
+        public bool DrawFillCircle(int x, int y, int radius)
+        {
+            return canvas.DrawFillCircle(x, y, radius);
+        }
+
+
+
+        public bool DrawBorderEllipse(int x, int y, int width, int height)
+        {
+            return canvas.DrawBorderEllipse(x, y, width, height);
+        }
+
+        public bool DrawFillEllipse(int x, int y, int width, int height)
+        {
+            return canvas.DrawFillEllipse(x, y, width, height);
+        }
     }
 }

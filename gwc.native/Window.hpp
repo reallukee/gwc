@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.2.1
+// v0.3.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -95,6 +95,12 @@ namespace gwc
 
         bool drawBorderRectangle(int x, int y, int width, int height);
         bool drawFillRectangle  (int x, int y, int width, int height);
+
+        bool drawBorderCircle(int x, int y, int radius);
+        bool drawFillCircle  (int x, int y, int radius);
+
+        bool drawBorderEllipse(int x, int y, int width, int height);
+        bool drawFillEllipse  (int x, int y, int width, int height);
 
     private:
 

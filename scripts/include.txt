@@ -4,10 +4,11 @@ gwc.h
 types.h
 COLOR.h
 POINT.h
-RENDER.h
-CANVAS.h
 KEYS.h
 MOUSEBUTTONS.h
+RENDER.h
+SPRITE.h
+CANVAS.h
 WINDOW.h
 export.hpp
 header.hpp
@@ -15,8 +16,9 @@ gwc.hpp
 types.hpp
 Color.hpp
 Point.hpp
-Render.hpp
-Canvas.hpp
 Keys.hpp
 MouseButtons.hpp
+Render.hpp
+Sprite.hpp
+Canvas.hpp
 Window.hpp

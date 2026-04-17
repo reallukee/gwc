@@ -1,6 +1,6 @@
 ﻿<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
   <TemplateData>
-    <Name>GWC C++ Empty Application (0.2.1)</Name>
+    <Name>GWC C++ Empty Application (0.3.0)</Name>
     <Description>
       Fornisce un template per la creazione di un'applicazione GWC vuota in C++.
 GWC è un progetto Open-Source mantenuto su https://github.com/reallukee/gwc.
@@ -24,7 +24,7 @@ GWC è un progetto Open-Source mantenuto su https://github.com/reallukee/gwc.
   <TemplateContent>
     <CustomParameters>
       <CustomParameter Name="$gwc_identifier$" Value="GWC.Native" />
-      <CustomParameter Name="$gwc_version$" Value="0.2.1" />
+      <CustomParameter Name="$gwc_version$" Value="0.3.0" />
     </CustomParameters>
     <Project TargetFileName="GWC.Cpp.EmptyApplication.vcxproj" File="GWC.Cpp.EmptyApplication.vcxproj" ReplaceParameters="true">
       <ProjectItem ReplaceParameters="false" TargetFileName="$projectname$.vcxproj.filters">GWC.Cpp.EmptyApplication.vcxproj.filters</ProjectItem>
@@ -35,10 +35,11 @@ GWC è un progetto Open-Source mantenuto su https://github.com/reallukee/gwc.
         <ProjectItem ReplaceParameters="false" TargetFileName="types.hpp">types.hpp</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="Color.hpp">Color.hpp</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="Point.hpp">Point.hpp</ProjectItem>
-        <ProjectItem ReplaceParameters="false" TargetFileName="Render.hpp">Render.hpp</ProjectItem>
-        <ProjectItem ReplaceParameters="false" TargetFileName="Canvas.hpp">Canvas.hpp</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="Keys.hpp">Keys.hpp</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="MouseButtons.hpp">MouseButtons.hpp</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="Render.hpp">Render.hpp</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="Sprite.hpp">Sprite.hpp</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="Canvas.hpp">Canvas.hpp</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="Window.hpp">Window.hpp</ProjectItem>
       </Folder>
       <Folder Name="static" TargetFolderName="static">

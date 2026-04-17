@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.2.0
+// v0.3.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -131,4 +131,35 @@ bool canvas_drawBorderRectangle(const CANVAS* canvas, int x, int y, int width, i
 bool canvas_drawFillRectangle(const CANVAS* canvas, int x, int y, int width, int height)
 {
     CCI_CANVAS_BOOL_C(canvas, DrawFillRectangle(x, y, width, height));
+}
+
+
+
+bool canvas_drawBorderCircle(const CANVAS* canvas, int x, int y, int radius)
+{
+    CCI_CANVAS_BOOL_C(canvas, DrawBorderCircle(x, y, radius));
+}
+
+bool canvas_drawFillCircle(const CANVAS* canvas, int x, int y, int radius)
+{
+    CCI_CANVAS_BOOL_C(canvas, DrawFillCircle(x, y, radius));
+}
+
+
+
+bool canvas_drawBorderEllipse(const CANVAS* canvas, int x, int y, int width, int height)
+{
+    CCI_CANVAS_BOOL_C(canvas, DrawBorderEllipse(x, y, width, height));
+}
+
+bool canvas_drawFillEllipse(const CANVAS* canvas, int x, int y, int width, int height)
+{
+    CCI_CANVAS_BOOL_C(canvas, DrawFillEllipse(x, y, width, height));
+}
+
+
+
+void canvas_render(const CANVAS* canvas)
+{
+    CCI_CANVAS_VOID_C(canvas, Render());
 }

@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.2.1
+// v0.3.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -21,7 +21,6 @@ using namespace gwc;
 using namespace std;
 
 Color generateRandomColor();
-void showInfo(Window* window);
 
 int main(int argc, const char* argv[])
 {
@@ -59,13 +58,6 @@ int main(int argc, const char* argv[])
                 continue;
             }
 
-            if (key == Keys::I)
-            {
-                showInfo(window);
-
-                continue;
-            }
-
             cout << "Pressed: " << static_cast<int>(modifiers) << ", " << static_cast<int>(key) << endl;
 
             window->setBorderColor(generateRandomColor());
@@ -85,6 +77,8 @@ int main(int argc, const char* argv[])
 
     delete window;
 
+    exit(0);
+
     return 0;
 }
 
@@ -100,14 +94,4 @@ Color generateRandomColor()
     Color color = Color(alpha, red, green, blue);
 
     return color;
-}
-
-void showInfo(Window* window)
-{
-    cout << "Window Width  : " << window->getWindowWidth() << endl;
-    cout << "Window Height : " << window->getCanvasHeight() << endl;
-    cout << "Render Width  : " << window->getRenderWidth() << endl;
-    cout << "Render Height : " << window->getRenderHeight() << endl;
-    cout << "Canvas Width  : " << window->getCanvasWidth() << endl;
-    cout << "Canvas Height : " << window->getCanvasHeight() << endl;
 }

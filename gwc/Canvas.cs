@@ -1,7 +1,7 @@
 //
 // :.:.:.
 // GWC
-// v0.2.0
+// v0.3.0
 // :.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -28,7 +28,7 @@ using System.Windows.Forms;
 
 namespace Reallukee.GWC
 {
-    public sealed class Canvas : IDisposable, IFillColor, IBorderColor
+    public sealed class Canvas : IDisposable, IRenderable, IBorderColor, IFillColor
     {
         internal const int MaxBufferLength = 10000;
 
@@ -36,20 +36,27 @@ namespace Reallukee.GWC
         {
             if (width <= 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(width), "Width cannot be negative.");
+                throw new ArgumentOutOfRangeException(
+                    nameof(width), "Width cannot be zero or negative."
+                );
             }
 
             if (height <= 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(height), "Height cannot be negative.");
+                throw new ArgumentOutOfRangeException(
+                    nameof(height), "Height cannot be zero or negative."
+                );
             }
 
             InitBitmap(width, height);
 
             InitBuffer(width, height);
+
+            BorderColor = Color.Black;
+            FillColor   = Color.Green;
         }
 
-        public Canvas() : this(800, 600) {}
+        public Canvas() : this(800, 600) { }
 
         ~Canvas()
         {
@@ -58,7 +65,7 @@ namespace Reallukee.GWC
 
         public void Dispose()
         {
-            bitmap?.Dispose();
+            Bitmap?.Dispose();
         }
 
 
@@ -69,51 +76,50 @@ namespace Reallukee.GWC
 
         private void InitBitmap(int width, int height)
         {
-            bitmap = new Bitmap(width, height);
+            Bitmap = new Bitmap(width, height);
 
             bitmapLock = new object();
         }
 
         private void InitBuffer(int width, int height)
         {
-            buffer = new ConcurrentQueue<IFigure>();
+            Buffer = new ConcurrentQueue<IRenderable>();
 
             bufferLock = new object();
         }
 
 
 
-        private Bitmap bitmap;
-
         internal Bitmap Bitmap
         {
-            get => bitmap;
-            set => bitmap = value;
+            get;
+            set;
         }
 
-        private ConcurrentQueue<IFigure> buffer;
-
-        internal ConcurrentQueue<IFigure> Buffer
+        internal ConcurrentQueue<IRenderable> Buffer
         {
-            get => buffer;
-            set => buffer = value;
+            get;
+            set;
         }
 
-        private Color fillColor;
 
-        public Color FillColor
-        {
-            get => fillColor;
-            set => fillColor = value;
-        }
-
-        private Color borderColor;
 
         public Color BorderColor
         {
-            get => borderColor;
-            set => borderColor = value;
+            get;
+            set;
         }
+
+        public Color FillColor
+        {
+            get;
+            set;
+        }
+
+
+
+        public Size  Size     => new Size (Width, Height);
+        public Point Location => new Point(0, 0);
 
 
 
@@ -123,7 +129,7 @@ namespace Reallukee.GWC
             {
                 lock (bitmapLock)
                 {
-                    return bitmap.Width;
+                    return Bitmap.Width;
                 }
             }
         }
@@ -134,42 +140,143 @@ namespace Reallukee.GWC
             {
                 lock (bitmapLock)
                 {
-                    return bitmap.Height;
+                    return Bitmap.Height;
                 }
             }
         }
 
 
 
-        public bool DrawFigure(IFigure figure)
+        internal bool IsCached
         {
-            if (buffer.Count > MaxBufferLength)
+            get;
+            private set;
+        }
+
+        internal bool DrawRenderable(IRenderable renderable)
+        {
+            if (Buffer.Count > MaxBufferLength)
             {
                 return false;
             }
 
-            buffer.Enqueue(figure);
+            Buffer.Enqueue(renderable);
+
+            IsCached = false;
 
             return true;
         }
 
 
 
-        public bool DrawBorderSquare(int x, int y, int side) => DrawBorderRectangle(x, y, side, side);
-        public bool DrawFillSquare  (int x, int y, int side) => DrawFillRectangle  (x, y, side, side);
+        public bool DrawBorderSquare(int x, int y, int side)
+        {
+            return DrawBorderRectangle(x, y, side, side);
+        }
+
+        public bool DrawFillSquare(int x, int y, int side)
+        {
+            return DrawFillRectangle(x, y, side, side);
+        }
+
+
 
         public bool DrawBorderRectangle(int x, int y, int width, int height)
         {
-            IFigure borderRectangle = new BorderRectangle(BorderColor, x, y, width, height);
+            IRenderable borderRectangle = new BorderRectangle(BorderColor, x, y, width, height);
 
-            return DrawFigure(borderRectangle);
+            return DrawRenderable(borderRectangle);
         }
 
         public bool DrawFillRectangle(int x, int y, int width, int height)
         {
-            IFigure fillRectangle = new FillRectangle(FillColor, x, y, width, height);
+            IRenderable fillRectangle = new FillRectangle(FillColor, x, y, width, height);
 
-            return DrawFigure(fillRectangle);
+            return DrawRenderable(fillRectangle);
+        }
+
+
+
+        public bool DrawBorderCircle(int x, int y, int radius)
+        {
+            return DrawBorderEllipse(x, y, radius * 2, radius * 2);
+        }
+
+        public bool DrawFillCircle(int x, int y, int radius)
+        {
+            return DrawFillEllipse(x, y, radius * 2, radius * 2);
+        }
+
+
+
+        public bool DrawBorderEllipse(int x, int y, int width, int height)
+        {
+            IRenderable borderEllipse = new BorderEllipse(BorderColor, x, y, width, height);
+
+            return DrawRenderable(borderEllipse);
+        }
+
+        public bool DrawFillEllipse(int x, int y, int width, int height)
+        {
+            IRenderable fillEllipse = new FillEllipse(FillColor, x, y, width, height);
+
+            return DrawRenderable(fillEllipse);
+        }
+
+
+
+        internal void ResizeBitmap(int width, int height)
+        {
+            try
+            {
+                Bitmap oldBitmap = Bitmap;
+
+                Bitmap newBitmap = new Bitmap(width, height);
+
+                using (Graphics g = Graphics.FromImage(newBitmap))
+                {
+                    g.DrawImage(oldBitmap, 0, 0);
+                }
+
+                Bitmap = newBitmap;
+
+                oldBitmap.Dispose();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void Render(Graphics g)
+        {
+            if (IsCached)
+            {
+                lock (bitmapLock)
+                {
+                    g.DrawImage(Bitmap, 0, 0);
+                }
+            }
+            else
+            {
+                while (Buffer.TryDequeue(out IRenderable renderable))
+                {
+                    renderable.Render(g);
+                }
+            }
+        }
+
+        public void Render()
+        {
+            lock (bitmapLock)
+            {
+                using (Graphics g = Graphics.FromImage(Bitmap))
+                {
+                    Render(g);
+                }
+
+                IsCached = true;
+            }
         }
     }
 }

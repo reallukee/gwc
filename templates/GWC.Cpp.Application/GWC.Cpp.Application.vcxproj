@@ -251,10 +251,11 @@ IF NOT EXIST "$(OutputPath)gwc.native-$(PlatformTarget).dll" COPY "$(ProjectDir)
     <ClInclude Include="include\types.hpp" />
     <ClInclude Include="include\Color.hpp" />
     <ClInclude Include="include\Point.hpp" />
-    <ClInclude Include="include\Render.hpp" />
-    <ClInclude Include="include\Canvas.hpp" />
     <ClInclude Include="include\Keys.hpp" />
     <ClInclude Include="include\MouseButtons.hpp" />
+    <ClInclude Include="include\Render.hpp" />
+    <ClInclude Include="include\Sprite.hpp" />
+    <ClInclude Include="include\Canvas.hpp" />
     <ClInclude Include="include\Window.hpp" />
   </ItemGroup>
   <ItemGroup>

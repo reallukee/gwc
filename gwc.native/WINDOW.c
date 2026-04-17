@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.2.1
+// v0.3.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -400,4 +400,28 @@ bool window_drawBorderRectangle(const WINDOW* window, int x, int y, int width, i
 bool window_drawFillRectangle(const WINDOW* window, int x, int y, int width, int height)
 {
     CCI_WINDOW_BOOL_C(window, DrawFillRectangle(x, y, width, height));
+}
+
+
+
+bool window_drawBorderCircle(const WINDOW* window, int x, int y, int radius)
+{
+    CCI_WINDOW_BOOL_C(window, DrawBorderCircle(x, y, radius));
+}
+
+bool window_drawFillCircle(const WINDOW* window, int x, int y, int radius)
+{
+    CCI_WINDOW_BOOL_C(window, DrawFillCircle(x, y, radius));
+}
+
+
+
+bool window_drawBorderEllipse(const WINDOW* window, int x, int y, int width, int height)
+{
+    CCI_WINDOW_BOOL_C(window, DrawBorderEllipse(x, y, width, height));
+}
+
+bool window_drawFillEllipse(const WINDOW* window, int x, int y, int width, int height)
+{
+    CCI_WINDOW_BOOL_C(window, DrawFillEllipse(x, y, width, height));
 }

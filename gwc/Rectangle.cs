@@ -1,7 +1,7 @@
 //
 // :.:.:.
 // GWC
-// v0.1.0
+// v0.3.0
 // :.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -28,61 +28,89 @@ using System.Windows.Forms;
 
 namespace Reallukee.GWC
 {
-    public class Rectangle
+    internal class Rectangle : IFigure
     {
         public Rectangle(int x, int y, int width, int height)
         {
-            X      = x;
-            Y      = y;
-            Width  = width;
-            Height = height;
+            this.X      = x;
+            this.Y      = y;
+            this.Width  = width;
+            this.Height = height;
         }
 
-        private int x;
+        public Rectangle(Point location, Size size)
+        {
+            this.X      = location.X;
+            this.Y      = location.Y;
+            this.Width  = size.Width;
+            this.Height = size.Height;
+        }
+
+        public Rectangle() : this(0, 0, 0, 0) { }
+
+
 
         public int X
         {
-            get => x;
-            set => x = value;
+            get;
+            set;
         }
-
-        private int y;
 
         public int Y
         {
-            get => y;
-            set => y = value;
+            get;
+            set;
         }
-
-        private int width;
 
         public int Width
         {
-            get => width;
-            set => width = value;
+            get;
+            set;
         }
-
-        private int height;
 
         public int Height
         {
-            get => height;
-            set => height = value;
+            get;
+            set;
         }
 
-        public override bool Equals(object obj)
-        {
-            Rectangle rectangle = obj as Rectangle;
 
-            if (rectangle == null)
+
+        public Size  Size     => new Size (Width, Height);
+        public Point Location => new Point(X, Y);
+
+
+
+        public static bool operator ==(Rectangle left, Rectangle right)
+        {
+            if (ReferenceEquals(left, right))
+            {
+                return true;
+            }
+
+            if (left == null || right == null)
             {
                 return false;
             }
 
-            return X      == rectangle.X      &&
-                   Y      == rectangle.Y      &&
-                   Width  == rectangle.Width  &&
-                   Height == rectangle.Height;
+            return left.X      == right.X      &&
+                   left.Y      == right.Y      &&
+                   left.Width  == right.Width  &&
+                   left.Height == right.Height;
+        }
+
+        public static bool operator !=(Rectangle left, Rectangle right)
+        {
+            return !(left == right);
+        }
+
+
+
+        public override bool Equals(object obj)
+        {
+            Rectangle other = obj as Rectangle;
+
+            return this == other;
         }
 
         public override int GetHashCode()

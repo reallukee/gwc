@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.2.0
+// v0.3.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -15,14 +15,19 @@
 #ifndef GWC_TYPES_H
 #define GWC_TYPES_H
 
-#ifndef CLR_WINDOW
-typedef void* CLRWindow;
-#define CLR_WINDOW void*
-#endif // !CLR_WINDOW
+#ifndef CLR_SPRITE
+#define CLR_SPRITE void*
+typedef void* CLRSprite;
+#endif // !CLR_SPRITE
 
 #ifndef CLR_CANVAS
-typedef void* CLRCanvas;
 #define CLR_CANVAS void*
+typedef void* CLRCanvas;
 #endif // !CLR_CANVAS
+
+#ifndef CLR_WINDOW
+#define CLR_WINDOW void*
+typedef void* CLRWindow;
+#endif // !CLR_WINDOW
 
 #endif // !GWC_TYPES_H

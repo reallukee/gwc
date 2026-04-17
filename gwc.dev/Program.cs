@@ -1,7 +1,7 @@
 //
 // :.:.:.
 // GWC
-// v0.2.1
+// v0.3.0
 // :.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -56,13 +56,6 @@ namespace Reallukee.GWC
                         continue;
                     }
 
-                    if (key == Keys.I)
-                    {
-                        ShowInfo(window);
-
-                        continue;
-                    }
-
                     Console.WriteLine($"Pressed: {modifiers}, {key}");
 
                     window.BorderColor = GenerateRandomColor();
@@ -81,6 +74,8 @@ namespace Reallukee.GWC
             }
 
             window.Dispose();
+
+            Environment.Exit(0);
         }
 
         static Color GenerateRandomColor()
@@ -95,16 +90,6 @@ namespace Reallukee.GWC
             Color randomColor = Color.FromArgb(alpha, red, green, blue);
 
             return randomColor;
-        }
-
-        static void ShowInfo(Window window)
-        {
-            Console.WriteLine($"Window Width  : {window.WindowWidth}");
-            Console.WriteLine($"Window Height : {window.WindowHeight}");
-            Console.WriteLine($"Render Width  : {window.RenderWidth}");
-            Console.WriteLine($"Render Height : {window.RenderHeight}");
-            Console.WriteLine($"Canvas Width  : {window.CanvasWidth}");
-            Console.WriteLine($"Canvas height : {window.CanvasHeight}");
         }
     }
 }
