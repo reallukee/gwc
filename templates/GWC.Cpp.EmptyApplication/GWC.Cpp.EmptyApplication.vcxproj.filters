@@ -45,16 +45,19 @@
     <ClInclude Include="include\Point.hpp">
       <Filter>GWC\Include</Filter>
     </ClInclude>
-    <ClInclude Include="include\Render.hpp">
-      <Filter>GWC\Include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Canvas.hpp">
-      <Filter>GWC\Include</Filter>
-    </ClInclude>
     <ClInclude Include="include\Keys.hpp">
       <Filter>GWC\Include</Filter>
     </ClInclude>
     <ClInclude Include="include\MouseButtons.hpp">
+      <Filter>GWC\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Render.hpp">
+      <Filter>GWC\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sprite.hpp">
+      <Filter>GWC\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Canvas.hpp">
       <Filter>GWC\Include</Filter>
     </ClInclude>
     <ClInclude Include="include\Window.hpp">
