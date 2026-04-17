@@ -118,9 +118,9 @@
     \
     Drawing::Color managedColor = Drawing::Color::FromArgb( \
         nativeColor.getAlpha(), \
-        nativeColor.getRed(), \
+        nativeColor.getRed  (), \
         nativeColor.getGreen(), \
-        nativeColor.getBlue() \
+        nativeColor.getBlue () \
     ); \
     \
     SpriteHandler::Invoke(managedHandle)->BorderColor = managedColor;

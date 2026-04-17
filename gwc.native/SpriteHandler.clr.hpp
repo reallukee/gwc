@@ -41,7 +41,7 @@ namespace Reallukee
 
             private:
 
-                SpriteHandler();
+                SpriteHandler ();
                 ~SpriteHandler();
 
             };

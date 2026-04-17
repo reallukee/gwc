@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.2.0
+// v0.3.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -126,9 +126,9 @@
     \
     Drawing::Color managedColor = Drawing::Color::FromArgb( \
         color_getAlpha(nativeColor), \
-        color_getRed(nativeColor), \
+        color_getRed  (nativeColor), \
         color_getGreen(nativeColor), \
-        color_getBlue(nativeColor) \
+        color_getBlue (nativeColor) \
     ); \
     \
     WindowHandler::Invoke(managedHandle)->target = managedColor;

@@ -41,7 +41,7 @@ namespace Interop
 
     private:
 
-        WindowHandler();
+        WindowHandler ();
         ~WindowHandler();
 
     };
