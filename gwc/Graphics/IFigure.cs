@@ -1,7 +1,7 @@
 //
 // :.:.:.
 // GWC
-// v0.3.0
+// v0.3.1
 // :.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -30,7 +30,8 @@ namespace Reallukee.GWC
 {
     internal interface IFigure
     {
-        Point Location { get; }
-        Size  Size     { get; }
+        Rectangle Bounds   { get; }
+        Point     Location { get; }
+        Size      Size     { get; }
     }
 }

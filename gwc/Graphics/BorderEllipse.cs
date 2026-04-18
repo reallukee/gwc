@@ -28,7 +28,7 @@ using System.Windows.Forms;
 
 namespace Reallukee.GWC
 {
-    internal class BorderEllipse : Ellipse, IRenderable, IBorderColor
+    internal class BorderEllipse : BaseEllipse, IRenderable, IBorderColor
     {
         public BorderEllipse(Color borderColor, int x, int y, int width, int height) : base(x, y, width, height)
         {
@@ -78,8 +78,8 @@ namespace Reallukee.GWC
                 return false;
             }
 
-            Ellipse baseLeft = left;
-            Ellipse baseRight = right;
+            BaseEllipse baseLeft = left;
+            BaseEllipse baseRight = right;
 
             if (baseLeft == baseRight)
             {

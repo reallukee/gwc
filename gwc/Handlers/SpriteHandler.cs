@@ -1,12 +1,12 @@
 //
 // :.:.:.
 // GWC
-// v0.3.0
+// v0.3.1
 // :.:.:.
 //
 // https://github.com/reallukee/gwc
 //
-// WindowHandler.cs
+// SpriteHandler.cs
 //  Licenza MIT
 //
 
@@ -28,11 +28,11 @@ using System.Windows.Forms;
 
 namespace Reallukee.GWC.Interop
 {
-    internal static class WindowHandler
+    internal static class SpriteHandler
     {
         public static IntPtr Alloc(int width, int height)
         {
-            Window window = new Window(width, height);
+            Sprite window = new Sprite(width, height);
 
             GCHandle managedHandle = GCHandle.Alloc(window);
 
@@ -43,7 +43,7 @@ namespace Reallukee.GWC.Interop
 
         public static IntPtr Alloc()
         {
-            Window window = new Window();
+            Sprite window = new Sprite();
 
             GCHandle managedHandle = GCHandle.Alloc(window);
 
@@ -81,7 +81,7 @@ namespace Reallukee.GWC.Interop
 
 
 
-        public static Window Invoke(IntPtr handle)
+        public static Sprite Invoke(IntPtr handle)
         {
             if (handle == IntPtr.Zero)
             {
@@ -92,7 +92,7 @@ namespace Reallukee.GWC.Interop
 
             GCHandle managedHandle = GCHandle.FromIntPtr(nativeHandle);
 
-            Window window = (Window)managedHandle.Target;
+            Sprite window = (Sprite)managedHandle.Target;
 
             return window;
         }

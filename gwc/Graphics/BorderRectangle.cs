@@ -6,7 +6,7 @@
 //
 // https://github.com/reallukee/gwc
 //
-// FillRectangle.cs
+// BorderRectangle.cs
 //  Licenza MIT
 //
 
@@ -28,27 +28,27 @@ using System.Windows.Forms;
 
 namespace Reallukee.GWC
 {
-    internal class FillRectangle : Rectangle, IRenderable, IFillColor
+    internal class BorderRectangle : BaseRectangle, IRenderable, IBorderColor
     {
-        public FillRectangle(Color fillColor, int x, int y, int width, int height) : base(x, y, width, height)
+        public BorderRectangle(Color borderColor, int x, int y, int width, int height) : base(x, y, width, height)
         {
-            FillColor = fillColor;
+            BorderColor = borderColor;
         }
 
-        public FillRectangle(Color fillColor, Point location, Size size) : base(location, size)
+        public BorderRectangle(Color borderColor, Point location, Size size) : base(location, size)
         {
-            FillColor = fillColor;
+            BorderColor = borderColor;
         }
 
-        public FillRectangle(int x, int y, int width, int height) : this(Color.Green, x, y, width, height) { }
+        public BorderRectangle(int x, int y, int width, int height) : this(Color.Black, x, y, width, height) { }
 
-        public FillRectangle(Point location, Size size) : this(Color.Green, location, size) { }
+        public BorderRectangle(Point location, Size size) : this(Color.Black, location, size) { }
 
-        public FillRectangle() : this(Color.Green, 0, 0, 0, 0) { }
+        public BorderRectangle() : this(Color.Black, 0, 0, 0, 0) { }
 
 
 
-        public Color FillColor
+        public Color BorderColor
         {
             get;
             set;
@@ -58,15 +58,15 @@ namespace Reallukee.GWC
 
         public void Render(Graphics g)
         {
-            using (SolidBrush fill = new SolidBrush(FillColor))
+            using (Pen border = new Pen(BorderColor))
             {
-                g.FillRectangle(fill, X, Y, Width, Height);
+                g.DrawRectangle(border, X, Y, Width, Height);
             }
         }
 
 
 
-        public static bool operator ==(FillRectangle left, FillRectangle right)
+        public static bool operator ==(BorderRectangle left, BorderRectangle right)
         {
             if (ReferenceEquals(left, right))
             {
@@ -78,18 +78,18 @@ namespace Reallukee.GWC
                 return false;
             }
 
-            Rectangle baseLeft = left;
-            Rectangle baseRight = right;
+            BaseRectangle baseLeft = left;
+            BaseRectangle baseRight = right;
 
             if (baseLeft == baseRight)
             {
-                return left.FillColor == right.FillColor;
+                return left.BorderColor == right.BorderColor;
             }
 
             return false;
         }
 
-        public static bool operator !=(FillRectangle left, FillRectangle right)
+        public static bool operator !=(BorderRectangle left, BorderRectangle right)
         {
             return !(left == right);
         }
@@ -98,7 +98,7 @@ namespace Reallukee.GWC
 
         public override bool Equals(object obj)
         {
-            FillRectangle other = obj as FillRectangle;
+            BorderRectangle other = obj as BorderRectangle;
 
             return this == other;
         }
@@ -109,7 +109,7 @@ namespace Reallukee.GWC
             {
                 int hash = 17;
 
-                hash = hash * 23 + FillColor.GetHashCode();
+                hash = hash * 23 + BorderColor.GetHashCode();
                 hash = hash * 23 + X;
                 hash = hash * 23 + Y;
                 hash = hash * 23 + Width;
@@ -122,8 +122,8 @@ namespace Reallukee.GWC
         public override string ToString()
         {
             return string.Format(
-                "FillRectangle: FillColor={0}, X={1}, Y={2}, Width={3}, Height={4}",
-                FillColor,
+                "BorderRectangle: BorderColor={0}, X={1}, Y={2}, Width={3}, Height={4}",
+                BorderColor,
                 X,
                 Y,
                 Width,

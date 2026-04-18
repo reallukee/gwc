@@ -1,7 +1,7 @@
 //
 // :.:.:.
 // GWC
-// v0.3.0
+// v0.3.1
 // :.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -28,9 +28,9 @@ using System.Windows.Forms;
 
 namespace Reallukee.GWC
 {
-    internal class Rectangle : IFigure
+    internal class BaseRectangle : IFigure
     {
-        public Rectangle(int x, int y, int width, int height)
+        public BaseRectangle(int x, int y, int width, int height)
         {
             this.X      = x;
             this.Y      = y;
@@ -38,7 +38,7 @@ namespace Reallukee.GWC
             this.Height = height;
         }
 
-        public Rectangle(Point location, Size size)
+        public BaseRectangle(Point location, Size size)
         {
             this.X      = location.X;
             this.Y      = location.Y;
@@ -46,7 +46,7 @@ namespace Reallukee.GWC
             this.Height = size.Height;
         }
 
-        public Rectangle() : this(0, 0, 0, 0) { }
+        public BaseRectangle() : this(0, 0, 0, 0) { }
 
 
 
@@ -76,12 +76,13 @@ namespace Reallukee.GWC
 
 
 
-        public Size  Size     => new Size (Width, Height);
+        public Rectangle Bounds => new Rectangle(X, Y, Width, Height);
+        public Size Size => new Size(Width, Height);
         public Point Location => new Point(X, Y);
 
 
 
-        public static bool operator ==(Rectangle left, Rectangle right)
+        public static bool operator ==(BaseRectangle left, BaseRectangle right)
         {
             if (ReferenceEquals(left, right))
             {
@@ -99,7 +100,7 @@ namespace Reallukee.GWC
                    left.Height == right.Height;
         }
 
-        public static bool operator !=(Rectangle left, Rectangle right)
+        public static bool operator !=(BaseRectangle left, BaseRectangle right)
         {
             return !(left == right);
         }
@@ -108,7 +109,7 @@ namespace Reallukee.GWC
 
         public override bool Equals(object obj)
         {
-            Rectangle other = obj as Rectangle;
+            BaseRectangle other = obj as BaseRectangle;
 
             return this == other;
         }

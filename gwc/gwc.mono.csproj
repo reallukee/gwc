@@ -56,26 +56,26 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="IFigure.cs" />
-    <Compile Include="IRenderable.cs" />
-    <Compile Include="IBorderColor.cs" />
-    <Compile Include="IFillColor.cs" />
-    <Compile Include="Rectangle.cs" />
-    <Compile Include="Ellipse.cs" />
-    <Compile Include="BorderRectangle.cs" />
-    <Compile Include="BorderEllipse.cs" />
-    <Compile Include="FillRectangle.cs" />
-    <Compile Include="FillEllipse.cs" />
+    <Compile Include="Graphics\IFigure.cs" />
+    <Compile Include="Graphics\IRenderable.cs" />
+    <Compile Include="Graphics\IBorderColor.cs" />
+    <Compile Include="Graphics\IFillColor.cs" />
+    <Compile Include="Graphics\BaseRectangle.cs" />
+    <Compile Include="Graphics\BaseEllipse.cs" />
+    <Compile Include="Graphics\BorderRectangle.cs" />
+    <Compile Include="Graphics\BorderEllipse.cs" />
+    <Compile Include="Graphics\FillRectangle.cs" />
+    <Compile Include="Graphics\FillEllipse.cs" />
     <Compile Include="Render.cs" />
     <Compile Include="WindowForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Sprite.cs" />
-    <Compile Include="SpriteHandler.cs" />
+    <Compile Include="Handlers\SpriteHandler.cs" />
     <Compile Include="Canvas.cs" />
-    <Compile Include="CanvasHandler.cs" />
+    <Compile Include="Handlers\CanvasHandler.cs" />
     <Compile Include="Window.cs" />
-    <Compile Include="WindowHandler.cs" />
+    <Compile Include="Handlers\WindowHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

@@ -1,7 +1,7 @@
 //
 // :.:.:.
 // GWC
-// v0.3.0
+// v0.3.1
 // :.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -118,8 +118,9 @@ namespace Reallukee.GWC
 
 
 
-        public Size  Size     => new Size (Width, Height);
-        public Point Location => new Point(0, 0);
+        public Rectangle Bounds   => new Rectangle(0, 0, Width, Height);
+        public Size      Size     => new Size     (Width, Height);
+        public Point     Location => new Point    (0, 0);
 
 
 

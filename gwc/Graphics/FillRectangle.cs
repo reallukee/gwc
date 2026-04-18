@@ -6,7 +6,7 @@
 //
 // https://github.com/reallukee/gwc
 //
-// FillEllipse.cs
+// FillRectangle.cs
 //  Licenza MIT
 //
 
@@ -28,23 +28,23 @@ using System.Windows.Forms;
 
 namespace Reallukee.GWC
 {
-    internal class FillEllipse : Ellipse, IRenderable, IFillColor
+    internal class FillRectangle : BaseRectangle, IRenderable, IFillColor
     {
-        public FillEllipse(Color fillColor, int x, int y, int width, int height) : base(x, y, width, height)
+        public FillRectangle(Color fillColor, int x, int y, int width, int height) : base(x, y, width, height)
         {
             FillColor = fillColor;
         }
 
-        public FillEllipse(Color fillColor, Point location, Size size) : base(location, size)
+        public FillRectangle(Color fillColor, Point location, Size size) : base(location, size)
         {
             FillColor = fillColor;
         }
 
-        public FillEllipse(int x, int y, int width, int height) : this(Color.Green, x, y, width, height) { }
+        public FillRectangle(int x, int y, int width, int height) : this(Color.Green, x, y, width, height) { }
 
-        public FillEllipse(Point location, Size size) : this(Color.Green, location, size) { }
+        public FillRectangle(Point location, Size size) : this(Color.Green, location, size) { }
 
-        public FillEllipse() : this(Color.Green, 0, 0, 0, 0) { }
+        public FillRectangle() : this(Color.Green, 0, 0, 0, 0) { }
 
 
 
@@ -60,13 +60,13 @@ namespace Reallukee.GWC
         {
             using (SolidBrush fill = new SolidBrush(FillColor))
             {
-                g.FillEllipse(fill, X - Width / 2, Y - Height / 2, Width, Height);
+                g.FillRectangle(fill, X, Y, Width, Height);
             }
         }
 
 
 
-        public static bool operator ==(FillEllipse left, FillEllipse right)
+        public static bool operator ==(FillRectangle left, FillRectangle right)
         {
             if (ReferenceEquals(left, right))
             {
@@ -78,8 +78,8 @@ namespace Reallukee.GWC
                 return false;
             }
 
-            Ellipse baseLeft = left;
-            Ellipse baseRight = right;
+            BaseRectangle baseLeft = left;
+            BaseRectangle baseRight = right;
 
             if (baseLeft == baseRight)
             {
@@ -89,7 +89,7 @@ namespace Reallukee.GWC
             return false;
         }
 
-        public static bool operator !=(FillEllipse left, FillEllipse right)
+        public static bool operator !=(FillRectangle left, FillRectangle right)
         {
             return !(left == right);
         }
@@ -98,7 +98,7 @@ namespace Reallukee.GWC
 
         public override bool Equals(object obj)
         {
-            FillEllipse other = obj as FillEllipse;
+            FillRectangle other = obj as FillRectangle;
 
             return this == other;
         }
@@ -122,7 +122,7 @@ namespace Reallukee.GWC
         public override string ToString()
         {
             return string.Format(
-                "FillEllipse: FillColor={0}, X={1}, Y={2}, Width={3}, Height={4}",
+                "FillRectangle: FillColor={0}, X={1}, Y={2}, Width={3}, Height={4}",
                 FillColor,
                 X,
                 Y,
