@@ -28,7 +28,7 @@ using System.Windows.Forms;
 
 namespace Reallukee.GWC.Interop
 {
-    internal static class CanvasHandler
+    public static class CanvasHandler
     {
         public static IntPtr Alloc(int width, int height)
         {

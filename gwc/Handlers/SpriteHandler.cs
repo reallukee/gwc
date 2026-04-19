@@ -28,7 +28,7 @@ using System.Windows.Forms;
 
 namespace Reallukee.GWC.Interop
 {
-    internal static class SpriteHandler
+    public static class SpriteHandler
     {
         public static IntPtr Alloc(int width, int height)
         {

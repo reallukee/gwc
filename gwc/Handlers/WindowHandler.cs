@@ -28,7 +28,7 @@ using System.Windows.Forms;
 
 namespace Reallukee.GWC.Interop
 {
-    internal static class WindowHandler
+    public static class WindowHandler
     {
         public static IntPtr Alloc(int width, int height)
         {
