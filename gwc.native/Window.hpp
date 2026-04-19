@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.0
+// v0.3.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -104,7 +104,7 @@ namespace gwc
 
     private:
 
-        CLRWindow window;
+        CLRWindowHost window;
 
     };
 }

@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.0
+// v0.3.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -9,6 +9,9 @@
 // WindowHandler.clr.hpp
 //  Licenza MIT
 //
+
+// /!\ Deprecato
+//     Guarda WindowHost.
 
 #pragma once
 

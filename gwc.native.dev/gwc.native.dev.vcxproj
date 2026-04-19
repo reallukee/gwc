@@ -250,9 +250,9 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="..\gwc.native\header.clr.hpp" />
     <ClInclude Include="..\gwc.native\gwc.clr.hpp" />
-    <ClInclude Include="..\gwc.native\SpriteHandler.clr.hpp" />
-    <ClInclude Include="..\gwc.native\CanvasHandler.clr.hpp" />
-    <ClInclude Include="..\gwc.native\WindowHandler.clr.hpp" />
+    <ClInclude Include="..\gwc.native\SpriteHost.clr.hpp" />
+    <ClInclude Include="..\gwc.native\CanvasHost.clr.hpp" />
+    <ClInclude Include="..\gwc.native\WindowHost.clr.hpp" />
     <ClInclude Include="..\gwc.native\export.hpp" />
     <ClInclude Include="..\gwc.native\header.hpp" />
     <ClInclude Include="..\gwc.native\gwc.hpp" />
@@ -286,9 +286,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.clr.cpp" />
-    <ClCompile Include="..\gwc.native\SpriteHandler.clr.cpp" />
-    <ClCompile Include="..\gwc.native\CanvasHandler.clr.cpp" />
-    <ClCompile Include="..\gwc.native\WindowHandler.clr.cpp" />
+    <ClCompile Include="..\gwc.native\SpriteHost.clr.cpp" />
+    <ClCompile Include="..\gwc.native\CanvasHost.clr.cpp" />
+    <ClCompile Include="..\gwc.native\WindowHost.clr.cpp" />
     <ClCompile Include="..\gwc.native\gwc.cpp" />
     <ClCompile Include="..\gwc.native\Color.cpp" />
     <ClCompile Include="..\gwc.native\Point.cpp" />

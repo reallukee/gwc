@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.0
+// v0.3.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -16,15 +16,13 @@
 #include "canvas_macros.h"
 
 typedef struct CANVAS {
-    CLRCanvas canvas;
+    CLRCanvasHost canvas;
 } CANVAS;
 
 
 
 CANVAS* canvas_new(int width, int height)
 {
-    IntPtr managedHandle = CanvasHandler::Alloc(width, height);
-
     CANVAS* canvas = (CANVAS*)calloc(1, sizeof(CANVAS));
 
     if (canvas == NULL)
@@ -32,9 +30,9 @@ CANVAS* canvas_new(int width, int height)
         return NULL;
     }
 
-    CLRCanvas nativeHandle = reinterpret_cast<CLRCanvas>(managedHandle.ToPointer());
+    CanvasHost* host = new CanvasHost(width, height);
 
-    canvas->canvas = nativeHandle;
+    canvas->canvas = static_cast<CLRCanvasHost>(host);
 
     return canvas;
 }
@@ -46,19 +44,9 @@ void canvas_delete(CANVAS* canvas)
         return;
     }
 
-    CLRCanvas nativeHandle = canvas->canvas;
+    CanvasHost* host = static_cast<CanvasHost*>(canvas->canvas);
 
-    if (nativeHandle)
-    {
-        IntPtr managedHandle = IntPtr(nativeHandle);
-
-        if (CanvasHandler::IsNull(managedHandle))
-        {
-            return;
-        }
-
-        CanvasHandler::Free(managedHandle);
-    }
+    delete host;
 
     free(canvas);
 }
@@ -72,7 +60,14 @@ bool canvas_isInitialized(const CANVAS* canvas)
         return false;
     }
 
-    return canvas->canvas != NULL;
+    CanvasHost* host = static_cast<CanvasHost*>(canvas->canvas);
+
+    if (host == nullptr)
+    {
+        return false;
+    }
+
+    return !host->isNull();
 }
 
 

@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.0
+// v0.3.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -16,15 +16,13 @@
 #include "window_macros.h"
 
 typedef struct WINDOW {
-    CLRWindow window;
+    CLRWindowHost window;
 } WINDOW;
 
 
 
 WINDOW* window_new(int width, int height)
 {
-    IntPtr managedHandle = WindowHandler::Alloc(width, height);
-
     WINDOW* window = (WINDOW*)calloc(1, sizeof(WINDOW));
 
     if (window == NULL)
@@ -32,9 +30,9 @@ WINDOW* window_new(int width, int height)
         return NULL;
     }
 
-    CLRWindow nativeHandle = reinterpret_cast<CLRWindow>(managedHandle.ToPointer());
+    WindowHost* host = new WindowHost(width, height);
 
-    window->window = nativeHandle;
+    window->window = static_cast<CLRWindowHost>(host);
 
     return window;
 }
@@ -46,19 +44,9 @@ void window_delete(WINDOW* window)
         return;
     }
 
-    CLRWindow nativeHandle = window->window;
+    WindowHost* host = static_cast<WindowHost*>(window->window);
 
-    if (nativeHandle != NULL)
-    {
-        IntPtr managedHandle = IntPtr(nativeHandle);
-
-        if (WindowHandler::IsNull(managedHandle))
-        {
-            return;
-        }
-
-        WindowHandler::Free(managedHandle);
-    }
+    delete host;
 
     free(window);
 }
@@ -72,7 +60,14 @@ bool window_isInitialized(const WINDOW* window)
         return false;
     }
 
-    return window->window != NULL;
+    WindowHost* host = static_cast<WindowHost*>(window->window);
+
+    if (host == nullptr)
+    {
+        return false;
+    }
+
+    return !host->isNull();
 }
 
 
@@ -174,7 +169,7 @@ bool window_consumeKeyDown(const WINDOW* window, Keys* modifiers, Keys* key)
     Windows::Forms::Keys managedModifiers;
     Windows::Forms::Keys managedKey;
 
-    bool result = WindowHandler::Invoke(managedHandle)->ConsumeKeyDown(
+    bool result = host->invoke()->ConsumeKeyDown(
         managedModifiers, managedKey
     );
 
@@ -231,7 +226,7 @@ bool window_consumeKeyUp(const WINDOW* window, Keys* modifiers, Keys* key)
     Windows::Forms::Keys managedModifiers;
     Windows::Forms::Keys managedKey;
 
-    bool result = WindowHandler::Invoke(managedHandle)->ConsumeKeyUp(
+    bool result = host->invoke()->ConsumeKeyUp(
         managedModifiers, managedKey
     );
 
@@ -283,7 +278,7 @@ bool window_consumeMouseDown(const WINDOW* window, Point** location, MouseButton
     Drawing::Point               managedLocation;
     Windows::Forms::MouseButtons managedButton;
 
-    bool result = WindowHandler::Invoke(managedHandle)->ConsumeMouseDown(
+    bool result = host->invoke()->ConsumeMouseDown(
         managedLocation, managedButton
     );
 
@@ -334,7 +329,7 @@ bool window_consumeMouseUp(const WINDOW* window, Point** location, MouseButtons*
     Drawing::Point               managedLocation;
     Windows::Forms::MouseButtons managedButton;
 
-    bool result = WindowHandler::Invoke(managedHandle)->ConsumeMouseUp(
+    bool result = host->invoke()->ConsumeMouseUp(
         managedLocation, managedButton
     );
 

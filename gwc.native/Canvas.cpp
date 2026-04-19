@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.0
+// v0.3.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -21,43 +21,37 @@ namespace gwc
 {
     Canvas::Canvas(int width, int height)
     {
-        IntPtr managedHandle = CanvasHandler::Alloc(width, height);
+        CanvasHost* host = new CanvasHost(width, height);
 
-        CLRCanvas nativeHandle = reinterpret_cast<CLRCanvas>(managedHandle.ToPointer());
-
-        canvas = nativeHandle;
+        canvas = static_cast<CLRCanvasHost>(host);
     }
 
     Canvas::Canvas()
     {
-        IntPtr managedHandle = CanvasHandler::Alloc();
+        CanvasHost* host = new CanvasHost();
 
-        CLRCanvas nativeHandle = reinterpret_cast<CLRCanvas>(managedHandle.ToPointer());
-
-        canvas = nativeHandle;
+        canvas = static_cast<CLRCanvasHost>(host);
     }
 
     Canvas::~Canvas()
     {
-        CLRCanvas nativeHandle = canvas;
+        CanvasHost* host = static_cast<CanvasHost*>(canvas);
 
-        IntPtr managedHandle = IntPtr(nativeHandle);
-
-        if (CanvasHandler::IsNull(managedHandle))
-        {
-            return;
-        }
-
-        CanvasHandler::Free(managedHandle);
+        delete host;
     }
 
 
 
     bool Canvas::isInitialized()
     {
-        CLRCanvas nativeHandle = canvas;
+        CanvasHost* host = static_cast<CanvasHost*>(canvas);
 
-        return nativeHandle != nullptr;
+        if (host == nullptr)
+        {
+            return false;
+        }
+
+        return !host->isNull();
     }
 
 

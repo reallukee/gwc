@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.0
+// v0.3.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -16,15 +16,13 @@
 #include "sprite_macros.h"
 
 typedef struct SPRITE {
-    CLRSprite sprite;
+    CLRSpriteHost sprite;
 } SPRITE;
 
 
 
 SPRITE* sprite_new(int width, int height)
 {
-    IntPtr managedHandle = SpriteHandler::Alloc(width, height);
-
     SPRITE* sprite = (SPRITE*)calloc(1, sizeof(SPRITE));
 
     if (sprite == NULL)
@@ -32,9 +30,9 @@ SPRITE* sprite_new(int width, int height)
         return NULL;
     }
 
-    CLRSprite nativeHandle = reinterpret_cast<CLRSprite>(managedHandle.ToPointer());
+    SpriteHost* host = new SpriteHost(width, height);
 
-    sprite->sprite = nativeHandle;
+    sprite->sprite = static_cast<CLRSpriteHost>(host);
 
     return sprite;
 }
@@ -46,19 +44,9 @@ void sprite_delete(SPRITE* sprite)
         return;
     }
 
-    CLRSprite nativeHandle = sprite->sprite;
+    SpriteHost* host = static_cast<SpriteHost*>(sprite->sprite);
 
-    if (nativeHandle)
-    {
-        IntPtr managedHandle = IntPtr(nativeHandle);
-
-        if (SpriteHandler::IsNull(managedHandle))
-        {
-            return;
-        }
-
-        SpriteHandler::Free(managedHandle);
-    }
+    delete host;
 
     free(sprite);
 }
@@ -72,7 +60,14 @@ bool sprite_isInitialized(const SPRITE* sprite)
         return false;
     }
 
-    return sprite->sprite != NULL;
+    SpriteHost* host = static_cast<SpriteHost*>(sprite->sprite);
+
+    if (host == nullptr)
+    {
+        return false;
+    }
+
+    return !host->isNull();
 }
 
 

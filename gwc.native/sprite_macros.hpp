@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.0
+// v0.3.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -19,13 +19,13 @@
 
 #include "Color.hpp"
 
+#include "SpriteHost.clr.hpp"
+
 #ifndef CC_SPRITE_VOID_CPP
 #define CC_SPRITE_VOID_CPP(sprite) \
-    CLRSprite nativeHandle = sprite; \
+    SpriteHost* host= static_cast<SpriteHost*>(sprite); \
     \
-    IntPtr managedHandle = IntPtr(nativeHandle); \
-    \
-    if (SpriteHandler::IsNull(managedHandle)) \
+    if (host->isNull()) \
     { \
         return; \
     }
@@ -33,11 +33,9 @@
 
 #ifndef CC_SPRITE_BOOL_CPP
 #define CC_SPRITE_BOOL_CPP(sprite) \
-    CLRSprite nativeHandle = sprite; \
+    SpriteHost* host= static_cast<SpriteHost*>(sprite); \
     \
-    IntPtr managedHandle = IntPtr(nativeHandle); \
-    \
-    if (SpriteHandler::IsNull(managedHandle)) \
+    if (host->isNull()) \
     { \
         return false; \
     }
@@ -45,11 +43,9 @@
 
 #ifndef CC_SPRITE_INT_CPP
 #define CC_SPRITE_INT_CPP(sprite) \
-    CLRSprite nativeHandle = sprite; \
+    SpriteHost* host= static_cast<SpriteHost*>(sprite); \
     \
-    IntPtr managedHandle = IntPtr(nativeHandle); \
-    \
-    if (SpriteHandler::IsNull(managedHandle)) \
+    if (host->isNull()) \
     { \
         return -1; \
     }
@@ -61,37 +57,35 @@
 #define CCI_SPRITE_VOID_CPP(sprite, target) \
     CC_SPRITE_VOID_CPP(sprite) \
     \
-    SpriteHandler::Invoke(managedHandle)->target;
+    host->invoke()->target;
 #endif // !CCI_SPRITE_VOID_CPP
 
 #ifndef CCI_SPRITE_BOOL_CPP
 #define CCI_SPRITE_BOOL_CPP(sprite, target) \
     CC_SPRITE_BOOL_CPP(sprite) \
     \
-    return SpriteHandler::Invoke(managedHandle)->target;
+    return host->invoke()->target;
 #endif // !CCI_SPRITE_BOOL_CPP
 
 #ifndef CCI_SPRITE_INT_CPP
 #define CCI_SPRITE_INT_CPP(sprite, target) \
     CC_SPRITE_INT_CPP(sprite) \
     \
-    return SpriteHandler::Invoke(managedHandle)->target;
+    return host->invoke()->target;
 #endif // !CCI_SPRITE_INT_CPP
 
 
 
 #ifndef CCI_SPRITE_GET_COLOR_CPP
 #define CCI_SPRITE_GET_COLOR_CPP(sprite, target) \
-    CLRSprite nativeHandle = sprite; \
+    SpriteHost* host = static_cast<SpriteHost*>(sprite); \
     \
-    IntPtr managedHandle = IntPtr(nativeHandle); \
-    \
-    if (SpriteHandler::IsNull(managedHandle)) \
+    if (host->isNull()) \
     { \
         throw gcnew NullReferenceException(""); \
     } \
     \
-    Drawing::Color^ managedBorderColor = SpriteHandler::Invoke(managedHandle)->target; \
+    Drawing::Color^ managedBorderColor = host->invoke()->target; \
     \
     Color nativeColor = Color( \
         (int)managedBorderColor->A, \
@@ -105,11 +99,9 @@
 
 #ifndef CCI_SPRITE_SET_COLOR_CPP
 #define CCI_SPRITE_SET_COLOR_CPP(sprite, target, color) \
-    CLRSprite nativeHandle = sprite; \
+    SpriteHost* host = static_cast<SpriteHost*>(sprite); \
     \
-    IntPtr managedHandle = IntPtr(nativeHandle); \
-    \
-    if (SpriteHandler::IsNull(managedHandle)) \
+    if (host->isNull()) \
     { \
         throw gcnew NullReferenceException(""); \
     } \
@@ -123,7 +115,7 @@
         nativeColor.getBlue () \
     ); \
     \
-    SpriteHandler::Invoke(managedHandle)->BorderColor = managedColor;
+    host->invoke()->target = managedColor;
 #endif // !CCI_SPRITE_SET_COLOR_CPP
 
 #endif // __cplusplus

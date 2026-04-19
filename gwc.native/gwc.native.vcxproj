@@ -238,9 +238,9 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="header.clr.hpp" />
     <ClInclude Include="gwc.clr.hpp" />
-    <ClInclude Include="SpriteHandler.clr.hpp" />
-    <ClInclude Include="CanvasHandler.clr.hpp" />
-    <ClInclude Include="WindowHandler.clr.hpp" />
+    <ClInclude Include="SpriteHost.clr.hpp" />
+    <ClInclude Include="CanvasHost.clr.hpp" />
+    <ClInclude Include="WindowHost.clr.hpp" />
     <ClInclude Include="export.hpp" />
     <ClInclude Include="header.hpp" />
     <ClInclude Include="gwc.hpp" />
@@ -274,9 +274,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.clr.cpp" />
-    <ClCompile Include="SpriteHandler.clr.cpp" />
-    <ClCompile Include="CanvasHandler.clr.cpp" />
-    <ClCompile Include="WindowHandler.clr.cpp" />
+    <ClCompile Include="SpriteHost.clr.cpp" />
+    <ClCompile Include="CanvasHost.clr.cpp" />
+    <ClCompile Include="WindowHost.clr.cpp" />
     <ClCompile Include="gwc.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Point.cpp" />

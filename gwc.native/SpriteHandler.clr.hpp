@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.0
+// v0.3.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -9,6 +9,9 @@
 // SpriteHandler.clr.hpp
 //  Licenza MIT
 //
+
+// /!\ Deprecato
+//     Guarda SpriteHost.
 
 #pragma once
 
@@ -21,32 +24,32 @@
 
 namespace Reallukee
 {
-    namespace GWC
+namespace GWC
+{
+namespace Interop
+{
+    public ref class SpriteHandler abstract
     {
-        namespace Interop
-        {
-            public ref class SpriteHandler abstract
-            {
 
-            public:
+    public:
 
-                static IntPtr  Alloc(int width, int height);
-                static IntPtr  Alloc();
+        static IntPtr  Alloc(int width, int height);
+        static IntPtr  Alloc();
 
-                static bool    Free(IntPtr handle);
+        static bool    Free(IntPtr handle);
 
-                static bool    IsNull(IntPtr handle);
+        static bool    IsNull(IntPtr handle);
 
-                static Sprite^ Invoke(IntPtr handle);
+        static Sprite^ Invoke(IntPtr handle);
 
-            private:
+    private:
 
-                SpriteHandler ();
-                ~SpriteHandler();
+        SpriteHandler ();
+        ~SpriteHandler();
 
-            };
-        }
-    }
+    };
+}
+}
 }
 
 #endif // __cplusplus_cli

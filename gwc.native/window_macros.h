@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.0
+// v0.3.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -17,13 +17,13 @@
 
 #include "COLOR.h"
 
+#include "WindowHost.clr.hpp"
+
 #ifndef CC_WINDOW_VOID_C
 #define CC_WINDOW_VOID_C(window) \
-    CLRWindow nativeHandle = window->window; \
+    WindowHost* host = static_cast<WindowHost*>(window->window); \
     \
-    IntPtr managedHandle = IntPtr(nativeHandle); \
-    \
-    if (WindowHandler::IsNull(managedHandle)) \
+    if (host->isNull()) \
     { \
         return; \
     }
@@ -31,11 +31,9 @@
 
 #ifndef CC_WINDOW_BOOL_C
 #define CC_WINDOW_BOOL_C(window) \
-    CLRWindow nativeHandle = window->window; \
+    WindowHost* host = static_cast<WindowHost*>(window->window); \
     \
-    IntPtr managedHandle = IntPtr(nativeHandle); \
-    \
-    if (WindowHandler::IsNull(managedHandle)) \
+    if (host->isNull()) \
     { \
         return false; \
     }
@@ -43,11 +41,9 @@
 
 #ifndef CC_WINDOW_INT_C
 #define CC_WINDOW_INT_C(window) \
-    CLRWindow nativeHandle = window->window; \
+    WindowHost* host = static_cast<WindowHost*>(window->window); \
     \
-    IntPtr managedHandle = IntPtr(nativeHandle); \
-    \
-    if (WindowHandler::IsNull(managedHandle)) \
+    if (host->isNull()) \
     { \
         return -1; \
     }
@@ -59,21 +55,21 @@
 #define CCI_WINDOW_VOID_C(window, target) \
     CC_WINDOW_VOID_C(window) \
     \
-    WindowHandler::Invoke(managedHandle)->target;
+    host->invoke()->target;
 #endif // !CCI_WINDOW_VOID_C
 
 #ifndef CCI_WINDOW_BOOL_C
 #define CCI_WINDOW_BOOL_C(window, target) \
     CC_WINDOW_BOOL_C(window) \
     \
-    return WindowHandler::Invoke(managedHandle)->target;
+    return host->invoke()->target;
 #endif // !CCI_WINDOW_BOOL_C
 
 #ifndef CCI_WINDOW_INT_C
 #define CCI_WINDOW_INT_C(window, target) \
     CC_WINDOW_INT_C(window) \
     \
-    return WindowHandler::Invoke(managedHandle)->target;
+    return host->invoke()->target;
 #endif // !CCI_WINDOW_INT_C
 
 
@@ -85,16 +81,14 @@
         return color_new(0, 0, 0, 0); \
     } \
     \
-    CLRWindow nativeHandle = window->window; \
+    WindowHost* host = static_cast<WindowHost*>(window->window); \
     \
-    IntPtr managedHandle = IntPtr(nativeHandle); \
-    \
-    if (WindowHandler::IsNull(managedHandle)) \
+    if (host->isNull()) \
     { \
         throw gcnew NullReferenceException(""); \
     } \
     \
-    Drawing::Color^ managedBorderColor = WindowHandler::Invoke(managedHandle)->target; \
+    Drawing::Color^ managedBorderColor = host->invoke()->target; \
     \
     Color* nativeColor = color_new( \
         (int)managedBorderColor->A, \
@@ -113,11 +107,9 @@
         return; \
     } \
     \
-    CLRWindow nativeHandle = window->window; \
+    WindowHost* host = static_cast<WindowHost*>(window->window); \
     \
-    IntPtr managedHandle = IntPtr(nativeHandle); \
-    \
-    if (WindowHandler::IsNull(managedHandle)) \
+    if (host->isNull()) \
     { \
         throw gcnew NullReferenceException(""); \
     } \
@@ -131,7 +123,7 @@
         color_getBlue (nativeColor) \
     ); \
     \
-    WindowHandler::Invoke(managedHandle)->target = managedColor;
+    host->invoke()->target = managedColor;
 #endif // !CCI_WINDOW_SET_COLOR_C
 
 #endif // !GWC_WINDOW_MACROS_H

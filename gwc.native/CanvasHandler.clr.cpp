@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.0
+// v0.3.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -9,6 +9,9 @@
 // CanvasHandler.clr.cpp
 //  Licenza MIT
 //
+
+// /!\ Deprecato
+//     Guarda CanvasHost.
 
 #include "CanvasHandler.clr.hpp"
 

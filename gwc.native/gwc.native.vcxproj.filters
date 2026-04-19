@@ -45,13 +45,13 @@
     <ClInclude Include="gwc.clr.hpp">
       <Filter>File di intestazione\CLR API</Filter>
     </ClInclude>
-    <ClInclude Include="SpriteHandler.clr.hpp">
+    <ClInclude Include="SpriteHost.clr.hpp">
       <Filter>File di intestazione\CLR API</Filter>
     </ClInclude>
-    <ClInclude Include="CanvasHandler.clr.hpp">
+    <ClInclude Include="CanvasHost.clr.hpp">
       <Filter>File di intestazione\CLR API</Filter>
     </ClInclude>
-    <ClInclude Include="WindowHandler.clr.hpp">
+    <ClInclude Include="WindowHost.clr.hpp">
       <Filter>File di intestazione\CLR API</Filter>
     </ClInclude>
     <ClInclude Include="export.hpp">
@@ -149,13 +149,13 @@
     <ClCompile Include="AssemblyInfo.clr.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
-    <ClCompile Include="SpriteHandler.clr.cpp">
+    <ClCompile Include="SpriteHost.clr.cpp">
       <Filter>File di origine\CLR</Filter>
     </ClCompile>
-    <ClCompile Include="CanvasHandler.clr.cpp">
+    <ClCompile Include="CanvasHost.clr.cpp">
       <Filter>File di origine\CLR</Filter>
     </ClCompile>
-    <ClCompile Include="WindowHandler.clr.cpp">
+    <ClCompile Include="WindowHost.clr.cpp">
       <Filter>File di origine\CLR</Filter>
     </ClCompile>
     <ClCompile Include="gwc.cpp">

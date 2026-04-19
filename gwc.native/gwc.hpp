@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.0
+// v0.3.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -18,23 +18,35 @@
 #ifdef __cplusplus
 
 //
-// Ciao!
+// :.:.:.:.:.
+// Benvenuto!
+// :.:.:.:.:.
 //
-// Questo è l'header dell'API C++ di GWC!
-// La versione attesa dell'API è:
+// Grazie per aver scelto GWC <3.
 //
-//  0.3.0
+// Questo è l'header dell'API C++ di GWC.
+//
+// Versione API attesa:
+//  [0.3.1]
+// Versione MINIMA API attesa:
+//  [0.2.1]
+//
+// Assicurati di utilizzare versioni compatibili
+// dei binari e dei file di intestazione.
 //
 
-#define GWC_VERSION_INCLUDE     "030"
+#define GWC_VERSION_INCLUDE     "031"
 #define GWC_MIN_VERSION_INCLUDE "021"
 
 #include "types.hpp"
+
 #include "Color.hpp"
 #include "Point.hpp"
 #include "Keys.hpp"
 #include "MouseButtons.hpp"
+
 #include "Render.hpp"
+
 #include "Sprite.hpp"
 #include "Canvas.hpp"
 #include "Window.hpp"

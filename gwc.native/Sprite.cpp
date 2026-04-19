@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.0
+// v0.3.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -21,43 +21,37 @@ namespace gwc
 {
     Sprite::Sprite(int width, int height)
     {
-        IntPtr managedHandle = SpriteHandler::Alloc(width, height);
+        SpriteHost* host = new SpriteHost(width, height);
 
-        CLRSprite nativeHandle = reinterpret_cast<CLRSprite>(managedHandle.ToPointer());
-
-        sprite = nativeHandle;
+        sprite = static_cast<CLRSpriteHost>(host);
     }
 
     Sprite::Sprite()
     {
-        IntPtr managedHandle = SpriteHandler::Alloc();
+        SpriteHost* host = new SpriteHost();
 
-        CLRSprite nativeHandle = reinterpret_cast<CLRSprite>(managedHandle.ToPointer());
-
-        sprite = nativeHandle;
+        sprite = static_cast<CLRSpriteHost>(host);
     }
 
     Sprite::~Sprite()
     {
-        CLRSprite nativeHandle = sprite;
+        SpriteHost* host = static_cast<SpriteHost*>(sprite);
 
-        IntPtr managedHandle = IntPtr(nativeHandle);
-
-        if (SpriteHandler::IsNull(managedHandle))
-        {
-            return;
-        }
-
-        SpriteHandler::Free(managedHandle);
+        delete host;
     }
 
 
 
     bool Sprite::isInitialized()
     {
-        CLRSprite nativeHandle = sprite;
+        SpriteHost* host = static_cast<SpriteHost*>(sprite);
 
-        return nativeHandle != nullptr;
+        if (host == nullptr)
+        {
+            return false;
+        }
+
+        return !host->isNull();
     }
 
 

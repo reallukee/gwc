@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.0
+// v0.3.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -17,13 +17,13 @@
 
 #include "COLOR.h"
 
+#include "CanvasHost.clr.hpp"
+
 #ifndef CC_CANVAS_VOID_C
 #define CC_CANVAS_VOID_C(canvas) \
-    CLRCanvas nativeHandle = canvas->canvas; \
+    CanvasHost* host = static_cast<CanvasHost*>(canvas->canvas); \
     \
-    IntPtr managedHandle = IntPtr(nativeHandle); \
-    \
-    if (CanvasHandler::IsNull(managedHandle)) \
+    if (host->isNull()) \
     { \
         return; \
     }
@@ -31,11 +31,9 @@
 
 #ifndef CC_CANVAS_BOOL_C
 #define CC_CANVAS_BOOL_C(canvas) \
-    CLRCanvas nativeHandle = canvas->canvas; \
+    CanvasHost* host = static_cast<CanvasHost*>(canvas->canvas); \
     \
-    IntPtr managedHandle = IntPtr(nativeHandle); \
-    \
-    if (CanvasHandler::IsNull(managedHandle)) \
+    if (host->isNull()) \
     { \
         return false; \
     }
@@ -43,11 +41,9 @@
 
 #ifndef CC_CANVAS_INT_C
 #define CC_CANVAS_INT_C(canvas) \
-    CLRCanvas nativeHandle = canvas->canvas; \
+    CanvasHost* host = static_cast<CanvasHost*>(canvas->canvas); \
     \
-    IntPtr managedHandle = IntPtr(nativeHandle); \
-    \
-    if (CanvasHandler::IsNull(managedHandle)) \
+    if (host->isNull()) \
     { \
         return -1; \
     }
@@ -59,21 +55,21 @@
 #define CCI_CANVAS_VOID_C(canvas, target) \
     CC_CANVAS_VOID_C(canvas) \
     \
-    CanvasHandler::Invoke(managedHandle)->target;
+    host->invoke()->target;
 #endif // !CCI_CANVAS_VOID_C
 
 #ifndef CCI_CANVAS_BOOL_C
 #define CCI_CANVAS_BOOL_C(canvas, target) \
     CC_CANVAS_BOOL_C(canvas) \
     \
-    return CanvasHandler::Invoke(managedHandle)->target;
+    return host->invoke()->target;
 #endif // !CCI_CANVAS_BOOL_C
 
 #ifndef CCI_CANVAS_INT_C
 #define CCI_CANVAS_INT_C(canvas, target) \
     CC_CANVAS_INT_C(canvas) \
     \
-    return CanvasHandler::Invoke(managedHandle)->target;
+    return host->invoke()->target;
 #endif // !CCI_CANVAS_INT_C
 
 
@@ -85,16 +81,14 @@
         return color_new(0, 0, 0, 0); \
     } \
     \
-    CLRCanvas nativeHandle = canvas->canvas; \
+    CanvasHost* host = static_cast<CanvasHost*>(canvas->canvas); \
     \
-    IntPtr managedHandle = IntPtr(nativeHandle); \
-    \
-    if (CanvasHandler::IsNull(managedHandle)) \
+    if (host->isNull()) \
     { \
         throw gcnew NullReferenceException(""); \
     } \
     \
-    Drawing::Color^ managedBorderColor = CanvasHandler::Invoke(managedHandle)->target; \
+    Drawing::Color^ managedBorderColor = host->invoke()->target; \
     \
     Color* nativeColor = color_new( \
         (int)managedBorderColor->A, \
@@ -113,11 +107,9 @@
         return; \
     } \
     \
-    CLRCanvas nativeHandle = canvas->canvas; \
+    CanvasHost* host = static_cast<CanvasHost*>(canvas->canvas); \
     \
-    IntPtr managedHandle = IntPtr(nativeHandle); \
-    \
-    if (CanvasHandler::IsNull(managedHandle)) \
+    if (host->isNull()) \
     { \
         throw gcnew NullReferenceException(""); \
     } \
@@ -131,7 +123,7 @@
         color_getBlue (nativeColor) \
     ); \
     \
-    CanvasHandler::Invoke(managedHandle)->BorderColor = managedColor;
+    host->invoke()->target = managedColor;
 #endif // !CCI_CANVAS_SET_COLOR_C
 
 #endif // !GWC_CANVAS_MACROS_H
