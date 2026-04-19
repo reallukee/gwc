@@ -1,0 +1,26 @@
+﻿<Solution>
+  <Configurations>
+    <Platform Name="ARM64" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/solution/">
+    <File Path="../.editorconfig" />
+    <File Path="../Directory.Build.props" />
+    <File Path="../README.md" />
+  </Folder>
+  <Folder Name="/core/">
+    <Project Path="../gwc/gwc.csproj" Id="e3352e34-8033-4f44-ae88-7e053e6d11e7">
+      <Platform Solution="*|ARM64" Project="ARM64" />
+      <Platform Solution="*|x64" Project="x64" />
+      <Platform Solution="*|x86" Project="x86" />
+    </Project>
+    <Project Path="../gwc.native/gwc.native.vcxproj" Id="d6d18c01-745e-a3e3-8ca7-7aafaf9fbcfa" />
+  </Folder>
+  <Project Path="Cpp.Draw/Cpp.Draw.vcxproj" Id="1387f449-4daa-4db2-8fab-b68048662fbc" />
+  <Project Path="C.Draw/C.Draw.vcxproj" Id="545f8e7c-20e7-4361-acdd-18154ef6922f" />
+  <Project Path="Cpp.MultiWindow/Cpp.MultiWindow.vcxproj" Id="8b21a0da-f9a6-4f6f-9871-03e4bd8a0d63" />
+  <Project Path="C.MultiWindow/C.MultiWindow.vcxproj" Id="124278bc-8c15-4ada-af2f-33792ffb4e40" />
+  <Project Path="Cpp.KeyDown/Cpp.KeyDown.vcxproj" Id="9ef3b5d8-2e7e-4a08-81da-a41509f0baf2" />
+  <Project Path="C.KeyDown/C.KeyDown.vcxproj" Id="b1883bf2-7e45-4ce5-aa59-2ac7ef5b85ae" />
+</Solution>
