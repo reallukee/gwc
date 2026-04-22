@@ -62,7 +62,7 @@ graph TD
 
 * Libreria Wrapper Mixed con interfaccia API 100% Native
 * Scritta in C++/CLI, C++ e C
-* Espone l'API C/C++
+* Espone l'API VC++
 
 
 
@@ -325,9 +325,7 @@ msbuild gwc.sln /t:gwc_mono /p:Configuration=Release /p:Platform=x64
 
 # Download
 
-> [Ultima release (`github.com`)](https://github.com/reallukee/gwc/releases/latest)
-
-> [Ultima release (`reallukee.altervista.org`)](https://reallukee.altervista.org/gwc/#latest)
+> [Ultima release](https://github.com/reallukee/gwc/releases/latest)
 
 
 
