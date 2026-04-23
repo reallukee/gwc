@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.1
+// v0.3.2
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -15,115 +15,54 @@
 #ifndef GWC_SPRITE_MACROS_H
 #define GWC_SPRITE_MACROS_H
 
+#include "macros.h"
+
 #include "COLOR.h"
 
 #include "SpriteHost.clr.hpp"
 
 #ifndef CC_SPRITE_VOID_C
 #define CC_SPRITE_VOID_C(sprite) \
-    SpriteHost* host = static_cast<SpriteHost*>(sprite->sprite); \
-    \
-    if (host->isNull()) \
-    { \
-        return; \
-    }
+    CC_VOID_C(SpriteHost, sprite)
 #endif // !CC_SPRITE_VOID_C
 
 #ifndef CC_SPRITE_BOOL_C
 #define CC_SPRITE_BOOL_C(sprite) \
-    SpriteHost* host = static_cast<SpriteHost*>(sprite->sprite); \
-    \
-    if (host->isNull()) \
-    { \
-        return false; \
-    }
+    CC_BOOL_C(SpriteHost, sprite)
 #endif // !CC_SPRITE_BOOL_C
 
 #ifndef CC_SPRITE_INT_C
 #define CC_SPRITE_INT_C(sprite) \
-    SpriteHost* host = static_cast<SpriteHost*>(sprite->sprite); \
-    \
-    if (host->isNull()) \
-    { \
-        return -1; \
-    }
+    CC_INT_C(SpriteHost, sprite)
 #endif // !CC_SPRITE_INT_C
 
 
 
 #ifndef CCI_SPRITE_VOID_C
 #define CCI_SPRITE_VOID_C(sprite, target) \
-    CC_SPRITE_VOID_C(sprite) \
-    \
-    host->invoke()->target;
+    CCI_VOID_C(SpriteHost, sprite, target)
 #endif // !CCI_SPRITE_VOID_C
 
 #ifndef CCI_SPRITE_BOOL_C
 #define CCI_SPRITE_BOOL_C(sprite, target) \
-    CC_SPRITE_BOOL_C(sprite) \
-    \
-    return host->invoke()->target;
+    CCI_BOOL_C(SpriteHost, sprite, target)
 #endif // !CCI_SPRITE_BOOL_C
 
 #ifndef CCI_SPRITE_INT_C
 #define CCI_SPRITE_INT_C(sprite, target) \
-    CC_SPRITE_INT_C(sprite) \
-    \
-    return host->invoke()->target;
+    CCI_INT_C(SpriteHost, sprite, target)
 #endif // !CCI_SPRITE_INT_C
 
 
 
 #ifndef CCI_SPRITE_GET_COLOR_C
 #define CCI_SPRITE_GET_COLOR_C(sprite, target) \
-    if (sprite == NULL) \
-    { \
-        return color_new(0, 0, 0, 0); \
-    } \
-    \
-    SpriteHost* host = static_cast<SpriteHost*>(sprite->sprite); \
-    \
-    if (host->isNull()) \
-    { \
-        throw gcnew NullReferenceException(""); \
-    } \
-    \
-    Drawing::Color^ managedBorderColor = host->invoke()->target; \
-    \
-    Color* nativeColor = color_new( \
-        (int)managedBorderColor->A, \
-        (int)managedBorderColor->R, \
-        (int)managedBorderColor->G, \
-        (int)managedBorderColor->B \
-    ); \
-    \
-    return nativeColor;
+    CCI_GET_COLOR_C(SpriteHost, sprite, target, color)
 #endif // !CCI_SPRITE_GET_COLOR_C
 
 #ifndef CCI_SPRITE_SET_COLOR_C
 #define CCI_SPRITE_SET_COLOR_C(sprite, target, color) \
-    if (sprite == NULL || color == NULL) \
-    { \
-        return; \
-    } \
-    \
-    SpriteHost* host = static_cast<SpriteHost*>(sprite->sprite); \
-    \
-    if (host->isNull()) \
-    { \
-        throw gcnew NullReferenceException(""); \
-    } \
-    \
-    const Color* nativeColor = color; \
-    \
-    Drawing::Color managedColor = Drawing::Color::FromArgb( \
-        color_getAlpha(nativeColor), \
-        color_getRed  (nativeColor), \
-        color_getGreen(nativeColor), \
-        color_getBlue (nativeColor) \
-    ); \
-    \
-    host->invoke()->target = managedColor;
+    CCI_SET_COLOR_C(SpriteHost, sprite, target, color)
 #endif // !CCI_SPRITE_SET_COLOR_C
 
 #endif // !GWC_SPRITE_MACROS_H

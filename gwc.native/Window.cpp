@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.1
+// v0.3.2
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -148,7 +148,7 @@ namespace gwc
         Windows::Forms::Keys managedModifiers;
         Windows::Forms::Keys managedKey;
 
-        bool result = host->invoke()->ConsumeKeyDown(
+        bool result = _host->invoke()->ConsumeKeyDown(
             managedModifiers, managedKey
         );
 
@@ -200,7 +200,7 @@ namespace gwc
         Windows::Forms::Keys managedModifiers;
         Windows::Forms::Keys managedKey;
 
-        bool result = host->invoke()->ConsumeKeyUp(
+        bool result = _host->invoke()->ConsumeKeyUp(
             managedModifiers, managedKey
         );
 
@@ -252,7 +252,7 @@ namespace gwc
         Drawing::Point               managedLocation;
         Windows::Forms::MouseButtons managedButton;
 
-        bool result = host->invoke()->ConsumeMouseDown(
+        bool result = _host->invoke()->ConsumeMouseDown(
             managedLocation, managedButton
         );
 
@@ -303,7 +303,7 @@ namespace gwc
         Drawing::Point               managedLocation;
         Windows::Forms::MouseButtons managedButton;
 
-        bool result = host->invoke()->ConsumeMouseUp(
+        bool result = _host->invoke()->ConsumeMouseUp(
             managedLocation, managedButton
         );
 

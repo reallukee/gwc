@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.1
+// v0.3.2
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -17,105 +17,54 @@
 
 #ifdef __cplusplus
 
+#include "macros.hpp"
+
 #include "Color.hpp"
 
 #include "WindowHost.clr.hpp"
 
 #ifndef CC_WINDOW_VOID_CPP
 #define CC_WINDOW_VOID_CPP(window) \
-    WindowHost* host = static_cast<WindowHost*>(window); \
-    \
-    if (host->isNull()) \
-    { \
-        return; \
-    }
+    CC_VOID_CPP(WindowHost, window)
 #endif // !CC_WINDOW_VOID_CPP
 
 #ifndef CC_WINDOW_BOOL_CPP
 #define CC_WINDOW_BOOL_CPP(window) \
-    WindowHost* host = static_cast<WindowHost*>(window); \
-    \
-    if (host->isNull()) \
-    { \
-        return false; \
-    }
+    CC_BOOL_CPP(WindowHost, window)
 #endif // !CC_WINDOW_BOOL_CPP
 
 #ifndef CC_WINDOW_INT_CPP
 #define CC_WINDOW_INT_CPP(window) \
-    WindowHost* host = static_cast<WindowHost*>(window); \
-    \
-    if (host->isNull()) \
-    { \
-        return -1; \
-    }
+    CC_INT_CPP(WindowHost, window)
 #endif // !CC_WINDOW_INT_CPP
 
 
 
 #ifndef CCI_WINDOW_VOID_CPP
 #define CCI_WINDOW_VOID_CPP(window, target) \
-    CC_WINDOW_VOID_CPP(window) \
-    \
-    host->invoke()->target;
+    CCI_VOID_CPP(WindowHost, window, target)
 #endif // !CCI_WINDOW_VOID_CPP
 
 #ifndef CCI_WINDOW_BOOL_CPP
 #define CCI_WINDOW_BOOL_CPP(window, target) \
-    CC_WINDOW_BOOL_CPP(window) \
-    \
-    return host->invoke()->target;
+    CCI_BOOL_CPP(WindowHost, window, target)
 #endif // !CCI_WINDOW_BOOL_CPP
 
 #ifndef CCI_WINDOW_INT_CPP
 #define CCI_WINDOW_INT_CPP(window, target) \
-    CC_WINDOW_INT_CPP(window) \
-    \
-    return host->invoke()->target;
+    CCI_INT_CPP(WindowHost, window, target)
 #endif // !CCI_WINDOW_INT_CPP
 
 
 
 #ifndef CCI_WINDOW_GET_COLOR_CPP
 #define CCI_WINDOW_GET_COLOR_CPP(window, target) \
-    WindowHost* host = static_cast<WindowHost*>(window); \
-    \
-    if (host->isNull()) \
-    { \
-        throw gcnew NullReferenceException(""); \
-    } \
-    \
-    Drawing::Color^ managedBorderColor = host->invoke()->target; \
-    \
-    Color nativeColor = Color( \
-        (int)managedBorderColor->A, \
-        (int)managedBorderColor->R, \
-        (int)managedBorderColor->G, \
-        (int)managedBorderColor->B \
-    ); \
-    \
-    return nativeColor;
+    CCI_GET_COLOR_CPP(WindowHost, window, target, color)
 #endif // !CCI_WINDOW_GET_COLOR_CPP
 
 #ifndef CCI_WINDOW_SET_COLOR_CPP
 #define CCI_WINDOW_SET_COLOR_CPP(window, target, color) \
-    WindowHost* host = static_cast<WindowHost*>(window); \
-    \
-    if (host->isNull()) \
-    { \
-        throw gcnew NullReferenceException(""); \
-    } \
-    \
-    Color nativeColor = color; \
-    \
-    Drawing::Color managedColor = Drawing::Color::FromArgb( \
-        nativeColor.getAlpha(), \
-        nativeColor.getRed  (), \
-        nativeColor.getGreen(), \
-        nativeColor.getBlue () \
-    ); \
-    \
-    host->invoke()->target = managedColor;
+    CCI_SET_COLOR_CPP(WindowHost, window, target, color)
 #endif // !CCI_WINDOW_SET_COLOR_CPP
 
 #endif // __cplusplus
