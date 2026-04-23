@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.1
+// v0.3.2
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -27,7 +27,7 @@
 // Questo è l'header dell'API C++ di GWC.
 //
 // Versione API attesa:
-//  [0.3.1]
+//  [0.3.2]
 // Versione MINIMA API attesa:
 //  [0.2.1]
 //
@@ -35,7 +35,7 @@
 // dei binari e dei file di intestazione.
 //
 
-#define GWC_VERSION_INCLUDE     "031"
+#define GWC_VERSION_INCLUDE     "032"
 #define GWC_MIN_VERSION_INCLUDE "021"
 
 #include "types.hpp"

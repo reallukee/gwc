@@ -1,7 +1,7 @@
 //
 // :.:.:.
 // GWC
-// v0.3.1
+// v0.3.2
 // :.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -39,5 +39,5 @@ using System.Windows.Forms;
 
 [assembly: Guid("e3352e34-8033-4f44-ae88-7e053e6d11e7")]
 
-[assembly: AssemblyVersion    ("0.3.1.0")]
-[assembly: AssemblyFileVersion("0.3.1.0")]
+[assembly: AssemblyVersion    ("0.3.2.0")]
+[assembly: AssemblyFileVersion("0.3.2.0")]

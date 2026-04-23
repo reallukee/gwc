@@ -250,6 +250,7 @@
     <ClInclude Include="Keys.hpp" />
     <ClInclude Include="MouseButtons.hpp" />
     <ClInclude Include="Render.hpp" />
+    <ClInclude Include="macros.hpp" />
     <ClInclude Include="sprite_macros.hpp" />
     <ClInclude Include="Sprite.hpp" />
     <ClInclude Include="canvas_macros.hpp" />
@@ -265,6 +266,7 @@
     <ClInclude Include="KEYS.h" />
     <ClInclude Include="MOUSEBUTTONS.h" />
     <ClInclude Include="RENDER.h" />
+    <ClInclude Include="macros.h" />
     <ClInclude Include="sprite_macros.h" />
     <ClInclude Include="SPRITE.h" />
     <ClInclude Include="canvas_macros.h" />

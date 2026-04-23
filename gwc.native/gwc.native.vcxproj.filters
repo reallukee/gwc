@@ -81,6 +81,9 @@
     <ClInclude Include="Render.hpp">
       <Filter>File di intestazione\C++ API</Filter>
     </ClInclude>
+    <ClInclude Include="macros.hpp">
+      <Filter>File di intestazione\C++ API</Filter>
+    </ClInclude>
     <ClInclude Include="sprite_macros.hpp">
       <Filter>File di intestazione\C++ API</Filter>
     </ClInclude>
@@ -126,10 +129,13 @@
     <ClInclude Include="RENDER.h">
       <Filter>File di intestazione\C API</Filter>
     </ClInclude>
-    <ClInclude Include="SPRITE.h">
+    <ClInclude Include="macros.h">
       <Filter>File di intestazione\C API</Filter>
     </ClInclude>
     <ClInclude Include="sprite_macros.h">
+      <Filter>File di intestazione\C API</Filter>
+    </ClInclude>
+    <ClInclude Include="SPRITE.h">
       <Filter>File di intestazione\C API</Filter>
     </ClInclude>
     <ClInclude Include="canvas_macros.h">
