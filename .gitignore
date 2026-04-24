@@ -18,6 +18,7 @@ ipch/
 
 # Compilation
 [Bb]in/
+[Dd]ist/
 [Oo]bj/
 [Xx]86/
 [Xx]64/
@@ -25,12 +26,11 @@ ipch/
 [Aa][Rr][Mm]64/
 
 # Template
-include/
-static/
-shared/
-nuget/
+templates/**/include/
+templates/**/static/
+templates/**/shared/
 
-*.zip
+templates/**/*.zip
 
 # Repository
 *.temp/
