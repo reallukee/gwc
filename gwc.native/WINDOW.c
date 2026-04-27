@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.2
+// v0.3.3
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -96,22 +96,22 @@ bool window_isShutdown(const WINDOW* window)
 
 
 
-Color* window_getBorderColor(const WINDOW* window)
+gCOLOR* window_getBorderColor(const WINDOW* window)
 {
     CCI_WINDOW_GET_COLOR_C(window, BorderColor);
 }
 
-void window_setBorderColor(const WINDOW* window, const Color* color)
+void window_setBorderColor(const WINDOW* window, const gCOLOR* color)
 {
     CCI_WINDOW_SET_COLOR_C(window, BorderColor, color);
 }
 
-Color* window_getFillColor(const WINDOW* window)
+gCOLOR* window_getFillColor(const WINDOW* window)
 {
     CCI_WINDOW_GET_COLOR_C(window, FillColor);
 }
 
-void window_setFillColor(const WINDOW* window, const Color* color)
+void window_setFillColor(const WINDOW* window, const gCOLOR* color)
 {
     CCI_WINDOW_SET_COLOR_C(window, FillColor, color);
 }
@@ -157,7 +157,7 @@ void window_flushKeyDown(const WINDOW* window)
     CCI_WINDOW_VOID_C(window, FlushKeyDown());
 }
 
-bool window_consumeKeyDown(const WINDOW* window, Keys* modifiers, Keys* key)
+bool window_consumeKeyDown(const WINDOW* window, gKEYS* modifiers, gKEYS* key)
 {
     CC_WINDOW_BOOL_C(window);
 
@@ -176,8 +176,8 @@ bool window_consumeKeyDown(const WINDOW* window, Keys* modifiers, Keys* key)
     int rawModifiers = static_cast<int>(managedModifiers);
     int rawKey = static_cast<int>(managedKey);
 
-    *modifiers = static_cast<Keys>(rawModifiers);
-    *key       = static_cast<Keys>(rawKey);
+    *modifiers = static_cast<gKEYS>(rawModifiers);
+    *key       = static_cast<gKEYS>(rawKey);
 
     return result;
 }
@@ -214,7 +214,7 @@ void window_flushKeyUp(const WINDOW* window)
     CCI_WINDOW_VOID_C(window, FlushKeyUp());
 }
 
-bool window_consumeKeyUp(const WINDOW* window, Keys* modifiers, Keys* key)
+bool window_consumeKeyUp(const WINDOW* window, gKEYS* modifiers, gKEYS* key)
 {
     CC_WINDOW_BOOL_C(window);
 
@@ -233,8 +233,8 @@ bool window_consumeKeyUp(const WINDOW* window, Keys* modifiers, Keys* key)
     int rawModifiers = static_cast<int>(managedModifiers);
     int rawKey = static_cast<int>(managedKey);
 
-    *modifiers = static_cast<Keys>(rawModifiers);
-    *key = static_cast<Keys>(rawKey);
+    *modifiers = static_cast<gKEYS>(rawModifiers);
+    *key       = static_cast<gKEYS>(rawKey);
 
     return result;
 }
@@ -271,7 +271,7 @@ void window_flushMouseDown(const WINDOW* window)
     CCI_WINDOW_VOID_C(window, FlushMouseDown());
 }
 
-bool window_consumeMouseDown(const WINDOW* window, Point** location, MouseButtons* button)
+bool window_consumeMouseDown(const WINDOW* window, gPOINT** location, gMOUSEBUTTONS* button)
 {
     CC_WINDOW_BOOL_C(window);
 
@@ -285,7 +285,7 @@ bool window_consumeMouseDown(const WINDOW* window, Point** location, MouseButton
     int rawButton = static_cast<int>(managedButton);
 
     *location = point_new(managedLocation.X, managedLocation.Y);
-    *button   = static_cast<MouseButtons>(rawButton);
+    *button   = static_cast<gMOUSEBUTTONS>(rawButton);
 
     return result;
 }
@@ -322,7 +322,7 @@ void window_flushMouseUp(const WINDOW* window)
     CCI_WINDOW_VOID_C(window, FlushMouseUp());
 }
 
-bool window_consumeMouseUp(const WINDOW* window, Point** location, MouseButtons* button)
+bool window_consumeMouseUp(const WINDOW* window, gPOINT** location, gMOUSEBUTTONS* button)
 {
     CC_WINDOW_BOOL_C(window);
 
@@ -336,7 +336,7 @@ bool window_consumeMouseUp(const WINDOW* window, Point** location, MouseButtons*
     int rawButton = static_cast<int>(managedButton);
 
     *location = point_new(managedLocation.X, managedLocation.Y);
-    *button = static_cast<MouseButtons>(rawButton);
+    *button   = static_cast<gMOUSEBUTTONS>(rawButton);
 
     return result;
 }

@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.1
+// v0.3.3
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -16,8 +16,8 @@
 #define GWC_SPRITE_H
 
 #include "header.h"
+
 #include "types.h"
-#include "COLOR.h"
 
 typedef struct SPRITE SPRITE;
 
@@ -28,10 +28,10 @@ GWC_C_API void    sprite_delete(SPRITE* sprite);
 
 GWC_C_API bool sprite_isInitialized(const SPRITE* sprite);
 
-GWC_C_API Color* sprite_getBorderColor(const SPRITE* sprite);
-GWC_C_API void   sprite_setBorderColor(const SPRITE* sprite, const Color* color);
-GWC_C_API Color* sprite_getFillColor  (const SPRITE* sprite);
-GWC_C_API void   sprite_setFillColor  (const SPRITE* sprite, const Color* color);
+GWC_C_API gCOLOR* sprite_getBorderColor(const SPRITE* sprite);
+GWC_C_API void    sprite_setBorderColor(const SPRITE* sprite, const gCOLOR* color);
+GWC_C_API gCOLOR* sprite_getFillColor  (const SPRITE* sprite);
+GWC_C_API void    sprite_setFillColor  (const SPRITE* sprite, const gCOLOR* color);
 
 GWC_C_API int sprite_getWidth (const SPRITE* sprite);
 GWC_C_API int sprite_getHeight(const SPRITE* sprite);

@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.1
+// v0.3.3
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -72,22 +72,22 @@ bool canvas_isInitialized(const CANVAS* canvas)
 
 
 
-Color* canvas_getBorderColor(const CANVAS* canvas)
+gCOLOR* canvas_getBorderColor(const CANVAS* canvas)
 {
     CCI_CANVAS_GET_COLOR_C(canvas, BorderColor);
 }
 
-void canvas_setBorderColor(const CANVAS* canvas, const Color* color)
+void canvas_setBorderColor(const CANVAS* canvas, const gCOLOR* color)
 {
     CCI_CANVAS_SET_COLOR_C(canvas, BorderColor, color);
 }
 
-Color* canvas_getFillColor(const CANVAS* canvas)
+gCOLOR* canvas_getFillColor(const CANVAS* canvas)
 {
     CCI_CANVAS_GET_COLOR_C(canvas, FillColor);
 }
 
-void canvas_setFillColor(const CANVAS* canvas, const Color* color)
+void canvas_setFillColor(const CANVAS* canvas, const gCOLOR* color)
 {
     CCI_CANVAS_SET_COLOR_C(canvas, FillColor, color);
 }

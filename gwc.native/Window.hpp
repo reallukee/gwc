@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.1
+// v0.3.3
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -18,11 +18,8 @@
 #ifdef __cplusplus
 
 #include "header.hpp"
+
 #include "types.hpp"
-#include "Color.hpp"
-#include "Point.hpp"
-#include "Keys.hpp"
-#include "MouseButtons.hpp"
 
 namespace gwc
 {
@@ -43,10 +40,10 @@ namespace gwc
         bool isOpen    ();
         bool isShutdown();
 
-        Color getBorderColor();
-        void  setBorderColor(Color color);
-        Color getFillColor  ();
-        void  setFillColor  (Color color);
+        gColor getBorderColor();
+        void   setBorderColor(gColor color);
+        gColor getFillColor  ();
+        void   setFillColor  (gColor color);
 
         void wait(int milliseconds);
 
@@ -57,7 +54,7 @@ namespace gwc
 
         bool isKeyDownAvailable ();
         void flushKeyDown       ();
-        bool consumeKeyDown     (Keys& modifiers, Keys& key);
+        bool consumeKeyDown     (gKeys& modifiers, gKeys& key);
         bool discardKeyDown     ();
         void waitKeyDown        ();
         bool isKeyDownLost      ();
@@ -65,7 +62,7 @@ namespace gwc
 
         bool isKeyUpAvailable ();
         void flushKeyUp       ();
-        bool consumeKeyUp     (Keys& modifiers, Keys& key);
+        bool consumeKeyUp     (gKeys& modifiers, gKeys& key);
         bool discardKeyUp     ();
         void waitKeyUp        ();
         bool isKeyUpLost      ();
@@ -73,7 +70,7 @@ namespace gwc
 
         bool isMouseDownAvailable ();
         void flushMouseDown       ();
-        bool consumeMouseDown     (Point& location, MouseButtons& button);
+        bool consumeMouseDown     (gPoint& location, gMouseButtons& button);
         bool discardMouseDown     ();
         void waitMouseDown        ();
         bool isMouseDownLost      ();
@@ -81,7 +78,7 @@ namespace gwc
 
         bool isMouseUpAvailable ();
         void flushMouseUp       ();
-        bool consumeMouseUp     (Point& location, MouseButtons& button);
+        bool consumeMouseUp     (gPoint& location, gMouseButtons& button);
         bool discardMouseUp     ();
         void waitMouseUp        ();
         bool isMouseUpLost      ();

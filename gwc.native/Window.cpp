@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.2
+// v0.3.3
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -80,22 +80,22 @@ namespace gwc
 
 
 
-    Color Window::getBorderColor()
+    gColor Window::getBorderColor()
     {
     CCI_WINDOW_GET_COLOR_CPP(window, BorderColor);
     }
 
-    void Window::setBorderColor(Color color)
+    void Window::setBorderColor(gColor color)
     {
         CCI_WINDOW_SET_COLOR_CPP(window, BorderColor, color);
     }
 
-    Color Window::getFillColor()
+    gColor Window::getFillColor()
     {
         CCI_WINDOW_GET_COLOR_CPP(window, FillColor);
     }
 
-    void Window::setFillColor(Color color)
+    void Window::setFillColor(gColor color)
     {
         CCI_WINDOW_SET_COLOR_CPP(window, FillColor, color);
     }
@@ -141,7 +141,7 @@ namespace gwc
         CCI_WINDOW_VOID_CPP(window, FlushKeyDown());
     }
 
-    bool Window::consumeKeyDown(Keys& modifiers, Keys& key)
+    bool Window::consumeKeyDown(gKeys& modifiers, gKeys& key)
     {
         CC_WINDOW_BOOL_CPP(window);
 
@@ -155,8 +155,8 @@ namespace gwc
         int rawModifiers = static_cast<int>(managedModifiers);
         int rawKey       = static_cast<int>(managedKey);
 
-        modifiers = static_cast<Keys>(rawModifiers);
-        key       = static_cast<Keys>(rawKey);
+        modifiers = static_cast<gKeys>(rawModifiers);
+        key       = static_cast<gKeys>(rawKey);
 
         return result;
     }
@@ -193,7 +193,7 @@ namespace gwc
         CCI_WINDOW_VOID_CPP(window, FlushKeyUp());
     }
 
-    bool Window::consumeKeyUp(Keys& modifiers, Keys& key)
+    bool Window::consumeKeyUp(gKeys& modifiers, gKeys& key)
     {
         CC_WINDOW_BOOL_CPP(window);
 
@@ -207,8 +207,8 @@ namespace gwc
         int rawModifiers = static_cast<int>(managedModifiers);
         int rawKey       = static_cast<int>(managedKey);
 
-        modifiers = static_cast<Keys>(rawModifiers);
-        key       = static_cast<Keys>(rawKey);
+        modifiers = static_cast<gKeys>(rawModifiers);
+        key       = static_cast<gKeys>(rawKey);
 
         return result;
     }
@@ -245,7 +245,7 @@ namespace gwc
         CCI_WINDOW_VOID_CPP(window, FlushMouseDown());
     }
 
-    bool Window::consumeMouseDown(Point& location, MouseButtons& button)
+    bool Window::consumeMouseDown(gPoint& location, gMouseButtons& button)
     {
         CC_WINDOW_BOOL_CPP(window);
 
@@ -258,8 +258,8 @@ namespace gwc
 
         int rawButton = static_cast<int>(managedButton);
 
-        location = Point(managedLocation.X, managedLocation.Y);
-        button   = static_cast<MouseButtons>(rawButton);
+        location = gPoint(managedLocation.X, managedLocation.Y);
+        button   = static_cast<gMouseButtons>(rawButton);
 
         return result;
     }
@@ -296,7 +296,7 @@ namespace gwc
         CCI_WINDOW_VOID_CPP(window, FlushMouseUp());
     }
 
-    bool Window::consumeMouseUp(Point& location, MouseButtons& button)
+    bool Window::consumeMouseUp(gPoint& location, gMouseButtons& button)
     {
         CC_WINDOW_BOOL_CPP(window);
 
@@ -309,8 +309,8 @@ namespace gwc
 
         int rawButton = static_cast<int>(managedButton);
 
-        location = Point(managedLocation.X, managedLocation.Y);
-        button   = static_cast<MouseButtons>(rawButton);
+        location = gPoint(managedLocation.X, managedLocation.Y);
+        button   = static_cast<gMouseButtons>(rawButton);
 
         return result;
     }

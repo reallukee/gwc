@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.1
+// v0.3.3
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -18,8 +18,8 @@
 #ifdef  __cplusplus
 
 #include "header.hpp"
+
 #include "types.hpp"
-#include "Color.hpp"
 
 namespace gwc
 {
@@ -34,10 +34,10 @@ namespace gwc
 
         bool isInitialized();
 
-        Color getBorderColor();
-        void  setBorderColor(Color color);
-        Color getFillColor  ();
-        void  setFillColor  (Color color);
+        gColor getBorderColor();
+        void   setBorderColor(gColor color);
+        gColor getFillColor  ();
+        void   setFillColor  (gColor color);
 
         int getWidth ();
         int getHeight();

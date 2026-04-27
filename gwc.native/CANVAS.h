@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.1
+// v0.3.3
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -16,8 +16,8 @@
 #define GWC_CANVAS_H
 
 #include "header.h"
+
 #include "types.h"
-#include "COLOR.h"
 
 typedef struct CANVAS CANVAS;
 
@@ -28,10 +28,10 @@ GWC_C_API void    canvas_delete(CANVAS* canvas);
 
 GWC_C_API bool canvas_isInitialized(const CANVAS* canvas);
 
-GWC_C_API Color* canvas_getBorderColor(const CANVAS* canvas);
-GWC_C_API void   canvas_setBorderColor(const CANVAS* canvas, const Color* color);
-GWC_C_API Color* canvas_getFillColor  (const CANVAS* canvas);
-GWC_C_API void   canvas_setFillColor  (const CANVAS* canvas, const Color* color);
+GWC_C_API gCOLOR* canvas_getBorderColor(const CANVAS* canvas);
+GWC_C_API void    canvas_setBorderColor(const CANVAS* canvas, const gCOLOR* color);
+GWC_C_API gCOLOR* canvas_getFillColor  (const CANVAS* canvas);
+GWC_C_API void    canvas_setFillColor(const CANVAS* canvas, const gCOLOR* color);
 
 GWC_C_API int canvas_getWidth (const CANVAS* canvas);
 GWC_C_API int canvas_getHeight(const CANVAS* canvas);

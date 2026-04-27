@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.2.1
+// v0.3.3
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -21,7 +21,7 @@
 
 namespace gwc
 {
-    enum class GWC_CPP_API Keys
+    enum class GWC_CPP_API gKeys
     {
         None               = 0,
         LButton            = 1,

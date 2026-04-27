@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.2
+// v0.3.3
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -25,23 +25,18 @@
 // Questo è l'header dell'API C di GWC.
 //
 // Versione API attesa:
-//  [0.3.2]
+//  [0.3.3]
 // Versione MINIMA API attesa:
-//  [0.2.1]
+//  [0.3.3]
 //
 // Assicurati di utilizzare versioni compatibili
 // dei binari e dei file di intestazione.
 //
 
-#define GWC_VERSION_INCLUDE     "032"
-#define GWC_MIN_VERSION_INCLUDE "021"
+#define GWC_VERSION_INCLUDE     "033"
+#define GWC_MIN_VERSION_INCLUDE "033"
 
 #include "types.h"
-
-#include "COLOR.h"
-#include "POINT.h"
-#include "KEYS.h"
-#include "MOUSEBUTTONS.h"
 
 #include "RENDER.h"
 

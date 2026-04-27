@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.2.1
+// v0.3.3
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -17,7 +17,7 @@
 
 #include "header.h"
 
-typedef enum MouseButtons
+typedef enum gMOUSEBUTTONS
 {
     MOUSEBUTTONS_NONE     = 0,
     MOUSEBUTTONS_LEFT     = 1048576,
@@ -25,6 +25,6 @@ typedef enum MouseButtons
     MOUSEBUTTONS_MIDDLE   = 4194304,
     MOUSEBUTTONS_XBUTTON1 = 8388608,
     MOUSEBUTTONS_XBUTTON2 = 16777216
-} MouseButtons;
+} gMOUSEBUTTONS;
 
 #endif // !GWC_MOUSEBUTTONS_H

@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.1
+// v0.3.3
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -72,22 +72,22 @@ bool sprite_isInitialized(const SPRITE* sprite)
 
 
 
-Color* sprite_getBorderColor(const SPRITE* sprite)
+gCOLOR* sprite_getBorderColor(const SPRITE* sprite)
 {
     CCI_SPRITE_GET_COLOR_C(sprite, BorderColor);
 }
 
-void sprite_setBorderColor(const SPRITE* sprite, const Color* color)
+void sprite_setBorderColor(const SPRITE* sprite, const gCOLOR* color)
 {
     CCI_SPRITE_SET_COLOR_C(sprite, BorderColor, color);
 }
 
-Color* sprite_getFillColor(const SPRITE* sprite)
+gCOLOR* sprite_getFillColor(const SPRITE* sprite)
 {
     CCI_SPRITE_GET_COLOR_C(sprite, FillColor);
 }
 
-void sprite_setFillColor(const SPRITE* sprite, const Color* color)
+void sprite_setFillColor(const SPRITE* sprite, const gCOLOR* color)
 {
     CCI_SPRITE_SET_COLOR_C(sprite, FillColor, color);
 }

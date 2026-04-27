@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.2.1
+// v0.3.3
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -17,7 +17,7 @@
 
 #include "header.h"
 
-typedef enum Keys
+typedef enum gKEYS
 {
     KEYS_NONE               = 0,
     KEYS_LBUTTON            = 1,
@@ -196,6 +196,6 @@ typedef enum Keys
     KEYS_CONTROL            = 131072,
     KEYS_ALT                = 262144,
     KEYS_MODIFIERS          = -65536,
-} Keys;
+} gKEYS;
 
 #endif // !GWC_KEYS_H

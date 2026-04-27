@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.1
+// v0.3.3
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -56,22 +56,22 @@ namespace gwc
 
 
 
-    Color Sprite::getBorderColor()
+    gColor Sprite::getBorderColor()
     {
         CCI_SPRITE_GET_COLOR_CPP(sprite, BorderColor);
     }
 
-    void Sprite::setBorderColor(Color color)
+    void Sprite::setBorderColor(gColor color)
     {
         CCI_SPRITE_SET_COLOR_CPP(sprite, BorderColor, color);
     }
 
-    Color Sprite::getFillColor()
+    gColor Sprite::getFillColor()
     {
         CCI_SPRITE_GET_COLOR_CPP(sprite, FillColor);
     }
 
-    void Sprite::setFillColor(Color color)
+    void Sprite::setFillColor(gColor color)
     {
         CCI_SPRITE_SET_COLOR_CPP(sprite, FillColor, color);
     }
