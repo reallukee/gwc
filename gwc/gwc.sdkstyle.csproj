@@ -17,7 +17,7 @@
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <PackageId>GWC</PackageId>
     <Title>GWC</Title>
-    <Version>0.3.2</Version>
+    <Version>0.3.3</Version>
     <Authors>Luca Pollicino</Authors>
     <Company>Luca Pollicino</Company>
     <Product>GWC</Product>
@@ -29,7 +29,7 @@
     <RepositoryUrl>https://github.com/reallukee/gwc</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>c;cpp;c-sharp;desktop;library</PackageTags>
-    <PackageReleaseNotes>GWC 0.3.2</PackageReleaseNotes>
+    <PackageReleaseNotes>GWC 0.3.3</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
   </PropertyGroup>
