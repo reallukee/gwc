@@ -12,15 +12,7 @@
 
 #include <gwc.hpp>
 
-#include <iostream>
-#include <ctime>
-#include <cstdlib>
-
 using namespace gwc;
-
-using namespace std;
-
-gColor generateRandomColor();
 
 int main(int argc, const char* argv[])
 {
@@ -40,33 +32,8 @@ int main(int argc, const char* argv[])
 
     bool loop = true;
 
-    cout << "Press \"ESC\" to exit..." << endl;
-
     while (window->isOpen() && loop)
     {
-        gKeys modifiers = gKeys::None;
-        gKeys key = gKeys::None;
-
-        bool keyDown = window->consumeKeyDown(modifiers, key);
-
-        if (keyDown)
-        {
-            if (key == gKeys::Escape)
-            {
-                loop = false;
-
-                continue;
-            }
-
-            cout << "Pressed: " << static_cast<int>(modifiers) << ", " << static_cast<int>(key) << endl;
-
-            window->setBorderColor(generateRandomColor());
-            window->setFillColor(generateRandomColor());
-
-            window->drawFillRectangle(50, 50, 100, 100);
-            window->drawBorderRectangle(50, 50, 100, 100);
-        }
-
         window->wait(100);
     }
 
@@ -80,18 +47,4 @@ int main(int argc, const char* argv[])
     exit(0);
 
     return 0;
-}
-
-gColor generateRandomColor()
-{
-    srand((unsigned int)time(NULL));
-
-    int alpha = rand() % 100 + 1;
-    int red   = rand() % 255 + 1;
-    int blue  = rand() % 255 + 1;
-    int green = rand() % 255 + 1;
-
-    gColor color = gColor(alpha, red, green, blue);
-
-    return color;
 }
