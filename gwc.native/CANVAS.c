@@ -94,6 +94,23 @@ void canvas_setFillColor(const CANVAS* canvas, const gCOLOR* color)
 
 
 
+gRECTANGLE* canvas_bounds(const CANVAS* canvas)
+{
+    CCI_CANVAS_GET_RECTANGLE_C(canvas, Bounds);
+}
+
+gSIZE* canvas_size(const CANVAS* canvas)
+{
+    CCI_CANVAS_GET_SIZE_C(canvas, Size);
+}
+
+gPOINT* canvas_location(const CANVAS* canvas)
+{
+    CCI_CANVAS_GET_POINT_C(canvas, Location);
+}
+
+
+
 int canvas_getWidth(const CANVAS* canvas)
 {
     CCI_CANVAS_INT_C(canvas, Width);

@@ -33,6 +33,10 @@ GWC_C_API void    canvas_setBorderColor(const CANVAS* canvas, const gCOLOR* colo
 GWC_C_API gCOLOR* canvas_getFillColor  (const CANVAS* canvas);
 GWC_C_API void    canvas_setFillColor(const CANVAS* canvas, const gCOLOR* color);
 
+GWC_C_API gRECTANGLE* canvas_bounds  (const CANVAS* canvas);
+GWC_C_API gSIZE*      canvas_size    (const CANVAS* canvas);
+GWC_C_API gPOINT*     canvas_location(const CANVAS* canvas);
+
 GWC_C_API int canvas_getWidth (const CANVAS* canvas);
 GWC_C_API int canvas_getHeight(const CANVAS* canvas);
 

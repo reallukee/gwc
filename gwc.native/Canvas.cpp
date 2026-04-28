@@ -78,6 +78,23 @@ namespace gwc
 
 
 
+    gRectangle Canvas::bounds()
+    {
+        CCI_CANVAS_GET_RECTANGLE_CPP(canvas, Bounds);
+    }
+
+    gSize Canvas::size()
+    {
+        CCI_CANVAS_GET_SIZE_CPP(canvas, Size);
+    }
+
+    gPoint Canvas::location()
+    {
+        CCI_CANVAS_GET_POINT_CPP(canvas, Location);
+    }
+
+
+
     int Canvas::getWidth()
     {
         CCI_CANVAS_INT_CPP(canvas, Width);

@@ -33,6 +33,10 @@ GWC_C_API void    sprite_setBorderColor(const SPRITE* sprite, const gCOLOR* colo
 GWC_C_API gCOLOR* sprite_getFillColor  (const SPRITE* sprite);
 GWC_C_API void    sprite_setFillColor  (const SPRITE* sprite, const gCOLOR* color);
 
+GWC_C_API gRECTANGLE* sprite_bounds  (const SPRITE* sprite);
+GWC_C_API gSIZE*      sprite_size    (const SPRITE* sprite);
+GWC_C_API gPOINT*     sprite_location(const SPRITE* sprite);
+
 GWC_C_API int sprite_getWidth (const SPRITE* sprite);
 GWC_C_API int sprite_getHeight(const SPRITE* sprite);
 

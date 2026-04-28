@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.2
+// v0.3.3
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -18,8 +18,6 @@
 #ifdef __cplusplus
 
 #include "macros.hpp"
-
-#include "Color.hpp"
 
 #include "WindowHost.clr.hpp"
 
@@ -59,13 +57,49 @@
 
 #ifndef CCI_WINDOW_GET_COLOR_CPP
 #define CCI_WINDOW_GET_COLOR_CPP(window, target) \
-    CCI_GET_COLOR_CPP(WindowHost, window, target, color)
+    CCI_GET_COLOR_CPP(WindowHost, window, target)
 #endif // !CCI_WINDOW_GET_COLOR_CPP
 
 #ifndef CCI_WINDOW_SET_COLOR_CPP
 #define CCI_WINDOW_SET_COLOR_CPP(window, target, color) \
     CCI_SET_COLOR_CPP(WindowHost, window, target, color)
 #endif // !CCI_WINDOW_SET_COLOR_CPP
+
+
+
+#ifndef CCI_WINDOW_GET_POINT_CPP
+#define CCI_WINDOW_GET_POINT_CPP(window, target) \
+    CCI_GET_POINT_CPP(WindowHost, window, target)
+#endif // !CCI_WINDOW_GET_POINT_CPP
+
+#ifndef CCI_WINDOW_SET_POINT_CPP
+#define CCI_WINDOW_SET_POINT_CPP(window, target, point) \
+    CCI_SET_POINT_CPP(WindowHost, window, target, point)
+#endif // !CCI_WINDOW_SET_POINT_CPP
+
+
+
+#ifndef CCI_WINDOW_GET_SIZE_CPP
+#define CCI_WINDOW_GET_SIZE_CPP(window, target) \
+    CCI_GET_SIZE_CPP(WindowHost, window, target)
+#endif // !CCI_WINDOW_GET_SIZE_CPP
+
+#ifndef CCI_WINDOW_SET_SIZE_CPP
+#define CCI_WINDOW_SET_SIZE_CPP(window, target, size) \
+    CCI_SET_SIZE_CPP(WindowHost, window, target, size)
+#endif // !CCI_WINDOW_SET_SIZE_CPP
+
+
+
+#ifndef CCI_WINDOW_GET_RECTANGLE_CPP
+#define CCI_WINDOW_GET_RECTANGLE_CPP(window, target) \
+    CCI_GET_RECTANGLE_CPP(WindowHost, window, target)
+#endif // !CCI_WINDOW_GET_RECTANGLE_CPP
+
+#ifndef CCI_WINDOW_SET_RECTANGLE_CPP
+#define CCI_WINDOW_SET_RECTANGLE_CPP(window, target, rectangle) \
+    CCI_SET_RECTANGLE_CPP(WindowHost, window, target, rectangle)
+#endif // !CCI_WINDOW_SET_RECTANGLE_CPP
 
 #endif // __cplusplus
 

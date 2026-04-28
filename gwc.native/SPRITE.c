@@ -94,6 +94,23 @@ void sprite_setFillColor(const SPRITE* sprite, const gCOLOR* color)
 
 
 
+gRECTANGLE* sprite_bounds(const SPRITE* sprite)
+{
+    CCI_SPRITE_GET_RECTANGLE_C(sprite, Bounds);
+}
+
+gSIZE* sprite_size(const SPRITE* sprite)
+{
+    CCI_SPRITE_GET_SIZE_C(sprite, Size);
+}
+
+gPOINT* sprite_location(const SPRITE* sprite)
+{
+    CCI_SPRITE_GET_POINT_C(sprite, Location);
+}
+
+
+
 int sprite_getWidth(const SPRITE* sprite)
 {
     CCI_SPRITE_INT_C(sprite, Width);

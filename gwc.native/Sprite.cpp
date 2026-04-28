@@ -78,6 +78,23 @@ namespace gwc
 
 
 
+    gRectangle Sprite::bounds()
+    {
+        CCI_SPRITE_GET_RECTANGLE_CPP(sprite, Bounds);
+    }
+
+    gSize Sprite::size()
+    {
+        CCI_SPRITE_GET_SIZE_CPP(sprite, Size);
+    }
+
+    gPoint Sprite::location()
+    {
+        CCI_SPRITE_GET_POINT_CPP(sprite, Location);
+    }
+
+
+
     int Sprite::getWidth()
     {
         CCI_SPRITE_INT_CPP(sprite, Width);

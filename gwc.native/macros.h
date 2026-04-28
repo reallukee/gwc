@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.2
+// v0.3.3
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -71,7 +71,7 @@
 
 
 #ifndef CCI_GET_COLOR_C
-#define CCI_GET_COLOR_C(host, object, target, color) \
+#define CCI_GET_COLOR_C(host, object, target) \
     if (object == NULL) \
     { \
         return NULL; \
@@ -84,13 +84,13 @@
         throw gcnew NullReferenceException(""); \
     } \
     \
-    Drawing::Color^ managedBorderColor = _host->invoke()->target; \
+    Drawing::Color^ manangedColor = _host->invoke()->target; \
     \
-    Color* nativeColor = color_new( \
-        (int)managedBorderColor->A, \
-        (int)managedBorderColor->R, \
-        (int)managedBorderColor->G, \
-        (int)managedBorderColor->B \
+    gCOLOR* nativeColor = color_new( \
+        (int)manangedColor->A, \
+        (int)manangedColor->R, \
+        (int)manangedColor->G, \
+        (int)manangedColor->B \
     ); \
     \
     return nativeColor;
@@ -110,7 +110,7 @@
         throw gcnew NullReferenceException(""); \
     } \
     \
-    const Color* nativeColor = color; \
+    const gCOLOR* nativeColor = color; \
     \
     Drawing::Color managedColor = Drawing::Color::FromArgb( \
         color_getAlpha(nativeColor), \
@@ -121,5 +121,159 @@
     \
     _host->invoke()->target = managedColor;
 #endif // !CCI_SET_COLOR_C
+
+
+
+#ifndef CCI_GET_POINT_C
+#define CCI_GET_POINT_C(host, object, target) \
+    if (object == NULL) \
+    { \
+        return NULL; \
+    } \
+    \
+    host* _host = static_cast<host*>(object->object); \
+    \
+    if (_host->isNull()) \
+    { \
+        throw gcnew NullReferenceException(""); \
+    } \
+    \
+    Drawing::Point^ manangedPoint = _host->invoke()->target; \
+    \
+    gPOINT* nativePoint = point_new( \
+        (int)manangedPoint->X, \
+        (int)manangedPoint->Y \
+    ); \
+    \
+    return nativePoint;
+#endif // !CCI_GET_POINT_C
+
+#ifndef CCI_SET_POINT_C
+#define CCI_SET_POINT_C(host, object, target, point) \
+    if (object == NULL || color == NULL) \
+    { \
+        return; \
+    } \
+    \
+    host* _host = static_cast<host*>(object->object); \
+    \
+    if (_host->isNull()) \
+    { \
+        throw gcnew NullReferenceException(""); \
+    } \
+    \
+    const gPOINT* nativePoint = point; \
+    \
+    Drawing::Point^ managedColor = gcnew Drawing::Point( \
+        point_getX(nativePoint), \
+        point_getY(nativePoint) \
+    ); \
+    \
+    _host->invoke()->target = managedColor;
+#endif // !CCI_SET_POINT_C
+
+
+
+#ifndef CCI_GET_SIZE_C
+#define CCI_GET_SIZE_C(host, object, target) \
+    if (object == NULL) \
+    { \
+        return NULL; \
+    } \
+    \
+    host* _host = static_cast<host*>(object->object); \
+    \
+    if (_host->isNull()) \
+    { \
+        throw gcnew NullReferenceException(""); \
+    } \
+    \
+    Drawing::Size^ manangedSize = _host->invoke()->target; \
+    \
+    gSIZE* nativeSize = size_new( \
+        (int)manangedSize->Width, \
+        (int)manangedSize->Height \
+    ); \
+    \
+    return nativeSize;
+#endif // !CCI_GET_SIZE_C
+
+#ifndef CCI_SET_SIZE_C
+#define CCI_SET_SIZE_C(host, object, target, size) \
+    if (object == NULL || color == NULL) \
+    { \
+        return; \
+    } \
+    \
+    host* _host = static_cast<host*>(object->object); \
+    \
+    if (_host->isNull()) \
+    { \
+        throw gcnew NullReferenceException(""); \
+    } \
+    \
+    const gSIZE* nativeSize = size; \
+    \
+    Drawing::Size^ managedColor = gcnew Drawing::Size( \
+        size_getWidth (nativeSize), \
+        size_getHeight(nativeSize) \
+    ); \
+    \
+    _host->invoke()->target = managedColor;
+#endif // !CCI_SET_SIZE_C
+
+
+
+#ifndef CCI_GET_RECTANGLE_C
+#define CCI_GET_RECTANGLE_C(host, object, target) \
+    if (object == NULL) \
+    { \
+        return NULL; \
+    } \
+    \
+    host* _host = static_cast<host*>(object->object); \
+    \
+    if (_host->isNull()) \
+    { \
+        throw gcnew NullReferenceException(""); \
+    } \
+    \
+    Drawing::Rectangle^ manangedRectangle = _host->invoke()->target; \
+    \
+    gRECTANGLE* nativeRectangle = rectangle_new( \
+        (int)manangedRectangle->X, \
+        (int)manangedRectangle->Y, \
+        (int)manangedRectangle->Width, \
+        (int)manangedRectangle->Height \
+    ); \
+    \
+    return nativeRectangle;
+#endif // !CCI_GET_RECTANGLE_C
+
+#ifndef CCI_SET_RECTANGLE_C
+#define CCI_SET_RECTANGLE_C(host, object, target, rectangle) \
+    if (object == NULL || color == NULL) \
+    { \
+        return; \
+    } \
+    \
+    host* _host = static_cast<host*>(object->object); \
+    \
+    if (_host->isNull()) \
+    { \
+        throw gcnew NullReferenceException(""); \
+    } \
+    \
+    const gRECTANGLE* nativeRectangle = rectangle; \
+    \
+    Drawing::Rectangle^ managedColor = gcnew Drawing::Rectangle( \
+        rectangle_getX     (nativeRectangle), \
+        rectangle_getY     (nativeRectangle), \
+        rectangle_getWidth (nativeRectangle), \
+        rectangle_getHeight(nativeRectangle) \
+    ); \
+    \
+    _host->invoke()->target = managedColor;
+#endif // !CCI_SET_RECTANGLE_C
 
 #endif // !GWC_MACROS_H

@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.2
+// v0.3.3
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -18,8 +18,6 @@
 #ifdef __cplusplus
 
 #include "macros.hpp"
-
-#include "Color.hpp"
 
 #include "SpriteHost.clr.hpp"
 
@@ -59,13 +57,49 @@
 
 #ifndef CCI_SPRITE_GET_COLOR_CPP
 #define CCI_SPRITE_GET_COLOR_CPP(sprite, target) \
-    CCI_GET_COLOR_CPP(SpriteHost, sprite, target, color)
+    CCI_GET_COLOR_CPP(SpriteHost, sprite, target)
 #endif // !CCI_SPRITE_GET_COLOR_CPP
 
 #ifndef CCI_SPRITE_SET_COLOR_CPP
 #define CCI_SPRITE_SET_COLOR_CPP(sprite, target, color) \
     CCI_SET_COLOR_CPP(SpriteHost, sprite, target, color)
 #endif // !CCI_SPRITE_SET_COLOR_CPP
+
+
+
+#ifndef CCI_SPRITE_GET_POINT_CPP
+#define CCI_SPRITE_GET_POINT_CPP(sprite, target) \
+    CCI_GET_POINT_CPP(SpriteHost, sprite, target)
+#endif // !CCI_SPRITE_GET_POINT_CPP
+
+#ifndef CCI_SPRITE_SET_POINT_CPP
+#define CCI_SPRITE_SET_POINT_CPP(sprite, target, point) \
+    CCI_SET_POINT_CPP(SpriteHost, sprite, target, point)
+#endif // !CCI_SPRITE_SET_POINT_CPP
+
+
+
+#ifndef CCI_SPRITE_GET_SIZE_CPP
+#define CCI_SPRITE_GET_SIZE_CPP(sprite, target) \
+    CCI_GET_SIZE_CPP(SpriteHost, sprite, target)
+#endif // !CCI_SPRITE_GET_SIZE_CPP
+
+#ifndef CCI_SPRITE_SET_SIZE_CPP
+#define CCI_SPRITE_SET_SIZE_CPP(sprite, target, size) \
+    CCI_SET_SIZE_CPP(SpriteHost, sprite, target, size)
+#endif // !CCI_SPRITE_SET_SIZE_CPP
+
+
+
+#ifndef CCI_SPRITE_GET_RECTANGLE_CPP
+#define CCI_SPRITE_GET_RECTANGLE_CPP(sprite, target) \
+    CCI_GET_RECTANGLE_CPP(SpriteHost, sprite, target)
+#endif // !CCI_SPRITE_GET_RECTANGLE_CPP
+
+#ifndef CCI_SPRITE_SET_RECTANGLE_CPP
+#define CCI_SPRITE_SET_RECTANGLE_CPP(sprite, target, rectangle) \
+    CCI_SET_RECTANGLE_CPP(SpriteHost, sprite, target, rectangle)
+#endif // !CCI_SPRITE_SET_RECTANGLE_CPP
 
 #endif // __cplusplus
 

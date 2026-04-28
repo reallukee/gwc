@@ -39,6 +39,10 @@ namespace gwc
         gColor getFillColor  ();
         void   setFillColor  (gColor color);
 
+        gRectangle bounds();
+        gSize      size();
+        gPoint     location();
+
         int getWidth ();
         int getHeight();
 

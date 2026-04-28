@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.2
+// v0.3.3
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -18,8 +18,6 @@
 #ifdef __cplusplus
 
 #include "macros.hpp"
-
-#include "Color.hpp"
 
 #include "CanvasHost.clr.hpp"
 
@@ -59,13 +57,49 @@
 
 #ifndef CCI_CANVAS_GET_COLOR_CPP
 #define CCI_CANVAS_GET_COLOR_CPP(canvas, target) \
-    CCI_GET_COLOR_CPP(CanvasHost, canvas, target, color)
+    CCI_GET_COLOR_CPP(CanvasHost, canvas, target)
 #endif // !CCI_CANVAS_GET_COLOR_CPP
 
 #ifndef CCI_CANVAS_SET_COLOR_CPP
 #define CCI_CANVAS_SET_COLOR_CPP(canvas, target, color) \
     CCI_SET_COLOR_CPP(CanvasHost, canvas, target, color)
 #endif // !CCI_CANVAS_SET_COLOR_CPP
+
+
+
+#ifndef CCI_CANVAS_GET_POINT_CPP
+#define CCI_CANVAS_GET_POINT_CPP(canvas, target) \
+    CCI_GET_POINT_CPP(CanvasHost, canvas, target)
+#endif // !CCI_CANVAS_GET_POINT_CPP
+
+#ifndef CCI_CANVAS_SET_POINT_CPP
+#define CCI_CANVAS_SET_POINT_CPP(canvas, target, point) \
+    CCI_SET_POINT_CPP(CanvasHost, canvas, target, point)
+#endif // !CCI_CANVAS_SET_POINT_CPP
+
+
+
+#ifndef CCI_CANVAS_GET_SIZE_CPP
+#define CCI_CANVAS_GET_SIZE_CPP(canvas, target) \
+    CCI_GET_SIZE_CPP(CanvasHost, canvas, target)
+#endif // !CCI_CANVAS_GET_SIZE_CPP
+
+#ifndef CCI_CANVAS_SET_SIZE_CPP
+#define CCI_CANVAS_SET_SIZE_CPP(canvas, target, size) \
+    CCI_SET_SIZE_CPP(CanvasHost, canvas, target, size)
+#endif // !CCI_CANVAS_SET_SIZE_CPP
+
+
+
+#ifndef CCI_CANVAS_GET_RECTANGLE_CPP
+#define CCI_CANVAS_GET_RECTANGLE_CPP(canvas, target) \
+    CCI_GET_RECTANGLE_CPP(CanvasHost, canvas, target)
+#endif // !CCI_CANVAS_GET_RECTANGLE_CPP
+
+#ifndef CCI_CANVAS_SET_RECTANGLE_CPP
+#define CCI_CANVAS_SET_RECTANGLE_CPP(canvas, target, rectangle) \
+    CCI_SET_RECTANGLE_CPP(CanvasHost, canvas, target, rectangle)
+#endif // !CCI_CANVAS_SET_RECTANGLE_CPP
 
 #endif // __cplusplus
 
