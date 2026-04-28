@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.0
+// v0.3.3
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -16,7 +16,7 @@
 
 namespace gwc
 {
-    Point::Point(int x, int y)
+    gPoint::gPoint(int x, int y)
     {
         if (x < 0)
         {
@@ -32,16 +32,16 @@ namespace gwc
         this->y = y;
     }
 
-    Point::~Point() { }
+    gPoint::~gPoint() { }
 
 
 
-    int Point::getX() const
+    int gPoint::getX() const
     {
         return x;
     }
 
-    void Point::setX(int value)
+    void gPoint::setX(int value)
     {
         if (value < 0)
         {
@@ -51,12 +51,12 @@ namespace gwc
         x = value;
     }
 
-    int Point::getY() const
+    int gPoint::getY() const
     {
         return y;
     }
 
-    void Point::setY(int value)
+    void gPoint::setY(int value)
     {
         if (value < 0)
         {
@@ -68,13 +68,13 @@ namespace gwc
 
 
 
-    bool Point::operator==(const Point& other) const
+    bool gPoint::operator==(const gPoint& other) const
     {
         return x == other.x &&
                y == other.y;
     }
 
-    bool Point::operator!=(const Point& other) const
+    bool gPoint::operator!=(const gPoint& other) const
     {
         return x != other.x &&
                y != other.y;

@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.0
+// v0.3.3
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -20,7 +20,7 @@ using namespace gwc;
 
 using namespace std;
 
-Color generateRandomColor();
+gColor generateRandomColor();
 
 int main(int argc, const char* argv[])
 {
@@ -44,14 +44,14 @@ int main(int argc, const char* argv[])
 
     while (window->isOpen() && loop)
     {
-        Keys modifiers = Keys::None;
-        Keys key = Keys::None;
+        gKeys modifiers = gKeys::None;
+        gKeys key = gKeys::None;
 
         bool keyDown = window->consumeKeyDown(modifiers, key);
 
         if (keyDown)
         {
-            if (key == Keys::Escape)
+            if (key == gKeys::Escape)
             {
                 loop = false;
 
@@ -82,7 +82,7 @@ int main(int argc, const char* argv[])
     return 0;
 }
 
-Color generateRandomColor()
+gColor generateRandomColor()
 {
     srand((unsigned int)time(NULL));
 
@@ -91,7 +91,7 @@ Color generateRandomColor()
     int blue  = rand() % 255 + 1;
     int green = rand() % 255 + 1;
 
-    Color color = Color(alpha, red, green, blue);
+    gColor color = gColor(alpha, red, green, blue);
 
     return color;
 }

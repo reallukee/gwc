@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.1
+// v0.3.3
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -12,8 +12,8 @@
 
 #pragma once
 
-#ifndef GWC_GWC_CLR_HPP
-#define GWC_GWC_CLR_HPP
+#ifndef GWC_CLR_API
+#define GWC_CLR_API
 
 #ifdef __cplusplus_cli
 
@@ -27,4 +27,4 @@ using namespace Reallukee::GWC::Interop;
 
 #endif // __cplusplus_cli
 
-#endif // !GWC_GWC_CLR_HPP
+#endif // !GWC_CLR_API

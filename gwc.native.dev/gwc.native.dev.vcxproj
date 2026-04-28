@@ -248,6 +248,7 @@
   <ItemGroup>
     <ClInclude Include="AssemblyInfo.clr.hpp" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="..\gwc.native\export.clr.hpp" />
     <ClInclude Include="..\gwc.native\header.clr.hpp" />
     <ClInclude Include="..\gwc.native\gwc.clr.hpp" />
     <ClInclude Include="..\gwc.native\SpriteHost.clr.hpp" />
@@ -259,6 +260,8 @@
     <ClInclude Include="..\gwc.native\types.hpp" />
     <ClInclude Include="..\gwc.native\Color.hpp" />
     <ClInclude Include="..\gwc.native\Point.hpp" />
+    <ClInclude Include="..\gwc.native\Size.hpp" />
+    <ClInclude Include="..\gwc.native\Rectangle.hpp" />
     <ClInclude Include="..\gwc.native\Keys.hpp" />
     <ClInclude Include="..\gwc.native\MouseButtons.hpp" />
     <ClInclude Include="..\gwc.native\Render.hpp" />
@@ -275,6 +278,8 @@
     <ClInclude Include="..\gwc.native\types.h" />
     <ClInclude Include="..\gwc.native\COLOR.h" />
     <ClInclude Include="..\gwc.native\POINT.h" />
+    <ClInclude Include="..\gwc.native\SIZE.h" />
+    <ClInclude Include="..\gwc.native\RECTANGLE.h" />
     <ClInclude Include="..\gwc.native\KEYS.h" />
     <ClInclude Include="..\gwc.native\MOUSEBUTTONS.h" />
     <ClInclude Include="..\gwc.native\RENDER.h" />
@@ -288,12 +293,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.clr.cpp" />
+    <ClCompile Include="..\gwc.native\gwc.clr.cpp" />
     <ClCompile Include="..\gwc.native\SpriteHost.clr.cpp" />
     <ClCompile Include="..\gwc.native\CanvasHost.clr.cpp" />
     <ClCompile Include="..\gwc.native\WindowHost.clr.cpp" />
     <ClCompile Include="..\gwc.native\gwc.cpp" />
     <ClCompile Include="..\gwc.native\Color.cpp" />
     <ClCompile Include="..\gwc.native\Point.cpp" />
+    <ClCompile Include="..\gwc.native\Size.cpp" />
+    <ClCompile Include="..\gwc.native\Rectangle.cpp" />
     <ClCompile Include="..\gwc.native\Render.cpp" />
     <ClCompile Include="..\gwc.native\SPRITE.cpp" />
     <ClCompile Include="..\gwc.native\Canvas.cpp" />
@@ -302,6 +310,8 @@
     <ClCompile Include="..\gwc.native\gwc.c" />
     <ClCompile Include="..\gwc.native\COLOR.c" />
     <ClCompile Include="..\gwc.native\POINT.c" />
+    <ClCompile Include="..\gwc.native\SIZE.c" />
+    <ClCompile Include="..\gwc.native\RECTANGLE.c" />
     <ClCompile Include="..\gwc.native\RENDER.c" />
     <ClCompile Include="..\gwc.native\SPRITE.c" />
     <ClCompile Include="..\gwc.native\CANVAS.c" />

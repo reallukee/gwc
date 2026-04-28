@@ -236,6 +236,7 @@
   <ItemGroup>
     <ClInclude Include="AssemblyInfo.clr.hpp" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="export.clr.hpp" />
     <ClInclude Include="header.clr.hpp" />
     <ClInclude Include="gwc.clr.hpp" />
     <ClInclude Include="SpriteHost.clr.hpp" />
@@ -247,6 +248,8 @@
     <ClInclude Include="types.hpp" />
     <ClInclude Include="Color.hpp" />
     <ClInclude Include="Point.hpp" />
+    <ClInclude Include="Size.hpp" />
+    <ClInclude Include="Rectangle.hpp" />
     <ClInclude Include="Keys.hpp" />
     <ClInclude Include="MouseButtons.hpp" />
     <ClInclude Include="Render.hpp" />
@@ -263,6 +266,8 @@
     <ClInclude Include="types.h" />
     <ClInclude Include="COLOR.h" />
     <ClInclude Include="POINT.h" />
+    <ClInclude Include="SIZE.h" />
+    <ClInclude Include="RECTANGLE.h" />
     <ClInclude Include="KEYS.h" />
     <ClInclude Include="MOUSEBUTTONS.h" />
     <ClInclude Include="RENDER.h" />
@@ -276,12 +281,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.clr.cpp" />
+    <ClCompile Include="gwc.clr.cpp" />
     <ClCompile Include="SpriteHost.clr.cpp" />
     <ClCompile Include="CanvasHost.clr.cpp" />
     <ClCompile Include="WindowHost.clr.cpp" />
     <ClCompile Include="gwc.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Point.cpp" />
+    <ClCompile Include="Size.cpp" />
+    <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="Render.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Canvas.cpp" />
@@ -289,6 +297,8 @@
     <ClCompile Include="gwc.c" />
     <ClCompile Include="COLOR.c" />
     <ClCompile Include="POINT.c" />
+    <ClCompile Include="SIZE.c" />
+    <ClCompile Include="RECTANGLE.c" />
     <ClCompile Include="RENDER.c" />
     <ClCompile Include="SPRITE.c" />
     <ClCompile Include="CANVAS.c" />

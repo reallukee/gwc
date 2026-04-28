@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.2.0
+// v0.3.3
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -12,19 +12,19 @@
 
 #include "COLOR.h"
 
-typedef struct Color
+typedef struct gCOLOR
 {
     int alpha;
     int red;
     int green;
     int blue;
-} Color;
+} gCOLOR;
 
 
 
-Color* color_new(int alpha, int red, int green, int blue)
+gCOLOR* color_new(int alpha, int red, int green, int blue)
 {
-    Color* color = (Color*)calloc(1, sizeof(Color));
+    gCOLOR* color = (gCOLOR*)calloc(1, sizeof(gCOLOR));
 
     if (color == NULL)
     {
@@ -59,7 +59,7 @@ Color* color_new(int alpha, int red, int green, int blue)
     return color;
 }
 
-void color_delete(Color* color)
+void color_delete(gCOLOR* color)
 {
     if (color != NULL)
     {
@@ -71,12 +71,12 @@ void color_delete(Color* color)
 
 
 
-int color_getAlpha(const Color* color)
+int color_getAlpha(const gCOLOR* color)
 {
     return color->alpha;
 }
 
-void color_setAlpha(Color* color, int value)
+void color_setAlpha(gCOLOR* color, int value)
 {
     if (value < 0 || value > 100)
     {
@@ -86,12 +86,12 @@ void color_setAlpha(Color* color, int value)
     color->alpha = value;
 }
 
-int color_getRed(const Color* color)
+int color_getRed(const gCOLOR* color)
 {
     return color->red;
 }
 
-void color_setRed(Color* color, int value)
+void color_setRed(gCOLOR* color, int value)
 {
     if (value < 0 || value > 255)
     {
@@ -101,12 +101,12 @@ void color_setRed(Color* color, int value)
     color->red = value;
 }
 
-int color_getGreen(const Color* color)
+int color_getGreen(const gCOLOR* color)
 {
     return color->green;
 }
 
-void color_setGreen(Color* color, int value)
+void color_setGreen(gCOLOR* color, int value)
 {
     if (value < 0 || value > 255)
     {
@@ -116,12 +116,12 @@ void color_setGreen(Color* color, int value)
     color->green = value;
 }
 
-int color_getBlue(const Color* color)
+int color_getBlue(const gCOLOR* color)
 {
     return color->blue;
 }
 
-void color_setBlue(Color* color, int value)
+void color_setBlue(gCOLOR* color, int value)
 {
     if (value < 0 || value > 255)
     {
@@ -133,7 +133,7 @@ void color_setBlue(Color* color, int value)
 
 
 
-bool color_equal(const Color* color, const Color* other)
+bool color_equal(const gCOLOR* color, const gCOLOR* other)
 {
     if (color == NULL || other == NULL)
     {
@@ -146,7 +146,7 @@ bool color_equal(const Color* color, const Color* other)
            color->blue  == other->blue;
 }
 
-bool color_notequal(const Color* color, const Color* other)
+bool color_notequal(const gCOLOR* color, const gCOLOR* other)
 {
     if (color == NULL || other == NULL)
     {

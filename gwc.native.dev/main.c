@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.0
+// v0.3.3
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -17,7 +17,7 @@
 #include <stdlib.h>
 
 /*
-Color* generateRandomColor();
+gCOLOR* generateRandomColor();
 
 int main(int argc, const char* argv[])
 {
@@ -41,8 +41,8 @@ int main(int argc, const char* argv[])
 
     while (window_isOpen(window) && loop)
     {
-        Keys modifiers = KEYS_NONE;
-        Keys key = KEYS_NONE;
+        gKEYS modifiers = KEYS_NONE;
+        gKEYS key = KEYS_NONE;
 
         bool keyDown = window_consumeKeyDown(window, &modifiers, &key);
 
@@ -57,8 +57,8 @@ int main(int argc, const char* argv[])
 
             printf("Pressed: %d, %d\n", modifiers, key);
 
-            Color* bordercolor = generateRandomColor();
-            Color* fillColor = generateRandomColor();
+            gCOLOR* bordercolor = generateRandomColor();
+            gCOLOR* fillColor = generateRandomColor();
 
             window_setBorderColor(window, bordercolor);
             window_setFillColor(window, fillColor);
@@ -85,7 +85,7 @@ int main(int argc, const char* argv[])
     return 0;
 }
 
-Color* generateRandomColor()
+gCOLOR* generateRandomColor()
 {
     srand((unsigned int)time(NULL));
 
@@ -94,7 +94,7 @@ Color* generateRandomColor()
     int blue  = rand() % 255 + 1;
     int green = rand() % 255 + 1;
 
-    Color* color = color_new(alpha, red, green, blue);
+    gCOLOR* color = color_new(alpha, red, green, blue);
 
     return color;
 }

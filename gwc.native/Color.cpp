@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.0
+// v0.3.3
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -16,7 +16,7 @@
 
 namespace gwc
 {
-    Color::Color(int alpha, int red, int green, int blue)
+    gColor::gColor(int alpha, int red, int green, int blue)
     {
         if (alpha < 0 || alpha > 100)
         {
@@ -44,16 +44,16 @@ namespace gwc
         this->blue  = blue;
     }
 
-    Color::~Color() { }
+    gColor::~gColor() { }
 
 
 
-    int Color::getAlpha() const
+    int gColor::getAlpha() const
     {
         return alpha;
     }
 
-    void Color::setAlpha(int value)
+    void gColor::setAlpha(int value)
     {
         if (value < 0 || value > 100)
         {
@@ -63,12 +63,12 @@ namespace gwc
         alpha = value;
     }
 
-    int Color::getRed() const
+    int gColor::getRed() const
     {
         return red;
     }
 
-    void Color::setRed(int value)
+    void gColor::setRed(int value)
     {
         if (value < 0 || value > 255)
         {
@@ -78,12 +78,12 @@ namespace gwc
         red = value;
     }
 
-    int Color::getGreen() const
+    int gColor::getGreen() const
     {
         return green;
     }
 
-    void Color::setGreen(int value)
+    void gColor::setGreen(int value)
     {
         if (value < 0 || value > 255)
         {
@@ -93,12 +93,12 @@ namespace gwc
         green = value;
     }
 
-    int Color::getBlue() const
+    int gColor::getBlue() const
     {
         return blue;
     }
 
-    void Color::setBlue(int value)
+    void gColor::setBlue(int value)
     {
         if (value < 0 || value > 255)
         {
@@ -110,7 +110,7 @@ namespace gwc
 
 
 
-    bool Color::operator==(const Color& other) const
+    bool gColor::operator==(const gColor& other) const
     {
         return alpha == other.alpha &&
                red   == other.red   &&
@@ -118,7 +118,7 @@ namespace gwc
                blue  == other.blue;
     }
 
-    bool Color::operator!=(const Color& other) const
+    bool gColor::operator!=(const gColor& other) const
     {
         return alpha != other.alpha &&
                red   != other.red   &&

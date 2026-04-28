@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.2.0
+// v0.3.3
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -21,21 +21,21 @@
 
 namespace gwc
 {
-    class GWC_CPP_API Point sealed
+    class GWC_CPP_API gPoint sealed
     {
 
     public:
 
-        Point (int x, int y);
-        ~Point();
+        gPoint (int x, int y);
+        ~gPoint();
 
         int  getX() const;
         void setX(int value);
         int  getY() const;
         void setY(int value);
 
-        bool operator==(const Point& other) const;
-        bool operator!=(const Point& other) const;
+        bool operator==(const gPoint& other) const;
+        bool operator!=(const gPoint& other) const;
 
     private:
 

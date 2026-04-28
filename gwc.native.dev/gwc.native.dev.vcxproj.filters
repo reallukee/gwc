@@ -39,6 +39,9 @@
     <ClInclude Include="resource.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
+    <ClInclude Include="..\gwc.native\export.clr.hpp">
+      <Filter>File di intestazione\CLR API</Filter>
+    </ClInclude>
     <ClInclude Include="..\gwc.native\header.clr.hpp">
       <Filter>File di intestazione\CLR API</Filter>
     </ClInclude>
@@ -70,6 +73,12 @@
       <Filter>File di intestazione\C++ API</Filter>
     </ClInclude>
     <ClInclude Include="..\gwc.native\Point.hpp">
+      <Filter>File di intestazione\C++ API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gwc.native\Size.hpp">
+      <Filter>File di intestazione\C++ API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gwc.native\Rectangle.hpp">
       <Filter>File di intestazione\C++ API</Filter>
     </ClInclude>
     <ClInclude Include="..\gwc.native\Keys.hpp">
@@ -120,6 +129,12 @@
     <ClInclude Include="..\gwc.native\POINT.h">
       <Filter>File di intestazione\C API</Filter>
     </ClInclude>
+    <ClInclude Include="..\gwc.native\SIZE.h">
+      <Filter>File di intestazione\C API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gwc.native\RECTANGLE.h">
+      <Filter>File di intestazione\C API</Filter>
+    </ClInclude>
     <ClInclude Include="..\gwc.native\KEYS.h">
       <Filter>File di intestazione\C API</Filter>
     </ClInclude>
@@ -155,6 +170,9 @@
     <ClCompile Include="AssemblyInfo.clr.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
+    <ClCompile Include="..\gwc.native\gwc.clr.cpp">
+      <Filter>File di origine\CLR</Filter>
+    </ClCompile>
     <ClCompile Include="..\gwc.native\SpriteHost.clr.cpp">
       <Filter>File di origine\CLR</Filter>
     </ClCompile>
@@ -171,6 +189,12 @@
       <Filter>File di origine\C++ API</Filter>
     </ClCompile>
     <ClCompile Include="..\gwc.native\Point.cpp">
+      <Filter>File di origine\C++ API</Filter>
+    </ClCompile>
+    <ClCompile Include="..\gwc.native\Size.cpp">
+      <Filter>File di origine\C++ API</Filter>
+    </ClCompile>
+    <ClCompile Include="..\gwc.native\Rectangle.cpp">
       <Filter>File di origine\C++ API</Filter>
     </ClCompile>
     <ClCompile Include="..\gwc.native\Render.cpp">
@@ -195,6 +219,12 @@
       <Filter>File di origine\C API</Filter>
     </ClCompile>
     <ClCompile Include="..\gwc.native\POINT.c">
+      <Filter>File di origine\C API</Filter>
+    </ClCompile>
+    <ClCompile Include="..\gwc.native\SIZE.c">
+      <Filter>File di origine\C API</Filter>
+    </ClCompile>
+    <ClCompile Include="..\gwc.native\RECTANGLE.c">
       <Filter>File di origine\C API</Filter>
     </ClCompile>
     <ClCompile Include="..\gwc.native\RENDER.c">

@@ -39,6 +39,9 @@
     <ClInclude Include="resource.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
+    <ClInclude Include="export.clr.hpp">
+      <Filter>File di intestazione\CLR API</Filter>
+    </ClInclude>
     <ClInclude Include="header.clr.hpp">
       <Filter>File di intestazione\CLR API</Filter>
     </ClInclude>
@@ -70,6 +73,12 @@
       <Filter>File di intestazione\C++ API</Filter>
     </ClInclude>
     <ClInclude Include="Point.hpp">
+      <Filter>File di intestazione\C++ API</Filter>
+    </ClInclude>
+    <ClInclude Include="Size.hpp">
+      <Filter>File di intestazione\C++ API</Filter>
+    </ClInclude>
+    <ClInclude Include="Rectangle.hpp">
       <Filter>File di intestazione\C++ API</Filter>
     </ClInclude>
     <ClInclude Include="Keys.hpp">
@@ -120,6 +129,12 @@
     <ClInclude Include="POINT.h">
       <Filter>File di intestazione\C API</Filter>
     </ClInclude>
+    <ClInclude Include="SIZE.h">
+      <Filter>File di intestazione\C API</Filter>
+    </ClInclude>
+    <ClInclude Include="RECTANGLE.h">
+      <Filter>File di intestazione\C API</Filter>
+    </ClInclude>
     <ClInclude Include="KEYS.h">
       <Filter>File di intestazione\C API</Filter>
     </ClInclude>
@@ -155,6 +170,9 @@
     <ClCompile Include="AssemblyInfo.clr.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
+    <ClCompile Include="gwc.clr.cpp">
+      <Filter>File di origine\CLR</Filter>
+    </ClCompile>
     <ClCompile Include="SpriteHost.clr.cpp">
       <Filter>File di origine\CLR</Filter>
     </ClCompile>
@@ -171,6 +189,12 @@
       <Filter>File di origine\C++ API</Filter>
     </ClCompile>
     <ClCompile Include="Point.cpp">
+      <Filter>File di origine\C++ API</Filter>
+    </ClCompile>
+    <ClCompile Include="Size.cpp">
+      <Filter>File di origine\C++ API</Filter>
+    </ClCompile>
+    <ClCompile Include="Rectangle.cpp">
       <Filter>File di origine\C++ API</Filter>
     </ClCompile>
     <ClCompile Include="Render.cpp">
@@ -192,6 +216,12 @@
       <Filter>File di origine\C API</Filter>
     </ClCompile>
     <ClCompile Include="POINT.c">
+      <Filter>File di origine\C API</Filter>
+    </ClCompile>
+    <ClCompile Include="SIZE.c">
+      <Filter>File di origine\C API</Filter>
+    </ClCompile>
+    <ClCompile Include="RECTANGLE.c">
       <Filter>File di origine\C API</Filter>
     </ClCompile>
     <ClCompile Include="RENDER.c">

@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.2.0
+// v0.3.3
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -10,19 +10,19 @@
 //  Licenza MIT
 //
 
-#include "Point.h"
+#include "POINT.h"
 
-typedef struct Point
+typedef struct gPOINT
 {
     int x;
     int y;
-} Point;
+} gPOINT;
 
 
 
-Point* point_new(int x, int y)
+gPOINT* point_new(int x, int y)
 {
-    Point* point = (Point*)calloc(1, sizeof(Point));
+    gPOINT* point = (gPOINT*)calloc(1, sizeof(gPOINT));
 
     if (point == NULL)
     {
@@ -45,7 +45,7 @@ Point* point_new(int x, int y)
     return point;
 }
 
-void point_delete(Point* point)
+void point_delete(gPOINT* point)
 {
     if (point != NULL)
     {
@@ -57,12 +57,12 @@ void point_delete(Point* point)
 
 
 
-int point_getX(const Point* point)
+int point_getX(const gPOINT* point)
 {
     return point->x;
 }
 
-void point_setX(Point* point, int value)
+void point_setX(gPOINT* point, int value)
 {
     if (value < 0)
     {
@@ -72,12 +72,12 @@ void point_setX(Point* point, int value)
     point->x = value;
 }
 
-int point_getY(const Point* point)
+int point_getY(const gPOINT* point)
 {
     return point->y;
 }
 
-void point_setY(Point* point, int value)
+void point_setY(gPOINT* point, int value)
 {
     if (value < 0)
     {
@@ -89,7 +89,7 @@ void point_setY(Point* point, int value)
 
 
 
-bool point_equal(const Point* point, const Point* other)
+bool point_equal(const gPOINT* point, const gPOINT* other)
 {
     if (point == NULL || other == NULL)
     {
@@ -100,7 +100,7 @@ bool point_equal(const Point* point, const Point* other)
            point->y == other->y;
 }
 
-bool point_notequal(const Point* point, const Point* other)
+bool point_notequal(const gPOINT* point, const gPOINT* other)
 {
     if (point == NULL || other == NULL)
     {
