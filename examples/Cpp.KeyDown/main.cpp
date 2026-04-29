@@ -1,5 +1,5 @@
 // Cpp.KeyDown
-//  GWC.Native >=0.3.0
+//  GWC.Native >=0.3.3
 
 #include <iostream>
 
@@ -24,8 +24,8 @@ int main(int argc, const char* argv[])
 
     bool loop = true;
 
-    Keys modifiers = Keys::None;
-    Keys key = Keys::None;
+    gKeys modifiers = gKeys::None;
+    gKeys key = gKeys::None;
 
     while (window->isOpen() && loop)
     {
@@ -37,7 +37,7 @@ int main(int argc, const char* argv[])
             cout << "Key       : " << static_cast<int>(key) << endl;
             cout << endl;
 
-            if (modifiers == Keys::Control && key == Keys::Q)
+            if (modifiers == gKeys::Control && key == gKeys::Q)
             {
                 loop = false;
             }

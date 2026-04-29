@@ -1,5 +1,5 @@
 // Cpp.Draw
-//  GWC.Native >=0.3.0
+//  GWC.Native >=0.3.3
 
 #include <iostream>
 
@@ -22,10 +22,10 @@ int main(int argc, const char* argv[])
         return 1;
     }
 
-    window->setFillColor(Color(100, 255, 255, 0));
+    window->setFillColor(gColor(100, 255, 255, 0));
     window->drawFillSquare(100, 100, 100);
 
-    window->setFillColor(Color(100, 255, 0, 128));
+    window->setFillColor(gColor(100, 255, 0, 128));
     window->drawFillCircle(150, 150, 50);
 
     while (window->isOpen() && !window->isKeyDownAvailable())

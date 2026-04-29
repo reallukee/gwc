@@ -1,5 +1,5 @@
 // C.KeyDown
-//  GWC.Native >=0.3.0
+//  GWC.Native >=0.3.3
 
 #include <stdio.h>
 
@@ -20,8 +20,8 @@ int main(int argc, const char* argv[])
 
     bool loop = true;
 
-    Keys modifiers = KEYS_NONE;
-    Keys key = KEYS_NONE;
+    gKEYS modifiers = gKEYS_NONE;
+    gKEYS key = gKEYS_NONE;
 
     while (window_isOpen(window) && loop)
     {
@@ -33,7 +33,7 @@ int main(int argc, const char* argv[])
             printf("Key       : %d\n", key);
             printf("\n");
 
-            if (modifiers == KEYS_CONTROL && key == KEYS_Q)
+            if (modifiers == gKEYS_CONTROL && key == gKEYS_Q)
             {
                 loop = false;
             }

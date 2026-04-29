@@ -1,5 +1,5 @@
 // C.Draw
-//  GWC.Native >=0.3.0
+//  GWC.Native >=0.3.3
 
 #include <stdio.h>
 
@@ -18,17 +18,15 @@ int main(int argc, const char* argv[])
         return 1;
     }
 
-    Color* fillColor = NULL;
-
-    fillColor = color_new(100, 255, 255, 0);
-    window_setFillColor(window, fillColor);
+    gCOLOR* fillColor1 = color_new(100, 255, 255, 0);
+    window_setFillColor(window, fillColor1);
     window_drawFillSquare(window, 100, 100, 100);
-    color_delete(fillColor);
+    color_delete(fillColor1);
 
-    fillColor = color_new(100, 255, 0, 128);
-    window_setFillColor(window, fillColor);
+    gCOLOR* fillColor2 = color_new(100, 255, 255, 0);
+    window_setFillColor(window, fillColor2);
     window_drawFillCircle(window, 150, 150, 50);
-    color_delete(fillColor);
+    color_delete(fillColor2);
 
     while (window_isOpen(window) && !window_isKeyDownAvailable(window))
     {
