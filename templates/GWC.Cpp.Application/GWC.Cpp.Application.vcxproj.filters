@@ -50,6 +50,12 @@
     <ClInclude Include="include\Point.hpp">
       <Filter>GWC\Include</Filter>
     </ClInclude>
+    <ClInclude Include="include\Size.hpp">
+      <Filter>GWC\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rectangle.hpp">
+      <Filter>GWC\Include</Filter>
+    </ClInclude>
     <ClInclude Include="include\Keys.hpp">
       <Filter>GWC\Include</Filter>
     </ClInclude>

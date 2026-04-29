@@ -4,6 +4,8 @@ gwc.h
 types.h
 COLOR.h
 POINT.h
+SIZE.h
+RECTANGLE.h
 KEYS.h
 MOUSEBUTTONS.h
 RENDER.h
@@ -16,6 +18,8 @@ gwc.hpp
 types.hpp
 Color.hpp
 Point.hpp
+Size.hpp
+Rectangle.hpp
 Keys.hpp
 MouseButtons.hpp
 Render.hpp

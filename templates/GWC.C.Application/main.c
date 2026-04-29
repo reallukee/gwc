@@ -8,7 +8,7 @@
 #include <time.h>
 #include <stdlib.h>
 
-Color* generateRandomColor();
+gCOLOR* generateRandomColor();
 
 int main(int argc, const char* argv[])
 {
@@ -36,14 +36,14 @@ int main(int argc, const char* argv[])
 
     while (window_isOpen(window) && loop)
     {
-        Keys modifiers = KEYS_NONE;
-        Keys key = KEYS_NONE;
+        gKEYS modifiers = gKEYS_NONE;
+        gKEYS key = gKEYS_NONE;
 
         bool keyDown = window_consumeKeyDown(window, &modifiers, &key);
 
         if (keyDown)
         {
-            if (key == KEYS_ESCAPE)
+            if (key == gKEYS_ESCAPE)
             {
                 loop = false;
 
@@ -52,8 +52,8 @@ int main(int argc, const char* argv[])
 
             printf("Pressed: %d, %d\n", modifiers, key);
 
-            Color* bordercolor = generateRandomColor();
-            Color* fillColor = generateRandomColor();
+            gCOLOR* bordercolor = generateRandomColor();
+            gCOLOR* fillColor = generateRandomColor();
 
             window_setBorderColor(window, bordercolor);
             window_setFillColor(window, fillColor);
@@ -78,7 +78,7 @@ int main(int argc, const char* argv[])
     return 0;
 }
 
-Color* generateRandomColor()
+gCOLOR* generateRandomColor()
 {
     srand((unsigned int)time(NULL));
 
@@ -87,7 +87,7 @@ Color* generateRandomColor()
     int blue  = rand() % 255 + 1;
     int green = rand() % 255 + 1;
 
-    Color* color = color_new(alpha, red, green, blue);
+    gCOLOR* gCOLOR = color_new(alpha, red, green, blue);
 
-    return color;
+    return gCOLOR;
 }

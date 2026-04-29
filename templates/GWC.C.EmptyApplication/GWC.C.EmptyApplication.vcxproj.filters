@@ -45,6 +45,12 @@
     <ClInclude Include="include\POINT.h">
       <Filter>GWC\Include</Filter>
     </ClInclude>
+    <ClInclude Include="include\SIZE.h">
+      <Filter>GWC\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\RECTANGLE.h">
+      <Filter>GWC\Include</Filter>
+    </ClInclude>
     <ClInclude Include="include\KEYS.h">
       <Filter>GWC\Include</Filter>
     </ClInclude>
