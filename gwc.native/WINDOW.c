@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.3
+// v0.4.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -77,9 +77,9 @@ bool window_open(const WINDOW* window)
     CCI_WINDOW_BOOL_C(window, Open());
 }
 
-bool window_shutdown(const WINDOW* window)
+bool window_close(const WINDOW* window)
 {
-    CCI_WINDOW_BOOL_C(window, Shutdown());
+    CCI_WINDOW_BOOL_C(window, Close());
 }
 
 
@@ -89,31 +89,33 @@ bool window_isOpen(const WINDOW* window)
     CCI_WINDOW_BOOL_C(window, IsOpen);
 }
 
-bool window_isShutdown(const WINDOW* window)
+bool window_isClose(const WINDOW* window)
 {
-    CCI_WINDOW_BOOL_C(window, IsShutdown);
+    CCI_WINDOW_BOOL_C(window, IsClose);
 }
 
 
 
-gCOLOR* window_getBorderColor(const WINDOW* window)
+bool window_suspend(const WINDOW* window)
 {
-    CCI_WINDOW_GET_COLOR_C(window, BorderColor);
+    CCI_WINDOW_BOOL_C(window, Suspend());
 }
 
-void window_setBorderColor(const WINDOW* window, const gCOLOR* color)
+bool window_resume(const WINDOW* window)
 {
-    CCI_WINDOW_SET_COLOR_C(window, BorderColor, color);
+    CCI_WINDOW_BOOL_C(window, Resume());
 }
 
-gCOLOR* window_getFillColor(const WINDOW* window)
+
+
+bool window_isSuspend(const WINDOW* window)
 {
-    CCI_WINDOW_GET_COLOR_C(window, FillColor);
+    CCI_WINDOW_BOOL_C(window, IsSuspend);
 }
 
-void window_setFillColor(const WINDOW* window, const gCOLOR* color)
+bool window_isResume(const WINDOW* window)
 {
-    CCI_WINDOW_SET_COLOR_C(window, FillColor, color);
+    CCI_WINDOW_BOOL_C(window, IsResume);
 }
 
 
@@ -121,6 +123,23 @@ void window_setFillColor(const WINDOW* window, const gCOLOR* color)
 void window_wait(const WINDOW* window, int milliseconds)
 {
     CCI_WINDOW_VOID_C(window, Wait(milliseconds));
+}
+
+void window_skip(const WINDOW* window, int frames)
+{
+    CCI_WINDOW_VOID_C(window, Skip(frames));
+}
+
+
+
+bool window_show(const WINDOW* window)
+{
+    CCI_WINDOW_BOOL_C(window, Show());
+}
+
+bool window_hide(const WINDOW* window)
+{
+    CCI_WINDOW_BOOL_C(window, Hide());
 }
 
 
@@ -174,7 +193,7 @@ bool window_consumeKeyDown(const WINDOW* window, gKEYS* modifiers, gKEYS* key)
     );
 
     int rawModifiers = static_cast<int>(managedModifiers);
-    int rawKey = static_cast<int>(managedKey);
+    int rawKey       = static_cast<int>(managedKey);
 
     *modifiers = static_cast<gKEYS>(rawModifiers);
     *key       = static_cast<gKEYS>(rawKey);
@@ -185,11 +204,6 @@ bool window_consumeKeyDown(const WINDOW* window, gKEYS* modifiers, gKEYS* key)
 bool window_discardKeyDown(const WINDOW* window)
 {
     CCI_WINDOW_BOOL_C(window, DiscardKeyDown());
-}
-
-void window_waitKeyDown(const WINDOW* window)
-{
-    CCI_WINDOW_VOID_C(window, WaitKeyDown());
 }
 
 bool window_isKeyDownLost(const WINDOW* window)
@@ -231,7 +245,7 @@ bool window_consumeKeyUp(const WINDOW* window, gKEYS* modifiers, gKEYS* key)
     );
 
     int rawModifiers = static_cast<int>(managedModifiers);
-    int rawKey = static_cast<int>(managedKey);
+    int rawKey       = static_cast<int>(managedKey);
 
     *modifiers = static_cast<gKEYS>(rawModifiers);
     *key       = static_cast<gKEYS>(rawKey);
@@ -242,11 +256,6 @@ bool window_consumeKeyUp(const WINDOW* window, gKEYS* modifiers, gKEYS* key)
 bool window_discardKeyUp(const WINDOW* window)
 {
     CCI_WINDOW_BOOL_C(window, DiscardKeyUp());
-}
-
-void window_waitKeyUp(const WINDOW* window)
-{
-    CCI_WINDOW_VOID_C(window, WaitKeyUp());
 }
 
 bool window_isKeyUpLost(const WINDOW* window)
@@ -295,11 +304,6 @@ bool window_discardMouseDown(const WINDOW* window)
     CCI_WINDOW_BOOL_C(window, DiscardMouseDown());
 }
 
-void window_waitMouseDown(const WINDOW* window)
-{
-    CCI_WINDOW_VOID_C(window, WaitMouseDown());
-}
-
 bool window_isMouseDownLost(const WINDOW* window)
 {
     CCI_WINDOW_BOOL_C(window, IsMouseDownLost);
@@ -346,11 +350,6 @@ bool window_discardMouseUp(const WINDOW* window)
     CCI_WINDOW_BOOL_C(window, DiscardMouseUp());
 }
 
-void window_waitMouseUp(const WINDOW* window)
-{
-    CCI_WINDOW_VOID_C(window, WaitMouseUp());
-}
-
 bool window_isMouseUpLost(const WINDOW* window)
 {
     CCI_WINDOW_BOOL_C(window, IsMouseUpLost);
@@ -371,6 +370,28 @@ int window_getCanvasWidth(const WINDOW* window)
 int window_getCanvasHeight(const WINDOW* window)
 {
     CCI_WINDOW_INT_C(window, CanvasHeight);
+}
+
+
+
+gCOLOR* window_getBorderColor(const WINDOW* window)
+{
+    CCI_WINDOW_GET_COLOR_C(window, BorderColor);
+}
+
+void window_setBorderColor(const WINDOW* window, const gCOLOR* color)
+{
+    CCI_WINDOW_SET_COLOR_C(window, BorderColor, color);
+}
+
+gCOLOR* window_getFillColor(const WINDOW* window)
+{
+    CCI_WINDOW_GET_COLOR_C(window, FillColor);
+}
+
+void window_setFillColor(const WINDOW* window, const gCOLOR* color)
+{
+    CCI_WINDOW_SET_COLOR_C(window, FillColor, color);
 }
 
 

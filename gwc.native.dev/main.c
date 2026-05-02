@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.3
+// v0.4.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -12,6 +12,7 @@
 
 #include <gwc.h>
 
+/*
 int main(int argc, const char* argv[])
 {
     render_setDefaultRefreshRate();
@@ -37,7 +38,7 @@ int main(int argc, const char* argv[])
 
     if (window_isOpen(window))
     {
-        window_shutdown(window);
+        window_close(window);
     }
 
     window_delete(window);
@@ -46,3 +47,4 @@ int main(int argc, const char* argv[])
 
     return 0;
 }
+*/
