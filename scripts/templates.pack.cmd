@@ -9,8 +9,12 @@ PUSHD "%~dp0.."
 
 SET /P VERSION=<VERSION
 
-FOR /F %%D in (scripts\templates.txt) DO (
-    POWERSHELL -Command "Compress-Archive -Force -Path 'templates\%%D\*' -DestinationPath 'templates\%%D-!VERSION!.zip'"
+IF NOT EXIST "templates\dist" (
+    MKDIR "templates\dist"
+)
+
+FOR /F %%D in (config\templates.txt) DO (
+    POWERSHELL -Command "Compress-Archive -Force -Path 'templates\%%D\*' -DestinationPath 'templates\dist\%%D-!VERSION!.zip'"
 )
 
 POPD
