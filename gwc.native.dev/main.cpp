@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.3
+// v0.4.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -13,6 +13,7 @@
 #include <gwc.hpp>
 
 using namespace gwc;
+
 
 int main(int argc, const char* argv[])
 {
@@ -39,7 +40,7 @@ int main(int argc, const char* argv[])
 
     if (window->isOpen())
     {
-        window->shutdown();
+        window->close();
     }
 
     delete window;

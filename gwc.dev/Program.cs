@@ -70,7 +70,7 @@ namespace Reallukee.GWC
 
             if (window.IsOpen)
             {
-                window.Shutdown();
+                window.Close();
             }
 
             window.Dispose();

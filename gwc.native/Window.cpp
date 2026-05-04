@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.3
+// v0.4.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -61,9 +61,9 @@ namespace gwc
         CCI_WINDOW_BOOL_CPP(window, Open());
     }
 
-    bool Window::shutdown()
+    bool Window::close()
     {
-        CCI_WINDOW_BOOL_CPP(window, Shutdown());
+        CCI_WINDOW_BOOL_CPP(window, Close());
     }
 
 
@@ -73,31 +73,33 @@ namespace gwc
         CCI_WINDOW_BOOL_CPP(window, IsOpen);
     }
 
-    bool Window::isShutdown()
+    bool Window::isClose()
     {
-        CCI_WINDOW_BOOL_CPP(window, IsShutdown);
+        CCI_WINDOW_BOOL_CPP(window, IsClose);
     }
 
 
 
-    gColor Window::getBorderColor()
+    bool Window::suspend()
     {
-    CCI_WINDOW_GET_COLOR_CPP(window, BorderColor);
+        CCI_WINDOW_BOOL_CPP(window, Suspend())
     }
 
-    void Window::setBorderColor(gColor color)
+    bool Window::resume()
     {
-        CCI_WINDOW_SET_COLOR_CPP(window, BorderColor, color);
+        CCI_WINDOW_BOOL_CPP(window, Resume())
     }
 
-    gColor Window::getFillColor()
+
+
+    bool Window::isSuspend()
     {
-        CCI_WINDOW_GET_COLOR_CPP(window, FillColor);
+        CCI_WINDOW_BOOL_CPP(window, IsSuspend);
     }
 
-    void Window::setFillColor(gColor color)
+    bool Window::isResume()
     {
-        CCI_WINDOW_SET_COLOR_CPP(window, FillColor, color);
+        CCI_WINDOW_BOOL_CPP(window, IsResume);
     }
 
 
@@ -105,6 +107,23 @@ namespace gwc
     void Window::wait(int milliseconds)
     {
         CCI_WINDOW_VOID_CPP(window, Wait(milliseconds));
+    }
+
+    void Window::skip(int frames)
+    {
+        CCI_WINDOW_VOID_CPP(window, Skip(frames));
+    }
+
+
+
+    bool Window::show()
+    {
+        CCI_WINDOW_BOOL_CPP(window, Show());
+    }
+
+    bool Window::hide()
+    {
+        CCI_WINDOW_BOOL_CPP(window, Hide());
     }
 
 
@@ -166,11 +185,6 @@ namespace gwc
         CCI_WINDOW_BOOL_CPP(window, DiscardKeyDown());
     }
 
-    void Window::waitKeyDown()
-    {
-        CCI_WINDOW_VOID_CPP(window, WaitKeyDown());
-    }
-
     bool Window::isKeyDownLost()
     {
         CCI_WINDOW_BOOL_CPP(window, IsKeyDownLost);
@@ -216,11 +230,6 @@ namespace gwc
     bool Window::discardKeyUp()
     {
         CCI_WINDOW_BOOL_CPP(window, DiscardKeyUp());
-    }
-
-    void Window::waitKeyUp()
-    {
-        CCI_WINDOW_VOID_CPP(window, WaitKeyUp());
     }
 
     bool Window::isKeyUpLost()
@@ -269,11 +278,6 @@ namespace gwc
         CCI_WINDOW_BOOL_CPP(window, DiscardMouseDown());
     }
 
-    void Window::waitMouseDown()
-    {
-        CCI_WINDOW_VOID_CPP(window, WaitMouseDown());
-    }
-
     bool Window::isMouseDownLost()
     {
         CCI_WINDOW_BOOL_CPP(window, IsMouseDownLost);
@@ -320,11 +324,6 @@ namespace gwc
         CCI_WINDOW_BOOL_CPP(window, DiscardMouseUp());
     }
 
-    void Window::waitMouseUp()
-    {
-        CCI_WINDOW_VOID_CPP(window, WaitMouseUp());
-    }
-
     bool Window::isMouseUpLost()
     {
         CCI_WINDOW_BOOL_CPP(window, IsMouseUpLost);
@@ -345,6 +344,28 @@ namespace gwc
     int Window::getCanvasHeight()
     {
         CCI_WINDOW_INT_CPP(window, CanvasHeight);
+    }
+
+
+
+    gColor Window::getBorderColor()
+    {
+        CCI_WINDOW_GET_COLOR_CPP(window, BorderColor);
+    }
+
+    void Window::setBorderColor(gColor color)
+    {
+        CCI_WINDOW_SET_COLOR_CPP(window, BorderColor, color);
+    }
+
+    gColor Window::getFillColor()
+    {
+        CCI_WINDOW_GET_COLOR_CPP(window, FillColor);
+    }
+
+    void Window::setFillColor(gColor color)
+    {
+        CCI_WINDOW_SET_COLOR_CPP(window, FillColor, color);
     }
 
 

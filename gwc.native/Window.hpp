@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.3
+// v0.4.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -34,18 +34,24 @@ namespace gwc
 
         bool isInitialized();
 
-        bool open    ();
-        bool shutdown();
+        bool open ();
+        bool close();
 
-        bool isOpen    ();
-        bool isShutdown();
+        bool isOpen ();
+        bool isClose();
 
-        gColor getBorderColor();
-        void   setBorderColor(gColor color);
-        gColor getFillColor  ();
-        void   setFillColor  (gColor color);
+        bool suspend();
+        bool resume ();
+
+        bool isSuspend();
+        bool isResume ();
 
         void wait(int milliseconds);
+
+        void skip(int frames);
+
+        bool show();
+        bool hide();
 
         int getWindowWidth ();
         int getWindowHeight();
@@ -56,7 +62,6 @@ namespace gwc
         void flushKeyDown       ();
         bool consumeKeyDown     (gKeys& modifiers, gKeys& key);
         bool discardKeyDown     ();
-        void waitKeyDown        ();
         bool isKeyDownLost      ();
         bool isKeyDownBufferFull();
 
@@ -64,7 +69,6 @@ namespace gwc
         void flushKeyUp       ();
         bool consumeKeyUp     (gKeys& modifiers, gKeys& key);
         bool discardKeyUp     ();
-        void waitKeyUp        ();
         bool isKeyUpLost      ();
         bool isKeyUpBufferFull();
 
@@ -72,7 +76,6 @@ namespace gwc
         void flushMouseDown       ();
         bool consumeMouseDown     (gPoint& location, gMouseButtons& button);
         bool discardMouseDown     ();
-        void waitMouseDown        ();
         bool isMouseDownLost      ();
         bool isMouseDownBufferFull();
 
@@ -80,12 +83,16 @@ namespace gwc
         void flushMouseUp       ();
         bool consumeMouseUp     (gPoint& location, gMouseButtons& button);
         bool discardMouseUp     ();
-        void waitMouseUp        ();
         bool isMouseUpLost      ();
         bool isMouseUpBufferFull();
 
         int getCanvasWidth ();
         int getCanvasHeight();
+
+        gColor getBorderColor();
+        void   setBorderColor(gColor color);
+        gColor getFillColor();
+        void   setFillColor(gColor color);
 
         bool drawBorderSquare(int x, int y, int side);
         bool drawFillSquare  (int x, int y, int side);

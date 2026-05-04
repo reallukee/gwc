@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.3
+// v0.4.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -25,16 +25,19 @@
 // Questo è l'header dell'API C di GWC.
 //
 // Versione API attesa:
-//  [0.3.3]
+//  [0.4.0]
 // Versione MINIMA API attesa:
-//  [0.3.3]
+//  [0.4.0]
 //
 // Assicurati di utilizzare versioni compatibili
 // dei binari e dei file di intestazione.
 //
 
-#define GWC_VERSION_INCLUDE     "033"
-#define GWC_MIN_VERSION_INCLUDE "033"
+#define GWC_VERSION_INCLUDE              040
+#define GWC_MIN_VERSION_INCLUDE          040
+
+#define GWC_FRIENDLY_VERSION_INCLUDE     "0.4.0"
+#define GWC_FRIENDLY_MIN_VERSION_INCLUDE "0.4.0"
 
 #include "types.h"
 
@@ -44,7 +47,10 @@
 #include "CANVAS.h"
 #include "WINDOW.h"
 
-GWC_C_EXTERN GWC_C_DLL const char GWC_VERSION[];
-GWC_C_EXTERN GWC_C_DLL const char GWC_MIN_VERSION[];
+GWC_C_EXTERN GWC_C_DLL const int  GWC_VERSION;
+GWC_C_EXTERN GWC_C_DLL const int  GWC_MIN_VERSION;
+
+GWC_C_EXTERN GWC_C_DLL const char GWC_FRIENDLY_VERSION[];
+GWC_C_EXTERN GWC_C_DLL const char GWC_FRIENDLY_MIN_VERSION[];
 
 #endif // !GWC_API_H

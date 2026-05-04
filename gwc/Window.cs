@@ -1,7 +1,7 @@
 //
 // :.:.:.
 // GWC
-// v0.3.0
+// v0.4.0
 // :.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -76,12 +76,16 @@ namespace Reallukee.GWC
         private Thread        windowThread;
         private volatile bool windowThreadFlag;
         private object        windowLock;
+        private volatile bool windowEnabled;
+        private volatile int  windowSkip;
 
         private Canvas        canvas;
 
         private Thread        renderThread;
         private volatile bool renderThreadFlag;
         private object        renderLock;
+        private volatile bool renderEnabled;
+        private volatile int  renderSkip;
 
         private void InitWindow(int width, int height)
         {
@@ -122,6 +126,10 @@ namespace Reallukee.GWC
             };
 
             windowLock = new object();
+
+            windowEnabled = false;
+
+            windowSkip = 0;
         }
 
         private void InitRender(int width, int height)
@@ -137,6 +145,10 @@ namespace Reallukee.GWC
             };
 
             renderLock = new object();
+
+            renderEnabled = false;
+
+            renderSkip = 0;
         }
 
 
@@ -151,7 +163,10 @@ namespace Reallukee.GWC
 
                     Application.SetCompatibleTextRenderingDefault(false);
 
-                    Application.Run(window);
+                    if (windowEnabled)
+                    {
+                        Application.Run(window);
+                    }
                 }
             }
             catch (Exception ex)
@@ -211,11 +226,21 @@ namespace Reallukee.GWC
                         }
                     }
 
-                    window.BeginInvoke((Action)(() => {
-                        window.Invalidate();
+                    if (renderEnabled)
+                    {
+                        if (renderSkip > 0)
+                        {
+                            renderSkip--;
+                        }
+                        else
+                        {
+                            window.BeginInvoke((Action)(() => {
+                                window.Invalidate();
 
-                        window.Update();
-                    }));
+                                window.Update();
+                            }));
+                        }
+                    }
                 }
 
                 renderRemainingTime = Render.FrameTime - renderElapsedTime;
@@ -314,6 +339,9 @@ namespace Reallukee.GWC
                 return false;
             }
 
+            windowEnabled = true;
+            renderEnabled = true;
+
             windowThreadFlag = true;
             renderThreadFlag = true;
 
@@ -327,7 +355,7 @@ namespace Reallukee.GWC
 
         public bool IsOpen => window.IsHandleCreated;
 
-        public bool Shutdown()
+        public bool Close()
         {
             if (!windowThread.IsAlive || !renderThread.IsAlive)
             {
@@ -338,6 +366,9 @@ namespace Reallukee.GWC
             {
                 return false;
             }
+
+            windowEnabled = false;
+            renderEnabled = false;
 
             windowThreadFlag = false;
             renderThreadFlag = false;
@@ -352,13 +383,94 @@ namespace Reallukee.GWC
             return true;
         }
 
-        public bool IsShutdown => !window.IsHandleCreated;
+        public bool IsClose => !window.IsHandleCreated;
+
+
+
+        public bool Suspend()
+        {
+            if (!windowEnabled && !renderEnabled)
+            {
+                return false;
+            }
+
+            windowEnabled = false;
+            renderEnabled = false;
+
+            return true;
+        }
+
+        public bool IsSuspend => !windowEnabled && !renderEnabled;
+
+        public bool Resume()
+        {
+            if (windowEnabled && renderEnabled)
+            {
+                return false;
+            }
+
+            windowEnabled = true;
+            renderEnabled = true;
+
+            return true;
+        }
+
+        public bool IsResume => windowEnabled && renderEnabled;
 
 
 
         public void Wait(int milliseconds)
         {
             Thread.Sleep(milliseconds);
+        }
+
+        public void Wait()
+        {
+            Thread.Sleep(100);
+        }
+
+
+
+        public void Skip(int frames)
+        {
+            windowSkip = windowSkip + frames;
+            renderSkip = renderSkip + frames;
+        }
+
+        public void Skip()
+        {
+            windowSkip++;
+            renderSkip++;
+        }
+
+
+
+        public bool Show()
+        {
+            if (!window.IsHandleCreated)
+            {
+                return false;
+            }
+
+            window.BeginInvoke((Action)(() => {
+                Show();
+            }));
+
+            return true;
+        }
+
+        public bool Hide()
+        {
+            if (!window.IsHandleCreated)
+            {
+                return false;
+            }
+
+            window.BeginInvoke((Action)(() => {
+                Hide();
+            }));
+
+            return true;
         }
 
 
@@ -531,16 +643,6 @@ namespace Reallukee.GWC
             return ConsumeKeyUp(out Keys _, out Keys _);
         }
 
-        public void WaitKeyDown()
-        {
-            keyDownEvent.WaitOne();
-        }
-
-        public void WaitKeyUp()
-        {
-            keyUpEvent.WaitOne();
-        }
-
         public bool IsKeyDownLost
         {
             get;
@@ -662,16 +764,6 @@ namespace Reallukee.GWC
         public bool DiscardMouseUp()
         {
             return ConsumeMouseUp(out Point _, out MouseButtons _);
-        }
-
-        public void WaitMouseDown()
-        {
-            mouseDownEvent.WaitOne();
-        }
-
-        public void WaitMouseUp()
-        {
-            mouseUpEvent.WaitOne();
         }
 
         public bool IsMouseDownLost
