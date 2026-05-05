@@ -1,5 +1,5 @@
 // C.Draw
-//  GWC.Native >=0.3.3
+//  GWC.Native >=0.4.0
 
 #include <stdio.h>
 
@@ -35,7 +35,7 @@ int main(int argc, const char* argv[])
 
     if (window_isOpen(window))
     {
-        window_shutdown(window);
+        window_close(window);
     }
 
     window_delete(window);

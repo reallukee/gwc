@@ -1,5 +1,5 @@
 // Cpp.MultiWindow
-//  GWC.Native >=0.3.0
+//  GWC.Native >=0.4.0
 
 #include <iostream>
 
@@ -34,9 +34,9 @@ int main(int argc, const char* argv[])
 
     _getch();
 
-    window_1->shutdown();
-    window_2->shutdown();
-    window_3->shutdown();
+    window_1->close();
+    window_2->close();
+    window_3->close();
 
     delete window_1;
     delete window_2;

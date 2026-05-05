@@ -1,5 +1,5 @@
 // Cpp.KeyDown
-//  GWC.Native >=0.3.3
+//  GWC.Native >=0.4.0
 
 #include <iostream>
 
@@ -48,7 +48,7 @@ int main(int argc, const char* argv[])
 
     if (window->isOpen())
     {
-        window->shutdown();
+        window->close();
     }
 
     delete window;

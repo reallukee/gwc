@@ -1,5 +1,5 @@
 // C.MultiWindow
-//  GWC.Native >=0.3.0
+//  GWC.Native >=0.4.0
 
 #include <stdio.h>
 
@@ -30,9 +30,9 @@ int main(int argc, const char* argv[])
 
     _getch();
 
-    window_shutdown(window_1);
-    window_shutdown(window_2);
-    window_shutdown(window_3);
+    window_close(window_1);
+    window_close(window_2);
+    window_close(window_3);
 
     window_delete(window_1);
     window_delete(window_2);
