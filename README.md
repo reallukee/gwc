@@ -1,6 +1,6 @@
-<img src="./assets/gwc.png" width="128px" height="128px" />
+<img src="./assets/gwc.png" width="192px" height="192px" />
 
-# GWC
+# GWC <br />Graphical Window for Console Apps
 
 ![License](https://img.shields.io/github/license/reallukee/gwc)
 ![Release](https://img.shields.io/github/v/release/reallukee/gwc?include_prereleases)
@@ -12,7 +12,7 @@
 
 Caratteristiche:
 
-* 🤪 Folle (Un Wrapper di un Wrapper di un Wrapper)
+* 🤪 Folle
 * ☠️ Mortale
 * 🔬 Sperimentale
 * 🪄 Inaffidabile
@@ -99,14 +99,14 @@ int main(int argc, const char* argv[])
 
     while (window_isOpen(window) && loop)
     {
-        Keys modifiers = KEYS_NONE;
-        Keys key = KEYS_NONE;
+        gKEYS modifiers = gKEYS_NONE;
+        gKEYS key = gKEYS_NONE;
 
         bool keyDown = window_consumeKeyDown(window, &modifiers, &key);
 
         if (keyDown)
         {
-            if (key == KEYS_ESCAPE)
+            if (key == gKEYS_ESCAPE)
             {
                 loop = false;
 
@@ -119,7 +119,7 @@ int main(int argc, const char* argv[])
 
     if (window_isOpen(window))
     {
-        window_shutdown(window);
+        window_close(window);
     }
 
     window_delete(window);
@@ -160,14 +160,14 @@ int main(int argc, const char* argv[])
 
     while (window->isOpen() && loop)
     {
-        Keys modifiers = Keys::None;
-        Keys key = Keys::None;
+        gKeys modifiers = gKeys::None;
+        gKeys key = gKeys::None;
 
         bool keyDown = window->consumeKeyDown(modifiers, key);
 
         if (keyDown)
         {
-            if (key == Keys::Escape)
+            if (key == gKeys::Escape)
             {
                 loop = false;
 
@@ -180,7 +180,7 @@ int main(int argc, const char* argv[])
 
     if (window->isOpen())
     {
-        window->shutdown();
+        window->close();
     }
 
     delete window;
@@ -203,6 +203,7 @@ int main(int argc, const char* argv[])
 ### Requisiti
 
 * .NET
+  * .NET 10 Desktop Runtime
   * .NET Framework 4.8.1 Runtime
   * .NET Framework 4.7.2 Runtime
 * Microsoft Visual C++
@@ -226,6 +227,14 @@ int main(int argc, const char* argv[])
 
 
 
+# Download
+
+| Mirror     | Url                                                          |
+| :--------- | :----------------------------------------------------------: |
+| GitHub     | [Download](https://github.com/reallukee/gwc/releases/latest) |
+
+
+
 # Compilazione
 
 * [Windows](#windows-1)
@@ -235,7 +244,7 @@ int main(int argc, const char* argv[])
 
 ## Windows
 
-## 1. Prerequisiti
+### 1. Prerequisiti
 
 * `git`
 * [Visual Studio 2026](https://aka.ms/vs/stable/vs_Community.exe)
@@ -245,6 +254,7 @@ int main(int argc, const char* argv[])
 In Visual Studio Installer:
 
 * Sviluppo per Desktop .NET
+  * .NET 10 SDK
   * .NET Framework 4.8.1 Targeting Pack
   * .NET Framework 4.8.1 SDK
   * .NET Framework 4.7.2 Targeting Pack
@@ -254,13 +264,13 @@ In Visual Studio Installer:
   * Strumenti di Compilazione MSVC per x64/x86 (Ultima Versione)
   * Strumenti di Compilazione MSVC per ARM64/ARM64EC (Ultima Versione)
 
-## 2. Sorgente
+### 2. Sorgente
 
 ```
 git clone https://github.com/reallukee/gwc.git
 ```
 
-## 3. Configurazione
+### 3. Configurazione
 
 ```cmd
 REM Visual Studio 2026
@@ -320,12 +330,6 @@ cd gwc
 msbuild gwc.sln /t:gwc_mono /p:Configuration=Release /p:Platform=x86
 msbuild gwc.sln /t:gwc_mono /p:Configuration=Release /p:Platform=x64
 ```
-
-
-
-# Download
-
-> [Ultima release](https://github.com/reallukee/gwc/releases/latest)
 
 
 
