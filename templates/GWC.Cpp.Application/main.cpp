@@ -17,7 +17,7 @@ gColor generateRandomColor();
 int main(int argc, const char* argv[])
 {
     cout << "Welcome in $projectname$!" << endl;
-    cout << "Using GWC v" << GWC_VERSION << endl;
+    cout << "Using GWC v" << GWC_FRIENDLY_VERSION << endl;
     cout << endl;
 
     Render::setDefaultRefreshRate();
@@ -68,7 +68,7 @@ int main(int argc, const char* argv[])
 
     if (window->isOpen())
     {
-        window->shutdown();
+        window->close();
     }
 
     delete window;

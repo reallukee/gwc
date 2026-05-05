@@ -13,7 +13,7 @@ gCOLOR* generateRandomColor();
 int main(int argc, const char* argv[])
 {
     printf("Welcome in $projectname$!\n");
-    printf("Using GWC v%s\n", GWC_VERSION);
+    printf("Using GWC v%s\n", GWC_FRIENDLY_VERSION);
     printf("\n");
 
     render_setDefaultRefreshRate();
@@ -70,7 +70,7 @@ int main(int argc, const char* argv[])
 
     if (window_isOpen(window))
     {
-        window_shutdown(window);
+        window_close(window);
     }
 
     window_delete(window);
