@@ -14,12 +14,8 @@
 
 using namespace gwc;
 
-
 int main(int argc, const char* argv[])
 {
-    Render::setDefaultRefreshRate();
-    Render::setDefaultDutyCycle();
-
     Window* window = new Window(800, 600);
 
     window->open();

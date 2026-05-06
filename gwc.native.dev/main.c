@@ -15,9 +15,6 @@
 /*
 int main(int argc, const char* argv[])
 {
-    render_setDefaultRefreshRate();
-    render_setDefaultDutyCycle();
-
     WINDOW* window = window_new(800, 600);
 
     window_open(window);
