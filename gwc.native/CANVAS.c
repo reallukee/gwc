@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.3
+// v0.4.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -13,7 +13,7 @@
 #include "gwc.clr.hpp"
 
 #include "CANVAS.h"
-#include "canvas_macros.h"
+#include "macros.h"
 
 typedef struct CANVAS {
     CLRCanvasHost canvas;
@@ -74,104 +74,104 @@ bool canvas_isInitialized(const CANVAS* canvas)
 
 gCOLOR* canvas_getBorderColor(const CANVAS* canvas)
 {
-    CCI_CANVAS_GET_COLOR_C(canvas, BorderColor);
+    CCI_GET_COLOR_C(CanvasHost, canvas, BorderColor);
 }
 
 void canvas_setBorderColor(const CANVAS* canvas, const gCOLOR* color)
 {
-    CCI_CANVAS_SET_COLOR_C(canvas, BorderColor, color);
+    CCI_SET_COLOR_C(CanvasHost, canvas, BorderColor, color);
 }
 
 gCOLOR* canvas_getFillColor(const CANVAS* canvas)
 {
-    CCI_CANVAS_GET_COLOR_C(canvas, FillColor);
+    CCI_GET_COLOR_C(CanvasHost, canvas, FillColor);
 }
 
 void canvas_setFillColor(const CANVAS* canvas, const gCOLOR* color)
 {
-    CCI_CANVAS_SET_COLOR_C(canvas, FillColor, color);
+    CCI_SET_COLOR_C(CanvasHost, canvas, FillColor, color);
 }
 
 
 
 gRECTANGLE* canvas_bounds(const CANVAS* canvas)
 {
-    CCI_CANVAS_GET_RECTANGLE_C(canvas, Bounds);
+    CCI_GET_RECTANGLE_C(CanvasHost, canvas, Bounds);
 }
 
 gSIZE* canvas_size(const CANVAS* canvas)
 {
-    CCI_CANVAS_GET_SIZE_C(canvas, Size);
+    CCI_GET_SIZE_C(CanvasHost, canvas, Size);
 }
 
 gPOINT* canvas_location(const CANVAS* canvas)
 {
-    CCI_CANVAS_GET_POINT_C(canvas, Location);
+    CCI_GET_POINT_C(CanvasHost, canvas, Location);
 }
 
 
 
 int canvas_getWidth(const CANVAS* canvas)
 {
-    CCI_CANVAS_INT_C(canvas, Width);
+    CCI_INT_C(CanvasHost, canvas, Width);
 }
 
 int canvas_getHeight(const CANVAS* canvas)
 {
-    CCI_CANVAS_INT_C(canvas, Height);
+    CCI_INT_C(CanvasHost, canvas, Height);
 }
 
 
 
 bool canvas_drawBorderSquare(const CANVAS* canvas, int x, int y, int side)
 {
-    CCI_CANVAS_BOOL_C(canvas, DrawBorderSquare(x, y, side));
+    CCI_BOOL_C(CanvasHost, canvas, DrawBorderSquare(x, y, side));
 }
 
 bool canvas_drawFillSquare(const CANVAS* canvas, int x, int y, int side)
 {
-    CCI_CANVAS_BOOL_C(canvas, DrawFillSquare(x, y, side));
+    CCI_BOOL_C(CanvasHost, canvas, DrawFillSquare(x, y, side));
 }
 
 
 
 bool canvas_drawBorderRectangle(const CANVAS* canvas, int x, int y, int width, int height)
 {
-    CCI_CANVAS_BOOL_C(canvas, DrawBorderRectangle(x, y, width, height));
+    CCI_BOOL_C(CanvasHost, canvas, DrawBorderRectangle(x, y, width, height));
 }
 
 bool canvas_drawFillRectangle(const CANVAS* canvas, int x, int y, int width, int height)
 {
-    CCI_CANVAS_BOOL_C(canvas, DrawFillRectangle(x, y, width, height));
+    CCI_BOOL_C(CanvasHost, canvas, DrawFillRectangle(x, y, width, height));
 }
 
 
 
 bool canvas_drawBorderCircle(const CANVAS* canvas, int x, int y, int radius)
 {
-    CCI_CANVAS_BOOL_C(canvas, DrawBorderCircle(x, y, radius));
+    CCI_BOOL_C(CanvasHost, canvas, DrawBorderCircle(x, y, radius));
 }
 
 bool canvas_drawFillCircle(const CANVAS* canvas, int x, int y, int radius)
 {
-    CCI_CANVAS_BOOL_C(canvas, DrawFillCircle(x, y, radius));
+    CCI_BOOL_C(CanvasHost, canvas, DrawFillCircle(x, y, radius));
 }
 
 
 
 bool canvas_drawBorderEllipse(const CANVAS* canvas, int x, int y, int width, int height)
 {
-    CCI_CANVAS_BOOL_C(canvas, DrawBorderEllipse(x, y, width, height));
+    CCI_BOOL_C(CanvasHost, canvas, DrawBorderEllipse(x, y, width, height));
 }
 
 bool canvas_drawFillEllipse(const CANVAS* canvas, int x, int y, int width, int height)
 {
-    CCI_CANVAS_BOOL_C(canvas, DrawFillEllipse(x, y, width, height));
+    CCI_BOOL_C(CanvasHost, canvas, DrawFillEllipse(x, y, width, height));
 }
 
 
 
 void canvas_render(const CANVAS* canvas)
 {
-    CCI_CANVAS_VOID_C(canvas, Render());
+    CCI_VOID_C(CanvasHost, canvas, Render());
 }

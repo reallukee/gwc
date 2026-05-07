@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.4.0
+// v0.4.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -13,7 +13,7 @@
 #include "gwc.clr.hpp"
 
 #include "WINDOW.h"
-#include "window_macros.h"
+#include "macros.h"
 
 typedef struct WINDOW {
     CLRWindowHost window;
@@ -74,111 +74,111 @@ bool window_isInitialized(const WINDOW* window)
 
 bool window_open(const WINDOW* window)
 {
-    CCI_WINDOW_BOOL_C(window, Open());
+    CCI_BOOL_C(WindowHost, window, Open());
 }
 
 bool window_close(const WINDOW* window)
 {
-    CCI_WINDOW_BOOL_C(window, Close());
+    CCI_BOOL_C(WindowHost, window, Close());
 }
 
 
 
 bool window_isOpen(const WINDOW* window)
 {
-    CCI_WINDOW_BOOL_C(window, IsOpen);
+    CCI_BOOL_C(WindowHost, window, IsOpen);
 }
 
 bool window_isClose(const WINDOW* window)
 {
-    CCI_WINDOW_BOOL_C(window, IsClose);
+    CCI_BOOL_C(WindowHost, window, IsClose);
 }
 
 
 
 bool window_suspend(const WINDOW* window)
 {
-    CCI_WINDOW_BOOL_C(window, Suspend());
+    CCI_BOOL_C(WindowHost, window, Suspend());
 }
 
 bool window_resume(const WINDOW* window)
 {
-    CCI_WINDOW_BOOL_C(window, Resume());
+    CCI_BOOL_C(WindowHost, window, Resume());
 }
 
 
 
 bool window_isSuspend(const WINDOW* window)
 {
-    CCI_WINDOW_BOOL_C(window, IsSuspend);
+    CCI_BOOL_C(WindowHost, window, IsSuspend);
 }
 
 bool window_isResume(const WINDOW* window)
 {
-    CCI_WINDOW_BOOL_C(window, IsResume);
+    CCI_BOOL_C(WindowHost, window, IsResume);
 }
 
 
 
 void window_wait(const WINDOW* window, int milliseconds)
 {
-    CCI_WINDOW_VOID_C(window, Wait(milliseconds));
+    CCI_VOID_C(WindowHost, window, Wait(milliseconds));
 }
 
 void window_skip(const WINDOW* window, int frames)
 {
-    CCI_WINDOW_VOID_C(window, Skip(frames));
+    CCI_VOID_C(WindowHost, window, Skip(frames));
 }
 
 
 
 bool window_show(const WINDOW* window)
 {
-    CCI_WINDOW_BOOL_C(window, Show());
+    CCI_BOOL_C(WindowHost, window, Show());
 }
 
 bool window_hide(const WINDOW* window)
 {
-    CCI_WINDOW_BOOL_C(window, Hide());
+    CCI_BOOL_C(WindowHost, window, Hide());
 }
 
 
 
 int window_getWindowWidth(const WINDOW* window)
 {
-    CCI_WINDOW_INT_C(window, WindowWidth);
+    CCI_INT_C(WindowHost, window, WindowWidth);
 }
 
 int window_getWindowHeight(const WINDOW* window)
 {
-    CCI_WINDOW_INT_C(window, WindowHeight);
+    CCI_INT_C(WindowHost, window, WindowHeight);
 }
 
 int window_getRenderWidth(const WINDOW* window)
 {
-    CCI_WINDOW_INT_C(window, RenderWidth);
+    CCI_INT_C(WindowHost, window, RenderWidth);
 }
 
 int window_getRenderHeight(const WINDOW* window)
 {
-    CCI_WINDOW_INT_C(window, RenderHeight);
+    CCI_INT_C(WindowHost, window, RenderHeight);
 }
 
 
 
 bool window_isKeyDownAvailable(const WINDOW* window)
 {
-    CCI_WINDOW_BOOL_C(window, IsKeyDownAvailable);
+    CCI_BOOL_C(WindowHost, window, IsKeyDownAvailable);
 }
 
 void window_flushKeyDown(const WINDOW* window)
 {
-    CCI_WINDOW_VOID_C(window, FlushKeyDown());
+    CCI_VOID_C(WindowHost, window, FlushKeyDown());
 }
 
 bool window_consumeKeyDown(const WINDOW* window, gKEYS* modifiers, gKEYS* key)
 {
-    CC_WINDOW_BOOL_C(window);
+    CC_BOOL_C(WindowHost, window);
 
     if (key == NULL)
     {
@@ -203,34 +203,34 @@ bool window_consumeKeyDown(const WINDOW* window, gKEYS* modifiers, gKEYS* key)
 
 bool window_discardKeyDown(const WINDOW* window)
 {
-    CCI_WINDOW_BOOL_C(window, DiscardKeyDown());
+    CCI_BOOL_C(WindowHost, window, DiscardKeyDown());
 }
 
 bool window_isKeyDownLost(const WINDOW* window)
 {
-    CCI_WINDOW_BOOL_C(window, IsKeyDownLost);
+    CCI_BOOL_C(WindowHost, window, IsKeyDownLost);
 }
 
 bool window_isKeyDownBufferFull(const WINDOW* window)
 {
-    CCI_WINDOW_BOOL_C(window, IsKeyDownBufferFull);
+    CCI_BOOL_C(WindowHost, window, IsKeyDownBufferFull);
 }
 
 
 
 bool window_isKeyUpAvailable(const WINDOW* window)
 {
-    CCI_WINDOW_BOOL_C(window, IsKeyUpAvailable);
+    CCI_BOOL_C(WindowHost, window, IsKeyUpAvailable);
 }
 
 void window_flushKeyUp(const WINDOW* window)
 {
-    CCI_WINDOW_VOID_C(window, FlushKeyUp());
+    CCI_VOID_C(WindowHost, window, FlushKeyUp());
 }
 
 bool window_consumeKeyUp(const WINDOW* window, gKEYS* modifiers, gKEYS* key)
 {
-    CC_WINDOW_BOOL_C(window);
+    CC_BOOL_C(WindowHost, window);
 
     if (key == NULL)
     {
@@ -255,34 +255,34 @@ bool window_consumeKeyUp(const WINDOW* window, gKEYS* modifiers, gKEYS* key)
 
 bool window_discardKeyUp(const WINDOW* window)
 {
-    CCI_WINDOW_BOOL_C(window, DiscardKeyUp());
+    CCI_BOOL_C(WindowHost, window, DiscardKeyUp());
 }
 
 bool window_isKeyUpLost(const WINDOW* window)
 {
-    CCI_WINDOW_BOOL_C(window, IsKeyUpLost);
+    CCI_BOOL_C(WindowHost, window, IsKeyUpLost);
 }
 
 bool window_isKeyUpBufferFull(const WINDOW* window)
 {
-    CCI_WINDOW_BOOL_C(window, IsKeyUpBufferFull);
+    CCI_BOOL_C(WindowHost, window, IsKeyUpBufferFull);
 }
 
 
 
 bool window_isMouseDownAvailable(const WINDOW* window)
 {
-    CCI_WINDOW_BOOL_C(window, IsMouseDownAvailable);
+    CCI_BOOL_C(WindowHost, window, IsMouseDownAvailable);
 }
 
 void window_flushMouseDown(const WINDOW* window)
 {
-    CCI_WINDOW_VOID_C(window, FlushMouseDown());
+    CCI_VOID_C(WindowHost, window, FlushMouseDown());
 }
 
 bool window_consumeMouseDown(const WINDOW* window, gPOINT** location, gMOUSEBUTTONS* button)
 {
-    CC_WINDOW_BOOL_C(window);
+    CC_BOOL_C(WindowHost, window);
 
     Drawing::Point               managedLocation;
     Windows::Forms::MouseButtons managedButton;
@@ -301,34 +301,34 @@ bool window_consumeMouseDown(const WINDOW* window, gPOINT** location, gMOUSEBUTT
 
 bool window_discardMouseDown(const WINDOW* window)
 {
-    CCI_WINDOW_BOOL_C(window, DiscardMouseDown());
+    CCI_BOOL_C(WindowHost, window, DiscardMouseDown());
 }
 
 bool window_isMouseDownLost(const WINDOW* window)
 {
-    CCI_WINDOW_BOOL_C(window, IsMouseDownLost);
+    CCI_BOOL_C(WindowHost, window, IsMouseDownLost);
 }
 
 bool window_isMouseDownBufferFull(const WINDOW* window)
 {
-    CCI_WINDOW_BOOL_C(window, IsMouseDownBufferFull);
+    CCI_BOOL_C(WindowHost, window, IsMouseDownBufferFull);
 }
 
 
 
 bool window_isMouseUpAvailable(const WINDOW* window)
 {
-    CCI_WINDOW_BOOL_C(window, IsMouseUpAvailable);
+    CCI_BOOL_C(WindowHost, window, IsMouseUpAvailable);
 }
 
 void window_flushMouseUp(const WINDOW* window)
 {
-    CCI_WINDOW_VOID_C(window, FlushMouseUp());
+    CCI_VOID_C(WindowHost, window, FlushMouseUp());
 }
 
 bool window_consumeMouseUp(const WINDOW* window, gPOINT** location, gMOUSEBUTTONS* button)
 {
-    CC_WINDOW_BOOL_C(window);
+    CC_BOOL_C(WindowHost, window);
 
     Drawing::Point               managedLocation;
     Windows::Forms::MouseButtons managedButton;
@@ -347,97 +347,97 @@ bool window_consumeMouseUp(const WINDOW* window, gPOINT** location, gMOUSEBUTTON
 
 bool window_discardMouseUp(const WINDOW* window)
 {
-    CCI_WINDOW_BOOL_C(window, DiscardMouseUp());
+    CCI_BOOL_C(WindowHost, window, DiscardMouseUp());
 }
 
 bool window_isMouseUpLost(const WINDOW* window)
 {
-    CCI_WINDOW_BOOL_C(window, IsMouseUpLost);
+    CCI_BOOL_C(WindowHost, window, IsMouseUpLost);
 }
 
 bool window_isMouseUpBufferFull(const WINDOW* window)
 {
-    CCI_WINDOW_BOOL_C(window, IsMouseUpBufferFull);
+    CCI_BOOL_C(WindowHost, window, IsMouseUpBufferFull);
 }
 
 
 
 int window_getCanvasWidth(const WINDOW* window)
 {
-    CCI_WINDOW_INT_C(window, CanvasWidth);
+    CCI_INT_C(WindowHost, window, CanvasWidth);
 }
 
 int window_getCanvasHeight(const WINDOW* window)
 {
-    CCI_WINDOW_INT_C(window, CanvasHeight);
+    CCI_INT_C(WindowHost, window, CanvasHeight);
 }
 
 
 
 gCOLOR* window_getBorderColor(const WINDOW* window)
 {
-    CCI_WINDOW_GET_COLOR_C(window, BorderColor);
+    CCI_GET_COLOR_C(WindowHost, window, BorderColor);
 }
 
 void window_setBorderColor(const WINDOW* window, const gCOLOR* color)
 {
-    CCI_WINDOW_SET_COLOR_C(window, BorderColor, color);
+    CCI_SET_COLOR_C(WindowHost, window, BorderColor, color);
 }
 
 gCOLOR* window_getFillColor(const WINDOW* window)
 {
-    CCI_WINDOW_GET_COLOR_C(window, FillColor);
+    CCI_GET_COLOR_C(WindowHost, window, FillColor);
 }
 
 void window_setFillColor(const WINDOW* window, const gCOLOR* color)
 {
-    CCI_WINDOW_SET_COLOR_C(window, FillColor, color);
+    CCI_SET_COLOR_C(WindowHost, window, FillColor, color);
 }
 
 
 
 bool window_drawBorderSquare(const WINDOW* window, int x, int y, int side)
 {
-    CCI_WINDOW_BOOL_C(window, DrawBorderSquare(x, y, side));
+    CCI_BOOL_C(WindowHost, window, DrawBorderSquare(x, y, side));
 }
 
 bool window_drawFillSquare(const WINDOW* window, int x, int y, int side)
 {
-    CCI_WINDOW_BOOL_C(window, DrawFillSquare(x, y, side));
+    CCI_BOOL_C(WindowHost, window, DrawFillSquare(x, y, side));
 }
 
 
 
 bool window_drawBorderRectangle(const WINDOW* window, int x, int y, int width, int height)
 {
-    CCI_WINDOW_BOOL_C(window, DrawBorderRectangle(x, y, width, height));
+    CCI_BOOL_C(WindowHost, window, DrawBorderRectangle(x, y, width, height));
 }
 
 bool window_drawFillRectangle(const WINDOW* window, int x, int y, int width, int height)
 {
-    CCI_WINDOW_BOOL_C(window, DrawFillRectangle(x, y, width, height));
+    CCI_BOOL_C(WindowHost, window, DrawFillRectangle(x, y, width, height));
 }
 
 
 
 bool window_drawBorderCircle(const WINDOW* window, int x, int y, int radius)
 {
-    CCI_WINDOW_BOOL_C(window, DrawBorderCircle(x, y, radius));
+    CCI_BOOL_C(WindowHost, window, DrawBorderCircle(x, y, radius));
 }
 
 bool window_drawFillCircle(const WINDOW* window, int x, int y, int radius)
 {
-    CCI_WINDOW_BOOL_C(window, DrawFillCircle(x, y, radius));
+    CCI_BOOL_C(WindowHost, window, DrawFillCircle(x, y, radius));
 }
 
 
 
 bool window_drawBorderEllipse(const WINDOW* window, int x, int y, int width, int height)
 {
-    CCI_WINDOW_BOOL_C(window, DrawBorderEllipse(x, y, width, height));
+    CCI_BOOL_C(WindowHost, window, DrawBorderEllipse(x, y, width, height));
 }
 
 bool window_drawFillEllipse(const WINDOW* window, int x, int y, int width, int height)
 {
-    CCI_WINDOW_BOOL_C(window, DrawFillEllipse(x, y, width, height));
+    CCI_BOOL_C(WindowHost, window, DrawFillEllipse(x, y, width, height));
 }

@@ -1,7 +1,7 @@
 //
 // :.:.:.
 // GWC
-// v0.3.0
+// v0.4.1
 // :.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -32,39 +32,14 @@ namespace Reallukee.GWC
     {
         static void Main(string[] args)
         {
-            Render.SetDefaultRefreshRate();
-            Render.SetDefaultDutyCycle();
-
             Window window = new Window(800, 600);
 
             window.Open();
 
             bool loop = true;
 
-            Console.WriteLine("Press \"ESC\" to exit...");
-
             while (window.IsOpen && loop)
             {
-                bool keyDown = window.ConsumeKeyDown(out Keys modifiers, out Keys key);
-
-                if (keyDown)
-                {
-                    if (key == Keys.Escape)
-                    {
-                        loop = false;
-
-                        continue;
-                    }
-
-                    Console.WriteLine($"Pressed: {modifiers}, {key}");
-
-                    window.BorderColor = GenerateRandomColor();
-                    window.FillColor = GenerateRandomColor();
-
-                    window.DrawFillRectangle(100, 100, 100, 100);
-                    window.DrawBorderRectangle(100, 100, 100, 100);
-                }
-
                 window.Wait(100);
             }
 
@@ -76,20 +51,6 @@ namespace Reallukee.GWC
             window.Dispose();
 
             Environment.Exit(0);
-        }
-
-        static Color GenerateRandomColor()
-        {
-            Random random = new Random();
-
-            int alpha = random.Next(0, 100 + 1);
-            int red   = random.Next(0, 255 + 1);
-            int blue  = random.Next(0, 255 + 1);
-            int green = random.Next(0, 255 + 1);
-
-            Color randomColor = Color.FromArgb(alpha, red, green, blue);
-
-            return randomColor;
         }
     }
 }

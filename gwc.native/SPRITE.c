@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.3
+// v0.4.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -13,7 +13,7 @@
 #include "gwc.clr.hpp"
 
 #include "SPRITE.h"
-#include "sprite_macros.h"
+#include "macros.h"
 
 typedef struct SPRITE {
     CLRSpriteHost sprite;
@@ -74,104 +74,104 @@ bool sprite_isInitialized(const SPRITE* sprite)
 
 gCOLOR* sprite_getBorderColor(const SPRITE* sprite)
 {
-    CCI_SPRITE_GET_COLOR_C(sprite, BorderColor);
+    CCI_GET_COLOR_C(SpriteHost, sprite, BorderColor);
 }
 
 void sprite_setBorderColor(const SPRITE* sprite, const gCOLOR* color)
 {
-    CCI_SPRITE_SET_COLOR_C(sprite, BorderColor, color);
+    CCI_SET_COLOR_C(SpriteHost, sprite, BorderColor, color);
 }
 
 gCOLOR* sprite_getFillColor(const SPRITE* sprite)
 {
-    CCI_SPRITE_GET_COLOR_C(sprite, FillColor);
+    CCI_GET_COLOR_C(SpriteHost, sprite, FillColor);
 }
 
 void sprite_setFillColor(const SPRITE* sprite, const gCOLOR* color)
 {
-    CCI_SPRITE_SET_COLOR_C(sprite, FillColor, color);
+    CCI_SET_COLOR_C(SpriteHost, sprite, FillColor, color);
 }
 
 
 
 gRECTANGLE* sprite_bounds(const SPRITE* sprite)
 {
-    CCI_SPRITE_GET_RECTANGLE_C(sprite, Bounds);
+    CCI_GET_RECTANGLE_C(SpriteHost, sprite, Bounds);
 }
 
 gSIZE* sprite_size(const SPRITE* sprite)
 {
-    CCI_SPRITE_GET_SIZE_C(sprite, Size);
+    CCI_GET_SIZE_C(SpriteHost, sprite, Size);
 }
 
 gPOINT* sprite_location(const SPRITE* sprite)
 {
-    CCI_SPRITE_GET_POINT_C(sprite, Location);
+    CCI_GET_POINT_C(SpriteHost, sprite, Location);
 }
 
 
 
 int sprite_getWidth(const SPRITE* sprite)
 {
-    CCI_SPRITE_INT_C(sprite, Width);
+    CCI_INT_C(SpriteHost, sprite, Width);
 }
 
 int sprite_getHeight(const SPRITE* sprite)
 {
-    CCI_SPRITE_INT_C(sprite, Height);
+    CCI_INT_C(SpriteHost, sprite, Height);
 }
 
 
 
 bool sprite_drawBorderSquare(const SPRITE* sprite, int x, int y, int side)
 {
-    CCI_SPRITE_BOOL_C(sprite, DrawBorderSquare(x, y, side));
+    CCI_BOOL_C(SpriteHost, sprite, DrawBorderSquare(x, y, side));
 }
 
 bool sprite_drawFillSquare(const SPRITE* sprite, int x, int y, int side)
 {
-    CCI_SPRITE_BOOL_C(sprite, DrawFillSquare(x, y, side));
+    CCI_BOOL_C(SpriteHost, sprite, DrawFillSquare(x, y, side));
 }
 
 
 
 bool sprite_drawBorderRectangle(const SPRITE* sprite, int x, int y, int width, int height)
 {
-    CCI_SPRITE_BOOL_C(sprite, DrawBorderRectangle(x, y, width, height));
+    CCI_BOOL_C(SpriteHost, sprite, DrawBorderRectangle(x, y, width, height));
 }
 
 bool sprite_drawFillRectangle(const SPRITE* sprite, int x, int y, int width, int height)
 {
-    CCI_SPRITE_BOOL_C(sprite, DrawFillRectangle(x, y, width, height));
+    CCI_BOOL_C(SpriteHost, sprite, DrawFillRectangle(x, y, width, height));
 }
 
 
 
 bool sprite_drawBorderCircle(const SPRITE* sprite, int x, int y, int radius)
 {
-    CCI_SPRITE_BOOL_C(sprite, DrawBorderCircle(x, y, radius));
+    CCI_BOOL_C(SpriteHost, sprite, DrawBorderCircle(x, y, radius));
 }
 
 bool sprite_drawFillCircle(const SPRITE* sprite, int x, int y, int radius)
 {
-    CCI_SPRITE_BOOL_C(sprite, DrawFillCircle(x, y, radius));
+    CCI_BOOL_C(SpriteHost, sprite, DrawFillCircle(x, y, radius));
 }
 
 
 
 bool sprite_drawBorderEllipse(const SPRITE* sprite, int x, int y, int width, int height)
 {
-    CCI_SPRITE_BOOL_C(sprite, DrawBorderEllipse(x, y, width, height));
+    CCI_BOOL_C(SpriteHost, sprite, DrawBorderEllipse(x, y, width, height));
 }
 
 bool sprite_drawFillEllipse(const SPRITE* sprite, int x, int y, int width, int height)
 {
-    CCI_SPRITE_BOOL_C(sprite, DrawFillEllipse(x, y, width, height));
+    CCI_BOOL_C(SpriteHost, sprite, DrawFillEllipse(x, y, width, height));
 }
 
 
 
 void sprite_render(const SPRITE* sprite)
 {
-    CCI_SPRITE_VOID_C(sprite, Render());
+    CCI_VOID_C(SpriteHost, sprite, Render());
 }

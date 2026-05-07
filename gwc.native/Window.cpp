@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.4.0
+// v0.4.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -13,7 +13,7 @@
 #include "gwc.clr.hpp"
 
 #include "Window.hpp"
-#include "window_macros.hpp"
+#include "macros.hpp"
 
 #ifdef __cplusplus
 
@@ -58,111 +58,111 @@ namespace gwc
 
     bool Window::open()
     {
-        CCI_WINDOW_BOOL_CPP(window, Open());
+        CCI_BOOL_CPP(WindowHost, window, Open());
     }
 
     bool Window::close()
     {
-        CCI_WINDOW_BOOL_CPP(window, Close());
+        CCI_BOOL_CPP(WindowHost, window, Close());
     }
 
 
 
     bool Window::isOpen()
     {
-        CCI_WINDOW_BOOL_CPP(window, IsOpen);
+        CCI_BOOL_CPP(WindowHost, window, IsOpen);
     }
 
     bool Window::isClose()
     {
-        CCI_WINDOW_BOOL_CPP(window, IsClose);
+        CCI_BOOL_CPP(WindowHost, window, IsClose);
     }
 
 
 
     bool Window::suspend()
     {
-        CCI_WINDOW_BOOL_CPP(window, Suspend())
+        CCI_BOOL_CPP(WindowHost, window, Suspend())
     }
 
     bool Window::resume()
     {
-        CCI_WINDOW_BOOL_CPP(window, Resume())
+        CCI_BOOL_CPP(WindowHost, window, Resume())
     }
 
 
 
     bool Window::isSuspend()
     {
-        CCI_WINDOW_BOOL_CPP(window, IsSuspend);
+        CCI_BOOL_CPP(WindowHost, window, IsSuspend);
     }
 
     bool Window::isResume()
     {
-        CCI_WINDOW_BOOL_CPP(window, IsResume);
+        CCI_BOOL_CPP(WindowHost, window, IsResume);
     }
 
 
 
     void Window::wait(int milliseconds)
     {
-        CCI_WINDOW_VOID_CPP(window, Wait(milliseconds));
+        CCI_VOID_CPP(WindowHost, window, Wait(milliseconds));
     }
 
     void Window::skip(int frames)
     {
-        CCI_WINDOW_VOID_CPP(window, Skip(frames));
+        CCI_VOID_CPP(WindowHost, window, Skip(frames));
     }
 
 
 
     bool Window::show()
     {
-        CCI_WINDOW_BOOL_CPP(window, Show());
+        CCI_BOOL_CPP(WindowHost, window, Show());
     }
 
     bool Window::hide()
     {
-        CCI_WINDOW_BOOL_CPP(window, Hide());
+        CCI_BOOL_CPP(WindowHost, window, Hide());
     }
 
 
 
     int Window::getWindowWidth()
     {
-        CCI_WINDOW_INT_CPP(window, WindowWidth);
+        CCI_INT_CPP(WindowHost, window, WindowWidth);
     }
 
     int Window::getWindowHeight()
     {
-        CCI_WINDOW_INT_CPP(window, WindowHeight);
+        CCI_INT_CPP(WindowHost, window, WindowHeight);
     }
 
     int Window::getRenderWidth()
     {
-        CCI_WINDOW_INT_CPP(window, RenderWidth);
+        CCI_INT_CPP(WindowHost, window, RenderWidth);
     }
 
     int Window::getRenderHeight()
     {
-        CCI_WINDOW_INT_CPP(window, RenderHeight);
+        CCI_INT_CPP(WindowHost, window, RenderHeight);
     }
 
 
 
     bool Window::isKeyDownAvailable()
     {
-        CCI_WINDOW_BOOL_CPP(window, IsKeyDownAvailable);
+        CCI_BOOL_CPP(WindowHost, window, IsKeyDownAvailable);
     }
 
     void Window::flushKeyDown()
     {
-        CCI_WINDOW_VOID_CPP(window, FlushKeyDown());
+        CCI_VOID_CPP(WindowHost, window, FlushKeyDown());
     }
 
     bool Window::consumeKeyDown(gKeys& modifiers, gKeys& key)
     {
-        CC_WINDOW_BOOL_CPP(window);
+        CC_BOOL_CPP(WindowHost, window);
 
         Windows::Forms::Keys managedModifiers;
         Windows::Forms::Keys managedKey;
@@ -182,34 +182,34 @@ namespace gwc
 
     bool Window::discardKeyDown()
     {
-        CCI_WINDOW_BOOL_CPP(window, DiscardKeyDown());
+        CCI_BOOL_CPP(WindowHost, window, DiscardKeyDown());
     }
 
     bool Window::isKeyDownLost()
     {
-        CCI_WINDOW_BOOL_CPP(window, IsKeyDownLost);
+        CCI_BOOL_CPP(WindowHost, window, IsKeyDownLost);
     }
 
     bool Window::isKeyDownBufferFull()
     {
-        CCI_WINDOW_BOOL_CPP(window, IsKeyDownBufferFull);
+        CCI_BOOL_CPP(WindowHost, window, IsKeyDownBufferFull);
     }
 
 
 
     bool Window::isKeyUpAvailable()
     {
-        CCI_WINDOW_BOOL_CPP(window, IsKeyUpAvailable);
+        CCI_BOOL_CPP(WindowHost, window, IsKeyUpAvailable);
     }
 
     void Window::flushKeyUp()
     {
-        CCI_WINDOW_VOID_CPP(window, FlushKeyUp());
+        CCI_VOID_CPP(WindowHost, window, FlushKeyUp());
     }
 
     bool Window::consumeKeyUp(gKeys& modifiers, gKeys& key)
     {
-        CC_WINDOW_BOOL_CPP(window);
+        CC_BOOL_CPP(WindowHost, window);
 
         Windows::Forms::Keys managedModifiers;
         Windows::Forms::Keys managedKey;
@@ -229,34 +229,34 @@ namespace gwc
 
     bool Window::discardKeyUp()
     {
-        CCI_WINDOW_BOOL_CPP(window, DiscardKeyUp());
+        CCI_BOOL_CPP(WindowHost, window, DiscardKeyUp());
     }
 
     bool Window::isKeyUpLost()
     {
-        CCI_WINDOW_BOOL_CPP(window, IsKeyUpLost);
+        CCI_BOOL_CPP(WindowHost, window, IsKeyUpLost);
     }
 
     bool Window::isKeyUpBufferFull()
     {
-        CCI_WINDOW_BOOL_CPP(window, IsKeyUpBufferFull);
+        CCI_BOOL_CPP(WindowHost, window, IsKeyUpBufferFull);
     }
 
 
 
     bool Window::isMouseDownAvailable()
     {
-        CCI_WINDOW_BOOL_CPP(window, IsMouseDownAvailable);
+        CCI_BOOL_CPP(WindowHost, window, IsMouseDownAvailable);
     }
 
     void Window::flushMouseDown()
     {
-        CCI_WINDOW_VOID_CPP(window, FlushMouseDown());
+        CCI_VOID_CPP(WindowHost, window, FlushMouseDown());
     }
 
     bool Window::consumeMouseDown(gPoint& location, gMouseButtons& button)
     {
-        CC_WINDOW_BOOL_CPP(window);
+        CC_BOOL_CPP(WindowHost, window);
 
         Drawing::Point               managedLocation;
         Windows::Forms::MouseButtons managedButton;
@@ -275,34 +275,34 @@ namespace gwc
 
     bool Window::discardMouseDown()
     {
-        CCI_WINDOW_BOOL_CPP(window, DiscardMouseDown());
+        CCI_BOOL_CPP(WindowHost, window, DiscardMouseDown());
     }
 
     bool Window::isMouseDownLost()
     {
-        CCI_WINDOW_BOOL_CPP(window, IsMouseDownLost);
+        CCI_BOOL_CPP(WindowHost, window, IsMouseDownLost);
     }
 
     bool Window::isMouseDownBufferFull()
     {
-        CCI_WINDOW_BOOL_CPP(window, IsMouseDownBufferFull);
+        CCI_BOOL_CPP(WindowHost, window, IsMouseDownBufferFull);
     }
 
 
 
     bool Window::isMouseUpAvailable()
     {
-        CCI_WINDOW_BOOL_CPP(window, IsMouseUpAvailable);
+        CCI_BOOL_CPP(WindowHost, window, IsMouseUpAvailable);
     }
 
     void Window::flushMouseUp()
     {
-        CCI_WINDOW_VOID_CPP(window, FlushMouseUp());
+        CCI_VOID_CPP(WindowHost, window, FlushMouseUp());
     }
 
     bool Window::consumeMouseUp(gPoint& location, gMouseButtons& button)
     {
-        CC_WINDOW_BOOL_CPP(window);
+        CC_BOOL_CPP(WindowHost, window);
 
         Drawing::Point               managedLocation;
         Windows::Forms::MouseButtons managedButton;
@@ -321,99 +321,99 @@ namespace gwc
 
     bool Window::discardMouseUp()
     {
-        CCI_WINDOW_BOOL_CPP(window, DiscardMouseUp());
+        CCI_BOOL_CPP(WindowHost, window, DiscardMouseUp());
     }
 
     bool Window::isMouseUpLost()
     {
-        CCI_WINDOW_BOOL_CPP(window, IsMouseUpLost);
+        CCI_BOOL_CPP(WindowHost, window, IsMouseUpLost);
     }
 
     bool Window::isMouseUpBufferFull()
     {
-        CCI_WINDOW_BOOL_CPP(window, IsMouseUpBufferFull);
+        CCI_BOOL_CPP(WindowHost, window, IsMouseUpBufferFull);
     }
 
 
 
     int Window::getCanvasWidth()
     {
-        CCI_WINDOW_INT_CPP(window, CanvasWidth);
+        CCI_INT_CPP(WindowHost, window, CanvasWidth);
     }
 
     int Window::getCanvasHeight()
     {
-        CCI_WINDOW_INT_CPP(window, CanvasHeight);
+        CCI_INT_CPP(WindowHost, window, CanvasHeight);
     }
 
 
 
     gColor Window::getBorderColor()
     {
-        CCI_WINDOW_GET_COLOR_CPP(window, BorderColor);
+        CCI_GET_COLOR_CPP(WindowHost, window, BorderColor);
     }
 
     void Window::setBorderColor(gColor color)
     {
-        CCI_WINDOW_SET_COLOR_CPP(window, BorderColor, color);
+        CCI_SET_COLOR_CPP(WindowHost, window, BorderColor, color);
     }
 
     gColor Window::getFillColor()
     {
-        CCI_WINDOW_GET_COLOR_CPP(window, FillColor);
+        CCI_GET_COLOR_CPP(WindowHost, window, FillColor);
     }
 
     void Window::setFillColor(gColor color)
     {
-        CCI_WINDOW_SET_COLOR_CPP(window, FillColor, color);
+        CCI_SET_COLOR_CPP(WindowHost, window, FillColor, color);
     }
 
 
 
     bool Window::drawBorderSquare(int x, int y, int side)
     {
-        CCI_WINDOW_BOOL_CPP(window, DrawBorderSquare(x, y, side));
+        CCI_BOOL_CPP(WindowHost, window, DrawBorderSquare(x, y, side));
     }
 
     bool Window::drawFillSquare(int x, int y, int side)
     {
-        CCI_WINDOW_BOOL_CPP(window, DrawFillSquare(x, y, side));
+        CCI_BOOL_CPP(WindowHost, window, DrawFillSquare(x, y, side));
     }
 
 
 
     bool Window::drawBorderRectangle(int x, int y, int width, int height)
     {
-        CCI_WINDOW_BOOL_CPP(window, DrawBorderRectangle(x, y, width, height));
+        CCI_BOOL_CPP(WindowHost, window, DrawBorderRectangle(x, y, width, height));
     }
 
     bool Window::drawFillRectangle(int x, int y, int width, int height)
     {
-        CCI_WINDOW_BOOL_CPP(window, DrawFillRectangle(x, y, width, height));
+        CCI_BOOL_CPP(WindowHost, window, DrawFillRectangle(x, y, width, height));
     }
 
 
 
     bool Window::drawBorderCircle(int x, int y, int radius)
     {
-        CCI_WINDOW_BOOL_CPP(window, DrawBorderCircle(x, y, radius));
+        CCI_BOOL_CPP(WindowHost, window, DrawBorderCircle(x, y, radius));
     }
 
     bool Window::drawFillCircle(int x, int y, int radius)
     {
-        CCI_WINDOW_BOOL_CPP(window, DrawFillCircle(x, y, radius));
+        CCI_BOOL_CPP(WindowHost, window, DrawFillCircle(x, y, radius));
     }
 
 
 
     bool Window::drawBorderEllipse(int x, int y, int width, int height)
     {
-        CCI_WINDOW_BOOL_CPP(window, DrawBorderEllipse(x, y, width, height));
+        CCI_BOOL_CPP(WindowHost, window, DrawBorderEllipse(x, y, width, height));
     }
 
     bool Window::drawFillEllipse(int x, int y, int width, int height)
     {
-        CCI_WINDOW_BOOL_CPP(window, DrawFillEllipse(x, y, width, height));
+        CCI_BOOL_CPP(WindowHost, window, DrawFillEllipse(x, y, width, height));
     }
 }
 

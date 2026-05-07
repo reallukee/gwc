@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.3
+// v0.4.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -13,7 +13,7 @@
 #include "gwc.clr.hpp"
 
 #include "Canvas.hpp"
-#include "canvas_macros.hpp"
+#include "macros.hpp"
 
 #ifdef __cplusplus
 
@@ -58,106 +58,106 @@ namespace gwc
 
     gColor Canvas::getBorderColor()
     {
-        CCI_CANVAS_GET_COLOR_CPP(canvas, BorderColor);
+        CCI_GET_COLOR_CPP(SpriteHost, canvas, BorderColor);
     }
 
     void Canvas::setBorderColor(gColor color)
     {
-        CCI_CANVAS_SET_COLOR_CPP(canvas, BorderColor, color);
+        CCI_SET_COLOR_CPP(SpriteHost, canvas, BorderColor, color);
     }
 
     gColor Canvas::getFillColor()
     {
-        CCI_CANVAS_GET_COLOR_CPP(canvas, FillColor);
+        CCI_GET_COLOR_CPP(SpriteHost, canvas, FillColor);
     }
 
     void Canvas::setFillColor(gColor color)
     {
-        CCI_CANVAS_SET_COLOR_CPP(canvas, FillColor, color);
+        CCI_SET_COLOR_CPP(SpriteHost, canvas, FillColor, color);
     }
 
 
 
     gRectangle Canvas::bounds()
     {
-        CCI_CANVAS_GET_RECTANGLE_CPP(canvas, Bounds);
+        CCI_GET_RECTANGLE_CPP(SpriteHost, canvas, Bounds);
     }
 
     gSize Canvas::size()
     {
-        CCI_CANVAS_GET_SIZE_CPP(canvas, Size);
+        CCI_GET_SIZE_CPP(SpriteHost, canvas, Size);
     }
 
     gPoint Canvas::location()
     {
-        CCI_CANVAS_GET_POINT_CPP(canvas, Location);
+        CCI_GET_POINT_CPP(SpriteHost, canvas, Location);
     }
 
 
 
     int Canvas::getWidth()
     {
-        CCI_CANVAS_INT_CPP(canvas, Width);
+        CCI_INT_CPP(SpriteHost, canvas, Width);
     }
 
     int Canvas::getHeight()
     {
-        CCI_CANVAS_INT_CPP(canvas, Height);
+        CCI_INT_CPP(SpriteHost, canvas, Height);
     }
 
 
 
     bool Canvas::drawBorderSquare(int x, int y, int side)
     {
-        CCI_CANVAS_BOOL_CPP(canvas, DrawBorderSquare(x, y, side));
+        CCI_BOOL_CPP(SpriteHost, canvas, DrawBorderSquare(x, y, side));
     }
 
     bool Canvas::drawFillSquare(int x, int y, int side)
     {
-        CCI_CANVAS_BOOL_CPP(canvas, DrawFillSquare(x, y, side));
+        CCI_BOOL_CPP(SpriteHost, canvas, DrawFillSquare(x, y, side));
     }
 
 
 
     bool Canvas::drawBorderRectangle(int x, int y, int width, int height)
     {
-        CCI_CANVAS_BOOL_CPP(canvas, DrawBorderRectangle(x, y, width, height));
+        CCI_BOOL_CPP(SpriteHost, canvas, DrawBorderRectangle(x, y, width, height));
     }
 
     bool Canvas::drawFillRectangle(int x, int y, int width, int height)
     {
-        CCI_CANVAS_BOOL_CPP(canvas, DrawFillRectangle(x, y, width, height));
+        CCI_BOOL_CPP(SpriteHost, canvas, DrawFillRectangle(x, y, width, height));
     }
 
 
 
     bool Canvas::drawBorderCircle(int x, int y, int radius)
     {
-        CCI_CANVAS_BOOL_CPP(canvas, DrawBorderCircle(x, y, radius));
+        CCI_BOOL_CPP(SpriteHost, canvas, DrawBorderCircle(x, y, radius));
     }
 
     bool Canvas::drawFillCircle(int x, int y, int radius)
     {
-        CCI_CANVAS_BOOL_CPP(canvas, DrawFillCircle(x, y, radius));
+        CCI_BOOL_CPP(SpriteHost, canvas, DrawFillCircle(x, y, radius));
     }
 
 
 
     bool Canvas::drawBorderEllipse(int x, int y, int width, int height)
     {
-        CCI_CANVAS_BOOL_CPP(canvas, DrawBorderEllipse(x, y, width, height));
+        CCI_BOOL_CPP(SpriteHost, canvas, DrawBorderEllipse(x, y, width, height));
     }
 
     bool Canvas::drawFillEllipse(int x, int y, int width, int height)
     {
-        CCI_CANVAS_BOOL_CPP(canvas, DrawFillEllipse(x, y, width, height));
+        CCI_BOOL_CPP(SpriteHost, canvas, DrawFillEllipse(x, y, width, height));
     }
 
 
 
     void Canvas::render()
     {
-        CCI_CANVAS_VOID_CPP(canvas, Render());
+        CCI_VOID_CPP(SpriteHost, canvas, Render());
     }
 }
 
