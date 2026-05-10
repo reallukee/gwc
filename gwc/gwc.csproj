@@ -66,6 +66,8 @@
     <Compile Include="BorderEllipse.cs" />
     <Compile Include="FillRectangle.cs" />
     <Compile Include="FillEllipse.cs" />
+    <Compile Include="BaseImage.cs" />
+    <Compile Include="BaseIcon.cs" />
     <Compile Include="Render.cs" />
     <Compile Include="WindowForm.cs">
       <SubType>Form</SubType>

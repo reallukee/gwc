@@ -1,7 +1,7 @@
 //
 // :.:.:.
 // GWC
-// v0.4.0
+// v0.5.0
 // :.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -853,6 +853,18 @@ namespace Reallukee.GWC
         public bool DrawFillEllipse(int x, int y, int width, int height)
         {
             return canvas.DrawFillEllipse(x, y, width, height);
+        }
+
+
+
+        public bool DrawImage(int x, int y, Image image)
+        {
+            return canvas.DrawImage(x, y, image);
+        }
+
+        public bool DrawIcon(int x, int y, Icon icon)
+        {
+            return canvas.DrawIcon(x, y, icon);
         }
     }
 }

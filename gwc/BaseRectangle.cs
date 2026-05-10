@@ -1,7 +1,7 @@
 //
 // :.:.:.
 // GWC
-// v0.3.2
+// v0.5.0
 // :.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -28,7 +28,7 @@ using System.Windows.Forms;
 
 namespace Reallukee.GWC
 {
-    internal class BaseRectangle : IFigure
+    internal abstract class BaseRectangle : IFigure
     {
         public BaseRectangle(int x, int y, int width, int height)
         {
@@ -76,9 +76,9 @@ namespace Reallukee.GWC
 
 
 
-        public Rectangle Bounds => new Rectangle(X, Y, Width, Height);
-        public Size Size => new Size(Width, Height);
-        public Point Location => new Point(X, Y);
+        public Rectangle Bounds   => new Rectangle(X, Y, Width, Height);
+        public Size      Size     => new Size(Width, Height);
+        public Point     Location => new Point(X, Y);
 
 
 

@@ -1,7 +1,7 @@
 //
 // :.:.:.
 // GWC
-// v0.3.1
+// v0.5.0
 // :.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -226,6 +226,22 @@ namespace Reallukee.GWC
 
 
 
+        public bool DrawImage(int x, int y, Image image)
+        {
+            IRenderable baseImage = new BaseImage(x, y, image);
+
+            return DrawRenderable(baseImage);
+        }
+
+        public bool DrawIcon(int x, int y, Icon icon)
+        {
+            IRenderable baseIcon = new BaseIcon(x, y, icon);
+
+            return DrawRenderable(baseIcon);
+        }
+
+
+
         internal void ResizeBitmap(int width, int height)
         {
             try
@@ -245,7 +261,12 @@ namespace Reallukee.GWC
             }
             catch (Exception ex)
             {
-                throw ex;
+                MessageBox.Show(
+                    ex.Message,
+                    $"{Application.ProductName} {Application.ProductVersion}",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
         }
 

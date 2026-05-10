@@ -1,7 +1,7 @@
 //
 // :.:.:.
 // GWC
-// v0.3.2
+// v0.5.0
 // :.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -28,7 +28,7 @@ using System.Windows.Forms;
 
 namespace Reallukee.GWC
 {
-    internal class BaseEllipse : IFigure
+    internal abstract class BaseEllipse : IFigure
     {
         public BaseEllipse(int x, int y, int width, int height)
         {

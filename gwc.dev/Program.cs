@@ -1,7 +1,7 @@
 //
 // :.:.:.
 // GWC
-// v0.4.1
+// v0.5.0
 // :.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -37,6 +37,14 @@ namespace Reallukee.GWC
             window.Open();
 
             bool loop = true;
+
+            Image myBitmap1 = new Bitmap("..\\..\\..\\assets\\playground\\albert_the_rock.bmp");
+            Image myBitmap2 = new Bitmap("..\\..\\..\\assets\\playground\\albert_the_rock_with_cacatus.bmp");
+            Image myBitmap3 = new Bitmap("..\\..\\..\\assets\\playground\\albert_the_rock_nostalgia.bmp");
+
+            window.DrawImage(100, 100, myBitmap1);
+            window.DrawImage(200, 100, myBitmap2);
+            window.DrawImage(300, 100, myBitmap3);
 
             while (window.IsOpen && loop)
             {
