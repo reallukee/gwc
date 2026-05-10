@@ -6,6 +6,8 @@ COLOR.h
 POINT.h
 SIZE.h
 RECTANGLE.h
+IMAGE.h
+ICON.h
 KEYS.h
 MOUSEBUTTONS.h
 RENDER.h
@@ -20,6 +22,8 @@ Color.hpp
 Point.hpp
 Size.hpp
 Rectangle.hpp
+Image.hpp
+Icon.hpp
 Keys.hpp
 MouseButtons.hpp
 Render.hpp

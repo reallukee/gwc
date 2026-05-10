@@ -51,6 +51,12 @@
     <ClInclude Include="include\RECTANGLE.h">
       <Filter>GWC\Include</Filter>
     </ClInclude>
+    <ClInclude Include="include\IMAGE.h">
+      <Filter>GWC\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ICON.h">
+      <Filter>GWC\Include</Filter>
+    </ClInclude>
     <ClInclude Include="include\KEYS.h">
       <Filter>GWC\Include</Filter>
     </ClInclude>
