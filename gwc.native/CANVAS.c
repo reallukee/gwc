@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.4.1
+// v0.5.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -62,7 +62,7 @@ bool canvas_isInitialized(const CANVAS* canvas)
 
     CanvasHost* host = static_cast<CanvasHost*>(canvas->canvas);
 
-    if (host == nullptr)
+    if (host == NULL)
     {
         return false;
     }
@@ -167,6 +167,94 @@ bool canvas_drawBorderEllipse(const CANVAS* canvas, int x, int y, int width, int
 bool canvas_drawFillEllipse(const CANVAS* canvas, int x, int y, int width, int height)
 {
     CCI_BOOL_C(CanvasHost, canvas, DrawFillEllipse(x, y, width, height));
+}
+
+
+
+bool canvas_drawImage(const CANVAS* canvas, int x, int y, gIMAGE* image)
+{
+    CC_BOOL_C(CanvasHost, canvas);
+
+    if (image == NULL)
+    {
+        return false;
+    }
+
+    if (!image_isLoaded(image))
+    {
+        return false;
+    }
+
+    HBITMAP nativeImage = image_get(image);
+
+    Drawing::Image^ managedImage = nullptr;
+
+    bool result = false;
+
+    try
+    {
+        IntPtr imageHandle = IntPtr(nativeImage);
+
+        managedImage = Drawing::Image::FromHbitmap(imageHandle);
+
+        result = _host->invoke()->DrawImage(x, y, managedImage);
+    }
+    catch (Exception^ ex)
+    {
+        Windows::Forms::MessageBox::Show(ex->Message);
+    }
+    finally
+    {
+        if (managedImage)
+        {
+            delete managedImage;
+        }
+    }
+
+    return result;
+}
+
+bool canvas_drawIcon(const CANVAS* canvas, int x, int y, gICON* icon)
+{
+    CC_BOOL_C(CanvasHost, canvas);
+
+    if (icon == NULL)
+    {
+        return false;
+    }
+
+    if (!icon_isLoaded(icon))
+    {
+        return false;
+    }
+
+    HICON nativeIcon = icon_get(icon);
+
+    Drawing::Icon^ managedIcon = nullptr;
+
+    bool result = false;
+
+    try
+    {
+        IntPtr iconHandle = IntPtr(nativeIcon);
+
+        managedIcon = Drawing::Icon::FromHandle(iconHandle);
+
+        result = _host->invoke()->DrawIcon(x, y, managedIcon);
+    }
+    catch (Exception^ ex)
+    {
+        Windows::Forms::MessageBox::Show(ex->Message);
+    }
+    finally
+    {
+        if (managedIcon)
+        {
+            delete managedIcon;
+        }
+    }
+
+    return result;
 }
 
 

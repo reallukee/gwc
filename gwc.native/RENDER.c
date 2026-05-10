@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.2.0
+// v0.5.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -13,6 +13,45 @@
 #include "gwc.clr.hpp"
 
 #include "RENDER.h"
+
+static ULONG_PTR token = 0;
+
+bool render_init()
+{
+    if (token != 0)
+    {
+        return true;
+    }
+
+    Gdiplus::GdiplusStartupInput input;
+
+    Gdiplus::Status status = Gdiplus::GdiplusStartup(
+        &token,
+        &input,
+        NULL
+    );
+
+    if (status != Gdiplus::Status::Ok)
+    {
+        token = 0;
+
+        return false;
+    }
+
+    return true;
+}
+
+void render_shutdown()
+{
+    if (token != 0)
+    {
+        Gdiplus::GdiplusShutdown(token);
+
+        token = 0;
+    }
+}
+
+
 
 int render_getRefreshRate()
 {

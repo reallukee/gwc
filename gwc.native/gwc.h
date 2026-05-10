@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.4.1
+// v0.5.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -25,7 +25,7 @@
 // Questo è l'header dell'API C di GWC.
 //
 // Versione API attesa:
-//  [0.4.1]
+//  [0.5.0]
 // Versione MINIMA API attesa:
 //  [0.4.0]
 //
@@ -33,10 +33,10 @@
 // dei binari e dei file di intestazione.
 //
 
-#define GWC_VERSION_INCLUDE              041
+#define GWC_VERSION_INCLUDE              050
 #define GWC_MIN_VERSION_INCLUDE          040
 
-#define GWC_FRIENDLY_VERSION_INCLUDE     "0.4.1"
+#define GWC_FRIENDLY_VERSION_INCLUDE     "0.5.0"
 #define GWC_FRIENDLY_MIN_VERSION_INCLUDE "0.4.0"
 
 #include "types.h"

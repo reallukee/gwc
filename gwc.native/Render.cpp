@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.0
+// v0.5.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -18,6 +18,45 @@
 
 namespace gwc
 {
+    static ULONG_PTR token = 0;
+
+    bool Render::init()
+    {
+        if (token != 0)
+        {
+            return true;
+        }
+
+        Gdiplus::GdiplusStartupInput input;
+
+        Gdiplus::Status status = Gdiplus::GdiplusStartup(
+            &token,
+            &input,
+            nullptr
+        );
+
+        if (status != Gdiplus::Status::Ok)
+        {
+            token = 0;
+
+            return false;
+        }
+
+        return true;
+    }
+
+    void Render::shutdown()
+    {
+        if (token != 0)
+        {
+            Gdiplus::GdiplusShutdown(token);
+
+            token = 0;
+        }
+    }
+
+
+
     int Render::getRefreshRate()
     {
         return GWC::Render::RefreshRate;

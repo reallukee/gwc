@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.3
+// v0.5.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -21,6 +21,9 @@
 #include "Point.hpp"
 #include "Size.hpp"
 #include "Rectangle.hpp"
+
+#include "Image.hpp"
+#include "Icon.hpp"
 
 #include "Keys.hpp"
 #include "MouseButtons.hpp"

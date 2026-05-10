@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.2.0
+// v0.5.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -16,6 +16,9 @@
 #define GWC_RENDER_H
 
 #include "header.h"
+
+GWC_C_API bool render_init();
+GWC_C_API void render_shutdown();
 
 GWC_C_API int  render_getRefreshRate       ();
 GWC_C_API void render_setRefreshRate       (int value);

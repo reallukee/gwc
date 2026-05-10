@@ -153,7 +153,7 @@
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
-      <AdditionalDependencies />
+      <AdditionalDependencies>gdi32.lib;gdiplus.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -166,7 +166,7 @@
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
-      <AdditionalDependencies />
+      <AdditionalDependencies>gdi32.lib;gdiplus.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -179,7 +179,7 @@
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
-      <AdditionalDependencies />
+      <AdditionalDependencies>gdi32.lib;gdiplus.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -192,7 +192,7 @@
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
-      <AdditionalDependencies />
+      <AdditionalDependencies>gdi32.lib;gdiplus.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
@@ -205,7 +205,7 @@
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
-      <AdditionalDependencies />
+      <AdditionalDependencies>gdi32.lib;gdiplus.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
@@ -218,7 +218,7 @@
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
-      <AdditionalDependencies />
+      <AdditionalDependencies>gdi32.lib;gdiplus.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -250,6 +250,8 @@
     <ClInclude Include="Point.hpp" />
     <ClInclude Include="Size.hpp" />
     <ClInclude Include="Rectangle.hpp" />
+    <ClInclude Include="Image.hpp" />
+    <ClInclude Include="Icon.hpp" />
     <ClInclude Include="Keys.hpp" />
     <ClInclude Include="MouseButtons.hpp" />
     <ClInclude Include="Render.hpp" />
@@ -265,6 +267,8 @@
     <ClInclude Include="POINT.h" />
     <ClInclude Include="SIZE.h" />
     <ClInclude Include="RECTANGLE.h" />
+    <ClInclude Include="IMAGE.h" />
+    <ClInclude Include="ICON.h" />
     <ClInclude Include="KEYS.h" />
     <ClInclude Include="MOUSEBUTTONS.h" />
     <ClInclude Include="RENDER.h" />
@@ -284,6 +288,8 @@
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="Size.cpp" />
     <ClCompile Include="Rectangle.cpp" />
+    <ClCompile Include="Image.cpp" />
+    <ClCompile Include="Icon.cpp" />
     <ClCompile Include="Render.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Canvas.cpp" />
@@ -293,6 +299,8 @@
     <ClCompile Include="POINT.c" />
     <ClCompile Include="SIZE.c" />
     <ClCompile Include="RECTANGLE.c" />
+    <ClCompile Include="IMAGE.c" />
+    <ClCompile Include="ICON.c" />
     <ClCompile Include="RENDER.c" />
     <ClCompile Include="SPRITE.c" />
     <ClCompile Include="CANVAS.c" />

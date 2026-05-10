@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.3
+// v0.5.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -18,9 +18,9 @@ namespace gwc
 {
     gColor::gColor(int alpha, int red, int green, int blue)
     {
-        if (alpha < 0 || alpha > 100)
+        if (alpha < 0 || alpha > 255)
         {
-            alpha = 100;
+            alpha = 255;
         }
 
         if (red < 0 || red > 255)
@@ -55,7 +55,7 @@ namespace gwc
 
     void gColor::setAlpha(int value)
     {
-        if (value < 0 || value > 100)
+        if (value < 0 || value > 255)
         {
             return;
         }

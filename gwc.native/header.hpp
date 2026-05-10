@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.1.0
+// v0.5.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -21,7 +21,13 @@
 
 #include <windows.h>
 
+#include <gdiplus.h>
+
+#include <string>
+
+#include <cstdbool>
 #include <cstddef>
+#include <cstdio>
 #include <cstdlib>
 #include <cstring>
 

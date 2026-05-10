@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.3
+// v0.5.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -19,6 +19,9 @@
 #include "POINT.h"
 #include "SIZE.h"
 #include "RECTANGLE.h"
+
+#include "IMAGE.h"
+#include "ICON.h"
 
 #include "KEYS.h"
 #include "MOUSEBUTTONS.h"

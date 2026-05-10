@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.3
+// v0.5.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -31,9 +31,9 @@ gCOLOR* color_new(int alpha, int red, int green, int blue)
         return NULL;
     }
 
-    if (alpha < 0 || alpha > 100)
+    if (alpha < 0 || alpha > 255)
     {
-        alpha = 100;
+        alpha = 255;
     }
 
     if (red < 0 || red > 255)
@@ -78,7 +78,7 @@ int color_getAlpha(const gCOLOR* color)
 
 void color_setAlpha(gCOLOR* color, int value)
 {
-    if (value < 0 || value > 100)
+    if (value < 0 || value > 255)
     {
         return;
     }

@@ -154,7 +154,7 @@
       <AdditionalIncludeDirectories>..\gwc.native;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies />
+      <AdditionalDependencies>gdi32.lib;gdiplus.lib</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -169,7 +169,7 @@
       <AdditionalIncludeDirectories>..\gwc.native;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies />
+      <AdditionalDependencies>gdi32.lib;gdiplus.lib</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -184,7 +184,7 @@
       <AdditionalIncludeDirectories>..\gwc.native;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies />
+      <AdditionalDependencies>gdi32.lib;gdiplus.lib</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -199,7 +199,7 @@
       <AdditionalIncludeDirectories>..\gwc.native;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies />
+      <AdditionalDependencies>gdi32.lib;gdiplus.lib</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -214,7 +214,7 @@
       <AdditionalIncludeDirectories>..\gwc.native;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies />
+      <AdditionalDependencies>gdi32.lib;gdiplus.lib</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -229,7 +229,7 @@
       <AdditionalIncludeDirectories>..\gwc.native;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies />
+      <AdditionalDependencies>gdi32.lib;gdiplus.lib</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -262,6 +262,8 @@
     <ClInclude Include="..\gwc.native\Point.hpp" />
     <ClInclude Include="..\gwc.native\Size.hpp" />
     <ClInclude Include="..\gwc.native\Rectangle.hpp" />
+    <ClInclude Include="..\gwc.native\Image.hpp" />
+    <ClInclude Include="..\gwc.native\Icon.hpp" />
     <ClInclude Include="..\gwc.native\Keys.hpp" />
     <ClInclude Include="..\gwc.native\MouseButtons.hpp" />
     <ClInclude Include="..\gwc.native\Render.hpp" />
@@ -277,6 +279,8 @@
     <ClInclude Include="..\gwc.native\POINT.h" />
     <ClInclude Include="..\gwc.native\SIZE.h" />
     <ClInclude Include="..\gwc.native\RECTANGLE.h" />
+    <ClInclude Include="..\gwc.native\IMAGE.h" />
+    <ClInclude Include="..\gwc.native\ICON.h" />
     <ClInclude Include="..\gwc.native\KEYS.h" />
     <ClInclude Include="..\gwc.native\MOUSEBUTTONS.h" />
     <ClInclude Include="..\gwc.native\RENDER.h" />
@@ -296,6 +300,8 @@
     <ClCompile Include="..\gwc.native\Point.cpp" />
     <ClCompile Include="..\gwc.native\Size.cpp" />
     <ClCompile Include="..\gwc.native\Rectangle.cpp" />
+    <ClCompile Include="..\gwc.native\Image.cpp" />
+    <ClCompile Include="..\gwc.native\Icon.cpp" />
     <ClCompile Include="..\gwc.native\Render.cpp" />
     <ClCompile Include="..\gwc.native\SPRITE.cpp" />
     <ClCompile Include="..\gwc.native\Canvas.cpp" />
@@ -306,6 +312,8 @@
     <ClCompile Include="..\gwc.native\POINT.c" />
     <ClCompile Include="..\gwc.native\SIZE.c" />
     <ClCompile Include="..\gwc.native\RECTANGLE.c" />
+    <ClCompile Include="..\gwc.native\IMAGE.c" />
+    <ClCompile Include="..\gwc.native\ICON.c" />
     <ClCompile Include="..\gwc.native\RENDER.c" />
     <ClCompile Include="..\gwc.native\SPRITE.c" />
     <ClCompile Include="..\gwc.native\CANVAS.c" />

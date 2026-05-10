@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.3
+// v0.5.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -51,6 +51,9 @@ GWC_C_API bool sprite_drawFillCircle  (const SPRITE* sprite, int x, int y, int r
 
 GWC_C_API bool sprite_drawBorderEllipse(const SPRITE* sprite, int x, int y, int width, int height);
 GWC_C_API bool sprite_drawFillEllipse  (const SPRITE* sprite, int x, int y, int width, int height);
+
+GWC_C_API bool sprite_drawImage(const SPRITE* sprite, int x, int y, gIMAGE* image);
+GWC_C_API bool sprite_drawIcon (const SPRITE* sprite, int x, int y, gICON* icon);
 
 GWC_C_API void sprite_render(const SPRITE* sprite);
 

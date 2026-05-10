@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.2.0
+// v0.5.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -25,6 +25,9 @@ namespace gwc
     {
 
     public:
+
+        static bool init();
+        static void shutdown();
 
         static int  getRefreshRate       ();
         static void setRefreshRate       (int value);

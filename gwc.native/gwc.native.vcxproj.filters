@@ -81,6 +81,12 @@
     <ClInclude Include="Rectangle.hpp">
       <Filter>File di intestazione\C++ API</Filter>
     </ClInclude>
+    <ClInclude Include="Image.hpp">
+      <Filter>File di intestazione\C++ API</Filter>
+    </ClInclude>
+    <ClInclude Include="Icon.hpp">
+      <Filter>File di intestazione\C++ API</Filter>
+    </ClInclude>
     <ClInclude Include="Keys.hpp">
       <Filter>File di intestazione\C++ API</Filter>
     </ClInclude>
@@ -124,6 +130,12 @@
       <Filter>File di intestazione\C API</Filter>
     </ClInclude>
     <ClInclude Include="RECTANGLE.h">
+      <Filter>File di intestazione\C API</Filter>
+    </ClInclude>
+    <ClInclude Include="IMAGE.h">
+      <Filter>File di intestazione\C API</Filter>
+    </ClInclude>
+    <ClInclude Include="ICON.h">
       <Filter>File di intestazione\C API</Filter>
     </ClInclude>
     <ClInclude Include="KEYS.h">
@@ -179,6 +191,12 @@
     <ClCompile Include="Rectangle.cpp">
       <Filter>File di origine\C++ API</Filter>
     </ClCompile>
+    <ClCompile Include="Image.cpp">
+      <Filter>File di origine\C++ API</Filter>
+    </ClCompile>
+    <ClCompile Include="Icon.cpp">
+      <Filter>File di origine\C++ API</Filter>
+    </ClCompile>
     <ClCompile Include="Render.cpp">
       <Filter>File di origine\C++ API</Filter>
     </ClCompile>
@@ -204,6 +222,12 @@
       <Filter>File di origine\C API</Filter>
     </ClCompile>
     <ClCompile Include="RECTANGLE.c">
+      <Filter>File di origine\C API</Filter>
+    </ClCompile>
+    <ClCompile Include="IMAGE.c">
+      <Filter>File di origine\C API</Filter>
+    </ClCompile>
+    <ClCompile Include="ICON.c">
       <Filter>File di origine\C API</Filter>
     </ClCompile>
     <ClCompile Include="RENDER.c">

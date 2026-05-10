@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.4.1
+// v0.5.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -414,6 +414,84 @@ namespace gwc
     bool Window::drawFillEllipse(int x, int y, int width, int height)
     {
         CCI_BOOL_CPP(WindowHost, window, DrawFillEllipse(x, y, width, height));
+    }
+
+
+
+    bool Window::drawImage(int x, int y, const gImage& image)
+    {
+        CC_BOOL_CPP(WindowHost, window);
+
+        if (!image.isLoaded())
+        {
+            return false;
+        }
+
+        HBITMAP nativeImage = image.get();
+
+        Drawing::Image^ managedImage = nullptr;
+
+        bool result = false;
+
+        try
+        {
+            IntPtr imageHandle = IntPtr(nativeImage);
+
+            managedImage = Drawing::Image::FromHbitmap(imageHandle);
+
+            result = _host->invoke()->DrawImage(x, y, managedImage);
+        }
+        catch (Exception^ ex)
+        {
+            Windows::Forms::MessageBox::Show(ex->Message);
+        }
+        finally
+        {
+            if (managedImage)
+            {
+                delete managedImage;
+            }
+        }
+
+        return result;
+    }
+
+    bool Window::drawIcon(int x, int y, const gIcon& icon)
+    {
+        CC_BOOL_CPP(WindowHost, window);
+
+        if (!icon.isLoaded())
+        {
+            return false;
+        }
+
+        HICON nativeIcon = icon.get();
+
+        Drawing::Icon^ managedIcon = nullptr;
+
+        bool result = false;
+
+        try
+        {
+            IntPtr iconHandle = IntPtr(nativeIcon);
+
+            managedIcon = Drawing::Icon::FromHandle(iconHandle);
+
+            result = _host->invoke()->DrawIcon(x, y, managedIcon);
+        }
+        catch (Exception^ ex)
+        {
+            Windows::Forms::MessageBox::Show(ex->Message);
+        }
+        finally
+        {
+            if (managedIcon)
+            {
+                delete managedIcon;
+            }
+        }
+
+        return result;
     }
 }
 

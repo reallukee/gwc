@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.3
+// v0.5.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -51,6 +51,9 @@ GWC_C_API bool canvas_drawFillCircle  (const CANVAS* canvas, int x, int y, int r
 
 GWC_C_API bool canvas_drawBorderEllipse(const CANVAS* canvas, int x, int y, int width, int height);
 GWC_C_API bool canvas_drawFillEllipse  (const CANVAS* canvas, int x, int y, int width, int height);
+
+GWC_C_API bool canvas_drawImage(const CANVAS* canvas, int x, int y, gIMAGE* image);
+GWC_C_API bool canvas_drawIcon (const CANVAS* canvas, int x, int y, gICON* icon);
 
 GWC_C_API void canvas_render(const CANVAS* canvas);
 

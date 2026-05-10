@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.4.0
+// v0.5.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -105,6 +105,9 @@ namespace gwc
 
         bool drawBorderEllipse(int x, int y, int width, int height);
         bool drawFillEllipse  (int x, int y, int width, int height);
+
+        bool drawImage(int x, int y, const gImage& image);
+        bool drawIcon (int x, int y, const gIcon& icon);
 
     private:
 
