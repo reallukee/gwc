@@ -25,6 +25,8 @@ int main(int argc, const char* argv[])
     {
         window_delete(window);
 
+        render_shutdown();
+
         return 1;
     }
 

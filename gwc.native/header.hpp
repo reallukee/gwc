@@ -21,8 +21,8 @@
 
 #include <windows.h>
 
-#include <gdiplus.h>
-
+#include <iostream>
+#include <sstream>
 #include <string>
 
 #include <cstdbool>

@@ -14,6 +14,8 @@
 
 #include "Render.hpp"
 
+#include <gdiplus.h>
+
 #ifdef __cplusplus
 
 namespace gwc

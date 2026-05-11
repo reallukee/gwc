@@ -14,6 +14,8 @@
 
 #include "RENDER.h"
 
+#include <gdiplus.h>
+
 static ULONG_PTR token = 0;
 
 bool render_init()

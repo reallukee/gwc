@@ -26,6 +26,8 @@ int main(int argc, const char* argv[])
     {
         delete window;
 
+        Render::shutdown();
+
         return 1;
     }
 

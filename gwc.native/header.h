@@ -19,8 +19,6 @@
 
 #include <windows.h>
 
-#include <gdiplus.h>
-
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdio.h>
