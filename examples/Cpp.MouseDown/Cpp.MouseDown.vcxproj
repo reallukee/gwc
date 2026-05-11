@@ -29,8 +29,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>18.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{1387F449-4DAA-4DB2-8FAB-B68048662FBC}</ProjectGuid>
-    <RootNamespace>CppDraw</RootNamespace>
+    <ProjectGuid>{D391BD02-D04C-D1CE-6502-3FF9D6214E59}</ProjectGuid>
+    <RootNamespace>CppMouseDown</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -227,11 +227,6 @@
     <ProjectReference Include="..\..\gwc.native\gwc.native.vcxproj">
       <Project>{d6d18c01-745e-a3e3-8ca7-7aafaf9fbcfa}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="gwc.png" />
-    <Image Include="gwc.bmp" />
-    <Image Include="gwc.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

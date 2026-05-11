@@ -228,6 +228,11 @@
       <Project>{d6d18c01-745e-a3e3-8ca7-7aafaf9fbcfa}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="gwc.png" />
+    <Image Include="gwc.bmp" />
+    <Image Include="gwc.ico" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

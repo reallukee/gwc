@@ -15,19 +15,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.c">
+    <ClCompile Include="main.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="gwc.png">
-      <Filter>File di risorse</Filter>
-    </Image>
-    <Image Include="gwc.bmp">
-      <Filter>File di risorse</Filter>
-    </Image>
-    <Image Include="gwc.ico">
-      <Filter>File di risorse</Filter>
-    </Image>
   </ItemGroup>
 </Project>

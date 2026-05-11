@@ -23,4 +23,6 @@
   <Project Path="C.MultiWindow/C.MultiWindow.vcxproj" Id="124278bc-8c15-4ada-af2f-33792ffb4e40" />
   <Project Path="Cpp.KeyDown/Cpp.KeyDown.vcxproj" Id="9ef3b5d8-2e7e-4a08-81da-a41509f0baf2" />
   <Project Path="C.KeyDown/C.KeyDown.vcxproj" Id="b1883bf2-7e45-4ce5-aa59-2ac7ef5b85ae" />
+  <Project Path="Cpp.MouseDown/Cpp.MouseDown.vcxproj" Id="d391bd02-d04c-d1ce-6502-3ff9d6214e59" />
+  <Project Path="C.MouseDown/C.MouseDown.vcxproj" Id="8f895b9c-efda-e72e-b2a3-f19f347af196" />
 </Solution>
