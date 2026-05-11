@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.3
+// v0.5.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -31,6 +31,8 @@ namespace gwc
         this->x = x;
         this->y = y;
     }
+
+    gPoint::gPoint() : gPoint(0, 0) { }
 
     gPoint::~gPoint() { }
 

@@ -31,5 +31,4 @@
     #define GWC_C_API GWC_C_EXTERN GWC_C_DLL
 #endif // GWC_LIBRARY
 
-
 #endif // !GWC_EXPORT_H

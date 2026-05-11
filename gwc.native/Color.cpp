@@ -44,6 +44,8 @@ namespace gwc
         this->blue  = blue;
     }
 
+    gColor::gColor() : gColor(0, 0, 0, 0) { }
+
     gColor::~gColor() { }
 
 

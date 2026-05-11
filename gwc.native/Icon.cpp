@@ -55,28 +55,15 @@ namespace gwc
 
     gIcon::gIcon(const char* path)
     {
-        const wchar_t* wpath = strToWStr(path);
-
-        if (wpath == nullptr)
-        {
-            icon = nullptr;
-
-            return;
-        }
-
-        icon = (HICON)LoadImageW(
-            nullptr,
-            wpath,
-            IMAGE_ICON,
-            0,
-            0,
-            LR_LOADFROMFILE
-        );
-
-        delete[] wpath;
+        load(path);
     }
 
-    gIcon::gIcon(string path) : gIcon(path.c_str()) { }
+    gIcon::gIcon(string path)
+    {
+        load(path);
+    }
+
+    gIcon::gIcon() { }
 
     gIcon::~gIcon()
     {
@@ -114,12 +101,37 @@ namespace gwc
 
 
 
-    bool gIcon::isLoaded() const
+    bool gIcon::load(const char* path)
     {
-        return icon != nullptr;
+        const wchar_t* wpath = strToWStr(path);
+
+        if (wpath == nullptr)
+        {
+            icon = nullptr;
+
+            return false;
+        }
+
+        icon = (HICON)LoadImageW(
+            nullptr,
+            wpath,
+            IMAGE_ICON,
+            0,
+            0,
+            LR_LOADFROMFILE
+        );
+
+        delete[] wpath;
+
+        return true;
     }
 
-    void gIcon::release()
+    bool gIcon::load(string path)
+    {
+        return load(path.c_str());
+    }
+
+    void gIcon::unload()
     {
         if (!isLoaded())
         {
@@ -128,6 +140,20 @@ namespace gwc
 
         DestroyIcon(icon);
     }
+
+
+
+    bool gIcon::isLoaded() const
+    {
+        return icon != nullptr;
+    }
+
+    bool gIcon::isUnloaded() const
+    {
+        return icon == nullptr;
+    }
+
+
 
     HICON gIcon::get() const
     {

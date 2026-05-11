@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.3
+// v0.5.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -32,7 +32,9 @@ namespace gwc
         this->height = height;
     }
 
-    gSize::~gSize() {}
+    gSize::gSize() : gSize(0, 0) { }
+
+    gSize::~gSize() { }
 
 
 

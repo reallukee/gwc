@@ -28,6 +28,7 @@ namespace gwc
 
         gIcon (const char* path);
         gIcon (string path);
+        gIcon ();
         ~gIcon();
 
         gIcon(gIcon&& other) noexcept;
@@ -36,8 +37,13 @@ namespace gwc
         gIcon(const gIcon&) = delete;
         gIcon& operator=(const gIcon&) = delete;
 
-        bool  isLoaded() const;
-        void  release();
+        bool load  (const char* path);
+        bool load  (string path);
+        void unload();
+
+        bool isLoaded  () const;
+        bool isUnloaded() const;
+
         HICON get() const;
 
     private:

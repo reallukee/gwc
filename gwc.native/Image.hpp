@@ -28,6 +28,7 @@ namespace gwc
 
         gImage (const char* path);
         gImage (string path);
+        gImage ();
         ~gImage();
 
         gImage(gImage&& other) noexcept;
@@ -36,8 +37,13 @@ namespace gwc
         gImage(const gImage&) = delete;
         gImage& operator=(const gImage&) = delete;
 
-        bool    isLoaded() const;
-        void    release();
+        bool load  (const char* path);
+        bool load  (string path);
+        void unload();
+
+        bool isLoaded  () const;
+        bool isUnloaded() const;
+
         HBITMAP get() const;
 
     private:

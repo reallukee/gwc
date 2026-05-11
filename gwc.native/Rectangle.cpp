@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.3
+// v0.5.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -44,7 +44,9 @@ namespace gwc
         this->height = height;
     }
 
-    gRectangle::~gRectangle() {}
+    gRectangle::gRectangle() : gRectangle(0, 0, 0, 0) { }
+
+    gRectangle::~gRectangle() { }
 
 
 

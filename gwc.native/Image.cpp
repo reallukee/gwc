@@ -55,28 +55,15 @@ namespace gwc
 
     gImage::gImage(const char* path)
     {
-        const wchar_t* wpath = strToWStr(path);
-
-        if (wpath == nullptr)
-        {
-            image = nullptr;
-
-            return;
-        }
-
-        image = (HBITMAP)LoadImageW(
-            nullptr,
-            wpath,
-            IMAGE_BITMAP,
-            0,
-            0,
-            LR_LOADFROMFILE | LR_CREATEDIBSECTION
-        );
-
-        delete[] wpath;
+        load(path);
     }
 
-    gImage::gImage(string path) : gImage(path.c_str()) { }
+    gImage::gImage(string path)
+    {
+        load(path);
+    }
+
+    gImage::gImage() { }
 
     gImage::~gImage()
     {
@@ -114,12 +101,37 @@ namespace gwc
 
 
 
-    bool gImage::isLoaded() const
+    bool gImage::load(const char* path)
     {
-        return image != nullptr;
+        const wchar_t* wpath = strToWStr(path);
+
+        if (wpath == nullptr)
+        {
+            image = nullptr;
+
+            return false;
+        }
+
+        image = (HBITMAP)LoadImageW(
+            nullptr,
+            wpath,
+            IMAGE_BITMAP,
+            0,
+            0,
+            LR_LOADFROMFILE | LR_CREATEDIBSECTION
+        );
+
+        delete[] wpath;
+
+        return true;
     }
 
-    void gImage::release()
+    bool gImage::load(string path)
+    {
+        return load(path.c_str());
+    }
+
+    void gImage::unload()
     {
         if (!isLoaded())
         {
@@ -128,6 +140,20 @@ namespace gwc
 
         DeleteObject(image);
     }
+
+
+
+    bool gImage::isLoaded() const
+    {
+        return image != nullptr;
+    }
+
+    bool gImage::isUnloaded() const
+    {
+        return image == nullptr;
+    }
+
+
 
     HBITMAP gImage::get() const
     {

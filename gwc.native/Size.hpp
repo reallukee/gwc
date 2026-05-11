@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.3.3
+// v0.5.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -27,6 +27,7 @@ namespace gwc
     public:
 
         gSize (int width, int height);
+        gSize ();
         ~gSize();
 
         int  getWidth () const;

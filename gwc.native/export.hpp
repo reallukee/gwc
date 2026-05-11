@@ -20,13 +20,13 @@
 #define GWC_CPP_EXTERN extern
 
 #ifdef GWC_LIBRARY
-#define GWC_CPP_DLL __declspec(dllexport)
+    #define GWC_CPP_DLL __declspec(dllexport)
 
-#define GWC_CPP_API GWC_CPP_DLL
+    #define GWC_CPP_API GWC_CPP_DLL
 #else
-#define GWC_CPP_DLL __declspec(dllimport)
+    #define GWC_CPP_DLL __declspec(dllimport)
 
-#define GWC_CPP_API GWC_CPP_DLL
+    #define GWC_CPP_API GWC_CPP_DLL
 #endif // GWC_LIBRARY
 
 #endif // __cplusplus
