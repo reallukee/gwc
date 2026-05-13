@@ -25,6 +25,8 @@ using namespace gwc;
 
 namespace gwc_abst
 {
+    typedef int CnvId;
+
     class GWC_ABST_CPP_API CnvMgr sealed
     {
 
@@ -33,14 +35,43 @@ namespace gwc_abst
         static void init    ();
         static void shutdown();
 
-        static bool setCurrent(int id);
-        static int  getCurrent();
+        static bool  setCurrent(CnvId id);
+        static CnvId getCurrent();
 
-        static int  alloc(int width, int height, bool select);
-        static int  alloc(bool select);
-        static void free ();
+        static CnvId alloc(int width, int height, bool select);
+        static CnvId alloc(bool select);
+        static void  free ();
 
         static bool isInitialized();
+
+        static gColor getBorderColor();
+        static void   setBorderColor(gColor color);
+        static gColor getFillColor  ();
+        static void   setFillColor  (gColor color);
+
+        static gRectangle bounds();
+        static gSize      size();
+        static gPoint     location();
+
+        static int getWidth ();
+        static int getHeight();
+
+        static bool drawBorderSquare(int x, int y, int side);
+        static bool drawFillSquare  (int x, int y, int side);
+
+        static bool drawBorderRectangle(int x, int y, int width, int height);
+        static bool drawFillRectangle  (int x, int y, int width, int height);
+
+        static bool drawBorderCircle(int x, int y, int radius);
+        static bool drawFillCircle  (int x, int y, int radius);
+
+        static bool drawBorderEllipse(int x, int y, int width, int height);
+        static bool drawFillEllipse  (int x, int y, int width, int height);
+
+        static bool drawImage(int x, int y, const gImage& image);
+        static bool drawIcon (int x, int y, const gIcon& icon);
+
+        static void render();
 
     private:
 
@@ -48,6 +79,8 @@ namespace gwc_abst
         ~CnvMgr();
 
     };
+
+    typedef CnvId CanvasId;
 
     typedef CnvMgr CanvasManager;
 }

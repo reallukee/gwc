@@ -20,7 +20,7 @@ int main(int argc, const char* argv[])
     render_init();
     wndmgr_init();
 
-    wndmgr_alloc(800, 600, true);
+    WINDOW_ID window = wndmgr_alloc(800, 600, true);
 
     wndmgr_open();
 
@@ -36,6 +36,21 @@ int main(int argc, const char* argv[])
 
     while (wndmgr_isOpen() && loop)
     {
+        gKEYS modifiers = gKEYS_NONE;
+        gKEYS key = gKEYS_NONE;
+
+        bool keyDown = wndmgr_consumeKeyDown(&modifiers, &key);
+
+        if (keyDown)
+        {
+            if (key == gKEYS_ESCAPE)
+            {
+                loop = false;
+
+                continue;
+            }
+        }
+
         wndmgr_wait(100);
     }
 

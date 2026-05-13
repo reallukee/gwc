@@ -14,19 +14,18 @@
 
 #include <Window.hpp>
 
+#include "macros.hpp"
+
 #ifdef __cplusplus
 
 namespace gwc_abst
 {
     static const int MAX_ITEMS_COUNT = 10;
-    static const int NO_ITEM         = -1;
 
     static bool ready = false;
 
     static Window* items[MAX_ITEMS_COUNT] = { nullptr };
     static int     currentItem            = NO_ITEM;
-
-    #define ITEM items[currentItem]
 
     void WndMgr::init()
     {
@@ -67,7 +66,7 @@ namespace gwc_abst
 
 
 
-    bool WndMgr::setCurrent(int id)
+    bool WndMgr::setCurrent(WndId id)
     {
         if (!ready)
         {
@@ -89,7 +88,7 @@ namespace gwc_abst
         return true;
     }
 
-    int WndMgr::getCurrent()
+    WndId WndMgr::getCurrent()
     {
         if (!ready)
         {
@@ -101,7 +100,7 @@ namespace gwc_abst
 
 
 
-    int WndMgr::alloc(int width, int height, bool select)
+    WndId WndMgr::alloc(int width, int height, bool select)
     {
         if (!ready)
         {
@@ -140,7 +139,7 @@ namespace gwc_abst
         return nextItem;
     }
 
-    int WndMgr::alloc(bool select)
+    WndId WndMgr::alloc(bool select)
     {
         return alloc(800, 600, select);
     }
@@ -171,68 +170,323 @@ namespace gwc_abst
 
     bool WndMgr::isInitialized()
     {
-        if (!ready)
-        {
-            return false;
-        }
-
-        return ITEM->isInitialized();
+        CCI_BOOL_CPP(isInitialized());
     }
 
 
 
     bool WndMgr::open()
     {
-        if (!ready)
-        {
-            return false;
-        }
-
-        return ITEM->open();
+        CCI_BOOL_CPP(open());
     }
 
     bool WndMgr::close()
     {
-        if (!ready)
-        {
-            return false;
-        }
-
-        return ITEM->close();
+        CCI_BOOL_CPP(close());
     }
 
 
 
     bool WndMgr::isOpen()
     {
-        if (!ready)
-        {
-            return false;
-        }
-
-        return ITEM->isOpen();
+        CCI_BOOL_CPP(isOpen());
     }
 
     bool WndMgr::isClose()
     {
-        if (!ready)
-        {
-            return false;
-        }
+        CCI_BOOL_CPP(isClose());
+    }
 
-        return ITEM->isClose();
+
+
+    bool WndMgr::suspend()
+    {
+        CCI_BOOL_CPP(suspend())
+    }
+
+    bool WndMgr::resume()
+    {
+        CCI_BOOL_CPP(resume())
+    }
+
+
+
+    bool WndMgr::isSuspend()
+    {
+        CCI_BOOL_CPP(isSuspend());
+    }
+
+    bool WndMgr::isResume()
+    {
+        CCI_BOOL_CPP(isResume());
     }
 
 
 
     void WndMgr::wait(int milliseconds)
     {
-        if (!ready)
-        {
-            return;
-        }
+        CCI_VOID_CPP(wait(milliseconds));
+    }
 
-        ITEM->wait(milliseconds);
+    void WndMgr::skip(int frames)
+    {
+        CCI_VOID_CPP(skip(frames));
+    }
+
+
+
+    bool WndMgr::show()
+    {
+        CCI_BOOL_CPP(show());
+    }
+
+    bool WndMgr::hide()
+    {
+        CCI_BOOL_CPP(hide());
+    }
+
+
+
+    int WndMgr::getWindowWidth()
+    {
+        CCI_INT_CPP(getWindowWidth());
+    }
+
+    int WndMgr::getWindowHeight()
+    {
+        CCI_INT_CPP(getWindowHeight());
+    }
+
+    int WndMgr::getRenderWidth()
+    {
+        CCI_INT_CPP(getRenderWidth());
+    }
+
+    int WndMgr::getRenderHeight()
+    {
+        CCI_INT_CPP(getRenderHeight());
+    }
+
+
+
+    bool WndMgr::isKeyDownAvailable()
+    {
+        CCI_BOOL_CPP(isKeyDownAvailable());
+    }
+
+    void WndMgr::flushKeyDown()
+    {
+        CCI_VOID_CPP(flushKeyDown());
+    }
+
+    bool WndMgr::consumeKeyDown(gKeys& modifiers, gKeys& key)
+    {
+        CCI_BOOL_CPP(consumeKeyDown(modifiers, key));
+    }
+
+    bool WndMgr::discardKeyDown()
+    {
+        CCI_BOOL_CPP(discardKeyDown());
+    }
+
+    bool WndMgr::isKeyDownLost()
+    {
+        CCI_BOOL_CPP(isKeyDownLost());
+    }
+
+    bool WndMgr::isKeyDownBufferFull()
+    {
+        CCI_BOOL_CPP(isKeyDownBufferFull());
+    }
+
+
+
+    bool WndMgr::isKeyUpAvailable()
+    {
+        CCI_BOOL_CPP(isKeyUpAvailable());
+    }
+
+    void WndMgr::flushKeyUp()
+    {
+        CCI_VOID_CPP(flushKeyUp());
+    }
+
+    bool WndMgr::consumeKeyUp(gKeys& modifiers, gKeys& key)
+    {
+        CCI_BOOL_CPP(consumeKeyUp(modifiers, key));
+    }
+
+    bool WndMgr::discardKeyUp()
+    {
+        CCI_BOOL_CPP(discardKeyUp());
+    }
+
+    bool WndMgr::isKeyUpLost()
+    {
+        CCI_BOOL_CPP(isKeyUpLost());
+    }
+
+    bool WndMgr::isKeyUpBufferFull()
+    {
+        CCI_BOOL_CPP(isKeyUpBufferFull());
+    }
+
+
+
+    bool WndMgr::isMouseDownAvailable()
+    {
+        CCI_BOOL_CPP(isMouseDownAvailable());
+    }
+
+    void WndMgr::flushMouseDown()
+    {
+        CCI_VOID_CPP(flushMouseDown());
+    }
+
+    bool WndMgr::consumeMouseDown(gPoint& location, gMouseButtons& button)
+    {
+        CCI_BOOL_CPP(consumeMouseDown(location, button));
+    }
+
+    bool WndMgr::discardMouseDown()
+    {
+        CCI_BOOL_CPP(discardMouseDown());
+    }
+
+    bool WndMgr::isMouseDownLost()
+    {
+        CCI_BOOL_CPP(isMouseDownLost());
+    }
+
+    bool WndMgr::isMouseDownBufferFull()
+    {
+        CCI_BOOL_CPP(isMouseDownBufferFull());
+    }
+
+
+
+    bool WndMgr::isMouseUpAvailable()
+    {
+        CCI_BOOL_CPP(isMouseUpAvailable());
+    }
+
+    void WndMgr::flushMouseUp()
+    {
+        CCI_VOID_CPP(flushMouseUp());
+    }
+
+    bool WndMgr::consumeMouseUp(gPoint& location, gMouseButtons& button)
+    {
+        CCI_BOOL_CPP(consumeMouseUp(location, button));
+    }
+
+    bool WndMgr::discardMouseUp()
+    {
+        CCI_BOOL_CPP(discardMouseUp());
+    }
+
+    bool WndMgr::isMouseUpLost()
+    {
+        CCI_BOOL_CPP(isMouseUpLost());
+    }
+
+    bool WndMgr::isMouseUpBufferFull()
+    {
+        CCI_BOOL_CPP(isMouseUpBufferFull());
+    }
+
+
+
+    int WndMgr::getCanvasWidth()
+    {
+        CCI_INT_CPP(getCanvasWidth());
+    }
+
+    int WndMgr::getCanvasHeight()
+    {
+        CCI_INT_CPP(getCanvasHeight());
+    }
+
+
+
+    gColor WndMgr::getBorderColor()
+    {
+        CCI_GET_COLOR_CPP(getBorderColor());
+    }
+
+    void WndMgr::setBorderColor(gColor color)
+    {
+        CCI_SET_COLOR_CPP(setBorderColor(color));
+    }
+
+    gColor WndMgr::getFillColor()
+    {
+        CCI_GET_COLOR_CPP(getFillColor());
+    }
+
+    void WndMgr::setFillColor(gColor color)
+    {
+        CCI_SET_COLOR_CPP(setFillColor(color));
+    }
+
+
+
+    bool WndMgr::drawBorderSquare(int x, int y, int side)
+    {
+        CCI_BOOL_CPP(drawBorderSquare(x, y, side));
+    }
+
+    bool WndMgr::drawFillSquare(int x, int y, int side)
+    {
+        CCI_BOOL_CPP(drawFillSquare(x, y, side));
+    }
+
+
+
+    bool WndMgr::drawBorderRectangle(int x, int y, int width, int height)
+    {
+        CCI_BOOL_CPP(drawBorderRectangle(x, y, width, height));
+    }
+
+    bool WndMgr::drawFillRectangle(int x, int y, int width, int height)
+    {
+        CCI_BOOL_CPP(drawFillRectangle(x, y, width, height));
+    }
+
+
+
+    bool WndMgr::drawBorderCircle(int x, int y, int radius)
+    {
+        CCI_BOOL_CPP(drawBorderCircle(x, y, radius));
+    }
+
+    bool WndMgr::drawFillCircle(int x, int y, int radius)
+    {
+        CCI_BOOL_CPP(drawFillCircle(x, y, radius));
+    }
+
+
+
+    bool WndMgr::drawBorderEllipse(int x, int y, int width, int height)
+    {
+        CCI_BOOL_CPP(drawBorderEllipse(x, y, width, height));
+    }
+
+    bool WndMgr::drawFillEllipse(int x, int y, int width, int height)
+    {
+        CCI_BOOL_CPP(drawFillEllipse(x, y, width, height));
+    }
+
+
+
+    bool WndMgr::drawImage(int x, int y, const gImage& image)
+    {
+        CCI_BOOL_CPP(drawImage(x, y, image));
+    }
+
+    bool WndMgr::drawIcon(int x, int y, const gIcon& icon)
+    {
+        CCI_BOOL_CPP(drawIcon(x, y, icon));
     }
 
 

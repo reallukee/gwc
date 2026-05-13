@@ -57,6 +57,9 @@
     <ClInclude Include="..\gwc.native.abst\gwc_abst.hpp">
       <Filter>File di intestazione\C++ API</Filter>
     </ClInclude>
+    <ClInclude Include="..\gwc.native.abst\macros.hpp">
+      <Filter>File di intestazione\C++ API</Filter>
+    </ClInclude>
     <ClInclude Include="..\gwc.native.abst\SriMgr.hpp">
       <Filter>File di intestazione\C++ API</Filter>
     </ClInclude>
@@ -73,6 +76,9 @@
       <Filter>File di intestazione\C API</Filter>
     </ClInclude>
     <ClInclude Include="..\gwc.native.abst\gwc_abst.h">
+      <Filter>File di intestazione\C API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gwc.native.abst\macros.h">
       <Filter>File di intestazione\C API</Filter>
     </ClInclude>
     <ClInclude Include="..\gwc.native.abst\SRIMGR.h">

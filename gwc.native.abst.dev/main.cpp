@@ -21,34 +21,49 @@ using namespace gwc_abst;
 int main(int argc, const char* argv[])
 {
     Render::init();
-    WNDMgr::init();
+    WndMgr::init();
 
-    WNDMgr::alloc(800, 600, true);
+    WindowId window = WndMgr::alloc(800, 600, true);
 
-    WNDMgr::open();
+    WndMgr::open();
 
-    if (!WNDMgr::isInitialized())
+    if (!WndMgr::isInitialized())
     {
         Render::shutdown();
-        WNDMgr::shutdown();
+        WndMgr::shutdown();
 
         return 1;
     }
 
     bool loop = true;
 
-    while (WNDMgr::isOpen() && loop)
+    while (WndMgr::isOpen() && loop)
     {
-        WNDMgr::wait(100);
+        gKeys modifiers = gKeys::None;
+        gKeys key = gKeys::None;
+
+        bool keyDown = WndMgr::consumeKeyDown(modifiers, key);
+
+        if (keyDown)
+        {
+            if (key == gKeys::Escape)
+            {
+                loop = false;
+
+                continue;
+            }
+        }
+
+        WndMgr::wait(100);
     }
 
-    if (WNDMgr::isOpen())
+    if (WndMgr::isOpen())
     {
-        WNDMgr::close();
+        WndMgr::close();
     }
 
     Render::shutdown();
-    WNDMgr::shutdown();
+    WndMgr::shutdown();
 
     exit(0);
 

@@ -14,19 +14,18 @@
 
 #include <Canvas.hpp>
 
+#include "macros.hpp"
+
 #ifdef __cplusplus
 
 namespace gwc_abst
 {
     static const int MAX_ITEMS_COUNT = 10;
-    static const int NO_ITEM         = -1;
 
     static bool ready = false;
 
     static Canvas* items[MAX_ITEMS_COUNT] = { nullptr };
     static int     currentItem            = NO_ITEM;
-
-    #define ITEM items[currentItem]
 
     void CnvMgr::init()
     {
@@ -67,7 +66,7 @@ namespace gwc_abst
 
 
 
-    bool CnvMgr::setCurrent(int id)
+    bool CnvMgr::setCurrent(CnvId id)
     {
         if (!ready)
         {
@@ -89,7 +88,7 @@ namespace gwc_abst
         return true;
     }
 
-    int CnvMgr::getCurrent()
+    CnvId CnvMgr::getCurrent()
     {
         if (!ready)
         {
@@ -101,7 +100,7 @@ namespace gwc_abst
 
 
 
-    int CnvMgr::alloc(int width, int height, bool select)
+    CnvId CnvMgr::alloc(int width, int height, bool select)
     {
         if (!ready)
         {
@@ -140,7 +139,7 @@ namespace gwc_abst
         return nextItem;
     }
 
-    int CnvMgr::alloc(bool select)
+    CnvId CnvMgr::alloc(bool select)
     {
         return alloc(800, 600, select);
     }
@@ -171,12 +170,125 @@ namespace gwc_abst
 
     bool CnvMgr::isInitialized()
     {
-        if (!ready)
-        {
-            return false;
-        }
+        CCI_BOOL_CPP(isInitialized());
+    }
 
-        return ITEM->isInitialized();
+
+
+    gColor CnvMgr::getBorderColor()
+    {
+        CCI_GET_COLOR_CPP(getBorderColor());
+    }
+
+    void CnvMgr::setBorderColor(gColor color)
+    {
+        CCI_SET_COLOR_CPP(setBorderColor(color));
+    }
+
+    gColor CnvMgr::getFillColor()
+    {
+        CCI_GET_COLOR_CPP(getFillColor());
+    }
+
+    void CnvMgr::setFillColor(gColor color)
+    {
+        CCI_SET_COLOR_CPP(setFillColor(color));
+    }
+
+
+
+    gRectangle CnvMgr::bounds()
+    {
+        CCI_GET_RECTANGLE_CPP(bounds());
+    }
+
+    gSize CnvMgr::size()
+    {
+        CCI_GET_SIZE_CPP(size());
+    }
+
+    gPoint CnvMgr::location()
+    {
+        CCI_GET_POINT_CPP(location());
+    }
+
+
+
+    int CnvMgr::getWidth()
+    {
+        CCI_INT_CPP(getWidth());
+    }
+
+    int CnvMgr::getHeight()
+    {
+        CCI_INT_CPP(getHeight());
+    }
+
+
+
+    bool CnvMgr::drawBorderSquare(int x, int y, int side)
+    {
+        CCI_BOOL_CPP(drawBorderSquare(x, y, side));
+    }
+
+    bool CnvMgr::drawFillSquare(int x, int y, int side)
+    {
+        CCI_BOOL_CPP(drawFillSquare(x, y, side));
+    }
+
+
+
+    bool CnvMgr::drawBorderRectangle(int x, int y, int width, int height)
+    {
+        CCI_BOOL_CPP(drawBorderRectangle(x, y, width, height));
+    }
+
+    bool CnvMgr::drawFillRectangle(int x, int y, int width, int height)
+    {
+        CCI_BOOL_CPP(drawFillRectangle(x, y, width, height));
+    }
+
+
+
+    bool CnvMgr::drawBorderCircle(int x, int y, int radius)
+    {
+        CCI_BOOL_CPP(drawBorderCircle(x, y, radius));
+    }
+
+    bool CnvMgr::drawFillCircle(int x, int y, int radius)
+    {
+        CCI_BOOL_CPP(drawFillCircle(x, y, radius));
+    }
+
+
+
+    bool CnvMgr::drawBorderEllipse(int x, int y, int width, int height)
+    {
+        CCI_BOOL_CPP(drawBorderEllipse(x, y, width, height));
+    }
+
+    bool CnvMgr::drawFillEllipse(int x, int y, int width, int height)
+    {
+        CCI_BOOL_CPP(drawFillEllipse(x, y, width, height));
+    }
+
+
+
+    bool CnvMgr::drawImage(int x, int y, const gImage& image)
+    {
+        CCI_BOOL_CPP(drawImage(x, y, image));
+    }
+
+    bool CnvMgr::drawIcon(int x, int y, const gIcon& icon)
+    {
+        CCI_BOOL_CPP(drawIcon(x, y, icon));
+    }
+
+
+
+    void CnvMgr::render()
+    {
+        CCI_VOID_CPP(render());
     }
 
 

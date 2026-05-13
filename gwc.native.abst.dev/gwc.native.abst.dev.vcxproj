@@ -154,7 +154,7 @@
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>$(SolutionDir)bin\$(Platform)\$(Configuration)\gwc.native-d-$(PlatformTarget).lib;gdi32.lib;gdiplus.lib</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\gwc.native-d-$(PlatformTarget).lib;gdi32.lib;gdiplus.lib</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -169,7 +169,7 @@
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>$(SolutionDir)bin\$(Platform)\$(Configuration)\gwc.native-$(PlatformTarget).lib;gdi32.lib;gdiplus.lib</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\gwc.native-$(PlatformTarget).lib;gdi32.lib;gdiplus.lib</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -184,7 +184,7 @@
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>$(SolutionDir)bin\$(Platform)\$(Configuration)\gwc.native-d-$(PlatformTarget).lib;gdi32.lib;gdiplus.lib</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\gwc.native-d-$(PlatformTarget).lib;gdi32.lib;gdiplus.lib</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -199,7 +199,7 @@
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>$(SolutionDir)bin\$(Platform)\$(Configuration)\gwc.native-$(PlatformTarget).lib;gdi32.lib;gdiplus.lib</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\gwc.native-$(PlatformTarget).lib;gdi32.lib;gdiplus.lib</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -214,7 +214,7 @@
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>$(SolutionDir)bin\$(Platform)\$(Configuration)\gwc.native-d-$(PlatformTarget).lib;gdi32.lib;gdiplus.lib</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\gwc.native-d-$(PlatformTarget).lib;gdi32.lib;gdiplus.lib</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -229,7 +229,7 @@
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>$(SolutionDir)bin\$(Platform)\$(Configuration)\gwc.native-$(PlatformTarget).lib;gdi32.lib;gdiplus.lib</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\gwc.native-$(PlatformTarget).lib;gdi32.lib;gdiplus.lib</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -254,12 +254,14 @@
     <ClInclude Include="..\gwc.native.abst\export.hpp" />
     <ClInclude Include="..\gwc.native.abst\header.hpp" />
     <ClInclude Include="..\gwc.native.abst\gwc_abst.hpp" />
+    <ClInclude Include="..\gwc.native.abst\macros.hpp" />
     <ClInclude Include="..\gwc.native.abst\SriMgr.hpp" />
     <ClInclude Include="..\gwc.native.abst\CnvMgr.hpp" />
     <ClInclude Include="..\gwc.native.abst\WndMgr.hpp" />
     <ClInclude Include="..\gwc.native.abst\export.h" />
     <ClInclude Include="..\gwc.native.abst\header.h" />
     <ClInclude Include="..\gwc.native.abst\gwc_abst.h" />
+    <ClInclude Include="..\gwc.native.abst\macros.h" />
     <ClInclude Include="..\gwc.native.abst\SRIMGR.h" />
     <ClInclude Include="..\gwc.native.abst\CNVMGR.h" />
     <ClInclude Include="..\gwc.native.abst\WNDMGR.h" />

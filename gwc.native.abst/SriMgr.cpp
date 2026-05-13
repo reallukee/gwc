@@ -14,19 +14,18 @@
 
 #include <Sprite.hpp>
 
+#include "macros.hpp"
+
 #ifdef __cplusplus
 
 namespace gwc_abst
 {
     static const int MAX_ITEMS_COUNT = 10;
-    static const int NO_ITEM         = -1;
 
     static bool ready = false;
 
     static Sprite* items[MAX_ITEMS_COUNT] = { nullptr };
     static int     currentItem            = NO_ITEM;
-
-    #define ITEM items[currentItem]
 
     void SriMgr::init()
     {
@@ -67,7 +66,7 @@ namespace gwc_abst
 
 
 
-    bool SriMgr::setCurrent(int id)
+    bool SriMgr::setCurrent(SriId id)
     {
         if (!ready)
         {
@@ -89,7 +88,7 @@ namespace gwc_abst
         return true;
     }
 
-    int SriMgr::getCurrent()
+    SriId SriMgr::getCurrent()
     {
         if (!ready)
         {
@@ -101,7 +100,7 @@ namespace gwc_abst
 
 
 
-    int SriMgr::alloc(int width, int height, bool select)
+    SriId SriMgr::alloc(int width, int height, bool select)
     {
         if (!ready)
         {
@@ -140,7 +139,7 @@ namespace gwc_abst
         return nextItem;
     }
 
-    int SriMgr::alloc(bool select)
+    SriId SriMgr::alloc(bool select)
     {
         return alloc(800, 600, select);
     }
@@ -171,12 +170,125 @@ namespace gwc_abst
 
     bool SriMgr::isInitialized()
     {
-        if (!ready)
-        {
-            return false;
-        }
+        CCI_BOOL_CPP(isInitialized());
+    }
 
-        return ITEM->isInitialized();
+
+
+    gColor SriMgr::getBorderColor()
+    {
+        CCI_GET_COLOR_CPP(getBorderColor());
+    }
+
+    void SriMgr::setBorderColor(gColor color)
+    {
+        CCI_SET_COLOR_CPP(setBorderColor(color));
+    }
+
+    gColor SriMgr::getFillColor()
+    {
+        CCI_GET_COLOR_CPP(getFillColor());
+    }
+
+    void SriMgr::setFillColor(gColor color)
+    {
+        CCI_SET_COLOR_CPP(setFillColor(color));
+    }
+
+
+
+    gRectangle SriMgr::bounds()
+    {
+        CCI_GET_RECTANGLE_CPP(bounds());
+    }
+
+    gSize SriMgr::size()
+    {
+        CCI_GET_SIZE_CPP(size());
+    }
+
+    gPoint SriMgr::location()
+    {
+        CCI_GET_POINT_CPP(location());
+    }
+
+
+
+    int SriMgr::getWidth()
+    {
+        CCI_INT_CPP(getWidth());
+    }
+
+    int SriMgr::getHeight()
+    {
+        CCI_INT_CPP(getHeight());
+    }
+
+
+
+    bool SriMgr::drawBorderSquare(int x, int y, int side)
+    {
+        CCI_BOOL_CPP(drawBorderSquare(x, y, side));
+    }
+
+    bool SriMgr::drawFillSquare(int x, int y, int side)
+    {
+        CCI_BOOL_CPP(drawFillSquare(x, y, side));
+    }
+
+
+
+    bool SriMgr::drawBorderRectangle(int x, int y, int width, int height)
+    {
+        CCI_BOOL_CPP(drawBorderRectangle(x, y, width, height));
+    }
+
+    bool SriMgr::drawFillRectangle(int x, int y, int width, int height)
+    {
+        CCI_BOOL_CPP(drawFillRectangle(x, y, width, height));
+    }
+
+
+
+    bool SriMgr::drawBorderCircle(int x, int y, int radius)
+    {
+        CCI_BOOL_CPP(drawBorderCircle(x, y, radius));
+    }
+
+    bool SriMgr::drawFillCircle(int x, int y, int radius)
+    {
+        CCI_BOOL_CPP(drawFillCircle(x, y, radius));
+    }
+
+
+
+    bool SriMgr::drawBorderEllipse(int x, int y, int width, int height)
+    {
+        CCI_BOOL_CPP(drawBorderEllipse(x, y, width, height));
+    }
+
+    bool SriMgr::drawFillEllipse(int x, int y, int width, int height)
+    {
+        CCI_BOOL_CPP(drawFillEllipse(x, y, width, height));
+    }
+
+
+
+    bool SriMgr::drawImage(int x, int y, const gImage& image)
+    {
+        CCI_BOOL_CPP(drawImage(x, y, image));
+    }
+
+    bool SriMgr::drawIcon(int x, int y, const gIcon& icon)
+    {
+        CCI_BOOL_CPP(drawIcon(x, y, icon));
+    }
+
+
+
+    void SriMgr::render()
+    {
+        CCI_VOID_CPP(render());
     }
 
 

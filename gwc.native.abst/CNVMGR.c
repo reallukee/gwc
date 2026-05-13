@@ -10,12 +10,15 @@
 //  Licenza MIT
 //
 
+#pragma unmanaged
+
 #include "CNVMGR.h"
 
 #include <CANVAS.h>
 
+#include "MACROS.h"
+
 static const int MAX_ITEMS_COUNT = 10;
-static const int NO_ITEM         = -1;
 
 static bool ready = false;
 
@@ -63,7 +66,7 @@ void cnvmgr_shutdown()
 
 
 
-bool cnvmgr_setCurrent(int id)
+bool cnvmgr_setCurrent(CNV_ID id)
 {
     if (!ready)
     {
@@ -85,7 +88,7 @@ bool cnvmgr_setCurrent(int id)
     return true;
 }
 
-int cnvmgr_getCurrent()
+CNV_ID cnvmgr_getCurrent()
 {
     if (!ready)
     {
@@ -97,7 +100,7 @@ int cnvmgr_getCurrent()
 
 
 
-int cnvmgr_alloc(int width, int height, bool select)
+CNV_ID cnvmgr_alloc(int width, int height, bool select)
 {
     if (!ready)
     {
@@ -162,10 +165,123 @@ void cnvmgr_free()
 
 bool cnvmgr_isInitialized()
 {
-    if (!ready)
-    {
-        return false;
-    }
+    CCI_BOOL_C(canvas_isInitialized(ITEM));
+}
 
-    return canvas_isInitialized(ITEM);
+
+
+gCOLOR* cnvmgr_getBorderColor()
+{
+    CCI_GET_COLOR_C(canvas_getBorderColor(ITEM));
+}
+
+void cnvmgr_setBorderColor(const gCOLOR* color)
+{
+    CCI_SET_COLOR_C(canvas_setBorderColor(ITEM, color));
+}
+
+gCOLOR* cnvmgr_getFillColor()
+{
+    CCI_GET_COLOR_C(canvas_getFillColor(ITEM));
+}
+
+void cnvmgr_setFillColor(const gCOLOR* color)
+{
+    CCI_SET_COLOR_C(canvas_setFillColor(ITEM, color));
+}
+
+
+
+gRECTANGLE* cnvmgr_bounds()
+{
+    CCI_GET_RECTANGLE_C(canvas_bounds(ITEM));
+}
+
+gSIZE* cnvmgr_size()
+{
+    CCI_GET_SIZE_C(canvas_size(ITEM));
+}
+
+gPOINT* cnvmgr_location()
+{
+    CCI_GET_POINT_C(canvas_location(ITEM));
+}
+
+
+
+int cnvmgr_getWidth()
+{
+    CCI_INT_C(canvas_getWidth(ITEM));
+}
+
+int cnvmgr_getHeight()
+{
+    CCI_INT_C(canvas_getHeight(ITEM));
+}
+
+
+
+bool cnvmgr_drawBorderSquare(int x, int y, int side)
+{
+    CCI_BOOL_C(canvas_drawBorderSquare(ITEM, x, y, side));
+}
+
+bool cnvmgr_drawFillSquare(int x, int y, int side)
+{
+    CCI_BOOL_C(canvas_drawFillSquare(ITEM, x, y, side));
+}
+
+
+
+bool cnvmgr_drawBorderRectangle(int x, int y, int width, int height)
+{
+    CCI_BOOL_C(canvas_drawBorderRectangle(ITEM, x, y, width, height));
+}
+
+bool cnvmgr_drawFillRectangle(int x, int y, int width, int height)
+{
+    CCI_BOOL_C(canvas_drawFillRectangle(ITEM, x, y, width, height));
+}
+
+
+
+bool cnvmgr_drawBorderCircle(int x, int y, int radius)
+{
+    CCI_BOOL_C(canvas_drawBorderCircle(ITEM, x, y, radius));
+}
+
+bool cnvmgr_drawFillCircle(int x, int y, int radius)
+{
+    CCI_BOOL_C(canvas_drawFillCircle(ITEM, x, y, radius));
+}
+
+
+
+bool cnvmgr_drawBorderEllipse(int x, int y, int width, int height)
+{
+    CCI_BOOL_C(canvas_drawBorderEllipse(ITEM, x, y, width, height));
+}
+
+bool cnvmgr_drawFillEllipse(int x, int y, int width, int height)
+{
+    CCI_BOOL_C(canvas_drawFillEllipse(ITEM, x, y, width, height));
+}
+
+
+
+bool cnvmgr_drawImage(int x, int y, gIMAGE* image)
+{
+    CCI_BOOL_C(canvas_drawImage(ITEM, x, y, image));
+}
+
+bool cnvmgr_drawIcon(int x, int y, gICON* icon)
+{
+    CCI_BOOL_C(canvas_drawIcon(ITEM, x, y, icon));
+}
+
+
+
+void cnvmgr_render()
+{
+    CCI_VOID_C(canvas_render(ITEM));
 }
