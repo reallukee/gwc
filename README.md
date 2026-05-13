@@ -8,7 +8,7 @@
 
 🖼️ A C#, C++ and C graphics library written in C#, C++ and C
 
-![Banner](./assets/banner.png)
+![Banner](./assets/repository/banner.png)
 
 Caratteristiche:
 
@@ -26,10 +26,10 @@ Caratteristiche:
 
 ```mermaid
 graph TD
-  Core["Core Managed<br />(GWC)"]
+  Core["Core Managed<br />(GWC)<br />(GWC.Mono)"]
 
   subgraph Stack.Native["Stack Native"]
-    Native["Wrapper Mixed<br />(GWC.Native)"]
+    Native["Wrapper Mixed<br />(GWC.Native)<br />(GWC.Native.Abst)"]
 
     VC++.API["VC++ API<br />100% Native"]
 
@@ -58,7 +58,19 @@ graph TD
 * Scritta in C#
 * Espone l'API .NET
 
+## GWC.Mono
+
+* Libreria Mono Managed con interfaccia API 100% Managed
+* Scritta in C#
+* Espone l'API .NET
+
 ## GWC.Native
+
+* Libreria Wrapper Mixed con interfaccia API 100% Native
+* Scritta in C++/CLI, C++ e C
+* Espone l'API VC++
+
+## GWC.Native.Abst
 
 * Libreria Wrapper Mixed con interfaccia API 100% Native
 * Scritta in C++/CLI, C++ e C
@@ -66,22 +78,50 @@ graph TD
 
 
 
+# Organizzazione
+
+```
+.vscode/             Configurazione Visual Studio Code
+assets/              Assets
+config/              Config Scripts v1
+config2/             Config Scripts v2
+docs/                Documentazione
+examples/            Esempi
+gwc/                 Codice sorgente Core
+gwc.dev/             Modalità dev Core
+gwc.native/          Codice sorgente Nativo
+gwc.native.dev/      Modalità dev Nativo
+gwc.native.abst/     Codice sorgente Nativo Abst
+gwc.native.abst.dev/ Modalità dev Nativo Abst
+scripts/             Scripts v1
+scripts2/            Scripts v2
+templates/           Template
+```
+
+
+
 # Esempi
 
 * [API C](#api-c)
+  * [GWC.Native](#gwcnative-1)
+  * [GWC.Native.Abst](#gwcnativeabst-1)
 * [API C++](#api-c-1)
+  * [GWC.Native](#gwcnative-2)
+  * [GWC.Native.Abst](#gwcnativeabst-2)
 
 
 
 ## API C
 
+### GWC.Native
+
 ```c
 #include <gwc.h>
 
-#include <stdio.h>
-
 int main(int argc, const char* argv[])
 {
+    render_init();
+
     WINDOW* window = window_new(800, 600);
 
     window_open(window);
@@ -90,12 +130,12 @@ int main(int argc, const char* argv[])
     {
         window_delete(window);
 
+        render_shutdown();
+
         return 1;
     }
 
     bool loop = true;
-
-    printf("Press \"ESC\" to exit...\n");
 
     while (window_isOpen(window) && loop)
     {
@@ -124,7 +164,73 @@ int main(int argc, const char* argv[])
 
     window_delete(window);
 
+    render_shutdown();
+
     exit(0);
+
+    return 0;
+}
+```
+
+
+
+### GWC.Native.Abst
+
+```c
+#include <gwc.h>
+
+#include <gwc_abst.h>
+
+int main(int argc, const char* argv[])
+{
+    render_init();
+    wndmgr_init();
+
+    WINDOW_ID window = wndmgr_alloc(800, 600, true);
+
+    wndmgr_open();
+
+    if (!wndmgr_isInitialized())
+    {
+        render_shutdown();
+        wndmgr_shutdown();
+
+        return 1;
+    }
+
+    bool loop = true;
+
+    while (wndmgr_isOpen() && loop)
+    {
+        gKEYS modifiers = gKEYS_NONE;
+        gKEYS key = gKEYS_NONE;
+
+        bool keyDown = window_consumeKeyDown(&modifiers, &key);
+
+        if (keyDown)
+        {
+            if (key == gKEYS_ESCAPE)
+            {
+                loop = false;
+
+                continue;
+            }
+        }
+
+        wndmgr_wait(100);
+    }
+
+    if (wndmgr_isOpen())
+    {
+        wndmgr_close();
+    }
+
+    render_shutdown();
+    wndmgr_shutdown();
+
+    exit(0);
+
+    return 0;
 }
 ```
 
@@ -132,17 +238,17 @@ int main(int argc, const char* argv[])
 
 ## API C++
 
+### GWC.Native
+
 ```cpp
 #include <gwc.hpp>
 
-#include <iostream>
-
 using namespace gwc;
-
-using namespace std;
 
 int main(int argc, const char* argv[])
 {
+    Render::init();
+
     Window* window = new Window(800, 600);
 
     window->open();
@@ -151,12 +257,12 @@ int main(int argc, const char* argv[])
     {
         delete window;
 
+        Render::shutdown();
+
         return 1;
     }
 
     bool loop = true;
-
-    cout << "Press \"ESC\" to exit..." << endl;
 
     while (window->isOpen() && loop)
     {
@@ -185,7 +291,77 @@ int main(int argc, const char* argv[])
 
     delete window;
 
+    Render::shutdown();
+
     exit(0);
+
+    return 0;
+}
+```
+
+
+
+### GWC.Native.Abst
+
+```cpp
+#include <gwc.hpp>
+
+using namespace gwc;
+
+#include <gwc_abst.hpp>
+
+using namespace gwc_abst;
+
+int main(int argc, const char* argv[])
+{
+    Render::init();
+    WndMgr::init();
+
+    WindowId window = WndMgr::alloc(800, 600, true);
+
+    WndMgr::open();
+
+    if (!WndMgr::isInitialized())
+    {
+        Render::shutdown();
+        WndMgr::shutdown();
+
+        return 1;
+    }
+
+    bool loop = true;
+
+    while (WndMgr::isOpen() && loop)
+    {
+        gKeys modifiers = gKeys::None;
+        gKeys key = gKeys::None;
+
+        bool keyDown = WndMgr::consumeKeyDown(modifiers, key);
+
+        if (keyDown)
+        {
+            if (key == gKeys::Escape)
+            {
+                loop = false;
+
+                continue;
+            }
+        }
+
+        WndMgr::wait(100);
+    }
+
+    if (WndMgr::isOpen())
+    {
+        WndMgr::close();
+    }
+
+    Render::shutdown();
+    WndMgr::shutdown();
+
+    exit(0);
+
+    return 0;
 }
 ```
 
@@ -218,10 +394,16 @@ int main(int argc, const char* argv[])
 > [!WARNING]
 > `GWC` è supportata su Linux/macOS tramite `Mono`.
 
+> [!WARNING]
+> `GWC.Mono` è supportata su Linux/macOS tramite `Mono`.
+
 * Mono Runtime 6.12.0
 
 > [!WARNING]
 > `GWC.Native` è supportata su Linux/macOS tramite `Wine`.
+
+> [!WARNING]
+> `GWC.Native.Abst` è supportata su Linux/macOS tramite `Wine`.
 
 * Wine 10
 
@@ -229,9 +411,11 @@ int main(int argc, const char* argv[])
 
 # Download
 
-| Mirror     | Url                                                          |
-| :--------- | :----------------------------------------------------------: |
-| GitHub     | [Download](https://github.com/reallukee/gwc/releases/latest) |
+| Mirror                  | Url                                                          |
+| :---------------------- | :----------------------------------------------------------: |
+| GitHub                  | [Download](https://github.com/reallukee/gwc/releases/latest) |
+| Altervista (`Rilascio`) | [Download](https://reallukee.altervista.org/gwc)             |
+| Altervista (`Snapshot`) | [Download](https://reallukee.altervista.org/gwc/snapshot)    |
 
 
 
@@ -273,33 +457,21 @@ git clone https://github.com/reallukee/gwc.git
 ### 3. Configurazione
 
 ```cmd
-REM Visual Studio 2026
-CALL "%PROGRAMFILES%\Microsoft Visual Studio\18\Community\Common7\Tools\vsdevcmd"
-
-REM Build Tools per Visual Studio 2026
-CALL "%PROGRAMFILES% (x86)\Microsoft Visual Studio\18\BuildTools\Common7\Tools\vsdevcmd"
-```
-
-```cmd
 CD gwc
+
+CD scripts
 ```
 
 ### 4. Compilazione
 
 ```cmd
-REM GWC
-msbuild gwc.sln /t:gwc /p:Configuration=Release /p:Platform=x86
-msbuild gwc.sln /t:gwc /p:Configuration=Release /p:Platform=x64
-msbuild gwc.sln /t:gwc /p:Configuration=Release /p:Platform=ARM64
+.\build_all.cmd
+```
 
-REM GWC.Mono
-msbuild gwc.sln /t:gwc_mono /p:Configuration=Release /p:Platform=x86
-msbuild gwc.sln /t:gwc_mono /p:Configuration=Release /p:Platform=x64
+### 5. Pulizia (*Opzionale*)
 
-REM GWC.Native
-msbuild gwc.sln /t:gwc_native /p:Configuration=Release /p:Platform=x64
-msbuild gwc.sln /t:gwc_native /p:Configuration=Release /p:Platform=x86
-msbuild gwc.sln /t:gwc_native /p:Configuration=Release /p:Platform=ARM64
+```bash
+.\clear_all.cmd
 ```
 
 
@@ -321,14 +493,24 @@ git clone https://github.com/reallukee/gwc.git
 
 ```bash
 cd gwc
+
+cd scripts
 ```
 
 ### 4. Compilazione
 
 ```bash
-# GWC.Mono
-msbuild gwc.sln /t:gwc_mono /p:Configuration=Release /p:Platform=x86
-msbuild gwc.sln /t:gwc_mono /p:Configuration=Release /p:Platform=x64
+chmod +x build_all.sh
+
+./build_all.sh
+```
+
+### 5. Pulizia (*Opzionale*)
+
+```bash
+chmod +x clear_all.sh
+
+./clear_all.sh
 ```
 
 
