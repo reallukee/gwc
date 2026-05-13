@@ -30,22 +30,25 @@ int main(int argc, const char* argv[])
         return 1;
     }
 
-    gIMAGE* myBitmap1 = image_new("..\\assets\\playground\\albert_the_rock.bmp");
-    gIMAGE* myBitmap2 = image_new("..\\assets\\playground\\albert_the_rock_with_cacatus.bmp");
-    gIMAGE* myBitmap3 = image_new("..\\assets\\playground\\albert_the_rock_nostalgia.bmp");
-
-    window_drawImage(window, 100, 100, myBitmap1);
-    window_drawImage(window, 200, 100, myBitmap2);
-    window_drawImage(window, 300, 100, myBitmap3);
-
-    image_delete(myBitmap1);
-    image_delete(myBitmap2);
-    image_delete(myBitmap3);
-
     bool loop = true;
 
     while (window_isOpen(window) && loop)
     {
+        gKEYS modifiers = gKEYS_NONE;
+        gKEYS key = gKEYS_NONE;
+
+        bool keyDown = window_consumeKeyDown(window, &modifiers, &key);
+
+        if (keyDown)
+        {
+            if (key == gKEYS_ESCAPE)
+            {
+                loop = false;
+
+                continue;
+            }
+        }
+
         window_wait(window, 100);
     }
 

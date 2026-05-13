@@ -17,8 +17,6 @@
 
 #ifdef __cplusplus
 
-#include "header.hpp"
-
 #include "types.hpp"
 
 namespace gwc
@@ -91,8 +89,8 @@ namespace gwc
 
         gColor getBorderColor();
         void   setBorderColor(gColor color);
-        gColor getFillColor();
-        void   setFillColor(gColor color);
+        gColor getFillColor  ();
+        void   setFillColor  (gColor color);
 
         bool drawBorderSquare(int x, int y, int side);
         bool drawFillSquare  (int x, int y, int side);

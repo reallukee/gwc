@@ -15,8 +15,6 @@
 #ifndef GWC_SPRITE_H
 #define GWC_SPRITE_H
 
-#include "header.h"
-
 #include "types.h"
 
 typedef struct SPRITE SPRITE;

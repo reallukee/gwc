@@ -17,8 +17,6 @@
 
 #ifdef  __cplusplus
 
-#include "header.hpp"
-
 #include "types.hpp"
 
 namespace gwc
@@ -39,8 +37,8 @@ namespace gwc
         gColor getFillColor  ();
         void   setFillColor  (gColor color);
 
-        gRectangle bounds();
-        gSize      size();
+        gRectangle bounds  ();
+        gSize      size    ();
         gPoint     location();
 
         int getWidth ();

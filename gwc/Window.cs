@@ -91,8 +91,17 @@ namespace Reallukee.GWC
         {
             window = new WindowForm();
 
-            window.Text        = $"{Application.ProductName} {Application.ProductVersion}";
-            window.Icon        = Properties.Resources.AppIcon;
+            string text = "GWC Window";
+
+            if (!string.IsNullOrWhiteSpace(Application.ProductName) && !string.IsNullOrWhiteSpace(Application.ProductVersion))
+            {
+                text = $"{Application.ProductName} {Application.ProductVersion}";
+            }
+
+            Icon icon = Properties.Resources.AppIcon;
+
+            window.Text        = text;
+            window.Icon        = icon;
             window.ForeColor   = Color.Black;
             window.BackColor   = Color.White;
             window.MinimumSize = new Size(0, 0);

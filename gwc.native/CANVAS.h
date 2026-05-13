@@ -15,8 +15,6 @@
 #ifndef GWC_CANVAS_H
 #define GWC_CANVAS_H
 
-#include "header.h"
-
 #include "types.h"
 
 typedef struct CANVAS CANVAS;
@@ -31,7 +29,7 @@ GWC_C_API bool canvas_isInitialized(const CANVAS* canvas);
 GWC_C_API gCOLOR* canvas_getBorderColor(const CANVAS* canvas);
 GWC_C_API void    canvas_setBorderColor(const CANVAS* canvas, const gCOLOR* color);
 GWC_C_API gCOLOR* canvas_getFillColor  (const CANVAS* canvas);
-GWC_C_API void    canvas_setFillColor(const CANVAS* canvas, const gCOLOR* color);
+GWC_C_API void    canvas_setFillColor  (const CANVAS* canvas, const gCOLOR* color);
 
 GWC_C_API gRECTANGLE* canvas_bounds  (const CANVAS* canvas);
 GWC_C_API gSIZE*      canvas_size    (const CANVAS* canvas);

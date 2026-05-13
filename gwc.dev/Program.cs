@@ -38,16 +38,23 @@ namespace Reallukee.GWC
 
             bool loop = true;
 
-            Image myBitmap1 = new Bitmap("..\\..\\..\\assets\\playground\\albert_the_rock.bmp");
-            Image myBitmap2 = new Bitmap("..\\..\\..\\assets\\playground\\albert_the_rock_with_cacatus.bmp");
-            Image myBitmap3 = new Bitmap("..\\..\\..\\assets\\playground\\albert_the_rock_nostalgia.bmp");
-
-            window.DrawImage(100, 100, myBitmap1);
-            window.DrawImage(200, 100, myBitmap2);
-            window.DrawImage(300, 100, myBitmap3);
-
             while (window.IsOpen && loop)
             {
+                Keys modifiers = Keys.None;
+                Keys key = Keys.None;
+
+                bool keyDown = window.ConsumeKeyDown(out modifiers, out key);
+
+                if (keyDown)
+                {
+                    if (key == Keys.Escape)
+                    {
+                        loop = false;
+
+                        continue;
+                    }
+                }
+
                 window.Wait(100);
             }
 

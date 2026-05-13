@@ -31,18 +31,25 @@ int main(int argc, const char* argv[])
         return 1;
     }
 
-    gImage myBitmap1 = gImage("..\\assets\\playground\\albert_the_rock.bmp");
-    gImage myBitmap2 = gImage("..\\assets\\playground\\albert_the_rock_with_cacatus.bmp");
-    gImage myBitmap3 = gImage("..\\assets\\playground\\albert_the_rock_nostalgia.bmp");
-
-    window->drawImage(100, 100, myBitmap1);
-    window->drawImage(200, 100, myBitmap2);
-    window->drawImage(300, 100, myBitmap3);
-
     bool loop = true;
 
     while (window->isOpen() && loop)
     {
+        gKeys modifiers = gKeys::None;
+        gKeys key = gKeys::None;
+
+        bool keyDown = window->consumeKeyDown(modifiers, key);
+
+        if (keyDown)
+        {
+            if (key == gKeys::Escape)
+            {
+                loop = false;
+
+                continue;
+            }
+        }
+
         window->wait(100);
     }
 

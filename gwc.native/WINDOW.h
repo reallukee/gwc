@@ -15,8 +15,6 @@
 #ifndef GWC_WINDOW_H
 #define GWC_WINDOW_H
 
-#include "header.h"
-
 #include "types.h"
 
 typedef struct WINDOW WINDOW;
