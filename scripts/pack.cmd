@@ -23,6 +23,8 @@ POWERSHELL -Command "Compress-Archive -Force -Path 'bin\ARM64\Release\*' -Destin
 
 POWERSHELL -Command "Get-ChildItem 'gwc.native' -File | Where-Object { (Get-Content 'config\include.txt') -Contains $_.Name } | Compress-Archive -Force -DestinationPath 'dist\gwc-include-!VERSION!.zip'"
 
+POWERSHELL -Command "Get-ChildItem 'gwc.native.abst' -File | Where-Object { (Get-Content 'config\include.txt') -Contains $_.Name } | Compress-Archive -Force -DestinationPath 'dist\gwc-include-!VERSION!.zip'"
+
 POPD
 
 EXIT /B 0

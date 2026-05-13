@@ -1,4 +1,8 @@
 gwc
+gwc.mono
 gwc.native
+gwc.native.abst
 gwc.dev
+gwc.mono.dev
 gwc.native.dev
+gwc.native.abst.dev

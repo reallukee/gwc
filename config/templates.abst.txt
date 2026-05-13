@@ -1,7 +1,3 @@
-GWC.C.Application
-GWC.Cpp.Application
-GWC.C.EmptyApplication
-GWC.Cpp.EmptyApplication
 GWC.Abst.C.Application
 GWC.Abst.Cpp.Application
 GWC.Abst.C.EmptyApplication

@@ -30,6 +30,10 @@ msbuild gwc.sln /t:gwc_native /p:Configuration=Debug /p:Platform=x64
 msbuild gwc.sln /t:gwc_native /p:Configuration=Debug /p:Platform=x86
 msbuild gwc.sln /t:gwc_native /p:Configuration=Debug /p:Platform=ARM64
 
+msbuild gwc.sln /t:gwc_native_abst /p:Configuration=Debug /p:Platform=x64
+msbuild gwc.sln /t:gwc_native_abst /p:Configuration=Debug /p:Platform=x86
+msbuild gwc.sln /t:gwc_native_abst /p:Configuration=Debug /p:Platform=ARM64
+
 POPD
 
 EXIT /B 0

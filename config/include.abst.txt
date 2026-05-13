@@ -1,0 +1,12 @@
+export.h
+header.h
+gwc_abst.h
+SRIMGR.h
+CNVMGR.h
+WNDMGR.h
+export.hpp
+header.hpp
+gwc_abst.hpp
+SriMgr.hpp
+CnvMgr.hpp
+WndMgr.hpp

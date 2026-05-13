@@ -1,0 +1,6 @@
+x86\Debug\gwc.native.abst-d-x86.lib
+x64\Debug\gwc.native.abst-d-x64.lib
+ARM64\Debug\gwc.native.abst-d-ARM64.lib
+x86\Release\gwc.native.abst-x86.lib
+x64\Release\gwc.native.abst-x64.lib
+ARM64\Release\gwc.native.abst-ARM64.lib
