@@ -28,60 +28,85 @@
     <Filter Include="GWC\GWC.Native\Shared">
       <UniqueIdentifier>{d900a1d6-97a5-48cc-a6a7-ff22fb9b2558}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GWC\GWC.Native.Abst">
+      <UniqueIdentifier>{4f074ff5-c796-4fe6-aaa5-7b604fdcd5d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GWC\GWC.Native.Abst\Include">
+      <UniqueIdentifier>{cb572b48-9942-4857-a076-cef01eeeefd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GWC\GWC.Native.Abst\Shared">
+      <UniqueIdentifier>{a10e5a5e-b048-470a-b96a-447efbe8b973}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GWC\GWC.Native.Abst\Static">
+      <UniqueIdentifier>{fe0fd8d1-bb8b-4758-9792-170903815233}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.c">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="include\gwc.native\export.h">
+    <ClInclude Include="include\gwc.native\export.hpp">
       <Filter>GWC\GWC.Native\Include</Filter>
     </ClInclude>
-    <ClInclude Include="include\gwc.native\header.h">
+    <ClInclude Include="include\gwc.native\header.hpp">
       <Filter>GWC\GWC.Native\Include</Filter>
     </ClInclude>
-    <ClInclude Include="include\gwc.native\gwc.h">
+    <ClInclude Include="include\gwc.native\gwc.hpp">
       <Filter>GWC\GWC.Native\Include</Filter>
     </ClInclude>
-    <ClInclude Include="include\gwc.native\types.h">
+    <ClInclude Include="include\gwc.native\types.hpp">
       <Filter>GWC\GWC.Native\Include</Filter>
     </ClInclude>
-    <ClInclude Include="include\gwc.native\COLOR.h">
+    <ClInclude Include="include\gwc.native\Color.hpp">
       <Filter>GWC\GWC.Native\Include</Filter>
     </ClInclude>
-    <ClInclude Include="include\gwc.native\POINT.h">
+    <ClInclude Include="include\gwc.native\Point.hpp">
       <Filter>GWC\GWC.Native\Include</Filter>
     </ClInclude>
-    <ClInclude Include="include\gwc.native\SIZE.h">
+    <ClInclude Include="include\gwc.native\Size.hpp">
       <Filter>GWC\GWC.Native\Include</Filter>
     </ClInclude>
-    <ClInclude Include="include\gwc.native\RECTANGLE.h">
+    <ClInclude Include="include\gwc.native\Rectangle.hpp">
       <Filter>GWC\GWC.Native\Include</Filter>
     </ClInclude>
-    <ClInclude Include="include\gwc.native\IMAGE.h">
+    <ClInclude Include="include\gwc.native\Image.hpp">
       <Filter>GWC\GWC.Native\Include</Filter>
     </ClInclude>
-    <ClInclude Include="include\gwc.native\ICON.h">
+    <ClInclude Include="include\gwc.native\Icon.hpp">
       <Filter>GWC\GWC.Native\Include</Filter>
     </ClInclude>
-    <ClInclude Include="include\gwc.native\KEYS.h">
+    <ClInclude Include="include\gwc.native\Keys.hpp">
       <Filter>GWC\GWC.Native\Include</Filter>
     </ClInclude>
-    <ClInclude Include="include\gwc.native\MOUSEBUTTONS.h">
+    <ClInclude Include="include\gwc.native\MouseButtons.hpp">
       <Filter>GWC\GWC.Native\Include</Filter>
     </ClInclude>
-    <ClInclude Include="include\gwc.native\RENDER.h">
+    <ClInclude Include="include\gwc.native\Render.hpp">
       <Filter>GWC\GWC.Native\Include</Filter>
     </ClInclude>
-    <ClInclude Include="include\gwc.native\SPRITE.h">
+    <ClInclude Include="include\gwc.native\Sprite.hpp">
       <Filter>GWC\GWC.Native\Include</Filter>
     </ClInclude>
-    <ClInclude Include="include\gwc.native\CANVAS.h">
+    <ClInclude Include="include\gwc.native\Canvas.hpp">
       <Filter>GWC\GWC.Native\Include</Filter>
     </ClInclude>
-    <ClInclude Include="include\gwc.native\WINDOW.h">
+    <ClInclude Include="include\gwc.native\Window.hpp">
       <Filter>GWC\GWC.Native\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gwc.native.abst\export.hpp">
+      <Filter>GWC\GWC.Native.Abst\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gwc.native.abst\header.hpp">
+      <Filter>GWC\GWC.Native.Abst\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gwc.native.abst\gwc_anst.hpp">
+      <Filter>GWC\GWC.Native.Abst\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gwc.native.abst\SriMgr.hpp">
+      <Filter>GWC\GWC.Native.Abst\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gwc.native.abst\CnvMgr.hpp">
+      <Filter>GWC\GWC.Native.Abst\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gwc.native.abst\WndMgr.hpp">
+      <Filter>GWC\GWC.Native.Abst\Include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -121,6 +146,24 @@
     <None Include="shared\gwc.native\gwc.native-ARM64.dll">
       <Filter>GWC\GWC.Native\Shared</Filter>
     </None>
+    <None Include="shared\gwc.native.abst\gwc.native.abst-d-x86.dll">
+      <Filter>GWC\GWC.Native.Abst\Shared</Filter>
+    </None>
+    <None Include="shared\gwc.native.abst\gwc.native.abst-d-x64.dll">
+      <Filter>GWC\GWC.Native.Abst\Shared</Filter>
+    </None>
+    <None Include="shared\gwc.native.abst\gwc.native.abst-d-ARM64.dll">
+      <Filter>GWC\GWC.Native.Abst\Shared</Filter>
+    </None>
+    <None Include="shared\gwc.native.abst\gwc.native.abst-x86.dll">
+      <Filter>GWC\GWC.Native.Abst\Shared</Filter>
+    </None>
+    <None Include="shared\gwc.native.abst\gwc.native.abst-x64.dll">
+      <Filter>GWC\GWC.Native.Abst\Shared</Filter>
+    </None>
+    <None Include="shared\gwc.native.abst\gwc.native.abst-ARM64.dll">
+      <Filter>GWC\GWC.Native.Abst\Shared</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Library Include="static\gwc.native\gwc.native-d-x86.lib">
@@ -140,6 +183,24 @@
     </Library>
     <Library Include="static\gwc.native\gwc.native-ARM64.lib">
       <Filter>GWC\GWC.Native\Static</Filter>
+    </Library>
+    <Library Include="static\gwc.native.abst\gwc.native.abst-d-x86.lib">
+      <Filter>GWC\GWC.Native.Abst\Static</Filter>
+    </Library>
+    <Library Include="static\gwc.native.abst\gwc.native.abst-d-x64.lib">
+      <Filter>GWC\GWC.Native.Abst\Static</Filter>
+    </Library>
+    <Library Include="static\gwc.native.abst\gwc.native.abst-d-ARM64.lib">
+      <Filter>GWC\GWC.Native.Abst\Static</Filter>
+    </Library>
+    <Library Include="static\gwc.native.abst\gwc.native.abst-x86.lib">
+      <Filter>GWC\GWC.Native.Abst\Static</Filter>
+    </Library>
+    <Library Include="static\gwc.native.abst\gwc.native.abst-x64.lib">
+      <Filter>GWC\GWC.Native.Abst\Static</Filter>
+    </Library>
+    <Library Include="static\gwc.native.abst\gwc.native.abst-ARM64.lib">
+      <Filter>GWC\GWC.Native.Abst\Static</Filter>
     </Library>
   </ItemGroup>
 </Project>

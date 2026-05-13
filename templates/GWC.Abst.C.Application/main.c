@@ -4,6 +4,8 @@
 
 #include <gwc.h>
 
+#include <gwc_abst.h>
+
 int main(int argc, const char* argv[])
 {
     printf("Welcome in $projectname$!\n");
@@ -11,28 +13,28 @@ int main(int argc, const char* argv[])
     printf("\n");
 
     render_init();
+    wndmgr_init();
 
-    WINDOW* window = window_new(800, 600);
+    WINDOW_ID window = wndmgr_alloc(800, 600, true);
 
-    window_open(window);
+    wndmgr_open();
 
-    if (!window_isInitialized(window))
+    if (!wndmgr_isInitialized())
     {
-        window_delete(window);
-
         render_shutdown();
+        wndmgr_shutdown();
 
         return 1;
     }
 
     bool loop = true;
 
-    while (window_isOpen(window) && loop)
+    while (wndmgr_isOpen() && loop)
     {
         gKEYS modifiers = gKEYS_NONE;
         gKEYS key = gKEYS_NONE;
 
-        bool keyDown = window_consumeKeyDown(window, &modifiers, &key);
+        bool keyDown = wndmgr_consumeKeyDown(&modifiers, &key);
 
         if (keyDown)
         {
@@ -44,17 +46,16 @@ int main(int argc, const char* argv[])
             }
         }
 
-        window_wait(window, 100);
+        wndmgr_wait(100);
     }
 
-    if (window_isOpen(window))
+    if (wndmgr_isOpen())
     {
-        window_close(window);
+        wndmgr_close();
     }
-
-    window_delete(window);
 
     render_shutdown();
+    wndmgr_shutdown();
 
     exit(0);
 

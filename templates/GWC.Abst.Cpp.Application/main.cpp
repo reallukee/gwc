@@ -6,6 +6,10 @@
 
 using namespace gwc;
 
+#include <gwc_abst.hpp>
+
+using namespace gwc_abst;
+
 int main(int argc, const char* argv[])
 {
     cout << "Welcome in $projectname$!" << endl;
@@ -13,28 +17,28 @@ int main(int argc, const char* argv[])
     cout << endl;
 
     Render::init();
+    WndMgr::init();
 
-    Window* window = new Window(800, 600);
+    WindowId window = WndMgr::alloc(800, 600, true);
 
-    window->open();
+    WndMgr::open();
 
-    if (!window->isInitialized())
+    if (!WndMgr::isInitialized())
     {
-        delete window;
-
         Render::shutdown();
+        WndMgr::shutdown();
 
         return 1;
     }
 
     bool loop = true;
 
-    while (window->isOpen() && loop)
+    while (WndMgr::isOpen() && loop)
     {
         gKeys modifiers = gKeys::None;
         gKeys key = gKeys::None;
 
-        bool keyDown = window->consumeKeyDown(modifiers, key);
+        bool keyDown = WndMgr::consumeKeyDown(modifiers, key);
 
         if (keyDown)
         {
@@ -46,17 +50,16 @@ int main(int argc, const char* argv[])
             }
         }
 
-        window->wait(100);
+        WndMgr::wait(100);
     }
 
-    if (window->isOpen())
+    if (WndMgr::isOpen())
     {
-        window->close();
+        WndMgr::close();
     }
-
-    delete window;
 
     Render::shutdown();
+    WndMgr::shutdown();
 
     exit(0);
 

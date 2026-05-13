@@ -127,17 +127,17 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>.\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include\gwc.native;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAs>CompileAsC</CompileAs>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>.\static\gwc.native-d-$(PlatformTarget).lib</AdditionalDependencies>
+      <AdditionalDependencies>$(ProjectDir)static\gwc.native\gwc.native-d-$(PlatformTarget).lib</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>IF NOT EXIST "$(OutputPath)gwc-d-$(PlatformTarget).dll" COPY "$(ProjectDir)shared\gwc-d-$(PlatformTarget).dll" "$(OutputPath)"
-IF NOT EXIST "$(OutputPath)gwc.native-d-$(PlatformTarget).dll" COPY "$(ProjectDir)shared\gwc.native-d-$(PlatformTarget).dll" "$(OutputPath)"</Command>
+      <Command>IF NOT EXIST "$(OutputPath)gwc-d-$(PlatformTarget).dll" COPY "$(ProjectDir)shared\gwc.native\gwc-d-$(PlatformTarget).dll" "$(OutputPath)"
+IF NOT EXIST "$(OutputPath)gwc.native-d-$(PlatformTarget).dll" COPY "$(ProjectDir)shared\gwc.native\gwc.native-d-$(PlatformTarget).dll" "$(OutputPath)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -148,17 +148,17 @@ IF NOT EXIST "$(OutputPath)gwc.native-d-$(PlatformTarget).dll" COPY "$(ProjectDi
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>.\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include\gwc.native;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAs>CompileAsC</CompileAs>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>.\static\gwc.native-$(PlatformTarget).lib</AdditionalDependencies>
+      <AdditionalDependencies>$(ProjectDir)static\gwc.native\gwc.native-$(PlatformTarget).lib</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>IF NOT EXIST "$(OutputPath)gwc-$(PlatformTarget).dll" COPY "$(ProjectDir)shared\gwc-$(PlatformTarget).dll" "$(OutputPath)"
-IF NOT EXIST "$(OutputPath)gwc.native-$(PlatformTarget).dll" COPY "$(ProjectDir)shared\gwc.native-$(PlatformTarget).dll" "$(OutputPath)"</Command>
+      <Command>IF NOT EXIST "$(OutputPath)gwc-$(PlatformTarget).dll" COPY "$(ProjectDir)shared\gwc.native\gwc-$(PlatformTarget).dll" "$(OutputPath)"
+IF NOT EXIST "$(OutputPath)gwc.native-$(PlatformTarget).dll" COPY "$(ProjectDir)shared\gwc.native\gwc.native-$(PlatformTarget).dll" "$(OutputPath)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -167,17 +167,17 @@ IF NOT EXIST "$(OutputPath)gwc.native-$(PlatformTarget).dll" COPY "$(ProjectDir)
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>.\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include\gwc.native;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAs>CompileAsC</CompileAs>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>.\static\gwc.native-d-$(PlatformTarget).lib</AdditionalDependencies>
+      <AdditionalDependencies>$(ProjectDir)static\gwc.native\gwc.native-d-$(PlatformTarget).lib</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>IF NOT EXIST "$(OutputPath)gwc-d-$(PlatformTarget).dll" COPY "$(ProjectDir)shared\gwc-d-$(PlatformTarget).dll" "$(OutputPath)"
-IF NOT EXIST "$(OutputPath)gwc.native-d-$(PlatformTarget).dll" COPY "$(ProjectDir)shared\gwc.native-d-$(PlatformTarget).dll" "$(OutputPath)"</Command>
+      <Command>IF NOT EXIST "$(OutputPath)gwc-d-$(PlatformTarget).dll" COPY "$(ProjectDir)shared\gwc.native\gwc-d-$(PlatformTarget).dll" "$(OutputPath)"
+IF NOT EXIST "$(OutputPath)gwc.native-d-$(PlatformTarget).dll" COPY "$(ProjectDir)shared\gwc.native\gwc.native-d-$(PlatformTarget).dll" "$(OutputPath)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -188,17 +188,17 @@ IF NOT EXIST "$(OutputPath)gwc.native-d-$(PlatformTarget).dll" COPY "$(ProjectDi
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>.\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include\gwc.native;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAs>CompileAsC</CompileAs>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>.\static\gwc.native-$(PlatformTarget).lib</AdditionalDependencies>
+      <AdditionalDependencies>$(ProjectDir)static\gwc.native\gwc.native-$(PlatformTarget).lib</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>IF NOT EXIST "$(OutputPath)gwc-$(PlatformTarget).dll" COPY "$(ProjectDir)shared\gwc-$(PlatformTarget).dll" "$(OutputPath)"
-IF NOT EXIST "$(OutputPath)gwc.native-$(PlatformTarget).dll" COPY "$(ProjectDir)shared\gwc.native-$(PlatformTarget).dll" "$(OutputPath)"</Command>
+      <Command>IF NOT EXIST "$(OutputPath)gwc-$(PlatformTarget).dll" COPY "$(ProjectDir)shared\gwc.native\gwc-$(PlatformTarget).dll" "$(OutputPath)"
+IF NOT EXIST "$(OutputPath)gwc.native-$(PlatformTarget).dll" COPY "$(ProjectDir)shared\gwc.native\gwc.native-$(PlatformTarget).dll" "$(OutputPath)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
@@ -207,17 +207,17 @@ IF NOT EXIST "$(OutputPath)gwc.native-$(PlatformTarget).dll" COPY "$(ProjectDir)
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>.\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include\gwc.native;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAs>CompileAsC</CompileAs>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>.\static\gwc.native-d-$(PlatformTarget).lib</AdditionalDependencies>
+      <AdditionalDependencies>$(ProjectDir)static\gwc.native\gwc.native-d-$(PlatformTarget).lib</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>IF NOT EXIST "$(OutputPath)gwc-d-$(PlatformTarget).dll" COPY "$(ProjectDir)shared\gwc-d-$(PlatformTarget).dll" "$(OutputPath)"
-IF NOT EXIST "$(OutputPath)gwc.native-d-$(PlatformTarget).dll" COPY "$(ProjectDir)shared\gwc.native-d-$(PlatformTarget).dll" "$(OutputPath)"</Command>
+      <Command>IF NOT EXIST "$(OutputPath)gwc-d-$(PlatformTarget).dll" COPY "$(ProjectDir)shared\gwc.native\gwc-d-$(PlatformTarget).dll" "$(OutputPath)"
+IF NOT EXIST "$(OutputPath)gwc.native-d-$(PlatformTarget).dll" COPY "$(ProjectDir)shared\gwc.native\gwc.native-d-$(PlatformTarget).dll" "$(OutputPath)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
@@ -228,58 +228,58 @@ IF NOT EXIST "$(OutputPath)gwc.native-d-$(PlatformTarget).dll" COPY "$(ProjectDi
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>.\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include\gwc.native;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAs>CompileAsC</CompileAs>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>.\static\gwc.native-$(PlatformTarget).lib</AdditionalDependencies>
+      <AdditionalDependencies>$(ProjectDir)static\gwc.native\gwc.native-$(PlatformTarget).lib</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>IF NOT EXIST "$(OutputPath)gwc-$(PlatformTarget).dll" COPY "$(ProjectDir)shared\gwc-$(PlatformTarget).dll" "$(OutputPath)"
-IF NOT EXIST "$(OutputPath)gwc.native-$(PlatformTarget).dll" COPY "$(ProjectDir)shared\gwc.native-$(PlatformTarget).dll" "$(OutputPath)"</Command>
+      <Command>IF NOT EXIST "$(OutputPath)gwc-$(PlatformTarget).dll" COPY "$(ProjectDir)shared\gwc.native\gwc-$(PlatformTarget).dll" "$(OutputPath)"
+IF NOT EXIST "$(OutputPath)gwc.native-$(PlatformTarget).dll" COPY "$(ProjectDir)shared\gwc.native\gwc.native-$(PlatformTarget).dll" "$(OutputPath)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="include\export.h" />
-    <ClInclude Include="include\header.h" />
-    <ClInclude Include="include\gwc.h" />
-    <ClInclude Include="include\types.h" />
-    <ClInclude Include="include\COLOR.h" />
-    <ClInclude Include="include\POINT.h" />
-    <ClInclude Include="include\SIZE.h" />
-    <ClInclude Include="include\RECTANGLE.h" />
-    <ClInclude Include="include\IMAGE.h" />
-    <ClInclude Include="include\ICON.h" />
-    <ClInclude Include="include\KEYS.h" />
-    <ClInclude Include="include\MOUSEBUTTONS.h" />
-    <ClInclude Include="include\RENDER.h" />
-    <ClInclude Include="include\SPRITE.h" />
-    <ClInclude Include="include\CANVAS.h" />
-    <ClInclude Include="include\WINDOW.h" />
+    <ClInclude Include="include\gwc.native\export.h" />
+    <ClInclude Include="include\gwc.native\header.h" />
+    <ClInclude Include="include\gwc.native\gwc.h" />
+    <ClInclude Include="include\gwc.native\types.h" />
+    <ClInclude Include="include\gwc.native\COLOR.h" />
+    <ClInclude Include="include\gwc.native\POINT.h" />
+    <ClInclude Include="include\gwc.native\SIZE.h" />
+    <ClInclude Include="include\gwc.native\RECTANGLE.h" />
+    <ClInclude Include="include\gwc.native\IMAGE.h" />
+    <ClInclude Include="include\gwc.native\ICON.h" />
+    <ClInclude Include="include\gwc.native\KEYS.h" />
+    <ClInclude Include="include\gwc.native\MOUSEBUTTONS.h" />
+    <ClInclude Include="include\gwc.native\RENDER.h" />
+    <ClInclude Include="include\gwc.native\SPRITE.h" />
+    <ClInclude Include="include\gwc.native\CANVAS.h" />
+    <ClInclude Include="include\gwc.native\WINDOW.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="shared\gwc-d-x86.dll" />
-    <None Include="shared\gwc-d-x64.dll" />
-    <None Include="shared\gwc-d-ARM64.dll" />
-    <None Include="shared\gwc-x86.dll" />
-    <None Include="shared\gwc-x64.dll" />
-    <None Include="shared\gwc-ARM64.dll" />
-    <None Include="shared\gwc.native-d-x86.dll" />
-    <None Include="shared\gwc.native-d-x64.dll" />
-    <None Include="shared\gwc.native-d-ARM64.dll" />
-    <None Include="shared\gwc.native-x86.dll" />
-    <None Include="shared\gwc.native-x64.dll" />
-    <None Include="shared\gwc.native-ARM64.dll" />
+    <None Include="shared\gwc.native\gwc-d-x86.dll" />
+    <None Include="shared\gwc.native\gwc-d-x64.dll" />
+    <None Include="shared\gwc.native\gwc-d-ARM64.dll" />
+    <None Include="shared\gwc.native\gwc-x86.dll" />
+    <None Include="shared\gwc.native\gwc-x64.dll" />
+    <None Include="shared\gwc.native\gwc-ARM64.dll" />
+    <None Include="shared\gwc.native\gwc.native-d-x86.dll" />
+    <None Include="shared\gwc.native\gwc.native-d-x64.dll" />
+    <None Include="shared\gwc.native\gwc.native-d-ARM64.dll" />
+    <None Include="shared\gwc.native\gwc.native-x86.dll" />
+    <None Include="shared\gwc.native\gwc.native-x64.dll" />
+    <None Include="shared\gwc.native\gwc.native-ARM64.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Library Include="static\gwc.native-d-x86.lib" />
-    <Library Include="static\gwc.native-d-x64.lib" />
-    <Library Include="static\gwc.native-d-ARM64.lib" />
-    <Library Include="static\gwc.native-x86.lib" />
-    <Library Include="static\gwc.native-x64.lib" />
-    <Library Include="static\gwc.native-ARM64.lib" />
+    <Library Include="static\gwc.native\gwc.native-d-x86.lib" />
+    <Library Include="static\gwc.native\gwc.native-d-x64.lib" />
+    <Library Include="static\gwc.native\gwc.native-d-ARM64.lib" />
+    <Library Include="static\gwc.native\gwc.native-x86.lib" />
+    <Library Include="static\gwc.native\gwc.native-x64.lib" />
+    <Library Include="static\gwc.native\gwc.native-ARM64.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

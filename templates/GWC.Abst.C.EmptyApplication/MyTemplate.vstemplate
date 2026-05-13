@@ -1,20 +1,20 @@
 ﻿<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
   <TemplateData>
-    <Name>GWC C Application (0.5.0)</Name>
+    <Name>GWC Abst C Empty Application (0.5.0)</Name>
     <Description>
-      Fornisce un template per la creazione di un'applicazione GWC in C.
+      Fornisce un template per la creazione di un'applicazione GWC Abst vuota in C.
 GWC è un progetto Open-Source mantenuto su https://github.com/reallukee/gwc.
     </Description>
     <ProjectType>VC</ProjectType>
-    <ProjectSubType>Console</ProjectSubType>
+    <ProjectSubType>Library</ProjectSubType>
     <LanguageTag>C</LanguageTag>
     <PlatformTag>windows</PlatformTag>
-    <ProjectTypeTag>console</ProjectTypeTag>
+    <ProjectTypeTag>library</ProjectTypeTag>
     <ProjectTypeTag>desktop</ProjectTypeTag>
-    <ProjectTypeTag>GWC</ProjectTypeTag>
+    <ProjectTypeTag>GWC Abst</ProjectTypeTag>
     <SortOrder>1000</SortOrder>
     <CreateNewFolder>true</CreateNewFolder>
-    <DefaultName>GWCCApp</DefaultName>
+    <DefaultName>GWCAbstCEmptyApp</DefaultName>
     <ProvideDefaultName>true</ProvideDefaultName>
     <LocationField>Enabled</LocationField>
     <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
@@ -23,12 +23,11 @@ GWC è un progetto Open-Source mantenuto su https://github.com/reallukee/gwc.
   </TemplateData>
   <TemplateContent>
     <CustomParameters>
-      <CustomParameter Name="$gwc_identifier$" Value="GWC.Native" />
+      <CustomParameter Name="$gwc_identifier$" Value="GWC.Native.Abst" />
       <CustomParameter Name="$gwc_version$" Value="0.5.0" />
     </CustomParameters>
-    <Project TargetFileName="GWC.C.Application.vcxproj" File="GWC.C.Application.vcxproj" ReplaceParameters="true">
-      <ProjectItem ReplaceParameters="false" TargetFileName="$projectname$.vcxproj.filters">GWC.C.Application.vcxproj.filters</ProjectItem>
-      <ProjectItem ReplaceParameters="true" TargetFileName="main.c">main.c</ProjectItem>
+    <Project TargetFileName="GWC.Abst.C.EmptyApplication.vcxproj" File="GWC.Abst.C.EmptyApplication.vcxproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="false" TargetFileName="$projectname$.vcxproj.filters">GWC.Abst.C.EmptyApplication.vcxproj.filters</ProjectItem>
       <Folder Name="include\gwc.native" TargetFolderName="include\gwc.native">
         <ProjectItem ReplaceParameters="false" TargetFileName="export.h">export.h</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="header.h">header.h</ProjectItem>
@@ -68,6 +67,36 @@ GWC è un progetto Open-Source mantenuto su https://github.com/reallukee/gwc.
         <ProjectItem ReplaceParameters="false" TargetFileName="gwc.native-x86.dll">gwc.native-x86.dll</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="gwc.native-x64.dll">gwc.native-x64.dll</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="gwc.native-ARM64.dll">gwc.native-ARM64.dll</ProjectItem>
+      </Folder>
+      <Folder Name="include\gwc.native.abst" TargetFolderName="include\gwc.native.abst">
+        <ProjectItem ReplaceParameters="false" TargetFileName="export.h">export.h</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="header.h">header.h</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="gwc_abst.h">gwc_abst.h</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="SRIMGR.h">SRIMGR.h</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="CNVMGR.h">CNVMGR.h</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="WNDMGR.h">WNDMGR.h</ProjectItem>
+      </Folder>
+      <Folder Name="static\gwc.native.abst" TargetFolderName="static\gwc.native.abst">
+        <ProjectItem ReplaceParameters="false" TargetFileName="gwc.native.abst-d-x86.lib">gwc.native.abst-d-x86.lib</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="gwc.native.abst-d-x64.lib">gwc.native.abst-d-x64.lib</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="gwc.native.abst-d-ARM64.lib">gwc.native.abst-d-ARM64.lib</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="gwc.native.abst-x86.lib">gwc.native.abst-x86.lib</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="gwc.native.abst-x64.lib">gwc.native.abst-x64.lib</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="gwc.native.abst-ARM64.lib">gwc.native.abst-ARM64.lib</ProjectItem>
+      </Folder>
+      <Folder Name="shared\gwc.native.abst" TargetFolderName="shared\gwc.native.abst">
+        <ProjectItem ReplaceParameters="false" TargetFileName="gwc-d-x86.dll">gwc-d-x86.dll</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="gwc-d-x64.dll">gwc-d-x64.dll</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="gwc-d-ARM64.dll">gwc-d-ARM64.dll</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="gwc-x86.dll">gwc-x86.dll</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="gwc-x64.dll">gwc-x64.dll</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="gwc-ARM64.dll">gwc-ARM64.dll</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="gwc.native.abst-d-x86.dll">gwc.native.abst-d-x86.dll</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="gwc.native.abst-d-x64.dll">gwc.native.abst-d-x64.dll</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="gwc.native.abst-d-ARM64.dll">gwc.native.abst-d-ARM64.dll</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="gwc.native.abst-x86.dll">gwc.native.abst-x86.dll</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="gwc.native.abst-x64.dll">gwc.native.abst-x64.dll</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="gwc.native.abst-ARM64.dll">gwc.native.abst-ARM64.dll</ProjectItem>
       </Folder>
     </Project>
   </TemplateContent>

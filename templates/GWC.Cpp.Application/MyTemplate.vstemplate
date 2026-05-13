@@ -29,7 +29,7 @@ GWC è un progetto Open-Source mantenuto su https://github.com/reallukee/gwc.
     <Project TargetFileName="GWC.Cpp.Application.vcxproj" File="GWC.Cpp.Application.vcxproj" ReplaceParameters="true">
       <ProjectItem ReplaceParameters="false" TargetFileName="$projectname$.vcxproj.filters">GWC.Cpp.Application.vcxproj.filters</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="main.cpp">main.cpp</ProjectItem>
-      <Folder Name="include" TargetFolderName="include">
+      <Folder Name="include\gwc.native" TargetFolderName="include\gwc.native">
         <ProjectItem ReplaceParameters="false" TargetFileName="export.hpp">export.hpp</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="header.hpp">header.hpp</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="gwc.hpp">gwc.hpp</ProjectItem>
@@ -47,7 +47,7 @@ GWC è un progetto Open-Source mantenuto su https://github.com/reallukee/gwc.
         <ProjectItem ReplaceParameters="false" TargetFileName="Canvas.hpp">Canvas.hpp</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="Window.hpp">Window.hpp</ProjectItem>
       </Folder>
-      <Folder Name="static" TargetFolderName="static">
+      <Folder Name="static\gwc.native" TargetFolderName="static\gwc.native">
         <ProjectItem ReplaceParameters="false" TargetFileName="gwc.native-d-x86.lib">gwc.native-d-x86.lib</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="gwc.native-d-x64.lib">gwc.native-d-x64.lib</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="gwc.native-d-ARM64.lib">gwc.native-d-ARM64.lib</ProjectItem>
@@ -55,7 +55,7 @@ GWC è un progetto Open-Source mantenuto su https://github.com/reallukee/gwc.
         <ProjectItem ReplaceParameters="false" TargetFileName="gwc.native-x64.lib">gwc.native-x64.lib</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="gwc.native-ARM64.lib">gwc.native-ARM64.lib</ProjectItem>
       </Folder>
-      <Folder Name="shared" TargetFolderName="shared">
+      <Folder Name="shared\gwc.native" TargetFolderName="shared\gwc.native">
         <ProjectItem ReplaceParameters="false" TargetFileName="gwc-d-x86.dll">gwc-d-x86.dll</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="gwc-d-x64.dll">gwc-d-x64.dll</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="gwc-d-ARM64.dll">gwc-d-ARM64.dll</ProjectItem>
