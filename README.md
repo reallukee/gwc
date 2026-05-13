@@ -205,7 +205,7 @@ int main(int argc, const char* argv[])
         gKEYS modifiers = gKEYS_NONE;
         gKEYS key = gKEYS_NONE;
 
-        bool keyDown = window_consumeKeyDown(&modifiers, &key);
+        bool keyDown = wndmgr_consumeKeyDown(&modifiers, &key);
 
         if (keyDown)
         {

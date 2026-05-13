@@ -68,7 +68,7 @@ GWC è un progetto Open-Source mantenuto su https://github.com/reallukee/gwc.
         <ProjectItem ReplaceParameters="false" TargetFileName="gwc.native-x64.dll">gwc.native-x64.dll</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="gwc.native-ARM64.dll">gwc.native-ARM64.dll</ProjectItem>
       </Folder>
-<Folder Name="include\gwc.native.abst" TargetFolderName="include\gwc.native.abst">
+      <Folder Name="include\gwc.native.abst" TargetFolderName="include\gwc.native.abst">
         <ProjectItem ReplaceParameters="false" TargetFileName="export.hpp">export.hpp</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="header.hpp">header.hpp</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="gwc_abst.hpp">gwc_abst.hpp</ProjectItem>
