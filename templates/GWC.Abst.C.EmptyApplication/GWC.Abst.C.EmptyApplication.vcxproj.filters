@@ -96,7 +96,7 @@
     <ClInclude Include="include\gwc.native.abst\header.h">
       <Filter>GWC\GWC.Native.Abst\Include</Filter>
     </ClInclude>
-    <ClInclude Include="include\gwc.native.abst\gwc_anst.h">
+    <ClInclude Include="include\gwc.native.abst\gwc_abst.h">
       <Filter>GWC\GWC.Native.Abst\Include</Filter>
     </ClInclude>
     <ClInclude Include="include\gwc.native.abst\SRIMGR.h">

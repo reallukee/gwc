@@ -21,9 +21,9 @@ POWERSHELL -Command "Compress-Archive -Force -Path 'bin\x86\Release\*' -Destinat
 POWERSHELL -Command "Compress-Archive -Force -Path 'bin\x64\Release\*' -DestinationPath 'dist\gwc-x64-!VERSION!.zip'"
 POWERSHELL -Command "Compress-Archive -Force -Path 'bin\ARM64\Release\*' -DestinationPath 'dist\gwc-ARM64-!VERSION!.zip'"
 
-POWERSHELL -Command "Get-ChildItem 'gwc.native' -File | Where-Object { (Get-Content 'config\include.txt') -Contains $_.Name } | Compress-Archive -Force -DestinationPath 'dist\gwc-include-!VERSION!.zip'"
+POWERSHELL -Command "Get-ChildItem 'gwc.native' -File | Where-Object { (Get-Content 'config\include.txt') -Contains $_.Name } | Compress-Archive -Force -DestinationPath 'dist\gwc.native-include-!VERSION!.zip'"
 
-POWERSHELL -Command "Get-ChildItem 'gwc.native.abst' -File | Where-Object { (Get-Content 'config\include.txt') -Contains $_.Name } | Compress-Archive -Force -DestinationPath 'dist\gwc-include-!VERSION!.zip'"
+POWERSHELL -Command "Get-ChildItem 'gwc.native.abst' -File | Where-Object { (Get-Content 'config\include.abst.txt') -Contains $_.Name } | Compress-Archive -Force -DestinationPath 'dist\gwc.native.abst-include-!VERSION!.zip'"
 
 POPD
 
