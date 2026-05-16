@@ -1,6 +1,6 @@
 <img src="./assets/gwc.png" width="192px" height="192px" />
 
-# GWC <br />Graphical Window for Console Apps
+# GWC<br /> Graphical Window for Console Apps
 
 ![License](https://img.shields.io/github/license/reallukee/gwc)
 ![Release](https://img.shields.io/github/v/release/reallukee/gwc?include_prereleases)
@@ -51,6 +51,8 @@ graph TD
   Core --> Native
   Core --> .NET.API
 ```
+
+> Approssimativa!
 
 ## GWC
 
