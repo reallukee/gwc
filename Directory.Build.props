@@ -5,7 +5,9 @@
     <RepositoryRoot Condition="'$(SolutionDir)' == ''">$(MSBuildThisFileDirectory)</RepositoryRoot>
     <RepositoryRoot Condition="'$(SolutionDir)' != ''">$(SolutionDir)</RepositoryRoot>
 
-    <BaseOutputPath>$(RepositoryRoot)bin\$(MSBuildProjectName)</BaseOutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+
+    <BaseOutputPath>$(RepositoryRoot)bin</BaseOutputPath>
     <BaseIntermediateOutputPath>$(RepositoryRoot)obj\$(MSBuildProjectName)</BaseIntermediateOutputPath>
   </PropertyGroup>
 </Project>
