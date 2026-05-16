@@ -1,89 +1,83 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
-    <ProjectGuid>{67CCE870-EC0C-49D9-BD50-879D62A03BF0}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Reallukee.GWC</RootNamespace>
+    <TargetFramework>net472</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <UseWPF>true</UseWPF>
     <AssemblyName>gwc.mono</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <Deterministic>true</Deterministic>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <AssemblyTitle>GWC.Mono</AssemblyTitle>
+    <RootNamespace>Reallukee.GWC</RootNamespace>
+
+    <ImplicitUsings>disable</ImplicitUsings>
+
+    <Platforms>x86;x64;arm64</Platforms>
+    <Nullable>disable</Nullable>
+
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <PackageId>GWC.Mono</PackageId>
+    <Title>GWC Mono</Title>
+    <Version>0.5.1</Version>
+    <Authors>Luca Pollicino</Authors>
+    <Company>Luca Pollicino</Company>
+    <Product>GWC</Product>
+    <Description>A C#, C++ and C graphics library written in C#, C++ and C</Description>
+    <Copyright>Luca Pollicino</Copyright>
+    <PackageProjectUrl>https://reallukee.altervista.org/gwc</PackageProjectUrl>
+    <PackageIcon>gwc.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/reallukee/gwc</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>c;cpp;c-sharp;desktop;library</PackageTags>
+    <PackageReleaseNotes>GWC 0.5.1</PackageReleaseNotes>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <AssemblyName>$(AssemblyName)-d-$(Platform)</AssemblyName>
-    <OutputPath>..\bin\$(Platform)\$(Configuration)\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <Optimize>false</Optimize>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
     <AssemblyName>$(AssemblyName)-$(Platform)</AssemblyName>
-    <OutputPath>..\bin\$(Platform)\$(Configuration)\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugSymbols>false</DebugSymbols>
-    <DebugType>pdbonly</DebugType>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Platform)' == 'x86'">
-    <PlatformTarget>x86</PlatformTarget>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Platform)' == 'x64'">
-    <PlatformTarget>x64</PlatformTarget>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Platform)' == 'ARM64'">
-    <PlatformTarget>x64</PlatformTarget>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
+    <Compile Update="*.cs" Link="src\%(Filename)%(Extension)" />
+    <Compile Remove="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
+    <None Include="..\assets\gwc.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+      <Link>nuget\icon.png</Link>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+      <Link>nuget\README.md</Link>
+    </None>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+      <Link>nuget\LICENSE</Link>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="IFigure.cs" />
-    <Compile Include="IRenderable.cs" />
-    <Compile Include="IBorderColor.cs" />
-    <Compile Include="IFillColor.cs" />
-    <Compile Include="BaseRectangle.cs" />
-    <Compile Include="BaseEllipse.cs" />
-    <Compile Include="BorderRectangle.cs" />
-    <Compile Include="BorderEllipse.cs" />
-    <Compile Include="FillRectangle.cs" />
-    <Compile Include="FillEllipse.cs" />
-    <Compile Include="BaseImage.cs" />
-    <Compile Include="BaseIcon.cs" />
-    <Compile Include="Render.cs" />
-    <Compile Include="WindowForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Sprite.cs" />
-    <Compile Include="SpriteHandler.cs" />
-    <Compile Include="Canvas.cs" />
-    <Compile Include="CanvasHandler.cs" />
-    <Compile Include="Window.cs" />
-    <Compile Include="WindowHandler.cs" />
   </ItemGroup>
+
   <ItemGroup>
-    <EmbeddedResource Include="Properties\Resources.resx">
+    <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
 </Project>

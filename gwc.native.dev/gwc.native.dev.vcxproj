@@ -31,7 +31,7 @@
     <ProjectGuid>{3F011596-9C5F-2265-C9BD-9FD536C1D6E6}</ProjectGuid>
     <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
-    <RootNamespace>GWC.Native.Dev</RootNamespace>
+    <RootNamespace>Reallukee.GWC</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -303,7 +303,7 @@
     <ClCompile Include="..\gwc.native\Image.cpp" />
     <ClCompile Include="..\gwc.native\Icon.cpp" />
     <ClCompile Include="..\gwc.native\Render.cpp" />
-    <ClCompile Include="..\gwc.native\SPRITE.cpp" />
+    <ClCompile Include="..\gwc.native\Sprite.cpp" />
     <ClCompile Include="..\gwc.native\Canvas.cpp" />
     <ClCompile Include="..\gwc.native\Window.cpp" />
     <ClCompile Include="main.cpp" />
