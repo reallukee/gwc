@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.5.0
+// v0.5.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -11,13 +11,11 @@
 //
 
 #include "ICON.h"
+#include "ICONHELPER.h"
 
-typedef struct gICON
-{
-    HICON icon;
-} gICON;
+#include <gdiplus.h>
 
-
+using namespace Gdiplus;
 
 static wchar_t* strToWStr(const char* str)
 {
@@ -53,6 +51,22 @@ static wchar_t* strToWStr(const char* str)
 
 gICON* icon_new(const char* path)
 {
+    return icon_newA(path);
+}
+
+gICON* icon_newA(const char* path)
+{
+    wchar_t* wpath = strToWStr(path);
+
+    gICON* result = icon_newW(wpath);
+
+    free(wpath);
+
+    return result;
+}
+
+gICON* icon_newW(const wchar_t* path)
+{
     gICON* icon = (gICON*)calloc(1, sizeof(gICON));
 
     if (icon == NULL)
@@ -60,62 +74,135 @@ gICON* icon_new(const char* path)
         return NULL;
     }
 
-    wchar_t* wpath = strToWStr(path);
+    icon->icon = NULL;
 
-    if (wpath == NULL)
-    {
-        free(icon);
-
-        return NULL;
-    }
-
-    icon->icon = (HICON)LoadImageW(
-        NULL,
-        wpath,
-        IMAGE_ICON,
-        0,
-        0,
-        LR_LOADFROMFILE
-    );
-
-    free(wpath);
+    icon_loadW(icon, path);
 
     return icon;
 }
 
 void icon_delete(gICON* icon)
 {
-    if (icon != NULL)
-    {
-        if (icon->icon != NULL)
-        {
-            DestroyIcon(icon->icon);
-        }
+    icon_unload(icon);
 
-        free(icon);
-
-        icon = NULL;
-    }
+    icon = NULL;
 }
 
 
 
-bool icon_isLoaded(const gICON* icon)
+static HICON loadIcon(const wchar_t* path)
 {
-    return icon->icon != NULL;
+    if (path == NULL)
+    {
+        return NULL;
+    }
+
+    HICON icon = (HICON)LoadImageW(
+        NULL,
+        path,
+        IMAGE_ICON,
+        0,
+        0,
+        LR_LOADFROMFILE
+    );
+
+    return icon;
 }
 
-void icon_release(const gICON* icon)
+static NativeIcon shareIcon(HICON icon)
+{
+    auto destructor = [](HICON icon)
+    {
+        if (icon)
+        {
+            DestroyIcon(icon);
+        }
+    };
+
+    NativeIcon _icon(icon, destructor);
+
+    return _icon;
+}
+
+
+
+bool icon_load(gICON* icon, const char* path)
+{
+    return icon_loadA(icon, path);
+}
+
+bool icon_loadA(gICON* icon, const char* path)
+{
+    wchar_t* wpath = strToWStr(path);
+
+    bool result = icon_loadW(icon, wpath);
+
+    free(wpath);
+
+    return result;
+}
+
+bool icon_loadW(gICON* icon, const wchar_t* path)
+{
+    if (icon == NULL)
+    {
+        return false;
+    }
+
+    if (icon_isLoaded(icon))
+    {
+        return false;
+    }
+
+    HICON _icon = loadIcon(path);
+
+    if (_icon == NULL)
+    {
+        return false;
+    }
+
+    icon->icon = shareIcon(_icon);
+
+    return true;
+}
+
+void icon_unload(gICON* icon)
 {
     if (!icon_isLoaded(icon))
     {
         return;
     }
 
-    DestroyIcon(icon->icon);
+    icon->icon.reset();
 }
 
-HICON icon_get(const gICON* icon)
+
+
+bool icon_isLoaded(const gICON* icon)
 {
-    return icon->icon;
+    if (icon == NULL)
+    {
+        return false;
+    }
+
+    return icon->icon != NULL;
+}
+
+bool icon_isUnloaded(const gICON* icon)
+{
+    if (icon == NULL)
+    {
+        return true;
+    }
+
+    return icon->icon == NULL;
+}
+
+
+
+HICON iconHelper_get(const gICON* icon)
+{
+    HICON _icon = static_cast<HICON>(icon->icon.get());
+
+    return _icon;
 }

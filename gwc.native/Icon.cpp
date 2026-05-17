@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.5.0
+// v0.5.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -11,12 +11,17 @@
 //
 
 #include "Icon.hpp"
+#include "IconHelper.hpp"
+
+#include <gdiplus.h>
+
+using namespace Gdiplus;
 
 #ifdef __cplusplus
 
 namespace gwc
 {
-    static const wchar_t* strToWStr(const char* str)
+    static wchar_t* strToWStr(const char* str)
     {
         int size = MultiByteToWideChar(
             CP_UTF8,
@@ -58,45 +63,65 @@ namespace gwc
         load(path);
     }
 
-    gIcon::gIcon(string path)
+    gIcon::gIcon(const wchar_t* path)
     {
         load(path);
     }
 
-    gIcon::gIcon() { }
+    gIcon::gIcon(const string& path)
+    {
+        load(path);
+    }
+
+    gIcon::gIcon(const wstring& path)
+    {
+        load(path);
+    }
+
+    gIcon::gIcon()
+    {
+        this->icon = nullptr;
+    }
 
     gIcon::~gIcon()
     {
-        if (icon != nullptr)
+        unload();
+    }
+
+
+
+    static HICON loadIcon(const wchar_t* path)
+    {
+        if (path == nullptr)
         {
-            DestroyIcon(icon);
+            return nullptr;
         }
+
+        HICON icon = (HICON)LoadImageW(
+            nullptr,
+            path,
+            IMAGE_ICON,
+            0,
+            0,
+            LR_LOADFROMFILE
+        );
+
+        return icon;
     }
 
-
-
-    gIcon::gIcon(gIcon&& other) noexcept
+    static NativeIcon shareIcon(HICON icon)
     {
-        icon = other.icon;
-
-        other.icon = nullptr;
-    }
-
-    gIcon& gIcon::operator=(gIcon&& other) noexcept
-    {
-        if (this != &other)
+        auto destructor = [](HICON icon)
         {
-            if (icon != nullptr)
+            if (icon)
             {
                 DestroyIcon(icon);
             }
+        };
 
-            icon = other.icon;
+        NativeIcon _icon(icon, destructor);
 
-            other.icon = nullptr;
-        }
-
-        return *this;
+        return _icon;
     }
 
 
@@ -105,28 +130,38 @@ namespace gwc
     {
         const wchar_t* wpath = strToWStr(path);
 
-        if (wpath == nullptr)
-        {
-            icon = nullptr;
+        bool result = load(wpath);
 
+        delete[] wpath;
+
+        return result;
+    }
+
+    bool gIcon::load(const wchar_t* path)
+    {
+        if (isLoaded())
+        {
             return false;
         }
 
-        icon = (HICON)LoadImageW(
-            nullptr,
-            wpath,
-            IMAGE_ICON,
-            0,
-            0,
-            LR_LOADFROMFILE
-        );
+        HICON _icon = loadIcon(path);
 
-        delete[] wpath;
+        if (_icon == nullptr)
+        {
+            return false;
+        }
+
+        icon = shareIcon(_icon);
 
         return true;
     }
 
-    bool gIcon::load(string path)
+    bool gIcon::load(const string& path)
+    {
+        return load(path.c_str());
+    }
+
+    bool gIcon::load(const wstring& path)
     {
         return load(path.c_str());
     }
@@ -138,7 +173,7 @@ namespace gwc
             return;
         }
 
-        DestroyIcon(icon);
+        icon.reset();
     }
 
 
@@ -155,9 +190,11 @@ namespace gwc
 
 
 
-    HICON gIcon::get() const
+    HICON IconHelper::get(const gIcon& icon)
     {
-        return icon;
+        HICON _icon = static_cast<HICON>(icon.icon.get());
+
+        return _icon;
     }
 }
 

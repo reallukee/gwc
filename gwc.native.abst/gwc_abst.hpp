@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.:.:.:
 // GWC.Native.Abst
-// v0.5.0
+// v0.5.1
 // :.:.:.:.:.:.:.:
 //
 // https://github.com/reallukee/gwc
@@ -33,6 +33,12 @@
 //
 // Assicurati di utilizzare versioni compatibili
 // dei binari e dei file di intestazione.
+//
+// GWC.Native.Abst richiede:
+//  GWC.Native:
+//   [0.5.1]
+//  GWC:
+//   [0.5.1]
 //
 
 #define GWC_ABST_VERSION_INCLUDE              051

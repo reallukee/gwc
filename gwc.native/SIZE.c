@@ -12,6 +12,8 @@
 
 #include "SIZE.h"
 
+#pragma unmanaged
+
 typedef struct gSIZE
 {
     int width;

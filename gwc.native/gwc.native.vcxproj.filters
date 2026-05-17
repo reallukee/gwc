@@ -81,7 +81,13 @@
     <ClInclude Include="Rectangle.hpp">
       <Filter>File di intestazione\C++ API</Filter>
     </ClInclude>
+    <ClInclude Include="ImageHelper.hpp">
+      <Filter>File di intestazione\C++ API</Filter>
+    </ClInclude>
     <ClInclude Include="Image.hpp">
+      <Filter>File di intestazione\C++ API</Filter>
+    </ClInclude>
+    <ClInclude Include="IconHelper.hpp">
       <Filter>File di intestazione\C++ API</Filter>
     </ClInclude>
     <ClInclude Include="Icon.hpp">
@@ -132,7 +138,13 @@
     <ClInclude Include="RECTANGLE.h">
       <Filter>File di intestazione\C API</Filter>
     </ClInclude>
+    <ClInclude Include="IMAGEHELPER.h">
+      <Filter>File di intestazione\C API</Filter>
+    </ClInclude>
     <ClInclude Include="IMAGE.h">
+      <Filter>File di intestazione\C API</Filter>
+    </ClInclude>
+    <ClInclude Include="ICONHELPER.h">
       <Filter>File di intestazione\C API</Filter>
     </ClInclude>
     <ClInclude Include="ICON.h">

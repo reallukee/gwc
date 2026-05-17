@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.5.0
+// v0.5.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -11,13 +11,11 @@
 //
 
 #include "IMAGE.h"
+#include "IMAGEHELPER.h"
 
-typedef struct gIMAGE
-{
-    HBITMAP image;
-} gIMAGE;
+#include <gdiplus.h>
 
-
+using namespace Gdiplus;
 
 static wchar_t* strToWStr(const char* str)
 {
@@ -53,6 +51,22 @@ static wchar_t* strToWStr(const char* str)
 
 gIMAGE* image_new(const char* path)
 {
+    return image_newA(path);
+}
+
+gIMAGE* image_newA(const char* path)
+{
+    wchar_t* wpath = strToWStr(path);
+
+    gIMAGE* result = image_newW(wpath);
+
+    free(wpath);
+
+    return result;
+}
+
+gIMAGE* image_newW(const wchar_t* path)
+{
     gIMAGE* image = (gIMAGE*)calloc(1, sizeof(gIMAGE));
 
     if (image == NULL)
@@ -60,62 +74,135 @@ gIMAGE* image_new(const char* path)
         return NULL;
     }
 
-    wchar_t* wpath = strToWStr(path);
+    image->image = NULL;
 
-    if (wpath == NULL)
-    {
-        free(image);
-
-        return NULL;
-    }
-
-    image->image = (HBITMAP)LoadImageW(
-        NULL,
-        wpath,
-        IMAGE_BITMAP,
-        0,
-        0,
-        LR_LOADFROMFILE | LR_CREATEDIBSECTION
-    );
-
-    free(wpath);
+    image_loadW(image, path);
 
     return image;
 }
 
 void image_delete(gIMAGE* image)
 {
-    if (image != NULL)
-    {
-        if (image->image != NULL)
-        {
-            DeleteObject(image->image);
-        }
+    image_unload(image);
 
-        free(image);
-
-        image = NULL;
-    }
+    image = NULL;
 }
 
 
 
-bool image_isLoaded(const gIMAGE* image)
+static HBITMAP loadImage(const wchar_t* path)
 {
-    return image->image != NULL;
+    if (path == NULL)
+    {
+        return NULL;
+    }
+
+    HBITMAP image = (HBITMAP)LoadImageW(
+        NULL,
+        path,
+        IMAGE_BITMAP,
+        0,
+        0,
+        LR_LOADFROMFILE | LR_CREATEDIBSECTION
+    );
+
+    return image;
 }
 
-void image_release(const gIMAGE* image)
+static NativeImage shareImage(HBITMAP image)
+{
+    auto destructor = [](HBITMAP image)
+    {
+        if (image)
+        {
+            DeleteObject(image);
+        }
+    };
+
+    NativeImage _image(image, destructor);
+
+    return _image;
+}
+
+
+
+bool image_load(gIMAGE* image, const char* path)
+{
+    return image_loadA(image, path);
+}
+
+bool image_loadA(gIMAGE* image, const char* path)
+{
+    wchar_t* wpath = strToWStr(path);
+
+    bool result = image_loadW(image, wpath);
+
+    free(wpath);
+
+    return result;
+}
+
+bool image_loadW(gIMAGE* image, const wchar_t* path)
+{
+    if (image == NULL)
+    {
+        return false;
+    }
+
+    if (image_isLoaded(image))
+    {
+        return false;
+    }
+
+    HBITMAP _image = loadImage(path);
+
+    if (_image == NULL)
+    {
+        return false;
+    }
+
+    image->image = shareImage(_image);
+
+    return true;
+}
+
+void image_unload(gIMAGE* image)
 {
     if (!image_isLoaded(image))
     {
         return;
     }
 
-    DeleteObject(image->image);
+    image->image.reset();
 }
 
-HBITMAP image_get(const gIMAGE* image)
+
+
+bool image_isLoaded(const gIMAGE* image)
 {
-    return image->image;
+    if (image == NULL)
+    {
+        return false;
+    }
+
+    return image->image != NULL;
+}
+
+bool image_isUnloaded(const gIMAGE* image)
+{
+    if (image == NULL)
+    {
+        return true;
+    }
+
+    return image->image == NULL;
+}
+
+
+
+HBITMAP imageHelper_get(const gIMAGE* image)
+{
+    HBITMAP _image = static_cast<HBITMAP>(image->image.get());
+
+    return _image;
 }

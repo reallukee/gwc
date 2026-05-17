@@ -17,7 +17,7 @@
 
 #include "header.h"
 
-GWC_C_API bool render_init();
+GWC_C_API bool render_init    ();
 GWC_C_API void render_shutdown();
 
 GWC_C_API int  render_getRefreshRate       ();

@@ -12,6 +12,8 @@
 
 #include "Size.hpp"
 
+#pragma unmanaged
+
 #ifdef __cplusplus
 
 namespace gwc

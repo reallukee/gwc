@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.5.0
+// v0.5.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -14,6 +14,9 @@
 
 #include "SPRITE.h"
 #include "macros.h"
+
+#include "ICONHELPER.h"
+#include "IMAGEHELPER.h"
 
 typedef struct SPRITE {
     CLRSpriteHost sprite;
@@ -185,7 +188,12 @@ bool sprite_drawImage(const SPRITE* sprite, int x, int y, gIMAGE* image)
         return false;
     }
 
-    HBITMAP nativeImage = image_get(image);
+    HBITMAP nativeImage = imageHelper_get(image);
+
+    if (nativeImage == NULL)
+    {
+        return false;
+    }
 
     Drawing::Image^ managedImage = nullptr;
 
@@ -228,7 +236,12 @@ bool sprite_drawIcon(const SPRITE* sprite, int x, int y, gICON* icon)
         return false;
     }
 
-    HICON nativeIcon = icon_get(icon);
+    HICON nativeIcon = iconHelper_get(icon);
+
+    if (nativeIcon == NULL)
+    {
+        return false;
+    }
 
     Drawing::Icon^ managedIcon = nullptr;
 

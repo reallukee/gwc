@@ -12,6 +12,8 @@
 
 #include "Color.hpp"
 
+#pragma unmanaged
+
 #ifdef __cplusplus
 
 namespace gwc

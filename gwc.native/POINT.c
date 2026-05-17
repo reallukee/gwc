@@ -12,6 +12,8 @@
 
 #include "POINT.h"
 
+#pragma unmanaged
+
 typedef struct gPOINT
 {
     int x;

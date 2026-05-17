@@ -12,6 +12,8 @@
 
 #include "RECTANGLE.h"
 
+#pragma unmanaged
+
 typedef struct gRECTANGLE
 {
     int x;

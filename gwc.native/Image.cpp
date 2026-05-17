@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.5.0
+// v0.5.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -11,12 +11,17 @@
 //
 
 #include "Image.hpp"
+#include "ImageHelper.hpp"
+
+#include <gdiplus.h>
+
+using namespace Gdiplus;
 
 #ifdef __cplusplus
 
 namespace gwc
 {
-    static const wchar_t* strToWStr(const char* str)
+    static wchar_t* strToWStr(const char* str)
     {
         int size = MultiByteToWideChar(
             CP_UTF8,
@@ -58,45 +63,65 @@ namespace gwc
         load(path);
     }
 
-    gImage::gImage(string path)
+    gImage::gImage(const wchar_t* path)
     {
         load(path);
     }
 
-    gImage::gImage() { }
+    gImage::gImage(const string& path)
+    {
+        load(path);
+    }
+
+    gImage::gImage(const wstring& path)
+    {
+        load(path);
+    }
+
+    gImage::gImage()
+    {
+        this->image = nullptr;
+    }
 
     gImage::~gImage()
     {
-        if (image != nullptr)
+        unload();
+    }
+
+
+
+    static HBITMAP loadImage(const wchar_t* path)
+    {
+        if (path == nullptr)
         {
-            DeleteObject(image);
+            return nullptr;
         }
+
+        HBITMAP image = (HBITMAP)LoadImageW(
+            nullptr,
+            path,
+            IMAGE_BITMAP,
+            0,
+            0,
+            LR_LOADFROMFILE | LR_CREATEDIBSECTION
+        );
+
+        return image;
     }
 
-
-
-    gImage::gImage(gImage&& other) noexcept
+    static NativeImage shareImage(HBITMAP image)
     {
-        image = other.image;
-
-        other.image = nullptr;
-    }
-
-    gImage& gImage::operator=(gImage&& other) noexcept
-    {
-        if (this != &other)
+        auto destructor = [](HBITMAP image)
         {
-            if (image != nullptr)
+            if (image)
             {
                 DeleteObject(image);
             }
+        };
 
-            image = other.image;
+        NativeImage _image(image, destructor);
 
-            other.image = nullptr;
-        }
-
-        return *this;
+        return _image;
     }
 
 
@@ -105,28 +130,38 @@ namespace gwc
     {
         const wchar_t* wpath = strToWStr(path);
 
-        if (wpath == nullptr)
-        {
-            image = nullptr;
+        bool result = load(wpath);
 
+        delete[] wpath;
+
+        return result;
+    }
+
+    bool gImage::load(const wchar_t* path)
+    {
+        if (isLoaded())
+        {
             return false;
         }
 
-        image = (HBITMAP)LoadImageW(
-            nullptr,
-            wpath,
-            IMAGE_BITMAP,
-            0,
-            0,
-            LR_LOADFROMFILE | LR_CREATEDIBSECTION
-        );
+        HBITMAP _image = loadImage(path);
 
-        delete[] wpath;
+        if (_image == nullptr)
+        {
+            return false;
+        }
+
+        image = shareImage(_image);
 
         return true;
     }
 
-    bool gImage::load(string path)
+    bool gImage::load(const string& path)
+    {
+        return load(path.c_str());
+    }
+
+    bool gImage::load(const wstring& path)
     {
         return load(path.c_str());
     }
@@ -138,7 +173,7 @@ namespace gwc
             return;
         }
 
-        DeleteObject(image);
+        image.reset();
     }
 
 
@@ -155,9 +190,11 @@ namespace gwc
 
 
 
-    HBITMAP gImage::get() const
+    HBITMAP ImageHelper::get(const gImage& image)
     {
-        return image;
+        HBITMAP _image = static_cast<HBITMAP>(image.image.get());
+
+        return _image;
     }
 }
 

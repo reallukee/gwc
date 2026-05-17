@@ -32,6 +32,12 @@
 // Assicurati di utilizzare versioni compatibili
 // dei binari e dei file di intestazione.
 //
+// GWC.Native.Abst richiede:
+//  GWC.Native:
+//   [0.5.1]
+//  GWC:
+//   [0.5.1]
+//
 
 #define GWC_ABST_VERSION_INCLUDE              051
 #define GWC_ABST_MIN_VERSION_INCLUDE          050

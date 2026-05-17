@@ -256,7 +256,9 @@
     <ClInclude Include="Point.hpp" />
     <ClInclude Include="Size.hpp" />
     <ClInclude Include="Rectangle.hpp" />
+    <ClInclude Include="ImageHelper.hpp" />
     <ClInclude Include="Image.hpp" />
+    <ClInclude Include="IconHelper.hpp" />
     <ClInclude Include="Icon.hpp" />
     <ClInclude Include="Keys.hpp" />
     <ClInclude Include="MouseButtons.hpp" />
@@ -273,7 +275,9 @@
     <ClInclude Include="POINT.h" />
     <ClInclude Include="SIZE.h" />
     <ClInclude Include="RECTANGLE.h" />
+    <ClInclude Include="IMAGEHELPER.h" />
     <ClInclude Include="IMAGE.h" />
+    <ClInclude Include="ICONHELPER.h" />
     <ClInclude Include="ICON.h" />
     <ClInclude Include="KEYS.h" />
     <ClInclude Include="MOUSEBUTTONS.h" />

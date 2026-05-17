@@ -12,6 +12,8 @@
 
 #include "Point.hpp"
 
+#pragma unmanaged
+
 #ifdef __cplusplus
 
 namespace gwc

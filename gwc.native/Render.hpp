@@ -26,7 +26,7 @@ namespace gwc
 
     public:
 
-        static bool init();
+        static bool init    ();
         static void shutdown();
 
         static int  getRefreshRate       ();

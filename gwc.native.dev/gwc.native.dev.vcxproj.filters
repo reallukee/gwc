@@ -81,7 +81,13 @@
     <ClInclude Include="..\gwc.native\Rectangle.hpp">
       <Filter>File di intestazione\C++ API</Filter>
     </ClInclude>
+    <ClInclude Include="..\gwc.native\ImageHelper.hpp">
+      <Filter>File di intestazione\C++ API</Filter>
+    </ClInclude>
     <ClInclude Include="..\gwc.native\Image.hpp">
+      <Filter>File di intestazione\C++ API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gwc.native\IconHelper.hpp">
       <Filter>File di intestazione\C++ API</Filter>
     </ClInclude>
     <ClInclude Include="..\gwc.native\Icon.hpp">
@@ -132,7 +138,13 @@
     <ClInclude Include="..\gwc.native\RECTANGLE.h">
       <Filter>File di intestazione\C API</Filter>
     </ClInclude>
+    <ClInclude Include="..\gwc.native\IMAGEHELPER.h">
+      <Filter>File di intestazione\C API</Filter>
+    </ClInclude>
     <ClInclude Include="..\gwc.native\IMAGE.h">
+      <Filter>File di intestazione\C API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gwc.native\ICONHELPER.h">
       <Filter>File di intestazione\C API</Filter>
     </ClInclude>
     <ClInclude Include="..\gwc.native\ICON.h">

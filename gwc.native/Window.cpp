@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.5.0
+// v0.5.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -14,6 +14,9 @@
 
 #include "Window.hpp"
 #include "macros.hpp"
+
+#include "ImageHelper.hpp"
+#include "IconHelper.hpp"
 
 #ifdef __cplusplus
 
@@ -427,7 +430,12 @@ namespace gwc
             return false;
         }
 
-        HBITMAP nativeImage = image.get();
+        HBITMAP nativeImage = ImageHelper::get(image);
+
+        if (nativeImage == nullptr)
+        {
+            return false;
+        }
 
         Drawing::Image^ managedImage = nullptr;
 
@@ -465,7 +473,12 @@ namespace gwc
             return false;
         }
 
-        HICON nativeIcon = icon.get();
+        HICON nativeIcon = IconHelper::get(icon);
+
+        if (nativeIcon == nullptr)
+        {
+            return false;
+        }
 
         Drawing::Icon^ managedIcon = nullptr;
 

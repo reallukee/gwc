@@ -262,7 +262,9 @@
     <ClInclude Include="..\gwc.native\Point.hpp" />
     <ClInclude Include="..\gwc.native\Size.hpp" />
     <ClInclude Include="..\gwc.native\Rectangle.hpp" />
+    <ClInclude Include="..\gwc.native\ImageHelper.hpp" />
     <ClInclude Include="..\gwc.native\Image.hpp" />
+    <ClInclude Include="..\gwc.native\IconHelper.hpp" />
     <ClInclude Include="..\gwc.native\Icon.hpp" />
     <ClInclude Include="..\gwc.native\Keys.hpp" />
     <ClInclude Include="..\gwc.native\MouseButtons.hpp" />
@@ -279,7 +281,9 @@
     <ClInclude Include="..\gwc.native\POINT.h" />
     <ClInclude Include="..\gwc.native\SIZE.h" />
     <ClInclude Include="..\gwc.native\RECTANGLE.h" />
+    <ClInclude Include="..\gwc.native\IMAGEHELPER.h" />
     <ClInclude Include="..\gwc.native\IMAGE.h" />
+    <ClInclude Include="..\gwc.native\ICONHELPER.h" />
     <ClInclude Include="..\gwc.native\ICON.h" />
     <ClInclude Include="..\gwc.native\KEYS.h" />
     <ClInclude Include="..\gwc.native\MOUSEBUTTONS.h" />

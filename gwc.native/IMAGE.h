@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.5.0
+// v0.5.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -20,10 +20,16 @@
 typedef struct gIMAGE gIMAGE;
 
 GWC_C_API gIMAGE* image_new   (const char* path);
+GWC_C_API gIMAGE* image_newA  (const char* path);
+GWC_C_API gIMAGE* image_newW  (const wchar_t* path);
 GWC_C_API void    image_delete(gIMAGE* image);
 
-GWC_C_API bool    image_isLoaded(const gIMAGE* image);
-GWC_C_API void    image_release (const gIMAGE* image);
-GWC_C_API HBITMAP image_get     (const gIMAGE* image);
+GWC_C_API bool image_load  (gIMAGE* image, const char* path);
+GWC_C_API bool image_loadA (gIMAGE* image, const char* path);
+GWC_C_API bool image_loadW (gIMAGE* image, const wchar_t* path);
+GWC_C_API void image_unload(gIMAGE* image);
+
+GWC_C_API bool image_isLoaded  (const gIMAGE* image);
+GWC_C_API bool image_isUnloaded(const gIMAGE* image);
 
 #endif // !GWC_IMAGE_H

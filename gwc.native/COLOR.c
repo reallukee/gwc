@@ -12,6 +12,8 @@
 
 #include "COLOR.h"
 
+#pragma unmanaged
+
 typedef struct gCOLOR
 {
     int alpha;

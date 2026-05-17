@@ -34,6 +34,10 @@
 // Assicurati di utilizzare versioni compatibili
 // dei binari e dei file di intestazione.
 //
+// GWC.Native richiede:
+//  GWC:
+//   [0.5.1]
+//
 
 #define GWC_VERSION_INCLUDE              051
 #define GWC_MIN_VERSION_INCLUDE          040
