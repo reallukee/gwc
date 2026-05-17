@@ -392,17 +392,13 @@ int main(int argc, const char* argv[])
 ### Requisiti
 
 > [!WARNING]
-> `GWC` è supportata su Linux/macOS tramite `Mono`.
-
-> [!WARNING]
+> `GWC` è supportata su Linux/macOS tramite `Mono`.<br />
 > `GWC.Mono` è supportata su Linux/macOS tramite `Mono`.
 
 * Mono Runtime 6.12.0
 
 > [!WARNING]
-> `GWC.Native` è supportata su Linux/macOS tramite `Wine`.
-
-> [!WARNING]
+> `GWC.Native` è supportata su Linux/macOS tramite `Wine`.<br />
 > `GWC.Native.Abst` è supportata su Linux/macOS tramite `Wine`.
 
 * Wine 10
