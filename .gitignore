@@ -1,3 +1,6 @@
+# Rider
+.idea/
+
 # Visual Studio
 .vs/
 ipch/
@@ -30,11 +33,11 @@ templates/**/include/
 templates/**/static/
 templates/**/shared/
 
-templates/**/*.zip
-
 # Repository
 *.temp/
 *.temp.*
+temp/
+temp.*
 
 # Windows
 [Dd]esktop.ini
