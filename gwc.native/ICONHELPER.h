@@ -19,6 +19,10 @@
 
 #include "ICON.h"
 
+#include <gdiplus.h>
+
+using namespace Gdiplus;
+
 typedef shared_ptr<void> NativeIcon;
 
 typedef struct gICON

@@ -19,6 +19,10 @@
 
 #include "Image.hpp"
 
+#include <gdiplus.h>
+
+using namespace Gdiplus;
+
 namespace gwc
 {
     class ImageHelper sealed
@@ -26,7 +30,7 @@ namespace gwc
 
     public:
 
-        static HBITMAP get(const gImage& image);
+        static Bitmap* get(const gImage& image);
 
     private:
 

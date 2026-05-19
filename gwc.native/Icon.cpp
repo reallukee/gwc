@@ -13,10 +13,6 @@
 #include "Icon.hpp"
 #include "IconHelper.hpp"
 
-#include <gdiplus.h>
-
-using namespace Gdiplus;
-
 #ifdef __cplusplus
 
 namespace gwc

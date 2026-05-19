@@ -19,6 +19,10 @@
 
 #include "Icon.hpp"
 
+#include <gdiplus.h>
+
+using namespace Gdiplus;
+
 namespace gwc
 {
     class IconHelper sealed

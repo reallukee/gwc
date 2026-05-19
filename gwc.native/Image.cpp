@@ -13,10 +13,6 @@
 #include "Image.hpp"
 #include "ImageHelper.hpp"
 
-#include <gdiplus.h>
-
-using namespace Gdiplus;
-
 #ifdef __cplusplus
 
 namespace gwc
@@ -90,32 +86,32 @@ namespace gwc
 
 
 
-    static HBITMAP loadImage(const wchar_t* path)
+    static Bitmap* loadImage(const wchar_t* path)
     {
         if (path == nullptr)
         {
             return nullptr;
         }
 
-        HBITMAP image = (HBITMAP)LoadImageW(
-            nullptr,
-            path,
-            IMAGE_BITMAP,
-            0,
-            0,
-            LR_LOADFROMFILE | LR_CREATEDIBSECTION
-        );
+        Bitmap* image = Bitmap::FromFile(path);
+
+        if (image->GetLastStatus() != Status::Ok)
+        {
+            image = nullptr;
+
+            return nullptr;
+        }
 
         return image;
     }
 
-    static NativeImage shareImage(HBITMAP image)
+    static NativeImage shareImage(Bitmap* image)
     {
-        auto destructor = [](HBITMAP image)
+        auto destructor = [](Bitmap* image)
         {
             if (image)
             {
-                DeleteObject(image);
+                delete image;
             }
         };
 
@@ -144,7 +140,7 @@ namespace gwc
             return false;
         }
 
-        HBITMAP _image = loadImage(path);
+        Bitmap* _image = loadImage(path);
 
         if (_image == nullptr)
         {
@@ -190,9 +186,9 @@ namespace gwc
 
 
 
-    HBITMAP ImageHelper::get(const gImage& image)
+    Bitmap* ImageHelper::get(const gImage& image)
     {
-        HBITMAP _image = static_cast<HBITMAP>(image.image.get());
+        Bitmap* _image = static_cast<Bitmap*>(image.image.get());
 
         return _image;
     }

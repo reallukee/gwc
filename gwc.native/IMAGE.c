@@ -13,10 +13,6 @@
 #include "IMAGE.h"
 #include "IMAGEHELPER.h"
 
-#include <gdiplus.h>
-
-using namespace Gdiplus;
-
 static wchar_t* strToWStr(const char* str)
 {
     int size = MultiByteToWideChar(
@@ -90,32 +86,32 @@ void image_delete(gIMAGE* image)
 
 
 
-static HBITMAP loadImage(const wchar_t* path)
+static Bitmap* loadImage(const wchar_t* path)
 {
     if (path == NULL)
     {
         return NULL;
     }
 
-    HBITMAP image = (HBITMAP)LoadImageW(
-        NULL,
-        path,
-        IMAGE_BITMAP,
-        0,
-        0,
-        LR_LOADFROMFILE | LR_CREATEDIBSECTION
-    );
+    Bitmap* image = Bitmap::FromFile(path);
+
+    if (image->GetLastStatus() != Status::Ok)
+    {
+        image = nullptr;
+
+        return nullptr;
+    }
 
     return image;
 }
 
-static NativeImage shareImage(HBITMAP image)
+static NativeImage shareImage(Bitmap* image)
 {
-    auto destructor = [](HBITMAP image)
+    auto destructor = [](Bitmap* image)
     {
         if (image)
         {
-            DeleteObject(image);
+            delete image;
         }
     };
 
@@ -154,7 +150,7 @@ bool image_loadW(gIMAGE* image, const wchar_t* path)
         return false;
     }
 
-    HBITMAP _image = loadImage(path);
+    Bitmap* _image = loadImage(path);
 
     if (_image == NULL)
     {
@@ -200,9 +196,9 @@ bool image_isUnloaded(const gIMAGE* image)
 
 
 
-HBITMAP imageHelper_get(const gIMAGE* image)
+Bitmap* imageHelper_get(const gIMAGE* image)
 {
-    HBITMAP _image = static_cast<HBITMAP>(image->image.get());
+    Bitmap* _image = static_cast<Bitmap*>(image->image.get());
 
     return _image;
 }

@@ -421,6 +421,77 @@ namespace gwc
 
 
 
+    static Drawing::Bitmap^ toManagedBitmap(Gdiplus::Bitmap* nativeBitmap)
+    {
+        if (!nativeBitmap)
+        {
+            return nullptr;
+        }
+
+        UINT width  = nativeBitmap->GetWidth();
+        UINT height = nativeBitmap->GetHeight();
+
+        Gdiplus::Rect nativeRect(
+            0,
+            0,
+            width,
+            height
+        );
+
+        Gdiplus::BitmapData nativeBitmapData;
+
+        bool result = nativeBitmap->LockBits(
+            &nativeRect,
+            Gdiplus::ImageLockModeRead,
+            PixelFormat32bppPARGB,
+            &nativeBitmapData
+        );
+
+        if (result != Gdiplus::Status::Ok)
+        {
+            return nullptr;
+        }
+
+        Drawing::Bitmap^ managedBitmap = nullptr;
+
+        try
+        {
+            managedBitmap = gcnew Drawing::Bitmap(
+                width,
+                height,
+                nativeBitmapData.Stride,
+                Drawing::Imaging::PixelFormat::Format32bppPArgb,
+                (IntPtr)nativeBitmapData.Scan0
+            );
+
+            Drawing::Rectangle managedRectangle(
+                0,
+                0,
+                width,
+                height
+            );
+
+            Drawing::Bitmap^ copy = managedBitmap->Clone(
+                managedRectangle,
+                Drawing::Imaging::PixelFormat::Format32bppPArgb
+            );
+
+            delete managedBitmap;
+
+            managedBitmap = copy;
+        }
+        catch (Exception^ ex)
+        {
+            Windows::Forms::MessageBox::Show(ex->Message);
+        }
+        finally
+        {
+            nativeBitmap->UnlockBits(&nativeBitmapData);
+        }
+
+        return managedBitmap;
+    }
+
     bool Window::drawImage(int x, int y, const gImage& image)
     {
         CC_BOOL_CPP(WindowHost, window);
@@ -430,7 +501,7 @@ namespace gwc
             return false;
         }
 
-        HBITMAP nativeImage = ImageHelper::get(image);
+        Bitmap* nativeImage = ImageHelper::get(image);
 
         if (nativeImage == nullptr)
         {
@@ -443,9 +514,7 @@ namespace gwc
 
         try
         {
-            IntPtr imageHandle = IntPtr(nativeImage);
-
-            managedImage = Drawing::Image::FromHbitmap(imageHandle);
+            managedImage = toManagedBitmap(nativeImage);
 
             result = _host->invoke()->DrawImage(x, y, managedImage);
         }

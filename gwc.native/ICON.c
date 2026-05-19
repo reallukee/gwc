@@ -13,10 +13,6 @@
 #include "ICON.h"
 #include "ICONHELPER.h"
 
-#include <gdiplus.h>
-
-using namespace Gdiplus;
-
 static wchar_t* strToWStr(const char* str)
 {
     int size = MultiByteToWideChar(

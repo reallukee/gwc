@@ -19,6 +19,10 @@
 
 #include "IMAGE.h"
 
+#include <gdiplus.h>
+
+using namespace Gdiplus;
+
 typedef shared_ptr<void> NativeImage;
 
 typedef struct gIMAGE
@@ -26,6 +30,6 @@ typedef struct gIMAGE
     NativeImage image;
 } gIMAGE;
 
-HBITMAP imageHelper_get(const gIMAGE* image);
+Bitmap* imageHelper_get(const gIMAGE* image);
 
 #endif // !GWC_IMAGEHELPER_H
