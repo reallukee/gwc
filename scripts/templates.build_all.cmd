@@ -9,8 +9,8 @@ PUSHD "%~dp0.."
 
 CALL scripts\templates.build.cmd
 
-FOR /F %%D in (config\templates.txt) DO (
-    SET INCLUDE=templates\%%D\include\gwc.native
+FOR /F %%T in (config\templates.txt) DO (
+    SET INCLUDE=templates\%%T\include\gwc.native
 
     IF NOT EXIST !INCLUDE! (
         MKDIR !INCLUDE! >NUL
@@ -35,8 +35,8 @@ FOR /F %%D in (config\templates.txt) DO (
     )
 )
 
-FOR /F %%D in (config\templates.abst.txt) DO (
-    SET INCLUDE=templates\%%D\include\gwc.native.abst
+FOR /F %%T in (config\templates.abst.txt) DO (
+    SET INCLUDE=templates\%%T\include\gwc.native.abst
 
     IF NOT EXIST !INCLUDE! (
         MKDIR !INCLUDE! >NUL

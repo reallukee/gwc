@@ -7,9 +7,9 @@ SETLOCAL ENABLEDELAYEDEXPANSION
 
 PUSHD "%~dp0.."
 
-FOR /F %%D in (config\templates.txt) DO (
-    SET STATIC=templates\%%D\static\gwc.native
-    SET SHARED=templates\%%D\shared\gwc.native
+FOR /F %%T in (config\templates.txt) DO (
+    SET STATIC=templates\%%T\static\gwc.native
+    SET SHARED=templates\%%T\shared\gwc.native
 
     IF NOT EXIST !STATIC! (
         MKDIR !STATIC! >NUL
@@ -20,28 +20,51 @@ FOR /F %%D in (config\templates.txt) DO (
     )
 
     FOR /F %%S in (config\static.txt) DO (
+        FOR %%F IN (bin\%%S)      DO SET      SAFE_SOURCE=%%~nxF
+        FOR %%F IN (!STATIC!\%%S) DO SET SAFE_DESTINATION=%%~nxF
+
         SET      SOURCE=bin\%%S
-        SET DESTINATION=!STATIC!
+        SET DESTINATION=!STATIC!\!SAFE_DESTINATION!
 
         IF EXIST !SOURCE! (
-            COPY !SOURCE! !DESTINATION! >NUL
+            IF EXIST !DESTINATION! (
+                FOR %%A in (!SOURCE!)      DO SET      SOURCE_TIME=%%~tA
+                FOR %%B in (!DESTINATION!) DO SET DESTINATION_TIME=%%~tB
+
+                IF !SOURCE_TIME! GTR !DESTINATION_TIME! (
+                    COPY !SOURCE! !DESTINATION! >NUL
+                )
+            ) ELSE (
+                COPY !SOURCE! !DESTINATION! >NUL
+            )
         )
     )
 
     FOR /F %%S in (config\shared.txt) DO (
+        FOR %%F IN (bin\%%S)      DO SET      SAFE_SOURCE=%%~nxF
+        FOR %%F IN (!SHARED!\%%S) DO SET SAFE_DESTINATION=%%~nxF
+
         SET      SOURCE=bin\%%S
-        SET DESTINATION=!SHARED!
+        SET DESTINATION=!SHARED!\!SAFE_DESTINATION!
 
         IF EXIST !SOURCE! (
-            COPY !SOURCE! !DESTINATION! >NUL
+            IF EXIST !DESTINATION! (
+                FOR %%A in (!SOURCE!)      DO SET      SOURCE_TIME=%%~tA
+                FOR %%B in (!DESTINATION!) DO SET DESTINATION_TIME=%%~tB
+
+                IF !SOURCE_TIME! GTR !DESTINATION_TIME! (
+                    COPY !SOURCE! !DESTINATION! >NUL
+                )
+            ) ELSE (
+                COPY !SOURCE! !DESTINATION! >NUL
+            )
         )
     )
 )
 
-
-FOR /F %%D in (config\templates.abst.txt) DO (
-    SET STATIC=templates\%%D\static\gwc.native.abst
-    SET SHARED=templates\%%D\shared\gwc.native.abst
+FOR /F %%T in (config\templates.abst.txt) DO (
+    SET STATIC=templates\%%T\static\gwc.native.abst
+    SET SHARED=templates\%%T\shared\gwc.native.abst
 
     IF NOT EXIST !STATIC! (
         MKDIR !STATIC! >NUL
@@ -52,20 +75,44 @@ FOR /F %%D in (config\templates.abst.txt) DO (
     )
 
     FOR /F %%S in (config\static.abst.txt) DO (
+        FOR %%F IN (bin\%%S)      DO SET      SAFE_SOURCE=%%~nxF
+        FOR %%F IN (!STATIC!\%%S) DO SET SAFE_DESTINATION=%%~nxF
+
         SET      SOURCE=bin\%%S
-        SET DESTINATION=!STATIC!
+        SET DESTINATION=!STATIC!\!SAFE_DESTINATION!
 
         IF EXIST !SOURCE! (
-            COPY !SOURCE! !DESTINATION! >NUL
+            IF EXIST !DESTINATION! (
+                FOR %%A in (!SOURCE!)      DO SET      SOURCE_TIME=%%~tA
+                FOR %%B in (!DESTINATION!) DO SET DESTINATION_TIME=%%~tB
+
+                IF !SOURCE_TIME! GTR !DESTINATION_TIME! (
+                    COPY !SOURCE! !DESTINATION! >NUL
+                )
+            ) ELSE (
+                COPY !SOURCE! !DESTINATION! >NUL
+            )
         )
     )
 
     FOR /F %%S in (config\shared.abst.txt) DO (
+        FOR %%F IN (bin\%%S)      DO SET      SAFE_SOURCE=%%~nxF
+        FOR %%F IN (!SHARED!\%%S) DO SET SAFE_DESTINATION=%%~nxF
+
         SET      SOURCE=bin\%%S
-        SET DESTINATION=!SHARED!
+        SET DESTINATION=!SHARED!\!SAFE_DESTINATION!
 
         IF EXIST !SOURCE! (
-            COPY !SOURCE! !DESTINATION! >NUL
+            IF EXIST !DESTINATION! (
+                FOR %%A in (!SOURCE!)      DO SET      SOURCE_TIME=%%~tA
+                FOR %%B in (!DESTINATION!) DO SET DESTINATION_TIME=%%~tB
+
+                IF !SOURCE_TIME! GTR !DESTINATION_TIME! (
+                    COPY !SOURCE! !DESTINATION! >NUL
+                )
+            ) ELSE (
+                COPY !SOURCE! !DESTINATION! >NUL
+            )
         )
     )
 )

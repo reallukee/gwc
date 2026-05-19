@@ -9,12 +9,34 @@ PUSHD "%~dp0"
 
 SET "PATH=%CD%;%CD%\scripts;%PATH%"
 
-IF EXIST "%PROGRAMFILES%\Microsoft Visual Studio\18\Community\Common7\Tools\vsdevcmd" (
-    CALL "%PROGRAMFILES%\Microsoft Visual Studio\18\Community\Common7\Tools\vsdevcmd" >NUL
+SET "VSWHERE=%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe"
+
+IF NOT EXIST "%VSWHERE%" (
+    EXIT /B 1
 )
 
-IF EXIST "%PROGRAMFILES% (x86)\Microsoft Visual Studio\18\BuildTools\Common7\Tools\vsdevcmd" (
-    CALL "%PROGRAMFILES% (x86)\Microsoft Visual Studio\18\BuildTools\Common7\Tools\vsdevcmd" >NUL
+FOR /F "usebackq delims=" %%I IN (`
+    "%VSWHERE%" -latest -products * -requires Microsoft.VisualStudio.Component.VC.CoreIde -property installationPath`
+) DO (
+    SET "VSPATH=%%I"
+)
+
+IF NOT DEFINED VSPATH (
+    FOR /F "usebackq delims=" %%I IN (`
+        "%VSWHERE%" -latest -products Microsoft.VisualStudio.Product.BuildTools -requires Microsoft.VisualStudio.Component.VC.CoreIde -property installationPath
+    `) DO (
+        SET "VSPATH=%%I"
+    )
+)
+
+IF NOT DEFINED VSPATH (
+    EXIT /B 1
+)
+
+SET "VSDEVCMD=%VSPATH%\Common7\Tools\VsDevCmd.bat"
+
+IF EXIST "%VSDEVCMD%" (
+    CALL "%VSDEVCMD%" >NUL
 )
 
 POPD
