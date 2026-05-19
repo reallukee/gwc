@@ -42,6 +42,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <None Include="update_gwc.ps1">
+      <Filter>GWC</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
     <ClInclude Include="include\gwc.native\export.h">
       <Filter>GWC\GWC.Native\Include</Filter>
     </ClInclude>

@@ -2,3 +2,5 @@ GWC.Abst.C.Application
 GWC.Abst.Cpp.Application
 GWC.Abst.C.EmptyApplication
 GWC.Abst.Cpp.EmptyApplication
+GWC.Abst.C.UpdatePack
+GWC.Abst.Cpp.UpdatePack

@@ -1,6 +1,6 @@
 ﻿<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
   <TemplateData>
-    <Name>GWC Abst C Empty Application (0.5.0)</Name>
+    <Name>GWC Abst C Empty Application (0.5.1)</Name>
     <Description>
       Fornisce un template per la creazione di un'applicazione GWC Abst vuota in C.
 GWC è un progetto Open-Source mantenuto su https://github.com/reallukee/gwc.
@@ -18,16 +18,17 @@ GWC è un progetto Open-Source mantenuto su https://github.com/reallukee/gwc.
     <ProvideDefaultName>true</ProvideDefaultName>
     <LocationField>Enabled</LocationField>
     <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
-    <Icon>__TemplateIcon.ico</Icon>
-    <PreviewImage>__PreviewImage.ico</PreviewImage>
+    <Icon>Icon.ico</Icon>
+    <PreviewImage>Icon.ico</PreviewImage>
   </TemplateData>
   <TemplateContent>
     <CustomParameters>
       <CustomParameter Name="$gwc_identifier$" Value="GWC.Native.Abst" />
-      <CustomParameter Name="$gwc_version$" Value="0.5.0" />
+      <CustomParameter Name="$gwc_version$" Value="0.5.1" />
     </CustomParameters>
     <Project TargetFileName="GWC.Abst.C.EmptyApplication.vcxproj" File="GWC.Abst.C.EmptyApplication.vcxproj" ReplaceParameters="true">
       <ProjectItem ReplaceParameters="false" TargetFileName="$projectname$.vcxproj.filters">GWC.Abst.C.EmptyApplication.vcxproj.filters</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="update_gwc.ps1">update_gwc.ps1</ProjectItem>
       <Folder Name="include\gwc.native" TargetFolderName="include\gwc.native">
         <ProjectItem ReplaceParameters="false" TargetFileName="export.h">export.h</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="header.h">header.h</ProjectItem>
@@ -85,12 +86,6 @@ GWC è un progetto Open-Source mantenuto su https://github.com/reallukee/gwc.
         <ProjectItem ReplaceParameters="false" TargetFileName="gwc.native.abst-ARM64.lib">gwc.native.abst-ARM64.lib</ProjectItem>
       </Folder>
       <Folder Name="shared\gwc.native.abst" TargetFolderName="shared\gwc.native.abst">
-        <ProjectItem ReplaceParameters="false" TargetFileName="gwc-d-x86.dll">gwc-d-x86.dll</ProjectItem>
-        <ProjectItem ReplaceParameters="false" TargetFileName="gwc-d-x64.dll">gwc-d-x64.dll</ProjectItem>
-        <ProjectItem ReplaceParameters="false" TargetFileName="gwc-d-ARM64.dll">gwc-d-ARM64.dll</ProjectItem>
-        <ProjectItem ReplaceParameters="false" TargetFileName="gwc-x86.dll">gwc-x86.dll</ProjectItem>
-        <ProjectItem ReplaceParameters="false" TargetFileName="gwc-x64.dll">gwc-x64.dll</ProjectItem>
-        <ProjectItem ReplaceParameters="false" TargetFileName="gwc-ARM64.dll">gwc-ARM64.dll</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="gwc.native.abst-d-x86.dll">gwc.native.abst-d-x86.dll</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="gwc.native.abst-d-x64.dll">gwc.native.abst-d-x64.dll</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="gwc.native.abst-d-ARM64.dll">gwc.native.abst-d-ARM64.dll</ProjectItem>

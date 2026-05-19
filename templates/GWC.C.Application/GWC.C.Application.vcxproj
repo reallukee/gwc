@@ -245,6 +245,9 @@ IF NOT EXIST "$(OutputPath)gwc.native-$(PlatformTarget).dll" COPY "$(ProjectDir)
     <ClCompile Include="main.c" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="update_gwc.ps1" />
+  </ItemGroup>
+  <ItemGroup>
     <ClInclude Include="include\gwc.native\export.h" />
     <ClInclude Include="include\gwc.native\header.h" />
     <ClInclude Include="include\gwc.native\gwc.h" />
