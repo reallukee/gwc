@@ -1,6 +1,6 @@
-:: :.:.:.:.:
-:: build.cmd
-:: :.:.:.:.:
+:: :.:.:.:.:.:.:.
+:: clear_repo.cmd
+:: :.:.:.:.:.:.:.
 
 @ECHO OFF
 SETLOCAL ENABLEDELAYEDEXPANSION
