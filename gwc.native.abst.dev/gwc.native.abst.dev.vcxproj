@@ -285,6 +285,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\assets\gwc.ico" />
+    <Image Include="..\assets\gwc_dark.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

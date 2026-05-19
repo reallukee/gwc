@@ -9,6 +9,8 @@
     <AssemblyTitle>GWC.Mono</AssemblyTitle>
     <RootNamespace>Reallukee.GWC</RootNamespace>
 
+    <ApplicationIcon>..\assets\gwc.ico</ApplicationIcon>
+
     <ImplicitUsings>disable</ImplicitUsings>
 
     <Platforms>x86;x64;arm64</Platforms>
@@ -45,6 +47,10 @@
   <ItemGroup>
     <Compile Update="*.cs" Link="src\%(Filename)%(Extension)" />
     <Compile Remove="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\assets\gwc.ico" Link="assets\%(Filename)%(Extension)" />
   </ItemGroup>
 
   <ItemGroup>

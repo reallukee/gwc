@@ -122,4 +122,8 @@
     <value>..\..\assets\gwc.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
     <comment>GWC Icon</comment>
   </data>
+  <data name="AppIconDark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\assets\gwc_dark.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <comment>GWC Icon Dark</comment>
+  </data>
 </root>

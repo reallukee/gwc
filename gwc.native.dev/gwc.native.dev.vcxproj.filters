@@ -270,5 +270,8 @@
     <Image Include="..\assets\gwc.ico">
       <Filter>File di risorse</Filter>
     </Image>
+    <Image Include="..\assets\gwc_dark.ico">
+      <Filter>File di risorse</Filter>
+    </Image>
   </ItemGroup>
 </Project>

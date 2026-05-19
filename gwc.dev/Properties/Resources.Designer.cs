@@ -69,5 +69,15 @@ namespace Reallukee.GWC.Properties {
                 return ((System.Drawing.Icon)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Icon simile a (Icona).
+        /// </summary>
+        internal static System.Drawing.Icon AppIconDark {
+            get {
+                object obj = ResourceManager.GetObject("AppIconDark", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
     }
 }
