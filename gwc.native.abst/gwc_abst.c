@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.:.:.:
 // GWC.Native.Abst
-// v0.5.1
+// v0.6.0
 // :.:.:.:.:.:.:.:
 //
 // https://github.com/reallukee/gwc
@@ -12,8 +12,8 @@
 
 #include "gwc_abst.h"
 
-const int  GWC_ABST_VERSION                = 051;
-const int  GWC_ABST_MIN_VERSION            = 050;
+const int  GWC_ABST_VERSION                = 060;
+const int  GWC_ABST_MIN_VERSION            = 060;
 
-const char GWC_ABST_FRIENDLY_VERSION[]     = "0.5.1";
-const char GWC_ABST_FRIENDLY_MIN_VERSION[] = "0.5.0";
+const char GWC_ABST_FRIENDLY_VERSION[]     = "0.6.0";
+const char GWC_ABST_FRIENDLY_MIN_VERSION[] = "0.6.0";

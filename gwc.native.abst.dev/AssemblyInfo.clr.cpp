@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.:.:.:
 // GWC.Native.Abst
-// v0.5.1
+// v0.6.0
 // :.:.:.:.:.:.:.:
 //
 // https://github.com/reallukee/gwc
@@ -27,7 +27,7 @@
 
 [assembly:Guid("2f20bd5b-6244-41d5-9726-21d75744dbf4")];
 
-[assembly:AssemblyVersionAttribute    (L"0.5.1.0")];
-[assembly:AssemblyFileVersionAttribute(L"0.5.1.0")];
+[assembly:AssemblyVersionAttribute    (L"0.6.0.0")];
+[assembly:AssemblyFileVersionAttribute(L"0.6.0.0")];
 
 #endif // __cplusplus_cli
