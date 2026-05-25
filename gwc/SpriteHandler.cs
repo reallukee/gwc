@@ -1,26 +1,36 @@
-//
-// :.:.:.
-// GWC
-// v0.3.1
-// :.:.:.
-//
-// https://github.com/reallukee/gwc
-//
-// SpriteHandler.cs
-//  Licenza MIT
-//
+/*
+ * :.:.:.:.:.:.:.:.
+ * GWC
+ * Graphical Window
+ * for Console Apps
+ * :.:.:.:.:.:.:.:.
+ *
+ * A Graphics Library
+ *
+ * https://github.com/reallukee/gwc
+ *
+ * Nome file : SpriteHandler.cs
+ *
+ * Titolo    : SPRITEHANDLER
+ * Sommario  : Contiene l'implementazione della
+ *             classe SpriteHandler.
+ *
+ * Autore    : Luca Pollicino
+ *             (https://github.com/reallukee)
+ * Versione  : v0.6.0
+ *             NOTA BENE: Campo INDICATIVO!
+ * Licenza   : MIT
+ */
 
 using System;
-using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.Globalization;
+using System.Linq;
 using System.Reflection;
 using System.Resources;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
 
 using System.Drawing;
@@ -30,53 +40,66 @@ namespace Reallukee.GWC.Interop
 {
     public static class SpriteHandler
     {
+        private static IntPtr GCAlloc(Sprite sprite)
+        {
+            GCHandle gcHandle = GCHandle.Alloc(sprite);
+
+            IntPtr handle = GCHandle.ToIntPtr(gcHandle);
+
+            return handle;
+        }
+
         public static IntPtr Alloc(int width, int height)
         {
-            Sprite window = new Sprite(width, height);
+            Sprite sprite = new Sprite(width, height);
 
-            GCHandle managedHandle = GCHandle.Alloc(window);
-
-            IntPtr nativeHandle = GCHandle.ToIntPtr(managedHandle);
-
-            return nativeHandle;
+            return GCAlloc(sprite);
         }
 
         public static IntPtr Alloc()
         {
-            Sprite window = new Sprite();
+            Sprite sprite = new Sprite();
 
-            GCHandle managedHandle = GCHandle.Alloc(window);
-
-            IntPtr nativeHandle = GCHandle.ToIntPtr(managedHandle);
-
-            return nativeHandle;
+            return GCAlloc(sprite);
         }
 
 
 
-        public static bool Free(IntPtr handle)
+        public static void Free(IntPtr handle)
         {
             if (handle == IntPtr.Zero)
             {
-                return false;
+                throw new ArgumentNullException(
+                    nameof(handle), "Handle cannot null."
+                );
             }
 
-            IntPtr nativeHandle = handle;
+            GCHandle gcHandle;
 
-            GCHandle managedHandle = GCHandle.FromIntPtr(nativeHandle);
+            try
+            {
+                gcHandle = GCHandle.FromIntPtr(handle);
+            }
+            catch
+            {
+                throw new ArgumentException(
+                    nameof(handle), "Invalid GCHandle pointer."
+                );
+            }
 
-            managedHandle.Free();
+            if (!gcHandle.IsAllocated)
+            {
+                throw new InvalidOperationException("GCHandle is not allocated.");
+            }
 
-            return true;
+            gcHandle.Free();
         }
 
 
 
         public static bool IsNull(IntPtr handle)
         {
-            IntPtr nativeHandle = handle;
-
-            return nativeHandle == IntPtr.Zero;
+            return handle == IntPtr.Zero;
         }
 
 
@@ -85,16 +108,48 @@ namespace Reallukee.GWC.Interop
         {
             if (handle == IntPtr.Zero)
             {
-                return null;
+                throw new ArgumentNullException(
+                    nameof(handle), "Handle cannot null."
+                );
             }
 
-            IntPtr nativeHandle = handle;
+            GCHandle gcHandle;
 
-            GCHandle managedHandle = GCHandle.FromIntPtr(nativeHandle);
+            try
+            {
+                gcHandle = GCHandle.FromIntPtr(handle);
+            }
+            catch
+            {
+                throw new ArgumentException(
+                    nameof(handle), "Invalid GCHandle pointer."
+                );
+            }
 
-            Sprite window = (Sprite)managedHandle.Target;
+            if (!gcHandle.IsAllocated)
+            {
+                throw new InvalidOperationException(
+                    "GCHandle is not allocated."
+                );
+            }
 
-            return window;
+            object target = gcHandle.Target;
+
+            if (target == null)
+            {
+                throw new InvalidOperationException(
+                    "GCHandle target is null."
+                );
+            }
+
+            if (!(target is Sprite sprite))
+            {
+                throw new InvalidCastException(
+                    $"GCHandle target type mismatch {nameof(Sprite)}."
+                );
+            }
+
+            return sprite;
         }
     }
 }

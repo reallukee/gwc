@@ -1,50 +1,76 @@
-//
-// :.:.:.
-// GWC
-// v0.3.0
-// :.:.:.
-//
-// https://github.com/reallukee/gwc
-//
-// BorderEllipse.cs
-//  Licenza MIT
-//
+/*
+ * :.:.:.:.:.:.:.:.
+ * GWC
+ * Graphical Window
+ * for Console Apps
+ * :.:.:.:.:.:.:.:.
+ *
+ * A Graphics Library
+ *
+ * https://github.com/reallukee/gwc
+ *
+ * Nome file : BorderEllipse.cs
+ *
+ * Titolo    : BORDERELLIPSE
+ * Sommario  : Contiene l'implementazione della
+ *             classe BorderEllipse.
+ *
+ * Autore    : Luca Pollicino
+ *             (https://github.com/reallukee)
+ * Versione  : v0.6.0
+ *             NOTA BENE: Campo INDICATIVO!
+ * Licenza   : MIT
+ */
 
 using System;
-using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.Globalization;
+using System.Linq;
 using System.Reflection;
 using System.Resources;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
 
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Reallukee.GWC
+namespace Reallukee.GWC.Internal
 {
     internal class BorderEllipse : BaseEllipse, IRenderable, IBorderColor
     {
         public BorderEllipse(Color borderColor, int x, int y, int width, int height) : base(x, y, width, height)
         {
-            BorderColor = borderColor;
+            this.BorderColor = borderColor;
         }
 
         public BorderEllipse(Color borderColor, Point location, Size size) : base(location, size)
         {
-            BorderColor = borderColor;
+            this.BorderColor = borderColor;
         }
 
-        public BorderEllipse(int x, int y, int width, int height) : this(Color.Black, x, y, width, height) { }
+        public BorderEllipse(int x, int y, int width, int height) : this(Color.Black, x, y, width, height)
+        {
 
-        public BorderEllipse(Point location, Size size) : this(Color.Black, location, size) { }
+        }
 
-        public BorderEllipse() : this(Color.Black, 0, 0, 0, 0) { }
+        public BorderEllipse(Point location, Size size) : this(Color.Black, location, size)
+        {
+
+        }
+
+        public BorderEllipse() : this(Color.Black, 0, 0, 0, 0)
+        {
+
+        }
+
+        public BorderEllipse(BorderEllipse other) : base(other)
+        {
+            ThrowIfArgumentNull(nameof(other), other);
+
+            this.BorderColor = other.BorderColor;
+        }
 
 
 
@@ -73,7 +99,7 @@ namespace Reallukee.GWC
                 return true;
             }
 
-            if (left == null || right == null)
+            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
             {
                 return false;
             }
@@ -98,7 +124,10 @@ namespace Reallukee.GWC
 
         public override bool Equals(object obj)
         {
-            BorderEllipse other = obj as BorderEllipse;
+            if (!(obj is BorderEllipse other))
+            {
+                return false;
+            }
 
             return this == other;
         }

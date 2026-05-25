@@ -1,26 +1,36 @@
-//
-// :.:.:.
-// GWC
-// v0.5.0
-// :.:.:.
-//
-// https://github.com/reallukee/gwc
-//
-// Program.cs
-//  Licenza MIT
-//
+/*
+ * :.:.:.:.:.:.:.:.
+ * GWC
+ * Graphical Window
+ * for Console Apps
+ * :.:.:.:.:.:.:.:.
+ *
+ * A Graphics Library
+ *
+ * https://github.com/reallukee/gwc
+ *
+ * Nome file : Program.cs
+ *
+ * Titolo    : PROGRAM
+ * Sommario  : Contiene l'implementazione della
+ *             classe Program.
+ *
+ * Autore    : Luca Pollicino
+ *             (https://github.com/reallukee)
+ * Versione  : v0.6.0
+ *             NOTA BENE: Campo INDICATIVO!
+ * Licenza   : MIT
+ */
 
 using System;
-using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.Globalization;
+using System.Linq;
 using System.Reflection;
 using System.Resources;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
 
 using System.Drawing;
@@ -36,6 +46,18 @@ namespace Reallukee.GWC
 
             window.Open();
 
+            Loop(window);
+
+            if (window.IsOpen)
+            {
+                window.Close();
+            }
+
+            window.Dispose();
+        }
+
+        static void Loop(Window window)
+        {
             bool loop = true;
 
             while (window.IsOpen && loop)
@@ -55,17 +77,17 @@ namespace Reallukee.GWC
                     }
                 }
 
+                bool exit = window.IsKeyDownInBuffer(Keys.None, Keys.Escape);
+
+                if (exit)
+                {
+                    loop = false;
+
+                    continue;
+                }
+
                 window.Wait(100);
             }
-
-            if (window.IsOpen)
-            {
-                window.Close();
-            }
-
-            window.Dispose();
-
-            Environment.Exit(0);
         }
     }
 }

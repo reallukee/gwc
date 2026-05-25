@@ -1,34 +1,44 @@
-//
-// :.:.:.
-// GWC
-// v0.5.0
-// :.:.:.
-//
-// https://github.com/reallukee/gwc
-//
-// BaseEllipse.cs
-//  Licenza MIT
-//
+/*
+ * :.:.:.:.:.:.:.:.
+ * GWC
+ * Graphical Window
+ * for Console Apps
+ * :.:.:.:.:.:.:.:.
+ *
+ * A Graphics Library
+ *
+ * https://github.com/reallukee/gwc
+ *
+ * Nome file : BaseEllipse.cs
+ *
+ * Titolo    : BASEELLIPSE
+ * Sommario  : Contiene l'implementazione della
+ *             classe BaseEllipse.
+ *
+ * Autore    : Luca Pollicino
+ *             (https://github.com/reallukee)
+ * Versione  : v0.6.0
+ *             NOTA BENE: Campo INDICATIVO!
+ * Licenza   : MIT
+ */
 
 using System;
-using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.Globalization;
+using System.Linq;
 using System.Reflection;
 using System.Resources;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
 
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Reallukee.GWC
+namespace Reallukee.GWC.Internal
 {
-    internal abstract class BaseEllipse : IFigure
+    internal class BaseEllipse : IFigure
     {
         public BaseEllipse(int x, int y, int width, int height)
         {
@@ -38,47 +48,187 @@ namespace Reallukee.GWC
             this.Height = height;
         }
 
-        public BaseEllipse(Point location, Size size)
+        public BaseEllipse(Point location, Size size) : this(
+            location.X,
+            location.Y,
+            size.Width,
+            size.Height
+        )
         {
-            this.X      = location.X;
-            this.Y      = location.Y;
-            this.Width  = size.Width;
-            this.Height = size.Height;
+
         }
 
-        public BaseEllipse() : this(0, 0, 0, 0) { }
+        public BaseEllipse() : this(0, 0, 0, 0)
+        {
+
+        }
+
+        public BaseEllipse(BaseEllipse other)
+        {
+            ThrowIfArgumentNull(nameof(other), other);
+
+            this.X      = other.X;
+            this.Y      = other.Y;
+            this.Width  = other.Width;
+            this.Height = other.Height;
+        }
 
 
+
+        protected static void ThrowIfArgumentNull(string name, object value)
+        {
+            if (value == null)
+            {
+                string message = "Object cannot null.";
+
+                throw new ArgumentNullException(name, message);
+            }
+        }
+
+
+
+        protected delegate (bool Invalid, string Message) RangeCheck(int value);
+
+        protected static RangeCheck IsLessThen(int min)
+        {
+            return value =>
+            {
+                if (value < min)
+                {
+                    string message = $"Value cannot be less than {min}.";
+
+                    return (true, message);
+                }
+
+                return (false, null);
+            };
+        }
+
+        protected static RangeCheck IsGreaterThan(int max)
+        {
+            return value =>
+            {
+                if (value > max)
+                {
+                    string message = $"Value cannot be greater than {max}.";
+
+                    return (true, message);
+                }
+
+                return (false, null);
+            };
+        }
+
+        protected static void ThrowIfArgumentOutOfRange(
+            string name, int value, params RangeCheck[] rangeChecks
+        )
+        {
+            foreach (var rangeCheck in rangeChecks)
+            {
+                (bool invalid, string message) = rangeCheck(value);
+
+                if (invalid)
+                {
+                    throw new ArgumentOutOfRangeException(name, message);
+                }
+            }
+        }
+
+
+
+        private int x;
 
         public int X
         {
-            get;
-            set;
+            get
+            {
+                return x;
+            }
+
+            set
+            {
+                ThrowIfArgumentOutOfRange(nameof(X), value, IsLessThen(0));
+
+                x = value;
+            }
         }
+
+        private int y;
 
         public int Y
         {
-            get;
-            set;
+            get
+            {
+                return y;
+            }
+
+            set
+            {
+                ThrowIfArgumentOutOfRange(nameof(Y), value, IsLessThen(0));
+
+                y = value;
+            }
         }
+
+        private int width;
 
         public int Width
         {
-            get;
-            set;
+            get
+            {
+                return width;
+            }
+
+            set
+            {
+                ThrowIfArgumentOutOfRange(nameof(Width), value, IsLessThen(0));
+
+                width = value;
+            }
         }
+
+        private int height;
 
         public int Height
         {
-            get;
-            set;
+            get
+            {
+                return height;
+            }
+
+            set
+            {
+                ThrowIfArgumentOutOfRange(nameof(Height), value, IsLessThen(0));
+
+                height = value;
+            }
         }
 
 
 
-        public Rectangle Bounds   => new Rectangle(X, Y, Width, Height);
-        public Size      Size     => new Size     (Width, Height);
-        public Point     Location => new Point    (X, Y);
+        public Rectangle Bounds
+        {
+            get
+            {
+                return new Rectangle(X, Y, Width, Height);
+            }
+        }
+
+        public Size Size
+        {
+            get
+            {
+                return new Size(Width, Height);
+            }
+        }
+
+        public Point Location
+        {
+            get
+            {
+                return new Point(X, Y);
+            }
+        }
 
 
 
@@ -89,7 +239,7 @@ namespace Reallukee.GWC
                 return true;
             }
 
-            if (left == null || right == null)
+            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
             {
                 return false;
             }
@@ -109,7 +259,10 @@ namespace Reallukee.GWC
 
         public override bool Equals(object obj)
         {
-            BaseEllipse other = obj as BaseEllipse;
+            if (!(obj is BaseEllipse other))
+            {
+                return false;
+            }
 
             return this == other;
         }

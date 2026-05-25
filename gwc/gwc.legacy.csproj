@@ -68,6 +68,7 @@
     <Compile Include="FillEllipse.cs" />
     <Compile Include="BaseImage.cs" />
     <Compile Include="BaseIcon.cs" />
+    <Compile Include="NativeInterop" />
     <Compile Include="Render.cs" />
     <Compile Include="WindowForm.cs">
       <SubType>Form</SubType>

@@ -19,7 +19,7 @@
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <PackageId>GWC.Mono.Dev</PackageId>
     <Title>GWC Mono Dev</Title>
-    <Version>0.5.1</Version>
+    <Version>0.6.0</Version>
     <Authors>Luca Pollicino</Authors>
     <Company>Luca Pollicino</Company>
     <Product>GWC</Product>
@@ -31,22 +31,28 @@
     <RepositoryUrl>https://github.com/reallukee/gwc</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>c;cpp;c-sharp;desktop;library</PackageTags>
-    <PackageReleaseNotes>GWC 0.5.1</PackageReleaseNotes>
+    <PackageReleaseNotes>GWC 0.6.0</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <AssemblyName>$(AssemblyName)-d-$(Platform)</AssemblyName>
+
+    <DefineConstants>$(DefineConstants);EXPERIMENTAL</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
     <AssemblyName>$(AssemblyName)-$(Platform)</AssemblyName>
+
+    <DefineConstants>$(DefineConstants);EXPERIMENTAL</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Update="*.cs" Link="src\%(Filename)%(Extension)" />
+
     <Compile Remove="Properties\AssemblyInfo.cs" />
+
     <Compile Include="..\gwc\*.cs" Link="src\gwc\%(Filename)%(Extension)" />
   </ItemGroup>
 

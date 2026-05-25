@@ -1,26 +1,36 @@
-//
-// :.:.:.
-// GWC
-// v0.2.0
-// :.:.:.
-//
-// https://github.com/reallukee/gwc
-//
-// Render.cs
-//  Licenza MIT
-//
+/*
+ * :.:.:.:.:.:.:.:.
+ * GWC
+ * Graphical Window
+ * for Console Apps
+ * :.:.:.:.:.:.:.:.
+ *
+ * A Graphics Library
+ *
+ * https://github.com/reallukee/gwc
+ *
+ * Nome file : Render.cs
+ *
+ * Titolo    : RENDER
+ * Sommario  : Contiene l'implementazione della
+ *             classe Render.
+ *
+ * Autore    : Luca Pollicino
+ *             (https://github.com/reallukee)
+ * Versione  : v0.2.0
+ *             NOTA BENE: Campo INDICATIVO!
+ * Licenza   : MIT
+ */
 
 using System;
-using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.Globalization;
+using System.Linq;
 using System.Reflection;
 using System.Resources;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
 
 using System.Drawing;
@@ -34,7 +44,10 @@ namespace Reallukee.GWC
 
         public static int RefreshRate
         {
-            get => refreshRate;
+            get
+            {
+                return refreshRate;
+            }
 
             set
             {
@@ -51,13 +64,21 @@ namespace Reallukee.GWC
             }
         }
 
-        public static void SetDefaultRefreshRate() => RefreshRate = 60;
+        public static void SetDefaultRefreshRate()
+        {
+            RefreshRate = 60;
+        }
+
+
 
         private static int dutyCycle = 80;
 
         public static int DutyCycle
         {
-            get => dutyCycle;
+            get
+            {
+                return dutyCycle;
+            }
 
             set
             {
@@ -74,22 +95,43 @@ namespace Reallukee.GWC
             }
         }
 
-        public static void SetDefaultDutyCycle() => DutyCycle = 80;
+        public static void SetDefaultDutyCycle()
+        {
+            DutyCycle = 80;
+        }
+
+
 
         private static double frameTime = 16.66;
 
         public static double FrameTime
         {
-            get         => frameTime;
-            private set => frameTime = value;
+            get
+            {
+                return frameTime;
+            }
+
+            private set
+            {
+                frameTime = value;
+            }
         }
+
+
 
         private static double utilFrameTime = 13.33;
 
         public static double UtilFrameTime
         {
-            get         => utilFrameTime;
-            private set => utilFrameTime = value;
+            get
+            {
+                return utilFrameTime;
+            }
+
+            private set
+            {
+                utilFrameTime = value;
+            }
         }
     }
 }

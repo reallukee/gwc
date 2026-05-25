@@ -1,14 +1,26 @@
-//
-// :.:.:.
-// GWC
-// v0.5.1
-// :.:.:.
-//
-// https://github.com/reallukee/gwc
-//
-// AssemblyInfo.cs
-//  Licenza MIT
-//
+/*
+ * :.:.:.:.:.:.:.:.
+ * GWC
+ * Graphical Window
+ * for Console Apps
+ * :.:.:.:.:.:.:.:.
+ *
+ * A Graphics Library
+ *
+ * https://github.com/reallukee/gwc
+ *
+ * Nome file : AssemblyInfo.cs
+ *
+ * Titolo    : ASSEMBLYINFO
+ * Sommario  : Contiene l'implementazione della
+ *             classe AssemblyInfo.
+ *
+ * Autore    : Luca Pollicino
+ *             (https://github.com/reallukee)
+ * Versione  : v0.6.0
+ *             NOTA BENE: Campo INDICATIVO!
+ * Licenza   : MIT
+ */
 
 using System;
 using System.Collections;
@@ -39,5 +51,5 @@ using System.Windows.Forms;
 
 [assembly: Guid("e3352e34-8033-4f44-ae88-7e053e6d11e7")]
 
-[assembly: AssemblyVersion    ("0.5.1.0")]
-[assembly: AssemblyFileVersion("0.5.1.0")]
+[assembly: AssemblyVersion    ("0.6.0.0")]
+[assembly: AssemblyFileVersion("0.6.0.0")]

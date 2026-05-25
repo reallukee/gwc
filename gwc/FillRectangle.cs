@@ -1,50 +1,76 @@
-//
-// :.:.:.
-// GWC
-// v0.3.0
-// :.:.:.
-//
-// https://github.com/reallukee/gwc
-//
-// FillRectangle.cs
-//  Licenza MIT
-//
+/*
+ * :.:.:.:.:.:.:.:.
+ * GWC
+ * Graphical Window
+ * for Console Apps
+ * :.:.:.:.:.:.:.:.
+ *
+ * A Graphics Library
+ *
+ * https://github.com/reallukee/gwc
+ *
+ * Nome file : FillRectangle.cs
+ *
+ * Titolo    : FILLRECTANGLE
+ * Sommario  : Contiene l'implementazione della
+ *             classe FillRectangle.
+ *
+ * Autore    : Luca Pollicino
+ *             (https://github.com/reallukee)
+ * Versione  : v0.6.0
+ *             NOTA BENE: Campo INDICATIVO!
+ * Licenza   : MIT
+ */
 
 using System;
-using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.Globalization;
+using System.Linq;
 using System.Reflection;
 using System.Resources;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
 
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Reallukee.GWC
+namespace Reallukee.GWC.Internal
 {
     internal class FillRectangle : BaseRectangle, IRenderable, IFillColor
     {
         public FillRectangle(Color fillColor, int x, int y, int width, int height) : base(x, y, width, height)
         {
-            FillColor = fillColor;
+            this.FillColor = fillColor;
         }
 
         public FillRectangle(Color fillColor, Point location, Size size) : base(location, size)
         {
-            FillColor = fillColor;
+            this.FillColor = fillColor;
         }
 
-        public FillRectangle(int x, int y, int width, int height) : this(Color.Green, x, y, width, height) { }
+        public FillRectangle(int x, int y, int width, int height) : this(Color.Green, x, y, width, height)
+        {
 
-        public FillRectangle(Point location, Size size) : this(Color.Green, location, size) { }
+        }
 
-        public FillRectangle() : this(Color.Green, 0, 0, 0, 0) { }
+        public FillRectangle(Point location, Size size) : this(Color.Green, location, size)
+        {
+
+        }
+
+        public FillRectangle() : this(Color.Green, 0, 0, 0, 0)
+        {
+
+        }
+
+        public FillRectangle(FillRectangle other) : base(other)
+        {
+            ThrowIfArgumentNull(nameof(other), other);
+
+            this.FillColor = other.FillColor;
+        }
 
 
 
@@ -73,7 +99,7 @@ namespace Reallukee.GWC
                 return true;
             }
 
-            if (left == null || right == null)
+            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
             {
                 return false;
             }
@@ -98,7 +124,10 @@ namespace Reallukee.GWC
 
         public override bool Equals(object obj)
         {
-            FillRectangle other = obj as FillRectangle;
+            if (!(obj is FillRectangle other))
+            {
+                return false;
+            }
 
             return this == other;
         }

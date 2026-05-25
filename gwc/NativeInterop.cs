@@ -9,15 +9,15 @@
  *
  * https://github.com/reallukee/gwc
  *
- * Nome file : IBorderColor.cs
+ * Nome file : NativeInterop
  *
- * Titolo    : IBORDERCOLOR
+ * Titolo    : NATIVEINTEROP
  * Sommario  : Contiene l'implementazione della
- *             classe IBorderColor.
+ *             classe NativeInterop.
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
- * Versione  : v0.3.0
+ * Versione  : v0.6.0
  *             NOTA BENE: Campo INDICATIVO!
  * Licenza   : MIT
  */
@@ -36,14 +36,26 @@ using System.Threading;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Reallukee.GWC.Internal
+using Microsoft.Win32;
+
+namespace Reallukee.GWC.Interop
 {
-    internal interface IBorderColor
+    internal static class NativeInterop
     {
-        Color BorderColor
-        {
-            get;
-            set;
-        }
+        [DllImport("dwmapi.dll")]
+        public static extern int DwmSetWindowAttribute(
+            IntPtr  hwnd,
+            int     dwAttribute,
+            ref int pvAttribute,
+            int     cbAttribute
+        );
+
+        [DllImport("dwmapi.dll")]
+        public static extern int DwmGetWindowAttribute(
+            IntPtr  hwnd,
+            int     attribute,
+            out int pvAttribute,
+            int     cbAttribute
+        );
     }
 }

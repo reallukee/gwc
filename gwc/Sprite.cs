@@ -1,52 +1,57 @@
-//
-// :.:.:.
-// GWC
-// v0.5.0
-// :.:.:.
-//
-// https://github.com/reallukee/gwc
-//
-// Sprite.cs
-//  Licenza MIT
-//
+/*
+ * :.:.:.:.:.:.:.:.
+ * GWC
+ * Graphical Window
+ * for Console Apps
+ * :.:.:.:.:.:.:.:.
+ *
+ * A Graphics Library
+ *
+ * https://github.com/reallukee/gwc
+ *
+ * Nome file : Sprite.cs
+ *
+ * Titolo    : SPRITE
+ * Sommario  : Contiene l'implementazione della
+ *             classe Sprite.
+ *
+ * Autore    : Luca Pollicino
+ *             (https://github.com/reallukee)
+ * Versione  : v0.6.0
+ *             NOTA BENE: Campo INDICATIVO!
+ * Licenza   : MIT
+ */
 
 using System;
-using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.Globalization;
+using System.Linq;
 using System.Reflection;
 using System.Resources;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
 
 using System.Drawing;
 using System.Windows.Forms;
 
+using Reallukee.GWC.Internal;
+using Reallukee.GWC.Interop;
+
 namespace Reallukee.GWC
 {
-    public sealed class Sprite : IDisposable, IRenderable, IFillColor, IBorderColor
+    public sealed class Sprite : IDisposable, IRenderable, IBorderColor, IFillColor
     {
-        internal const int MaxBufferLength = 10000;
+        public const int MaxBufferLength = 10000;
+
+        private bool disposed;
 
         public Sprite(int width, int height)
         {
-            if (width <= 0)
-            {
-                throw new ArgumentOutOfRangeException(
-                    nameof(width), "Width cannot be zero or negative."
-                );
-            }
+            ThrowIfArgumentOutOfRange(nameof(width), width, IsLessOrEqualThen(0));
 
-            if (height <= 0)
-            {
-                throw new ArgumentOutOfRangeException(
-                    nameof(height), "Height cannot be zero or negative."
-                );
-            }
+            ThrowIfArgumentOutOfRange(nameof(height), height, IsLessOrEqualThen(0));
 
             InitBitmap(width, height);
 
@@ -54,18 +59,124 @@ namespace Reallukee.GWC
 
             BorderColor = Color.Black;
             FillColor   = Color.Green;
+
+            disposed = false;
         }
 
-        public Sprite() : this(800, 600) { }
-
-        ~Sprite()
+        public Sprite() : this(800, 600)
         {
-            Dispose();
+
+        }
+
+        public Sprite(Sprite other)
+        {
+            ThrowIfArgumentNull(nameof(other), other);
+
+            ThrowIfObjectDisposed(nameof(other), other.disposed);
+
+            InitBitmap(other.Width, other.Height);
+
+            InitBuffer(other.Width, other.Height);
+
+            BorderColor = Color.Black;
+            FillColor = Color.Green;
+
+            disposed = false;
         }
 
         public void Dispose()
         {
-            Bitmap?.Dispose();
+            Dispose(true);
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                Bitmap?.Dispose();
+
+                Bitmap = null;
+            }
+
+            disposed = true;
+        }
+
+
+
+        private static void ThrowIfObjectDisposed(string name, bool disposed)
+        {
+            if (disposed)
+            {
+                string message = "Object is disposed.";
+
+                throw new ArgumentNullException(name, message);
+            }
+        }
+
+
+
+        private static void ThrowIfArgumentNull(string name, object value)
+        {
+            if (value == null)
+            {
+                string message = "Object cannot null.";
+
+                throw new ArgumentNullException(name, message);
+            }
+        }
+
+
+
+        private delegate (bool Invalid, string Message) RangeCheck(int value);
+
+        private static RangeCheck IsLessOrEqualThen(int min)
+        {
+            return value =>
+            {
+                if (value <= min)
+                {
+                    string message = $"Value cannot be less or equal than {min}.";
+
+                    return (true, message);
+                }
+
+                return (false, null);
+            };
+        }
+
+        private static RangeCheck IsGreaterOrEqualThan(int max)
+        {
+            return value =>
+            {
+                if (value >= max)
+                {
+                    string message = $"Value cannot be greater or equal than {max}.";
+
+                    return (true, message);
+                }
+
+                return (false, null);
+            };
+        }
+
+        private static void ThrowIfArgumentOutOfRange(
+            string name, int value, params RangeCheck[] rangeChecks
+        )
+        {
+            foreach (var rangeCheck in rangeChecks)
+            {
+                (bool invalid, string message) = rangeCheck(value);
+
+                if (invalid)
+                {
+                    throw new ArgumentOutOfRangeException(name, message);
+                }
+            }
         }
 
 
@@ -118,9 +229,29 @@ namespace Reallukee.GWC
 
 
 
-        public Rectangle Bounds   => new Rectangle(0, 0, Width, Height);
-        public Size      Size     => new Size     (Width, Height);
-        public Point     Location => new Point    (0, 0);
+        public Rectangle Bounds
+        {
+            get
+            {
+                return new Rectangle(0, 0, Width, Height);
+            }
+        }
+
+        public Size Size
+        {
+            get
+            {
+                return new Size(Width, Height);
+            }
+        }
+
+        public Point Location
+        {
+            get
+            {
+                return new Point(0, 0);
+            }
+        }
 
 
 

@@ -68,6 +68,7 @@
     <Compile Include="..\gwc\FillEllipse.cs" />
     <Compile Include="..\gwc\BaseImage.cs" />
     <Compile Include="..\gwc\BaseIcon.cs" />
+    <Compile Include="..\gwc\NativeInterop" />
     <Compile Include="..\gwc\Render.cs" />
     <Compile Include="..\gwc\WindowForm.cs">
       <SubType>Form</SubType>
