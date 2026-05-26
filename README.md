@@ -391,6 +391,9 @@ int main(int argc, const char* argv[])
 
 ## Linux/macOS
 
+> [!NOTE]
+> Possibile != Bello
+
 ### Requisiti
 
 > [!WARNING]
@@ -475,6 +478,9 @@ CD scripts
 
 
 ## Linux/macOS
+
+> [!NOTE]
+> Possibile != Bello
 
 ### 1. Prerequisiti
 
