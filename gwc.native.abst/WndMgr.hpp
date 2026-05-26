@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.:.:.:
 // GWC.Native.Abst
-// v0.5.0
+// v0.6.0
 // :.:.:.:.:.:.:.:
 //
 // https://github.com/reallukee/gwc
@@ -69,32 +69,34 @@ namespace gwc_abst
         static int getRenderHeight();
 
         static bool isKeyDownAvailable ();
+        static bool isKeyUpAvailable   ();
         static void flushKeyDown       ();
+        static void flushKeyUp         ();
         static bool consumeKeyDown     (gKeys& modifiers, gKeys& key);
+        static bool consumeKeyUp       (gKeys& modifiers, gKeys& key);
         static bool discardKeyDown     ();
+        static bool discardKeyUp       ();
+        static bool isKeyDownInBuffer  (gKeys modifiers, gKeys key);
+        static bool isKeyUpInBuffer    (gKeys modifiers, gKeys key);
         static bool isKeyDownLost      ();
-        static bool isKeyDownBufferFull();
-
-        static bool isKeyUpAvailable ();
-        static void flushKeyUp       ();
-        static bool consumeKeyUp     (gKeys& modifiers, gKeys& key);
-        static bool discardKeyUp     ();
-        static bool isKeyUpLost      ();
-        static bool isKeyUpBufferFull();
+        static bool isKeyUpLost        ();
+        static int  keyDownBufferLength();
+        static int  keyUpBufferLength  ();
 
         static bool isMouseDownAvailable ();
+        static bool isMouseUpAvailable   ();
         static void flushMouseDown       ();
+        static void flushMouseUp         ();
         static bool consumeMouseDown     (gPoint& location, gMouseButtons& button);
+        static bool consumeMouseUp       (gPoint& location, gMouseButtons& button);
         static bool discardMouseDown     ();
+        static bool discardMouseUp       ();
+        static bool isMouseDownInBuffer  (gPoint& location, gMouseButtons button);
+        static bool isMouseUpInBuffer    (gPoint& location, gMouseButtons button);
         static bool isMouseDownLost      ();
-        static bool isMouseDownBufferFull();
-
-        static bool isMouseUpAvailable ();
-        static void flushMouseUp       ();
-        static bool consumeMouseUp     (gPoint& location, gMouseButtons& button);
-        static bool discardMouseUp     ();
-        static bool isMouseUpLost      ();
-        static bool isMouseUpBufferFull();
+        static bool isMouseUpLost        ();
+        static int  mouseDownBufferLength();
+        static int  mouseUpBufferLength  ();
 
         static int getCanvasWidth ();
         static int getCanvasHeight();

@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.:.:.:
 // GWC.Native.Abst
-// v0.5.0
+// v0.6.0
 // :.:.:.:.:.:.:.:
 //
 // https://github.com/reallukee/gwc
@@ -36,7 +36,7 @@ void wndmgr_init()
 
     for (int i = 0; i < MAX_ITEMS_COUNT; i++)
     {
-        items[i] = nullptr;
+        items[i] = NULL;
     }
 
     currentItem = NO_ITEM;
@@ -269,36 +269,14 @@ bool wndmgr_isKeyDownAvailable()
     CCI_BOOL_C(window_isKeyDownAvailable(ITEM));
 }
 
-void wndmgr_flushKeyDown()
-{
-    CCI_VOID_C(window_flushKeyDown(ITEM));
-}
-
-bool wndmgr_consumeKeyDown(gKEYS* modifiers, gKEYS* key)
-{
-    CCI_BOOL_C(window_consumeKeyDown(ITEM, modifiers, key));
-}
-
-bool wndmgr_discardKeyDown()
-{
-    CCI_BOOL_C(window_discardKeyDown(ITEM));
-}
-
-bool wndmgr_isKeyDownLost()
-{
-    CCI_BOOL_C(window_isKeyDownLost(ITEM));
-}
-
-bool wndmgr_isKeyDownBufferFull()
-{
-    CCI_BOOL_C(window_isKeyDownBufferFull(ITEM));
-}
-
-
-
 bool wndmgr_isKeyUpAvailable()
 {
     CCI_BOOL_C(window_isKeyUpAvailable(ITEM));
+}
+
+void wndmgr_flushKeyDown()
+{
+    CCI_VOID_C(window_flushKeyDown(ITEM));
 }
 
 void wndmgr_flushKeyUp()
@@ -306,9 +284,19 @@ void wndmgr_flushKeyUp()
     CCI_VOID_C(window_flushKeyUp(ITEM));
 }
 
+bool wndmgr_consumeKeyDown(gKEYS* modifiers, gKEYS* key)
+{
+    CCI_BOOL_C(window_consumeKeyDown(ITEM, modifiers, key));
+}
+
 bool wndmgr_consumeKeyUp(gKEYS* modifiers, gKEYS* key)
 {
     CCI_BOOL_C(window_consumeKeyUp(ITEM, modifiers, key));
+}
+
+bool wndmgr_discardKeyDown()
+{
+    CCI_BOOL_C(window_discardKeyDown(ITEM));
 }
 
 bool wndmgr_discardKeyUp()
@@ -316,14 +304,34 @@ bool wndmgr_discardKeyUp()
     CCI_BOOL_C(window_discardKeyUp(ITEM));
 }
 
+bool wndmgr_isKeyDownInBuffer(gKEYS modifiers, gKEYS key)
+{
+    CCI_BOOL_C(window_isKeyDownInBuffer(ITEM, modifiers, key));
+}
+
+bool wndmgr_isKeyUpInBuffer(gKEYS modifiers, gKEYS key)
+{
+    CCI_BOOL_C(window_isKeyUpInBuffer(ITEM, modifiers, key));
+}
+
+bool wndmgr_isKeyDownLost()
+{
+    CCI_BOOL_C(window_isKeyDownLost(ITEM));
+}
+
 bool wndmgr_isKeyUpLost()
 {
     CCI_BOOL_C(window_isKeyUpLost(ITEM));
 }
 
-bool wndmgr_isKeyUpBufferFull()
+int wndmgr_keyDownBufferLength()
 {
-    CCI_BOOL_C(window_isKeyUpBufferFull(ITEM));
+    CCI_INT_C(window_keyDownBufferLength(ITEM));
+}
+
+int wndmgr_keyUpBufferLength()
+{
+    CCI_INT_C(window_keyUpBufferLength(ITEM));
 }
 
 
@@ -333,36 +341,14 @@ bool wndmgr_isMouseDownAvailable()
     CCI_BOOL_C(window_isMouseDownAvailable(ITEM));
 }
 
-void wndmgr_flushMouseDown()
-{
-    CCI_VOID_C(window_flushMouseDown(ITEM));
-}
-
-bool wndmgr_consumeMouseDown(gPOINT** location, gMOUSEBUTTONS* button)
-{
-    CCI_BOOL_C(window_consumeMouseDown(ITEM, location, button));
-}
-
-bool wndmgr_discardMouseDown()
-{
-    CCI_BOOL_C(window_discardMouseDown(ITEM));
-}
-
-bool wndmgr_isMouseDownLost()
-{
-    CCI_BOOL_C(window_isMouseDownLost(ITEM));
-}
-
-bool wndmgr_isMouseDownBufferFull()
-{
-    CCI_BOOL_C(window_isMouseDownBufferFull(ITEM));
-}
-
-
-
 bool wndmgr_isMouseUpAvailable()
 {
     CCI_BOOL_C(window_isMouseUpAvailable(ITEM));
+}
+
+void wndmgr_flushMouseDown()
+{
+    CCI_VOID_C(window_flushMouseDown(ITEM));
 }
 
 void wndmgr_flushMouseUp()
@@ -370,9 +356,19 @@ void wndmgr_flushMouseUp()
     CCI_VOID_C(window_flushMouseUp(ITEM));
 }
 
+bool wndmgr_consumeMouseDown(gPOINT** location, gMOUSEBUTTONS* button)
+{
+    CCI_BOOL_C(window_consumeMouseDown(ITEM, location, button));
+}
+
 bool wndmgr_consumeMouseUp(gPOINT** location, gMOUSEBUTTONS* button)
 {
     CCI_BOOL_C(window_consumeMouseUp(ITEM, location, button));
+}
+
+bool wndmgr_discardMouseDown()
+{
+    CCI_BOOL_C(window_discardMouseDown(ITEM));
 }
 
 bool wndmgr_discardMouseUp()
@@ -380,14 +376,34 @@ bool wndmgr_discardMouseUp()
     CCI_BOOL_C(window_discardMouseUp(ITEM));
 }
 
+bool wndmgr_isMouseDownInBuffer(gPOINT* location, gMOUSEBUTTONS button)
+{
+    CCI_BOOL_C(window_isMouseDownInBuffer(ITEM, location, button));
+}
+
+bool wndmgr_isMouseUpInBuffer(gPOINT* location, gMOUSEBUTTONS button)
+{
+    CCI_BOOL_C(window_isMouseUpInBuffer(ITEM, location, button));
+}
+
+bool wndmgr_isMouseDownLost()
+{
+    CCI_BOOL_C(window_isMouseDownLost(ITEM));
+}
+
 bool wndmgr_isMouseUpLost()
 {
     CCI_BOOL_C(window_isMouseUpLost(ITEM));
 }
 
-bool wndmgr_isMouseUpBufferFull()
+int wndmgr_mouseDownBufferLength()
 {
-    CCI_BOOL_C(window_isMouseUpBufferFull(ITEM));
+    CCI_INT_C(window_mouseDownBufferLength(ITEM));
+}
+
+int wndgmr_mouseUpBufferLength()
+{
+    CCI_INT_C(window_mouseUpBufferLength(ITEM));
 }
 
 

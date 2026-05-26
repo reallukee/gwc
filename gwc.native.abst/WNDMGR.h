@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.:.:.:
 // GWC.Native.Abst
-// v0.5.0
+// v0.6.0
 // :.:.:.:.:.:.:.:
 //
 // https://github.com/reallukee/gwc
@@ -61,32 +61,34 @@ GWC_ABST_C_API int wndmgr_getRenderWidth ();
 GWC_ABST_C_API int wndmgr_getRenderHeight();
 
 GWC_ABST_C_API bool wndmgr_isKeyDownAvailable ();
+GWC_ABST_C_API bool wndmgr_isKeyUpAvailable   ();
 GWC_ABST_C_API void wndmgr_flushKeyDown       ();
+GWC_ABST_C_API void wndmgr_flushKeyUp         ();
 GWC_ABST_C_API bool wndmgr_consumeKeyDown     (gKEYS* modifiers, gKEYS* key);
+GWC_ABST_C_API bool wndmgr_consumeKeyUp       (gKEYS* modifiers, gKEYS* key);
 GWC_ABST_C_API bool wndmgr_discardKeyDown     ();
+GWC_ABST_C_API bool wndmgr_discardKeyUp       ();
+GWC_ABST_C_API bool wndmgr_isKeyDownInBuffer  (gKEYS modifiers, gKEYS key);
+GWC_ABST_C_API bool wndmgr_isKeyUpInBuffer    (gKEYS modifiers, gKEYS key);
 GWC_ABST_C_API bool wndmgr_isKeyDownLost      ();
-GWC_ABST_C_API bool wndmgr_isKeyDownBufferFull();
-
-GWC_ABST_C_API bool wndmgr_isKeyUpAvailable ();
-GWC_ABST_C_API void wndmgr_flushKeyUp       ();
-GWC_ABST_C_API bool wndmgr_consumeKeyUp     (gKEYS* modifiers, gKEYS* key);
-GWC_ABST_C_API bool wndmgr_discardKeyUp     ();
-GWC_ABST_C_API bool wndmgr_isKeyUpLost      ();
-GWC_ABST_C_API bool wndmgr_isKeyUpBufferFull();
+GWC_ABST_C_API bool wndmgr_isKeyUpLost        ();
+GWC_ABST_C_API int  wndmgr_keyDownBufferLength();
+GWC_ABST_C_API int  wndmgr_keyUpBufferLength  ();
 
 GWC_ABST_C_API bool wndmgr_isMouseDownAvailable ();
+GWC_ABST_C_API bool wndmgr_isMouseUpAvailable   ();
 GWC_ABST_C_API void wndmgr_flushMouseDown       ();
+GWC_ABST_C_API void wndmgr_flushMouseUp         ();
 GWC_ABST_C_API bool wndmgr_consumeMouseDown     (gPOINT** location, gMOUSEBUTTONS* button);
+GWC_ABST_C_API bool wndmgr_consumeMouseUp       (gPOINT** location, gMOUSEBUTTONS* button);
 GWC_ABST_C_API bool wndmgr_discardMouseDown     ();
+GWC_ABST_C_API bool wndmgr_discardMouseUp       ();
+GWC_ABST_C_API bool wndmgr_isMouseDownInBuffer  (gPOINT* location, gMOUSEBUTTONS button);
+GWC_ABST_C_API bool wndmgr_isMouseUpInBuffer    (gPOINT* location, gMOUSEBUTTONS button);
 GWC_ABST_C_API bool wndmgr_isMouseDownLost      ();
-GWC_ABST_C_API bool wndmgr_isMouseDownBufferFull();
-
-GWC_ABST_C_API bool wndmgr_isMouseUpAvailable ();
-GWC_ABST_C_API void wndmgr_flushMouseUp       ();
-GWC_ABST_C_API bool wndmgr_consumeMouseUp     (gPOINT** location, gMOUSEBUTTONS* button);
-GWC_ABST_C_API bool wndmgr_discardMouseUp     ();
-GWC_ABST_C_API bool wndmgr_isMouseUpLost      ();
-GWC_ABST_C_API bool wndmgr_isMouseUpBufferFull();
+GWC_ABST_C_API bool wndmgr_isMouseUpLost        ();
+GWC_ABST_C_API int  wndmgr_mouseDownBufferLength();
+GWC_ABST_C_API int  wndmgr_mouseUpBufferLength  ();
 
 GWC_ABST_C_API int wndmgr_getCanvasWidth ();
 GWC_ABST_C_API int wndmgr_getCanvasHeight();

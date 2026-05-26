@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.5.1
+// v0.6.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -158,9 +158,19 @@ namespace gwc
         CCI_BOOL_CPP(WindowHost, window, IsKeyDownAvailable);
     }
 
+    bool Window::isKeyUpAvailable()
+    {
+        CCI_BOOL_CPP(WindowHost, window, IsKeyUpAvailable);
+    }
+
     void Window::flushKeyDown()
     {
         CCI_VOID_CPP(WindowHost, window, FlushKeyDown());
+    }
+
+    void Window::flushKeyUp()
+    {
+        CCI_VOID_CPP(WindowHost, window, FlushKeyUp());
     }
 
     bool Window::consumeKeyDown(gKeys& modifiers, gKeys& key)
@@ -183,33 +193,6 @@ namespace gwc
         return result;
     }
 
-    bool Window::discardKeyDown()
-    {
-        CCI_BOOL_CPP(WindowHost, window, DiscardKeyDown());
-    }
-
-    bool Window::isKeyDownLost()
-    {
-        CCI_BOOL_CPP(WindowHost, window, IsKeyDownLost);
-    }
-
-    bool Window::isKeyDownBufferFull()
-    {
-        CCI_BOOL_CPP(WindowHost, window, IsKeyDownBufferFull);
-    }
-
-
-
-    bool Window::isKeyUpAvailable()
-    {
-        CCI_BOOL_CPP(WindowHost, window, IsKeyUpAvailable);
-    }
-
-    void Window::flushKeyUp()
-    {
-        CCI_VOID_CPP(WindowHost, window, FlushKeyUp());
-    }
-
     bool Window::consumeKeyUp(gKeys& modifiers, gKeys& key)
     {
         CC_BOOL_CPP(WindowHost, window);
@@ -230,9 +213,49 @@ namespace gwc
         return result;
     }
 
+    bool Window::discardKeyDown()
+    {
+        CCI_BOOL_CPP(WindowHost, window, DiscardKeyDown());
+    }
+
     bool Window::discardKeyUp()
     {
         CCI_BOOL_CPP(WindowHost, window, DiscardKeyUp());
+    }
+
+    bool Window::isKeyDownInBuffer(gKeys modifiers, gKeys key)
+    {
+        CC_BOOL_CPP(WindowHost, window);
+
+        Windows::Forms::Keys managedModifiers;
+        Windows::Forms::Keys managedKey;
+
+        managedModifiers = safe_cast<Windows::Forms::Keys>(modifiers);
+        managedKey       = safe_cast<Windows::Forms::Keys>(key);
+
+        return _host->invoke()->IsKeyDownInBuffer(
+            managedModifiers, managedKey
+        );
+    }
+
+    bool Window::isKeyUpInBuffer(gKeys modifiers, gKeys key)
+    {
+        CC_BOOL_CPP(WindowHost, window);
+
+        Windows::Forms::Keys managedModifiers;
+        Windows::Forms::Keys managedKey;
+
+        managedModifiers = safe_cast<Windows::Forms::Keys>(modifiers);
+        managedKey       = safe_cast<Windows::Forms::Keys>(key);
+
+        return _host->invoke()->IsKeyUpInBuffer(
+            managedModifiers, managedKey
+        );
+    }
+
+    bool Window::isKeyDownLost()
+    {
+        CCI_BOOL_CPP(WindowHost, window, IsKeyDownLost);
     }
 
     bool Window::isKeyUpLost()
@@ -240,9 +263,14 @@ namespace gwc
         CCI_BOOL_CPP(WindowHost, window, IsKeyUpLost);
     }
 
-    bool Window::isKeyUpBufferFull()
+    int Window::keyDownBufferLength()
     {
-        CCI_BOOL_CPP(WindowHost, window, IsKeyUpBufferFull);
+        CCI_INT_CPP(WindowHost, window, KeyDownBufferLength);
+    }
+
+    int Window::keyUpBufferLength()
+    {
+        CCI_INT_CPP(WindowHost, window, KeyUpBufferLength);
     }
 
 
@@ -252,9 +280,19 @@ namespace gwc
         CCI_BOOL_CPP(WindowHost, window, IsMouseDownAvailable);
     }
 
+    bool Window::isMouseUpAvailable()
+    {
+        CCI_BOOL_CPP(WindowHost, window, IsMouseUpAvailable);
+    }
+
     void Window::flushMouseDown()
     {
         CCI_VOID_CPP(WindowHost, window, FlushMouseDown());
+    }
+
+    void Window::flushMouseUp()
+    {
+        CCI_VOID_CPP(WindowHost, window, FlushMouseUp());
     }
 
     bool Window::consumeMouseDown(gPoint& location, gMouseButtons& button)
@@ -276,33 +314,6 @@ namespace gwc
         return result;
     }
 
-    bool Window::discardMouseDown()
-    {
-        CCI_BOOL_CPP(WindowHost, window, DiscardMouseDown());
-    }
-
-    bool Window::isMouseDownLost()
-    {
-        CCI_BOOL_CPP(WindowHost, window, IsMouseDownLost);
-    }
-
-    bool Window::isMouseDownBufferFull()
-    {
-        CCI_BOOL_CPP(WindowHost, window, IsMouseDownBufferFull);
-    }
-
-
-
-    bool Window::isMouseUpAvailable()
-    {
-        CCI_BOOL_CPP(WindowHost, window, IsMouseUpAvailable);
-    }
-
-    void Window::flushMouseUp()
-    {
-        CCI_VOID_CPP(WindowHost, window, FlushMouseUp());
-    }
-
     bool Window::consumeMouseUp(gPoint& location, gMouseButtons& button)
     {
         CC_BOOL_CPP(WindowHost, window);
@@ -322,9 +333,49 @@ namespace gwc
         return result;
     }
 
+    bool Window::discardMouseDown()
+    {
+        CCI_BOOL_CPP(WindowHost, window, DiscardMouseDown());
+    }
+
     bool Window::discardMouseUp()
     {
         CCI_BOOL_CPP(WindowHost, window, DiscardMouseUp());
+    }
+
+    bool Window::isMouseDownInBuffer(gPoint& location, gMouseButtons button)
+    {
+        CC_BOOL_CPP(WindowHost, window);
+
+        Drawing::Point               managedLocation;
+        Windows::Forms::MouseButtons managedButton;
+
+        managedLocation = Drawing::Point(location.getX(), location.getY());
+        managedButton   = safe_cast<Windows::Forms::MouseButtons>(button);
+
+        return _host->invoke()->IsMouseDownInBuffer(
+            managedLocation, managedButton
+        );
+    }
+
+    bool Window::isMouseUpInBuffer(gPoint& location, gMouseButtons button)
+    {
+        CC_BOOL_CPP(WindowHost, window);
+
+        Drawing::Point               managedLocation;
+        Windows::Forms::MouseButtons managedButton;
+
+        managedLocation = Drawing::Point(location.getX(), location.getY());
+        managedButton   = safe_cast<Windows::Forms::MouseButtons>(button);
+
+        return _host->invoke()->IsMouseUpInBuffer(
+            managedLocation, managedButton
+        );
+    }
+
+    bool Window::isMouseDownLost()
+    {
+        CCI_BOOL_CPP(WindowHost, window, IsMouseDownLost);
     }
 
     bool Window::isMouseUpLost()
@@ -332,9 +383,14 @@ namespace gwc
         CCI_BOOL_CPP(WindowHost, window, IsMouseUpLost);
     }
 
-    bool Window::isMouseUpBufferFull()
+    int Window::mouseDownBufferLength()
     {
-        CCI_BOOL_CPP(WindowHost, window, IsMouseUpBufferFull);
+        CCI_INT_CPP(WindowHost, window, MouseDownBufferLength);
+    }
+
+    int Window::mouseUpBufferLength()
+    {
+        CCI_INT_CPP(WindowHost, window, MouseUpBufferLength);
     }
 
 

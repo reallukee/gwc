@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.:.:.:
 // GWC.Native.Abst
-// v0.5.0
+// v0.6.0
 // :.:.:.:.:.:.:.:
 //
 // https://github.com/reallukee/gwc
@@ -36,7 +36,7 @@ void srimgr_init()
 
     for (int i = 0; i < MAX_ITEMS_COUNT; i++)
     {
-        items[i] = nullptr;
+        items[i] = NULL;
     }
 
     currentItem = NO_ITEM;

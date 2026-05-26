@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.5.1
+// v0.6.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -174,9 +174,19 @@ bool window_isKeyDownAvailable(const WINDOW* window)
     CCI_BOOL_C(WindowHost, window, IsKeyDownAvailable);
 }
 
+bool window_isKeyUpAvailable(const WINDOW* window)
+{
+    CCI_BOOL_C(WindowHost, window, IsKeyUpAvailable);
+}
+
 void window_flushKeyDown(const WINDOW* window)
 {
     CCI_VOID_C(WindowHost, window, FlushKeyDown());
+}
+
+void window_flushKeyUp(const WINDOW* window)
+{
+    CCI_VOID_C(WindowHost, window, FlushKeyUp());
 }
 
 bool window_consumeKeyDown(const WINDOW* window, gKEYS* modifiers, gKEYS* key)
@@ -204,33 +214,6 @@ bool window_consumeKeyDown(const WINDOW* window, gKEYS* modifiers, gKEYS* key)
     return result;
 }
 
-bool window_discardKeyDown(const WINDOW* window)
-{
-    CCI_BOOL_C(WindowHost, window, DiscardKeyDown());
-}
-
-bool window_isKeyDownLost(const WINDOW* window)
-{
-    CCI_BOOL_C(WindowHost, window, IsKeyDownLost);
-}
-
-bool window_isKeyDownBufferFull(const WINDOW* window)
-{
-    CCI_BOOL_C(WindowHost, window, IsKeyDownBufferFull);
-}
-
-
-
-bool window_isKeyUpAvailable(const WINDOW* window)
-{
-    CCI_BOOL_C(WindowHost, window, IsKeyUpAvailable);
-}
-
-void window_flushKeyUp(const WINDOW* window)
-{
-    CCI_VOID_C(WindowHost, window, FlushKeyUp());
-}
-
 bool window_consumeKeyUp(const WINDOW* window, gKEYS* modifiers, gKEYS* key)
 {
     CC_BOOL_C(WindowHost, window);
@@ -256,9 +239,49 @@ bool window_consumeKeyUp(const WINDOW* window, gKEYS* modifiers, gKEYS* key)
     return result;
 }
 
+bool window_discardKeyDown(const WINDOW* window)
+{
+    CCI_BOOL_C(WindowHost, window, DiscardKeyDown());
+}
+
 bool window_discardKeyUp(const WINDOW* window)
 {
     CCI_BOOL_C(WindowHost, window, DiscardKeyUp());
+}
+
+bool window_isKeyDownInBuffer(const WINDOW* window, gKEYS modifiers, gKEYS key)
+{
+    CC_BOOL_C(WindowHost, window);
+
+    Windows::Forms::Keys managedModifiers;
+    Windows::Forms::Keys managedKey;
+
+    managedModifiers = safe_cast<Windows::Forms::Keys>(modifiers);
+    managedKey       = safe_cast<Windows::Forms::Keys>(key);
+
+    return _host->invoke()->IsKeyDownInBuffer(
+        managedModifiers, managedKey
+    );
+}
+
+bool window_isKeyUpInBuffer(const WINDOW* window, gKEYS modifiers, gKEYS key)
+{
+    CC_BOOL_C(WindowHost, window);
+
+    Windows::Forms::Keys managedModifiers;
+    Windows::Forms::Keys managedKey;
+
+    managedModifiers = safe_cast<Windows::Forms::Keys>(modifiers);
+    managedKey       = safe_cast<Windows::Forms::Keys>(key);
+
+    return _host->invoke()->IsKeyUpInBuffer(
+        managedModifiers, managedKey
+    );
+}
+
+bool window_isKeyDownLost(const WINDOW* window)
+{
+    CCI_BOOL_C(WindowHost, window, IsKeyDownLost);
 }
 
 bool window_isKeyUpLost(const WINDOW* window)
@@ -266,9 +289,14 @@ bool window_isKeyUpLost(const WINDOW* window)
     CCI_BOOL_C(WindowHost, window, IsKeyUpLost);
 }
 
-bool window_isKeyUpBufferFull(const WINDOW* window)
+int window_keyDownBufferLength(const WINDOW* window)
 {
-    CCI_BOOL_C(WindowHost, window, IsKeyUpBufferFull);
+    CCI_INT_C(WindowHost, window, KeyDownBufferLength);
+}
+
+int window_keyUpBufferLength(const WINDOW* window)
+{
+    CCI_INT_C(WindowHost, window, KeyUpBufferLength);
 }
 
 
@@ -278,9 +306,19 @@ bool window_isMouseDownAvailable(const WINDOW* window)
     CCI_BOOL_C(WindowHost, window, IsMouseDownAvailable);
 }
 
+bool window_isMouseUpAvailable(const WINDOW* window)
+{
+    CCI_BOOL_C(WindowHost, window, IsMouseUpAvailable);
+}
+
 void window_flushMouseDown(const WINDOW* window)
 {
     CCI_VOID_C(WindowHost, window, FlushMouseDown());
+}
+
+void window_flushMouseUp(const WINDOW* window)
+{
+    CCI_VOID_C(WindowHost, window, FlushMouseUp());
 }
 
 bool window_consumeMouseDown(const WINDOW* window, gPOINT** location, gMOUSEBUTTONS* button)
@@ -302,33 +340,6 @@ bool window_consumeMouseDown(const WINDOW* window, gPOINT** location, gMOUSEBUTT
     return result;
 }
 
-bool window_discardMouseDown(const WINDOW* window)
-{
-    CCI_BOOL_C(WindowHost, window, DiscardMouseDown());
-}
-
-bool window_isMouseDownLost(const WINDOW* window)
-{
-    CCI_BOOL_C(WindowHost, window, IsMouseDownLost);
-}
-
-bool window_isMouseDownBufferFull(const WINDOW* window)
-{
-    CCI_BOOL_C(WindowHost, window, IsMouseDownBufferFull);
-}
-
-
-
-bool window_isMouseUpAvailable(const WINDOW* window)
-{
-    CCI_BOOL_C(WindowHost, window, IsMouseUpAvailable);
-}
-
-void window_flushMouseUp(const WINDOW* window)
-{
-    CCI_VOID_C(WindowHost, window, FlushMouseUp());
-}
-
 bool window_consumeMouseUp(const WINDOW* window, gPOINT** location, gMOUSEBUTTONS* button)
 {
     CC_BOOL_C(WindowHost, window);
@@ -348,9 +359,49 @@ bool window_consumeMouseUp(const WINDOW* window, gPOINT** location, gMOUSEBUTTON
     return result;
 }
 
+bool window_discardMouseDown(const WINDOW* window)
+{
+    CCI_BOOL_C(WindowHost, window, DiscardMouseDown());
+}
+
 bool window_discardMouseUp(const WINDOW* window)
 {
     CCI_BOOL_C(WindowHost, window, DiscardMouseUp());
+}
+
+bool window_isMouseDownInBuffer(const WINDOW* window, gPOINT* location, gMOUSEBUTTONS button)
+{
+    CC_BOOL_C(WindowHost, window);
+
+    Drawing::Point               managedLocation;
+    Windows::Forms::MouseButtons managedButton;
+
+    managedLocation = Drawing::Point(point_getX(location), point_getY(location));
+    managedButton   = safe_cast<Windows::Forms::MouseButtons>(button);
+
+    return _host->invoke()->IsMouseDownInBuffer(
+        managedLocation, managedButton
+    );
+}
+
+bool window_isMouseUpInBuffer(const WINDOW* window, gPOINT* location, gMOUSEBUTTONS button)
+{
+    CC_BOOL_C(WindowHost, window);
+
+    Drawing::Point               managedLocation;
+    Windows::Forms::MouseButtons managedButton;
+
+    managedLocation = Drawing::Point(point_getX(location), point_getY(location));
+    managedButton   = safe_cast<Windows::Forms::MouseButtons>(button);
+
+    return _host->invoke()->IsMouseUpInBuffer(
+        managedLocation, managedButton
+    );
+}
+
+bool window_isMouseDownLost(const WINDOW* window)
+{
+    CCI_BOOL_C(WindowHost, window, IsMouseDownLost);
 }
 
 bool window_isMouseUpLost(const WINDOW* window)
@@ -358,9 +409,14 @@ bool window_isMouseUpLost(const WINDOW* window)
     CCI_BOOL_C(WindowHost, window, IsMouseUpLost);
 }
 
-bool window_isMouseUpBufferFull(const WINDOW* window)
+int window_mouseDownBufferLength(const WINDOW* window)
 {
-    CCI_BOOL_C(WindowHost, window, IsMouseUpBufferFull);
+    CCI_INT_C(WindowHost, window, MouseDownBufferLength);
+}
+
+int window_mouseUpBufferLength(const WINDOW* window)
+{
+    CCI_INT_C(WindowHost, window, MouseUpBufferLength);
 }
 
 

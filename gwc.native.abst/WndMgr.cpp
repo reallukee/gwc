@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.:.:.:
 // GWC.Native.Abst
-// v0.5.0
+// v0.6.0
 // :.:.:.:.:.:.:.:
 //
 // https://github.com/reallukee/gwc
@@ -274,36 +274,14 @@ namespace gwc_abst
         CCI_BOOL_CPP(isKeyDownAvailable());
     }
 
-    void WndMgr::flushKeyDown()
-    {
-        CCI_VOID_CPP(flushKeyDown());
-    }
-
-    bool WndMgr::consumeKeyDown(gKeys& modifiers, gKeys& key)
-    {
-        CCI_BOOL_CPP(consumeKeyDown(modifiers, key));
-    }
-
-    bool WndMgr::discardKeyDown()
-    {
-        CCI_BOOL_CPP(discardKeyDown());
-    }
-
-    bool WndMgr::isKeyDownLost()
-    {
-        CCI_BOOL_CPP(isKeyDownLost());
-    }
-
-    bool WndMgr::isKeyDownBufferFull()
-    {
-        CCI_BOOL_CPP(isKeyDownBufferFull());
-    }
-
-
-
     bool WndMgr::isKeyUpAvailable()
     {
         CCI_BOOL_CPP(isKeyUpAvailable());
+    }
+
+    void WndMgr::flushKeyDown()
+    {
+        CCI_VOID_CPP(flushKeyDown());
     }
 
     void WndMgr::flushKeyUp()
@@ -311,9 +289,19 @@ namespace gwc_abst
         CCI_VOID_CPP(flushKeyUp());
     }
 
+    bool WndMgr::consumeKeyDown(gKeys& modifiers, gKeys& key)
+    {
+        CCI_BOOL_CPP(consumeKeyDown(modifiers, key));
+    }
+
     bool WndMgr::consumeKeyUp(gKeys& modifiers, gKeys& key)
     {
         CCI_BOOL_CPP(consumeKeyUp(modifiers, key));
+    }
+
+    bool WndMgr::discardKeyDown()
+    {
+        CCI_BOOL_CPP(discardKeyDown());
     }
 
     bool WndMgr::discardKeyUp()
@@ -321,14 +309,34 @@ namespace gwc_abst
         CCI_BOOL_CPP(discardKeyUp());
     }
 
+    bool WndMgr::isKeyDownInBuffer(gKeys modifiers, gKeys key)
+    {
+        CCI_BOOL_CPP(isKeyDownInBuffer(modifiers, key));
+    }
+
+    bool WndMgr::isKeyUpInBuffer(gKeys modifiers, gKeys key)
+    {
+        CCI_BOOL_CPP(isKeyUpInBuffer(modifiers, key));
+    }
+
+    bool WndMgr::isKeyDownLost()
+    {
+        CCI_BOOL_CPP(isKeyDownLost());
+    }
+
     bool WndMgr::isKeyUpLost()
     {
         CCI_BOOL_CPP(isKeyUpLost());
     }
 
-    bool WndMgr::isKeyUpBufferFull()
+    int WndMgr::keyDownBufferLength()
     {
-        CCI_BOOL_CPP(isKeyUpBufferFull());
+        CCI_INT_CPP(keyDownBufferLength());
+    }
+
+    int WndMgr::keyUpBufferLength()
+    {
+        CCI_INT_CPP(keyUpBufferLength());
     }
 
 
@@ -338,36 +346,14 @@ namespace gwc_abst
         CCI_BOOL_CPP(isMouseDownAvailable());
     }
 
-    void WndMgr::flushMouseDown()
-    {
-        CCI_VOID_CPP(flushMouseDown());
-    }
-
-    bool WndMgr::consumeMouseDown(gPoint& location, gMouseButtons& button)
-    {
-        CCI_BOOL_CPP(consumeMouseDown(location, button));
-    }
-
-    bool WndMgr::discardMouseDown()
-    {
-        CCI_BOOL_CPP(discardMouseDown());
-    }
-
-    bool WndMgr::isMouseDownLost()
-    {
-        CCI_BOOL_CPP(isMouseDownLost());
-    }
-
-    bool WndMgr::isMouseDownBufferFull()
-    {
-        CCI_BOOL_CPP(isMouseDownBufferFull());
-    }
-
-
-
     bool WndMgr::isMouseUpAvailable()
     {
         CCI_BOOL_CPP(isMouseUpAvailable());
+    }
+
+    void WndMgr::flushMouseDown()
+    {
+        CCI_VOID_CPP(flushMouseDown());
     }
 
     void WndMgr::flushMouseUp()
@@ -375,9 +361,19 @@ namespace gwc_abst
         CCI_VOID_CPP(flushMouseUp());
     }
 
+    bool WndMgr::consumeMouseDown(gPoint& location, gMouseButtons& button)
+    {
+        CCI_BOOL_CPP(consumeMouseDown(location, button));
+    }
+
     bool WndMgr::consumeMouseUp(gPoint& location, gMouseButtons& button)
     {
         CCI_BOOL_CPP(consumeMouseUp(location, button));
+    }
+
+    bool WndMgr::discardMouseDown()
+    {
+        CCI_BOOL_CPP(discardMouseDown());
     }
 
     bool WndMgr::discardMouseUp()
@@ -385,14 +381,34 @@ namespace gwc_abst
         CCI_BOOL_CPP(discardMouseUp());
     }
 
+    bool WndMgr::isMouseDownInBuffer(gPoint& location, gMouseButtons button)
+    {
+        CCI_BOOL_CPP(isMouseDownInBuffer(location, button));
+    }
+
+    bool WndMgr::isMouseUpInBuffer(gPoint& location, gMouseButtons button)
+    {
+        CCI_BOOL_CPP(isMouseUpInBuffer(location, button));
+    }
+
+    bool WndMgr::isMouseDownLost()
+    {
+        CCI_BOOL_CPP(isMouseDownLost());
+    }
+
     bool WndMgr::isMouseUpLost()
     {
         CCI_BOOL_CPP(isMouseUpLost());
     }
 
-    bool WndMgr::isMouseUpBufferFull()
+    int WndMgr::mouseDownBufferLength()
     {
-        CCI_BOOL_CPP(isMouseUpBufferFull());
+        CCI_INT_CPP(mouseDownBufferLength());
+    }
+
+    int WndMgr::mouseUpBufferLength()
+    {
+        CCI_INT_CPP(mouseUpBufferLength());
     }
 
 

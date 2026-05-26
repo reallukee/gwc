@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.5.0
+// v0.6.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -57,32 +57,34 @@ namespace gwc
         int getRenderHeight();
 
         bool isKeyDownAvailable ();
+        bool isKeyUpAvailable   ();
         void flushKeyDown       ();
+        void flushKeyUp         ();
         bool consumeKeyDown     (gKeys& modifiers, gKeys& key);
+        bool consumeKeyUp       (gKeys& modifiers, gKeys& key);
         bool discardKeyDown     ();
+        bool discardKeyUp       ();
+        bool isKeyDownInBuffer  (gKeys modifiers, gKeys key);
+        bool isKeyUpInBuffer    (gKeys modifiers, gKeys key);
         bool isKeyDownLost      ();
-        bool isKeyDownBufferFull();
-
-        bool isKeyUpAvailable ();
-        void flushKeyUp       ();
-        bool consumeKeyUp     (gKeys& modifiers, gKeys& key);
-        bool discardKeyUp     ();
-        bool isKeyUpLost      ();
-        bool isKeyUpBufferFull();
+        bool isKeyUpLost        ();
+        int  keyDownBufferLength();
+        int  keyUpBufferLength  ();
 
         bool isMouseDownAvailable ();
+        bool isMouseUpAvailable   ();
         void flushMouseDown       ();
+        void flushMouseUp         ();
         bool consumeMouseDown     (gPoint& location, gMouseButtons& button);
+        bool consumeMouseUp       (gPoint& location, gMouseButtons& button);
         bool discardMouseDown     ();
+        bool discardMouseUp       ();
+        bool isMouseDownInBuffer  (gPoint& location, gMouseButtons button);
+        bool isMouseUpInBuffer    (gPoint& location, gMouseButtons button);
         bool isMouseDownLost      ();
-        bool isMouseDownBufferFull();
-
-        bool isMouseUpAvailable ();
-        void flushMouseUp       ();
-        bool consumeMouseUp     (gPoint& location, gMouseButtons& button);
-        bool discardMouseUp     ();
-        bool isMouseUpLost      ();
-        bool isMouseUpBufferFull();
+        bool isMouseUpLost        ();
+        int  mouseDownBufferLength();
+        int  mouseUpBufferLength  ();
 
         int getCanvasWidth ();
         int getCanvasHeight();
