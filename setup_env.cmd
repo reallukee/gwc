@@ -45,4 +45,4 @@ IF EXIST "%VSDEVCMD%" (
 
 POPD
 
-EXIT /B 0
+CMD
