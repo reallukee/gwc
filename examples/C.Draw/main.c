@@ -48,7 +48,5 @@ int main(int argc, const char* argv[])
 
     window_delete(window);
 
-    exit(0);
-
     return 0;
 }

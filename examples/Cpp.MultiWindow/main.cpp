@@ -42,7 +42,5 @@ int main(int argc, const char* argv[])
     delete window_2;
     delete window_3;
 
-    exit(0);
-
     return 0;
 }

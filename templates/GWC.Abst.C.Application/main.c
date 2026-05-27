@@ -6,6 +6,11 @@
 
 #include <gwc_abst.h>
 
+#define EXIT_SUCCESS 0
+#define EXIT_FAILURE 1
+
+void loop();
+
 int main(int argc, const char* argv[])
 {
     printf("Welcome in $projectname$!\n");
@@ -24,9 +29,24 @@ int main(int argc, const char* argv[])
         render_shutdown();
         wndmgr_shutdown();
 
-        return 1;
+        return EXIT_FAILURE;
     }
 
+    loop();
+
+    if (wndmgr_isOpen())
+    {
+        wndmgr_close();
+    }
+
+    render_shutdown();
+    wndmgr_shutdown();
+
+    return EXIT_SUCCESS;
+}
+
+void loop()
+{
     bool loop = true;
 
     while (wndmgr_isOpen() && loop)
@@ -46,18 +66,15 @@ int main(int argc, const char* argv[])
             }
         }
 
+        bool exit = wndmgr_isKeyDownInBuffer(gKEYS_NONE, gKEYS_ESCAPE);
+
+        if (exit)
+        {
+            loop = false;
+
+            continue;
+        }
+
         wndmgr_wait(100);
     }
-
-    if (wndmgr_isOpen())
-    {
-        wndmgr_close();
-    }
-
-    render_shutdown();
-    wndmgr_shutdown();
-
-    exit(0);
-
-    return 0;
 }

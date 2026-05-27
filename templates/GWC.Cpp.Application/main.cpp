@@ -6,6 +6,11 @@
 
 using namespace gwc;
 
+#define EXIT_SUCCESS 0
+#define EXIT_FAILURE 1
+
+void loop(Window* window);
+
 int main(int argc, const char* argv[])
 {
     cout << "Welcome in $projectname$!" << endl;
@@ -24,9 +29,25 @@ int main(int argc, const char* argv[])
 
         Render::shutdown();
 
-        return 1;
+        return EXIT_FAILURE;
     }
 
+    loop(window);
+
+    if (window->isOpen())
+    {
+        window->close();
+    }
+
+    delete window;
+
+    Render::shutdown();
+
+    return EXIT_SUCCESS;
+}
+
+void loop(Window* window)
+{
     bool loop = true;
 
     while (window->isOpen() && loop)
@@ -46,19 +67,15 @@ int main(int argc, const char* argv[])
             }
         }
 
+        bool exit = window->isKeyDownInBuffer(gKeys::None, gKeys::Escape);
+
+        if (exit)
+        {
+            loop = false;
+
+            continue;
+        }
+
         window->wait(100);
     }
-
-    if (window->isOpen())
-    {
-        window->close();
-    }
-
-    delete window;
-
-    Render::shutdown();
-
-    exit(0);
-
-    return 0;
 }

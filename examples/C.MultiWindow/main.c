@@ -38,7 +38,5 @@ int main(int argc, const char* argv[])
     window_delete(window_2);
     window_delete(window_3);
 
-    exit(0);
-
     return 0;
 }

@@ -10,6 +10,11 @@ using namespace gwc;
 
 using namespace gwc_abst;
 
+#define EXIT_SUCCESS 0
+#define EXIT_FAILURE 1
+
+void loop();
+
 int main(int argc, const char* argv[])
 {
     cout << "Welcome in $projectname$!" << endl;
@@ -28,9 +33,24 @@ int main(int argc, const char* argv[])
         Render::shutdown();
         WndMgr::shutdown();
 
-        return 1;
+        return EXIT_FAILURE;
     }
 
+    loop();
+
+    if (WndMgr::isOpen())
+    {
+        WndMgr::close();
+    }
+
+    Render::shutdown();
+    WndMgr::shutdown();
+
+    return EXIT_SUCCESS;
+}
+
+void loop()
+{
     bool loop = true;
 
     while (WndMgr::isOpen() && loop)
@@ -50,18 +70,15 @@ int main(int argc, const char* argv[])
             }
         }
 
+        bool exit = WndMgr::isKeyDownInBuffer(gKeys::None, gKeys::Escape);
+
+        if (exit)
+        {
+            loop = false;
+
+            continue;
+        }
+
         WndMgr::wait(100);
     }
-
-    if (WndMgr::isOpen())
-    {
-        WndMgr::close();
-    }
-
-    Render::shutdown();
-    WndMgr::shutdown();
-
-    exit(0);
-
-    return 0;
 }
