@@ -168,8 +168,6 @@ int main(int argc, const char* argv[])
 
     render_shutdown();
 
-    exit(0);
-
     return 0;
 }
 ```
@@ -229,8 +227,6 @@ int main(int argc, const char* argv[])
 
     render_shutdown();
     wndmgr_shutdown();
-
-    exit(0);
 
     return 0;
 }
@@ -295,8 +291,6 @@ int main(int argc, const char* argv[])
 
     Render::shutdown();
 
-    exit(0);
-
     return 0;
 }
 ```
@@ -360,8 +354,6 @@ int main(int argc, const char* argv[])
 
     Render::shutdown();
     WndMgr::shutdown();
-
-    exit(0);
 
     return 0;
 }

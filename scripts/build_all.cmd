@@ -12,6 +12,8 @@ CALL scripts\build.cmd
 SET "VSWHERE=%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe"
 
 IF NOT EXIST "%VSWHERE%" (
+    POPD
+
     EXIT /B 1
 )
 
@@ -30,6 +32,8 @@ IF NOT DEFINED VSPATH (
 )
 
 IF NOT DEFINED VSPATH (
+    POPD
+
     EXIT /B 1
 )
 
