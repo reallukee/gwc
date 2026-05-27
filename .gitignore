@@ -1,3 +1,6 @@
+# .NET
+.dotnet/
+
 # Rider
 .idea/
 
@@ -23,8 +26,10 @@ ipch/
 [Bb]in/
 [Dd]ist/
 [Oo]bj/
+[Ww][Ii][Nn]32/
 [Xx]86/
 [Xx]64/
+[Aa][Rr][Mm]/
 [Aa][Rr][Mm]32/
 [Aa][Rr][Mm]64/
 
