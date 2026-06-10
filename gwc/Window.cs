@@ -17,7 +17,7 @@
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
- * Versione  : v0.6.0
+ * Versione  : v0.6.1
  *             NOTA BENE: Campo INDICATIVO!
  * Licenza   : MIT
  */
@@ -318,6 +318,11 @@ namespace Reallukee.GWC
                                 while (canvas.Buffer.TryDequeue(out IRenderable renderable))
                                 {
                                     renderable.Render(g);
+
+                                    if (renderable is IDisposable disposable)
+                                    {
+                                        disposable.Dispose();
+                                    }
 
                                     if (renderStopwatch.Elapsed.TotalMilliseconds > Render.UtilFrameTime)
                                     {
@@ -1152,6 +1157,32 @@ namespace Reallukee.GWC
             {
                 canvas.FillColor = value;
             }
+        }
+
+
+
+        internal bool DrawRenderable(IRenderable renderable)
+        {
+            return canvas.DrawRenderable(renderable);
+        }
+
+
+
+        public bool Clear(Color clearColor)
+        {
+            return canvas.Clear(clearColor);
+        }
+
+
+
+        public bool DrawCanvas(Canvas canvas)
+        {
+            return this.canvas.DrawCanvas(canvas);
+        }
+
+        public bool DrawSprite(Sprite sprite)
+        {
+            return this.canvas.DrawSprite(sprite);
         }
 
 

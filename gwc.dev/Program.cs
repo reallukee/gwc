@@ -17,7 +17,7 @@
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
- * Versione  : v0.6.0
+ * Versione  : v0.6.1
  *             NOTA BENE: Campo INDICATIVO!
  * Licenza   : MIT
  */
@@ -86,7 +86,7 @@ namespace Reallukee.GWC
                     continue;
                 }
 
-                window.Wait(100);
+                window.Wait(16);
             }
         }
     }

@@ -15,11 +15,12 @@
 
     <Platforms>x86;x64;arm64</Platforms>
     <Nullable>disable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <PackageId>GWC.Dev</PackageId>
     <Title>GWC Dev</Title>
-    <Version>0.6.0</Version>
+    <Version>0.6.1</Version>
     <Authors>Luca Pollicino</Authors>
     <Company>Luca Pollicino</Company>
     <Product>GWC</Product>
@@ -31,7 +32,7 @@
     <RepositoryUrl>https://github.com/reallukee/gwc</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>c;cpp;c-sharp;desktop;library</PackageTags>
-    <PackageReleaseNotes>GWC 0.6.0</PackageReleaseNotes>
+    <PackageReleaseNotes>GWC 0.6.1</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
   </PropertyGroup>
@@ -39,11 +40,15 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <AssemblyName>$(AssemblyName)-d-$(Platform)</AssemblyName>
 
+    <IncludeSourceRevisionInInformationalVersion>true</IncludeSourceRevisionInInformationalVersion>
+
     <DefineConstants>$(DefineConstants);EXPERIMENTAL</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
     <AssemblyName>$(AssemblyName)-$(Platform)</AssemblyName>
+
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
 
     <DefineConstants>$(DefineConstants);EXPERIMENTAL</DefineConstants>
   </PropertyGroup>

@@ -17,7 +17,7 @@
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
- * Versione  : v0.6.0
+ * Versione  : v0.6.1
  *             NOTA BENE: Campo INDICATIVO!
  * Licenza   : MIT
  */
@@ -80,6 +80,18 @@ namespace Reallukee.GWC
 
             BorderColor = Color.Black;
             FillColor = Color.Green;
+
+            this.Bitmap   = (Bitmap)other.Bitmap.Clone();
+            this.IsCached = other.IsCached;
+
+            List<IRenderable> otherBuffer;
+
+            lock (other.bufferLock)
+            {
+                otherBuffer = other.Buffer.ToList();
+            }
+
+            this.Buffer = new ConcurrentQueue<IRenderable>(otherBuffer);
 
             disposed = false;
         }
@@ -301,6 +313,31 @@ namespace Reallukee.GWC
 
 
 
+        public bool Clear(Color clearColor)
+        {
+            IRenderable clear = new Clear(clearColor);
+
+            return DrawRenderable(clear);
+        }
+
+
+
+        public bool DrawCanvas(Canvas canvas)
+        {
+            IRenderable canvasCopy = new Canvas(canvas);
+
+            return DrawRenderable(canvasCopy);
+        }
+
+        public bool DrawSprite(Sprite sprite)
+        {
+            IRenderable spriteCopy = new Sprite(sprite);
+
+            return DrawRenderable(spriteCopy);
+        }
+
+
+
         public bool DrawBorderSquare(int x, int y, int side)
         {
             return DrawBorderRectangle(x, y, side, side);
@@ -415,7 +452,14 @@ namespace Reallukee.GWC
                 while (Buffer.TryDequeue(out IRenderable renderable))
                 {
                     renderable.Render(g);
+
+                    if (renderable is IDisposable disposable)
+                    {
+                        disposable.Dispose();
+                    }
                 }
+
+                IsCached = true;
             }
         }
 

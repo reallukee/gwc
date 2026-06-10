@@ -17,7 +17,7 @@
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
- * Versione  : v0.2.0
+ * Versione  : v0.6.1
  *             NOTA BENE: Campo INDICATIVO!
  * Licenza   : MIT
  */
@@ -40,6 +40,55 @@ namespace Reallukee.GWC
 {
     public static class Render
     {
+        private delegate (bool Invalid, string Message) RangeCheck(int value);
+
+        private static RangeCheck IsLessThen(int min)
+        {
+            return value =>
+            {
+                if (value < min)
+                {
+                    string message = $"Value cannot be less than {min}.";
+
+                    return (true, message);
+                }
+
+                return (false, null);
+            };
+        }
+
+        private static RangeCheck IsGreaterThan(int max)
+        {
+            return value =>
+            {
+                if (value > max)
+                {
+                    string message = $"Value cannot be greater than {max}.";
+
+                    return (true, message);
+                }
+
+                return (false, null);
+            };
+        }
+
+        private static void ThrowIfArgumentOutOfRange(
+            string name, int value, params RangeCheck[] rangeChecks
+        )
+        {
+            foreach (var rangeCheck in rangeChecks)
+            {
+                (bool invalid, string message) = rangeCheck(value);
+
+                if (invalid)
+                {
+                    throw new ArgumentOutOfRangeException(name, message);
+                }
+            }
+        }
+
+
+
         private static int refreshRate = 60;
 
         public static int RefreshRate
@@ -51,10 +100,8 @@ namespace Reallukee.GWC
 
             set
             {
-                if (value < 30 || value > 60)
-                {
-                    return;
-                }
+                ThrowIfArgumentOutOfRange(nameof(RefreshRate), value, IsLessThen(30));
+                ThrowIfArgumentOutOfRange(nameof(RefreshRate), value, IsGreaterThan(60));
 
                 refreshRate = value;
 
@@ -82,10 +129,8 @@ namespace Reallukee.GWC
 
             set
             {
-                if (value < 10 || value > 90)
-                {
-                    return;
-                }
+                ThrowIfArgumentOutOfRange(nameof(RefreshRate), value, IsLessThen(10));
+                ThrowIfArgumentOutOfRange(nameof(RefreshRate), value, IsGreaterThan(90));
 
                 dutyCycle = value;
 
