@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.:.:.:
 // GWC.Native.Abst
-// v0.6.0
+// v0.6.1
 // :.:.:.:.:.:.:.:
 //
 // https://github.com/reallukee/gwc
@@ -81,7 +81,7 @@ void loop()
             continue;
         }
 
-        wndmgr_wait(100);
+        wndmgr_wait(16);
     }
 }
 

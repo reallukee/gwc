@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.6.0
+// v0.6.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -80,7 +80,7 @@ void loop(WINDOW* window)
             continue;
         }
 
-        window_wait(window, 100);
+        window_wait(window, 16);
     }
 }
 
