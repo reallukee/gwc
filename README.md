@@ -8,7 +8,7 @@
 
 🖼️ A C#, C++ and C graphics library written in C#, C++ and C
 
-![Banner](./assets/repository/banner.png)
+![Banner](./assets/repository/ball.gif)
 
 Caratteristiche:
 
