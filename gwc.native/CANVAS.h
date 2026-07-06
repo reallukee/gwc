@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.5.0
+// v0.6.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -18,6 +18,7 @@
 #include "types.h"
 
 typedef struct CANVAS CANVAS;
+typedef struct SPRITE SPRITE;
 
 typedef CANVAS CNV;
 
@@ -37,6 +38,11 @@ GWC_C_API gPOINT*     canvas_location(const CANVAS* canvas);
 
 GWC_C_API int canvas_getWidth (const CANVAS* canvas);
 GWC_C_API int canvas_getHeight(const CANVAS* canvas);
+
+GWC_C_API bool canvas_clear(const CANVAS* canvas, const gCOLOR* color);
+
+GWC_C_API bool canvas_drawCanvas(const CANVAS* canvas, int x, int y, const CANVAS* canvas_);
+GWC_C_API bool canvas_drawSprite(const CANVAS* canvas, int x, int y, const SPRITE* sprite);
 
 GWC_C_API bool canvas_drawBorderSquare(const CANVAS* canvas, int x, int y, int side);
 GWC_C_API bool canvas_drawFillSquare  (const CANVAS* canvas, int x, int y, int side);

@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.5.1
+// v0.6.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -13,10 +13,14 @@
 #include "gwc.clr.hpp"
 
 #include "CANVAS.h"
+#include "CANVASHELPER.h"
 #include "macros.h"
 
 #include "ICONHELPER.h"
 #include "IMAGEHELPER.h"
+
+#include "SPRITE.h"
+#include "SPRITEHELPER.h"
 
 typedef struct CANVAS {
     CLRCanvasHost canvas;
@@ -122,6 +126,38 @@ int canvas_getWidth(const CANVAS* canvas)
 int canvas_getHeight(const CANVAS* canvas)
 {
     CCI_INT_C(CanvasHost, canvas, Height);
+}
+
+
+
+bool canvas_clear(const CANVAS* canvas, const gCOLOR* color)
+{
+    Drawing::Color managedColor = Drawing::Color::FromArgb(
+        color_getAlpha(color),
+        color_getRed  (color),
+        color_getGreen(color),
+        color_getBlue (color)
+    );
+
+    CCI_BOOL_C(CanvasHost, canvas, Clear(managedColor));
+}
+
+bool canvas_drawCanvas(const CANVAS* canvas, int x, int y, const CANVAS* canvas_)
+{
+    CanvasHost* canvasHost = canvasHelper_get(canvas_);
+
+    GWC::Canvas^ managedCanvas = canvasHost->invoke();
+
+    CCI_BOOL_C(CanvasHost, canvas, DrawCanvas(x, y, managedCanvas));
+}
+
+bool canvas_drawSprite(const CANVAS* canvas, int x, int y, const SPRITE* sprite)
+{
+    SpriteHost* spriteHost = spriteHelper_get(sprite);
+
+    GWC::Sprite^ managedSprite = spriteHost->invoke();
+
+    CCI_BOOL_C(CanvasHost, canvas, DrawSprite(x, y, managedSprite));
 }
 
 
@@ -344,4 +380,13 @@ bool canvas_drawIcon(const CANVAS* canvas, int x, int y, gICON* icon)
 void canvas_render(const CANVAS* canvas)
 {
     CCI_VOID_C(CanvasHost, canvas, Render());
+}
+
+
+
+CanvasHost* canvasHelper_get(const CANVAS* canvas)
+{
+    CanvasHost* canvasHost = static_cast<CanvasHost*>(canvas->canvas);
+
+    return canvasHost;
 }

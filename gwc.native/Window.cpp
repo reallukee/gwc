@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.6.0
+// v0.6.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -17,6 +17,9 @@
 
 #include "ImageHelper.hpp"
 #include "IconHelper.hpp"
+
+#include "CanvasHelper.hpp"
+#include "SpriteHelper.hpp"
 
 #ifdef __cplusplus
 
@@ -425,6 +428,40 @@ namespace gwc
     void Window::setFillColor(gColor color)
     {
         CCI_SET_COLOR_CPP(WindowHost, window, FillColor, color);
+    }
+
+
+
+    bool Window::clear(gColor color)
+    {
+        Drawing::Color managedColor = Drawing::Color::FromArgb(
+            color.getAlpha(),
+            color.getRed  (),
+            color.getGreen(),
+            color.getBlue ()
+        );
+
+        CCI_BOOL_CPP(WindowHost, window, Clear(managedColor));
+    }
+
+
+
+    bool Window::drawCanvas(int x, int y, const Canvas* canvas)
+    {
+        CanvasHost* canvasHost = CanvasHelper::get(canvas);
+
+        GWC::Canvas^ managedCanvas = canvasHost->invoke();
+
+        CCI_BOOL_CPP(WindowHost, window, DrawCanvas(x, y, managedCanvas));
+    }
+
+    bool Window::drawSprite(int x, int y, const Sprite* sprite)
+    {
+        SpriteHost* spriteHost = SpriteHelper::get(sprite);
+
+        GWC::Sprite^ managedSprite = spriteHost->invoke();
+
+        CCI_BOOL_CPP(WindowHost, window, DrawSprite(x, y, managedSprite));
     }
 
 

@@ -105,7 +105,13 @@
     <ClInclude Include="..\gwc.native\macros.hpp">
       <Filter>File di intestazione\C++ API</Filter>
     </ClInclude>
+    <ClInclude Include="..\gwc.native\SpriteHelper.hpp">
+      <Filter>File di intestazione\C++ API</Filter>
+    </ClInclude>
     <ClInclude Include="..\gwc.native\Sprite.hpp">
+      <Filter>File di intestazione\C++ API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gwc.native\CanvasHelper.hpp">
       <Filter>File di intestazione\C++ API</Filter>
     </ClInclude>
     <ClInclude Include="..\gwc.native\Canvas.hpp">
@@ -162,7 +168,13 @@
     <ClInclude Include="..\gwc.native\macros.h">
       <Filter>File di intestazione\C API</Filter>
     </ClInclude>
+    <ClInclude Include="..\gwc.native\SPRITEHELPER.h">
+      <Filter>File di intestazione\C API</Filter>
+    </ClInclude>
     <ClInclude Include="..\gwc.native\SPRITE.h">
+      <Filter>File di intestazione\C API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gwc.native\CANVASHELPER.h">
       <Filter>File di intestazione\C API</Filter>
     </ClInclude>
     <ClInclude Include="..\gwc.native\CANVAS.h">

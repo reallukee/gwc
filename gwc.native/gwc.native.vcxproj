@@ -264,7 +264,9 @@
     <ClInclude Include="MouseButtons.hpp" />
     <ClInclude Include="Render.hpp" />
     <ClInclude Include="macros.hpp" />
+    <ClInclude Include="SpriteHelper.hpp" />
     <ClInclude Include="Sprite.hpp" />
+    <ClInclude Include="CanvasHelper.hpp" />
     <ClInclude Include="Canvas.hpp" />
     <ClInclude Include="Window.hpp" />
     <ClInclude Include="export.h" />
@@ -283,7 +285,9 @@
     <ClInclude Include="MOUSEBUTTONS.h" />
     <ClInclude Include="RENDER.h" />
     <ClInclude Include="macros.h" />
+    <ClInclude Include="SPRITEHELPER.h" />
     <ClInclude Include="SPRITE.h" />
+    <ClInclude Include="CANVASHELPER.h" />
     <ClInclude Include="CANVAS.h" />
     <ClInclude Include="WINDOW.h" />
   </ItemGroup>

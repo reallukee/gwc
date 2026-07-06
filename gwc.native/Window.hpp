@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.6.0
+// v0.6.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -18,6 +18,9 @@
 #ifdef __cplusplus
 
 #include "types.hpp"
+
+#include "Canvas.hpp"
+#include "Sprite.hpp"
 
 namespace gwc
 {
@@ -93,6 +96,11 @@ namespace gwc
         void   setBorderColor(gColor color);
         gColor getFillColor  ();
         void   setFillColor  (gColor color);
+
+        bool clear(gColor color);
+
+        bool drawCanvas(int x, int y, const Canvas* canvas);
+        bool drawSprite(int x, int y, const Sprite* sprite);
 
         bool drawBorderSquare(int x, int y, int side);
         bool drawFillSquare  (int x, int y, int side);

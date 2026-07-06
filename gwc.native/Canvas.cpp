@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.5.1
+// v0.6.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -13,10 +13,14 @@
 #include "gwc.clr.hpp"
 
 #include "Canvas.hpp"
+#include "CanvasHelper.hpp"
 #include "macros.hpp"
 
 #include "ImageHelper.hpp"
 #include "IconHelper.hpp"
+
+#include "Sprite.hpp"
+#include "SpriteHelper.hpp"
 
 #ifdef __cplusplus
 
@@ -106,6 +110,40 @@ namespace gwc
     int Canvas::getHeight()
     {
         CCI_INT_CPP(SpriteHost, canvas, Height);
+    }
+
+
+
+    bool Canvas::clear(gColor color)
+    {
+        Drawing::Color managedColor = Drawing::Color::FromArgb(
+            color.getAlpha(),
+            color.getRed  (),
+            color.getGreen(),
+            color.getBlue ()
+        );
+
+        CCI_BOOL_CPP(CanvasHost, canvas, Clear(managedColor));
+    }
+
+
+
+    bool Canvas::drawCanvas(int x, int y, const Canvas* canvas)
+    {
+        CanvasHost* canvasHost = CanvasHelper::get(canvas);
+
+        GWC::Canvas^ managedCanvas = canvasHost->invoke();
+
+        CCI_BOOL_CPP(CanvasHost, this->canvas, DrawCanvas(x, y, managedCanvas));
+    }
+
+    bool Canvas::drawSprite(int x, int y, const Sprite* sprite)
+    {
+        SpriteHost* spriteHost = SpriteHelper::get(sprite);
+
+        GWC::Sprite^ managedSprite = spriteHost->invoke();
+
+        CCI_BOOL_CPP(CanvasHost, this->canvas, DrawSprite(x, y, managedSprite));
     }
 
 
@@ -318,6 +356,15 @@ namespace gwc
     void Canvas::render()
     {
         CCI_VOID_CPP(SpriteHost, canvas, Render());
+    }
+
+
+
+    CanvasHost* CanvasHelper::get(const Canvas* canvas)
+    {
+        CanvasHost* canvasHost = static_cast<CanvasHost*>(canvas->canvas);
+
+        return canvasHost;
     }
 }
 

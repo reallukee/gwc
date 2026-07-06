@@ -270,7 +270,9 @@
     <ClInclude Include="..\gwc.native\MouseButtons.hpp" />
     <ClInclude Include="..\gwc.native\Render.hpp" />
     <ClInclude Include="..\gwc.native\macros.hpp" />
+    <ClInclude Include="..\gwc.native\SpriteHelper.hpp" />
     <ClInclude Include="..\gwc.native\Sprite.hpp" />
+    <ClInclude Include="..\gwc.native\CanvasHelper.hpp" />
     <ClInclude Include="..\gwc.native\Canvas.hpp" />
     <ClInclude Include="..\gwc.native\Window.hpp" />
     <ClInclude Include="..\gwc.native\export.h" />
@@ -289,7 +291,9 @@
     <ClInclude Include="..\gwc.native\MOUSEBUTTONS.h" />
     <ClInclude Include="..\gwc.native\RENDER.h" />
     <ClInclude Include="..\gwc.native\macros.h" />
+    <ClInclude Include="..\gwc.native\SPRITEHELPER.h" />
     <ClInclude Include="..\gwc.native\SPRITE.h" />
+    <ClInclude Include="..\gwc.native\CANVASHELPER.h" />
     <ClInclude Include="..\gwc.native\CANVAS.h" />
     <ClInclude Include="..\gwc.native\WINDOW.h" />
   </ItemGroup>

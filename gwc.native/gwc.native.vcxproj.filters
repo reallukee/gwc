@@ -105,7 +105,13 @@
     <ClInclude Include="macros.hpp">
       <Filter>File di intestazione\C++ API</Filter>
     </ClInclude>
+    <ClInclude Include="SpriteHelper.hpp">
+      <Filter>File di intestazione\C++ API</Filter>
+    </ClInclude>
     <ClInclude Include="Sprite.hpp">
+      <Filter>File di intestazione\C++ API</Filter>
+    </ClInclude>
+    <ClInclude Include="CanvasHelper.hpp">
       <Filter>File di intestazione\C++ API</Filter>
     </ClInclude>
     <ClInclude Include="Canvas.hpp">
@@ -162,7 +168,13 @@
     <ClInclude Include="macros.h">
       <Filter>File di intestazione\C API</Filter>
     </ClInclude>
+    <ClInclude Include="SPRITEHELPER.h">
+      <Filter>File di intestazione\C API</Filter>
+    </ClInclude>
     <ClInclude Include="SPRITE.h">
+      <Filter>File di intestazione\C API</Filter>
+    </ClInclude>
+    <ClInclude Include="CANVASHELPER.h">
       <Filter>File di intestazione\C API</Filter>
     </ClInclude>
     <ClInclude Include="CANVAS.h">

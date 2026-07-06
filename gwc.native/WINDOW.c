@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.6.0
+// v0.6.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -17,6 +17,9 @@
 
 #include "ICONHELPER.h"
 #include "IMAGEHELPER.h"
+
+#include "CANVASHELPER.h"
+#include "SPRITEHELPER.h"
 
 typedef struct WINDOW {
     CLRWindowHost window;
@@ -429,6 +432,38 @@ int window_getCanvasWidth(const WINDOW* window)
 int window_getCanvasHeight(const WINDOW* window)
 {
     CCI_INT_C(WindowHost, window, CanvasHeight);
+}
+
+
+
+bool window_clear(const WINDOW* window, const gCOLOR* color)
+{
+    Drawing::Color managedColor = Drawing::Color::FromArgb(
+        color_getAlpha(color),
+        color_getRed  (color),
+        color_getGreen(color),
+        color_getBlue (color)
+    );
+
+    CCI_BOOL_C(WindowHost, window, Clear(managedColor));
+}
+
+bool window_drawCanvas(const WINDOW* window, int x, int y, const CANVAS* canvas)
+{
+    CanvasHost* canvasHost = canvasHelper_get(canvas);
+
+    GWC::Canvas^ managedCanvas = canvasHost->invoke();
+
+    CCI_BOOL_C(WindowHost, window, DrawCanvas(x, y, managedCanvas));
+}
+
+bool window_drawSprite(const WINDOW* window, int x, int y, const SPRITE* sprite)
+{
+    SpriteHost* spriteHost = spriteHelper_get(sprite);
+
+    GWC::Sprite^ managedSprite = spriteHost->invoke();
+
+    CCI_BOOL_C(WindowHost, window, DrawSprite(x, y, managedSprite));
 }
 
 

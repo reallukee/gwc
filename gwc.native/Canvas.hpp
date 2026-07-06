@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.5.0
+// v0.6.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -21,10 +21,15 @@
 
 namespace gwc
 {
+    class Sprite;
+    class CanvasHelper;
+
     class GWC_CPP_API Canvas sealed
     {
 
     public:
+
+        friend class CanvasHelper;
 
         Canvas (int width, int height);
         Canvas ();
@@ -43,6 +48,11 @@ namespace gwc
 
         int getWidth ();
         int getHeight();
+
+        bool clear(gColor color);
+
+        bool drawCanvas(int x, int y, const Canvas* canvas);
+        bool drawSprite(int x, int y, const Sprite* sprite);
 
         bool drawBorderSquare(int x, int y, int side);
         bool drawFillSquare  (int x, int y, int side);

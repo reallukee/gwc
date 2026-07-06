@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.6.0
+// v0.6.1
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -16,6 +16,9 @@
 #define GWC_WINDOW_H
 
 #include "types.h"
+
+#include "CANVAS.h"
+#include "SPRITE.h"
 
 typedef struct WINDOW WINDOW;
 
@@ -87,6 +90,11 @@ GWC_C_API gCOLOR* window_getBorderColor(const WINDOW* window);
 GWC_C_API void    window_setBorderColor(const WINDOW* window, const gCOLOR* color);
 GWC_C_API gCOLOR* window_getFillColor  (const WINDOW* window);
 GWC_C_API void    window_setFillColor  (const WINDOW* window, const gCOLOR* color);
+
+GWC_C_API bool window_clear(const WINDOW* window, const gCOLOR* color);
+
+GWC_C_API bool window_drawCanvas(const WINDOW* window, int x, int y, const CANVAS* canvas);
+GWC_C_API bool window_drawSprite(const WINDOW* window, int x, int y, const SPRITE* sprite);
 
 GWC_C_API bool window_drawBorderSquare(const WINDOW* window, int x, int y, int side);
 GWC_C_API bool window_drawFillSquare  (const WINDOW* window, int x, int y, int side);
