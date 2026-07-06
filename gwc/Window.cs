@@ -1180,9 +1180,19 @@ namespace Reallukee.GWC
             return this.canvas.DrawCanvas(canvas);
         }
 
+        public bool DrawCanvas(int x, int y, Canvas canvas)
+        {
+            return this.canvas.DrawCanvas(x, y, canvas);
+        }
+
         public bool DrawSprite(Sprite sprite)
         {
             return this.canvas.DrawSprite(sprite);
+        }
+
+        public bool DrawSprite(int x, int y, Sprite sprite)
+        {
+            return this.canvas.DrawSprite(x, y, sprite);
         }
 
 

@@ -43,6 +43,130 @@ namespace Reallukee.GWC
 {
     public sealed class Sprite : IDisposable, IRenderable, IBorderColor, IFillColor
     {
+        internal sealed class SpriteBox : IDisposable, IRenderable
+        {
+            private Sprite sprite;
+
+            private bool disposed;
+
+            public SpriteBox(int x, int y, Sprite sprite)
+            {
+                this.X = x;
+                this.Y = y;
+                this.sprite = new Sprite(sprite);
+            }
+
+            public void Dispose()
+            {
+                Dispose(true);
+            }
+
+            private void Dispose(bool disposing)
+            {
+                if (disposed)
+                {
+                    return;
+                }
+
+                if (disposing)
+                {
+                    sprite?.Dispose();
+
+                    sprite = null;
+                }
+
+                disposed = true;
+            }
+
+
+
+            private int x;
+
+            public int X
+            {
+                get
+                {
+                    return x;
+                }
+
+                set
+                {
+                    x = value;
+                }
+            }
+
+            private int y;
+
+            public int Y
+            {
+                get
+                {
+                    return y;
+                }
+
+                set
+                {
+                    y = value;
+                }
+            }
+
+            public int Width
+            {
+                get
+                {
+                    return sprite.Width;
+                }
+            }
+
+            public int Height
+            {
+                get
+                {
+                    return sprite.Height;
+                }
+            }
+
+
+
+            public Rectangle Bounds
+            {
+                get
+                {
+                    return new Rectangle(X, Y, Width, Height);
+                }
+            }
+
+            public Size Size
+            {
+                get
+                {
+                    return new Size(Width, Height);
+                }
+            }
+
+            public Point Location
+            {
+                get
+                {
+                    return new Point(X, Y);
+                }
+            }
+
+
+
+            public void Render(Graphics g)
+            {
+                if (!sprite.IsCached)
+                {
+                    sprite.Render();
+                }
+
+                g.DrawImage(sprite.Bitmap, X, Y);
+            }
+        }
+
+
+
         public const int MaxBufferLength = 10000;
 
         private bool disposed;
@@ -329,11 +453,25 @@ namespace Reallukee.GWC
             return DrawRenderable(canvasCopy);
         }
 
+        public bool DrawCanvas(int x, int y, Canvas canvas)
+        {
+            Canvas.CanvasBox canvasBox = new Canvas.CanvasBox(x, y, canvas);
+
+            return DrawRenderable(canvasBox);
+        }
+
         public bool DrawSprite(Sprite sprite)
         {
             IRenderable spriteCopy = new Sprite(sprite);
 
             return DrawRenderable(spriteCopy);
+        }
+
+        public bool DrawSprite(int x, int y, Sprite sprite)
+        {
+            SpriteBox spriteBox = new SpriteBox(x, y, sprite);
+
+            return DrawRenderable(spriteBox);
         }
 
 
