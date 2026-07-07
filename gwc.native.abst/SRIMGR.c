@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.:.:.:
 // GWC.Native.Abst
-// v0.6.0
+// v0.6.1
 // :.:.:.:.:.:.:.:
 //
 // https://github.com/reallukee/gwc
@@ -13,8 +13,9 @@
 #pragma unmanaged
 
 #include "SRIMGR.h"
+#include "SRIMGRHELPER.h"
 
-#include <SPRITE.h>
+#include "CNVMGRHELPER.h"
 
 #include "MACROS.h"
 
@@ -221,6 +222,29 @@ int srimgr_getHeight()
 
 
 
+bool srimgr_clear(const gCOLOR* color)
+{
+    CCI_BOOL_C(sprite_clear(ITEM, color));
+}
+
+
+
+bool srimgr_drawCanvas(int x, int y, CNV_ID canvasId)
+{
+    CANVAS* canvas = cnvmgrHelper_get(canvasId);
+
+    CCI_BOOL_C(sprite_drawCanvas(ITEM, x, y, canvas));
+}
+
+bool srimgr_drawSprite(int x, int y, SRI_ID spriteId)
+{
+    SPRITE* sprite = srimgrHelper_get(spriteId);
+
+    CCI_BOOL_C(sprite_drawSprite(ITEM, x, y, sprite));
+}
+
+
+
 bool srimgr_drawBorderSquare(int x, int y, int side)
 {
     CCI_BOOL_C(sprite_drawBorderSquare(ITEM, x, y, side));
@@ -284,4 +308,26 @@ bool srimgr_drawIcon(int x, int y, gICON* icon)
 void srimgr_render()
 {
     CCI_VOID_C(sprite_render(ITEM));
+}
+
+
+
+SPRITE* srimgrHelper_get(SRI_ID id)
+{
+    if (!ready)
+    {
+        return NULL;
+    }
+
+    if (id < 0 || id > MAX_ITEMS_COUNT - 1)
+    {
+        return NULL;
+    }
+
+    if (items[id] == NULL)
+    {
+        return NULL;
+    }
+
+    return items[id];
 }

@@ -17,8 +17,8 @@
 
 #include "types.h"
 
-#include "CANVAS.h"
 #include "SPRITE.h"
+#include "CANVAS.h"
 
 typedef struct WINDOW WINDOW;
 

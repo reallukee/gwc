@@ -248,15 +248,21 @@
     <ClInclude Include="export.hpp" />
     <ClInclude Include="header.hpp" />
     <ClInclude Include="gwc_abst.hpp" />
+    <ClInclude Include="types.hpp" />
     <ClInclude Include="macros.hpp" />
+    <ClInclude Include="SriMgrHelper.hpp" />
     <ClInclude Include="SriMgr.hpp" />
+    <ClInclude Include="CnvMgrHelper.hpp" />
     <ClInclude Include="CnvMgr.hpp" />
     <ClInclude Include="WndMgr.hpp" />
     <ClInclude Include="export.h" />
     <ClInclude Include="header.h" />
     <ClInclude Include="gwc_abst.h" />
+    <ClInclude Include="types.h" />
     <ClInclude Include="macros.h" />
+    <ClInclude Include="SRIMGRHELPER.h" />
     <ClInclude Include="SRIMGR.h" />
+    <ClInclude Include="CNVMGRHELPER.h" />
     <ClInclude Include="CNVMGR.h" />
     <ClInclude Include="WNDMGR.h" />
   </ItemGroup>

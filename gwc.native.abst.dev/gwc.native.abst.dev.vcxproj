@@ -254,15 +254,21 @@
     <ClInclude Include="..\gwc.native.abst\export.hpp" />
     <ClInclude Include="..\gwc.native.abst\header.hpp" />
     <ClInclude Include="..\gwc.native.abst\gwc_abst.hpp" />
+    <ClInclude Include="..\gwc.native.abst\types.hpp" />
     <ClInclude Include="..\gwc.native.abst\macros.hpp" />
+    <ClInclude Include="..\gwc.native.abst\SriMgrHelper.hpp" />
     <ClInclude Include="..\gwc.native.abst\SriMgr.hpp" />
+    <ClInclude Include="..\gwc.native.abst\CnvMgrHelper.hpp" />
     <ClInclude Include="..\gwc.native.abst\CnvMgr.hpp" />
     <ClInclude Include="..\gwc.native.abst\WndMgr.hpp" />
     <ClInclude Include="..\gwc.native.abst\export.h" />
     <ClInclude Include="..\gwc.native.abst\header.h" />
     <ClInclude Include="..\gwc.native.abst\gwc_abst.h" />
+    <ClInclude Include="..\gwc.native.abst\types.h" />
     <ClInclude Include="..\gwc.native.abst\macros.h" />
+    <ClInclude Include="..\gwc.native.abst\SRIMGRHELPER.h" />
     <ClInclude Include="..\gwc.native.abst\SRIMGR.h" />
+    <ClInclude Include="..\gwc.native.abst\CNVMGRHELPER.h" />
     <ClInclude Include="..\gwc.native.abst\CNVMGR.h" />
     <ClInclude Include="..\gwc.native.abst\WNDMGR.h" />
   </ItemGroup>

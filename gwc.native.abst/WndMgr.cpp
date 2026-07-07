@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.:.:.:
 // GWC.Native.Abst
-// v0.6.0
+// v0.6.1
 // :.:.:.:.:.:.:.:
 //
 // https://github.com/reallukee/gwc
@@ -15,6 +15,9 @@
 #include <Window.hpp>
 
 #include "macros.hpp"
+
+#include "SriMgrHelper.hpp"
+#include "CnvMgrHelper.hpp"
 
 #ifdef __cplusplus
 
@@ -447,6 +450,29 @@ namespace gwc_abst
 
 
 
+    bool WndMgr::clear(gColor color)
+    {
+        CCI_BOOL_CPP(clear(color));
+    }
+
+
+
+    bool WndMgr::drawCanvas(int x, int y, CnvId canvasId)
+    {
+        Canvas* canvas = CnvMgrHelper::get(canvasId);
+
+        CCI_BOOL_CPP(drawCanvas(x, y, canvas));
+    }
+
+    bool WndMgr::drawSprite(int x, int y, SriId spriteId)
+    {
+        Sprite* sprite = SriMgrHelper::get(spriteId);
+
+        CCI_BOOL_CPP(drawSprite(x, y, sprite));
+    }
+
+
+
     bool WndMgr::drawBorderSquare(int x, int y, int side)
     {
         CCI_BOOL_CPP(drawBorderSquare(x, y, side));
@@ -504,12 +530,6 @@ namespace gwc_abst
     {
         CCI_BOOL_CPP(drawIcon(x, y, icon));
     }
-
-
-
-    WndMgr::WndMgr() { }
-
-    WndMgr::~WndMgr() { }
 }
 
 #endif // __cplusplus

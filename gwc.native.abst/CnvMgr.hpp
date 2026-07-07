@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.:.:.:
 // GWC.Native.Abst
-// v0.5.0
+// v0.6.1
 // :.:.:.:.:.:.:.:
 //
 // https://github.com/reallukee/gwc
@@ -19,18 +19,22 @@
 
 #include "header.hpp"
 
-#include <types.hpp>
+#include "types.hpp"
+
+#include "SriMgr.hpp"
 
 using namespace gwc;
 
 namespace gwc_abst
 {
-    typedef int CnvId;
+    class CnvMgrHelper;
 
     class GWC_ABST_CPP_API CnvMgr sealed
     {
 
     public:
+
+        friend class CnvMgrHelper;
 
         static void init    ();
         static void shutdown();
@@ -49,12 +53,17 @@ namespace gwc_abst
         static gColor getFillColor  ();
         static void   setFillColor  (gColor color);
 
-        static gRectangle bounds();
-        static gSize      size();
+        static gRectangle bounds  ();
+        static gSize      size    ();
         static gPoint     location();
 
         static int getWidth ();
         static int getHeight();
+
+        static bool clear(gColor color);
+
+        static bool drawCanvas(int x, int y, CnvId canvasId);
+        static bool drawSprite(int x, int y, SriId spriteId);
 
         static bool drawBorderSquare(int x, int y, int side);
         static bool drawFillSquare  (int x, int y, int side);
@@ -75,12 +84,10 @@ namespace gwc_abst
 
     private:
 
-        CnvMgr ();
-        ~CnvMgr();
+        CnvMgr () = default;
+        ~CnvMgr() = default;
 
     };
-
-    typedef CnvId CanvasId;
 
     typedef CnvMgr CanvasManager;
 }

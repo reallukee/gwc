@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.:.:.:
 // GWC.Native.Abst
-// v0.6.0
+// v0.6.1
 // :.:.:.:.:.:.:.:
 //
 // https://github.com/reallukee/gwc
@@ -17,6 +17,9 @@
 #include <WINDOW.h>
 
 #include "MACROS.h"
+
+#include "SRIMGRHELPER.h"
+#include "CNVMGRHELPER.h"
 
 static const int MAX_ITEMS_COUNT = 10;
 
@@ -438,6 +441,29 @@ gCOLOR* wndmgr_getFillColor()
 void wndmgr_setFillColor(const gCOLOR* color)
 {
     CCI_SET_COLOR_C(window_setFillColor(ITEM, color));
+}
+
+
+
+bool wndmgr_clear(const gCOLOR* color)
+{
+    CCI_BOOL_C(window_clear(ITEM, color));
+}
+
+
+
+bool wndmgr_drawCanvas(int x, int y, CNV_ID canvasId)
+{
+    CANVAS* canvas = cnvmgrHelper_get(canvasId);
+
+    CCI_BOOL_C(window_drawCanvas(ITEM, x, y, canvas));
+}
+
+bool wndmgr_drawSprite(int x, int y, SRI_ID spriteId)
+{
+    SPRITE* sprite = srimgrHelper_get(spriteId);
+
+    CCI_BOOL_C(window_drawSprite(ITEM, x, y, sprite));
 }
 
 

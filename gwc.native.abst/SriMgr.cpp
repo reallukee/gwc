@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.:.:.:
 // GWC.Native.Abst
-// v0.5.0
+// v0.6.1
 // :.:.:.:.:.:.:.:
 //
 // https://github.com/reallukee/gwc
@@ -11,8 +11,9 @@
 //
 
 #include "SriMgr.hpp"
+#include "SriMgrHelper.hpp"
 
-#include <Sprite.hpp>
+#include "CnvMgrHelper.hpp"
 
 #include "macros.hpp"
 
@@ -226,6 +227,29 @@ namespace gwc_abst
 
 
 
+    bool SriMgr::clear(gColor color)
+    {
+        CCI_BOOL_CPP(clear(color));
+    }
+
+
+
+    bool SriMgr::drawCanvas(int x, int y, CnvId canvasId)
+    {
+        Canvas* canvas = CnvMgrHelper::get(canvasId);
+
+        CCI_BOOL_CPP(drawCanvas(x, y, canvas));
+    }
+
+    bool SriMgr::drawSprite(int x, int y, SriId spriteId)
+    {
+        Sprite* sprite = SriMgrHelper::get(spriteId);
+
+        CCI_BOOL_CPP(drawSprite(x, y, sprite));
+    }
+
+
+
     bool SriMgr::drawBorderSquare(int x, int y, int side)
     {
         CCI_BOOL_CPP(drawBorderSquare(x, y, side));
@@ -293,9 +317,25 @@ namespace gwc_abst
 
 
 
-    SriMgr::SriMgr() {}
+    Sprite* SriMgrHelper::get(SpriteId id)
+    {
+        if (!ready)
+        {
+            return nullptr;
+        }
 
-    SriMgr::~SriMgr() {}
+        if (id < 0 || id > MAX_ITEMS_COUNT - 1)
+        {
+            return nullptr;
+        }
+
+        if (items[id] == nullptr)
+        {
+            return nullptr;
+        }
+
+        return items[id];
+    }
 }
 
 #endif // __cplusplus

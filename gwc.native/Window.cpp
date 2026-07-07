@@ -18,8 +18,8 @@
 #include "ImageHelper.hpp"
 #include "IconHelper.hpp"
 
-#include "CanvasHelper.hpp"
 #include "SpriteHelper.hpp"
+#include "CanvasHelper.hpp"
 
 #ifdef __cplusplus
 

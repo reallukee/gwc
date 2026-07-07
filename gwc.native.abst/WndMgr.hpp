@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.:.:.:
 // GWC.Native.Abst
-// v0.6.0
+// v0.6.1
 // :.:.:.:.:.:.:.:
 //
 // https://github.com/reallukee/gwc
@@ -19,14 +19,15 @@
 
 #include "header.hpp"
 
-#include <types.hpp>
+#include "types.hpp"
+
+#include "SriMgr.hpp"
+#include "CnvMgr.hpp"
 
 using namespace gwc;
 
 namespace gwc_abst
 {
-    typedef int WndId;
-
     class GWC_ABST_CPP_API WndMgr sealed
     {
 
@@ -103,8 +104,13 @@ namespace gwc_abst
 
         static gColor getBorderColor();
         static void   setBorderColor(gColor color);
-        static gColor getFillColor();
-        static void   setFillColor(gColor color);
+        static gColor getFillColor  ();
+        static void   setFillColor  (gColor color);
+
+        static bool clear(gColor color);
+
+        static bool drawCanvas(int x, int y, CnvId canvasId);
+        static bool drawSprite(int x, int y, SriId spriteId);
 
         static bool drawBorderSquare(int x, int y, int side);
         static bool drawFillSquare  (int x, int y, int side);
@@ -123,12 +129,10 @@ namespace gwc_abst
 
     private:
 
-        WndMgr ();
-        ~WndMgr();
+        WndMgr () = default;
+        ~WndMgr() = default;
 
     };
-
-    typedef WndId WindowId;
 
     typedef WndMgr WindowManager;
 }

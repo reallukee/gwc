@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.:.:.:
 // GWC.Native.Abst
-// v0.5.0
+// v0.6.1
 // :.:.:.:.:.:.:.:
 //
 // https://github.com/reallukee/gwc
@@ -19,11 +19,9 @@
 
 #include "header.h"
 
-#include <types.h>
+#include "types.h"
 
-typedef int CNV_ID;
-
-typedef CNV_ID CANVAS_ID;
+#include "SRIMGR.h"
 
 GWC_ABST_C_API void cnvmgr_init    ();
 GWC_ABST_C_API void cnvmgr_shutdown();
@@ -47,6 +45,11 @@ GWC_ABST_C_API gPOINT*     cnvmgr_location();
 
 GWC_ABST_C_API int cnvmgr_getWidth ();
 GWC_ABST_C_API int cnvmgr_getHeight();
+
+GWC_ABST_C_API bool cnvmgr_clear(const gCOLOR* color);
+
+GWC_ABST_C_API bool cnvmgr_drawCanvas(int x, int y, CNV_ID canvasId);
+GWC_ABST_C_API bool cnvmgr_drawSprite(int x, int y, SRI_ID spriteId);
 
 GWC_ABST_C_API bool cnvmgr_drawBorderSquare(int x, int y, int side);
 GWC_ABST_C_API bool cnvmgr_drawFillSquare  (int x, int y, int side);

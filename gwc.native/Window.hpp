@@ -19,8 +19,8 @@
 
 #include "types.hpp"
 
-#include "Canvas.hpp"
 #include "Sprite.hpp"
+#include "Canvas.hpp"
 
 namespace gwc
 {

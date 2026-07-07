@@ -18,8 +18,8 @@
 #include "ICONHELPER.h"
 #include "IMAGEHELPER.h"
 
-#include "CANVASHELPER.h"
 #include "SPRITEHELPER.h"
+#include "CANVASHELPER.h"
 
 typedef struct WINDOW {
     CLRWindowHost window;
