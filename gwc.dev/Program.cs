@@ -58,8 +58,8 @@ namespace Reallukee.GWC
 
         static int x = 0;
         static int y = 0;
-        static int vx = 6;
-        static int vy = 3;
+        static int vx = 15;
+        static int vy = 10;
         static int r = 50;
 
         static void Update()

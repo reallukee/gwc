@@ -156,7 +156,7 @@ int main(int argc, const char* argv[])
             }
         }
 
-        window_wait(window, 100);
+        window_wait(window, 16);
     }
 
     if (window_isOpen(window))
@@ -217,7 +217,7 @@ int main(int argc, const char* argv[])
             }
         }
 
-        wndmgr_wait(100);
+        wndmgr_wait(16);
     }
 
     if (wndmgr_isOpen())
@@ -279,7 +279,7 @@ int main(int argc, const char* argv[])
             }
         }
 
-        window->wait(100);
+        window->wait(16);
     }
 
     if (window->isOpen())
@@ -344,7 +344,7 @@ int main(int argc, const char* argv[])
             }
         }
 
-        WndMgr::wait(100);
+        WndMgr::wait(16);
     }
 
     if (WndMgr::isOpen())
