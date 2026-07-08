@@ -74,6 +74,6 @@ void loop(WINDOW* window)
             continue;
         }
 
-        window_wait(window, 100);
+        window_wait(window, 16);
     }
 }

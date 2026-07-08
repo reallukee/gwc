@@ -39,7 +39,7 @@ int main(int argc, const char* argv[])
             }
         }
 
-        window_wait(window, 100);
+        window_wait(window, 16);
     }
 
     if (window_isOpen(window))

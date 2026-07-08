@@ -79,6 +79,6 @@ void loop()
             continue;
         }
 
-        WndMgr::wait(100);
+        WndMgr::wait(16);
     }
 }

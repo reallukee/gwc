@@ -75,6 +75,6 @@ void loop()
             continue;
         }
 
-        wndmgr_wait(100);
+        wndmgr_wait(16);
     }
 }

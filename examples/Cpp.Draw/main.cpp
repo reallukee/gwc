@@ -36,7 +36,7 @@ int main(int argc, const char* argv[])
 
     while (window->isOpen() && !window->isKeyDownAvailable())
     {
-        window->wait(100);
+        window->wait(16);
     }
 
     if (window->isOpen())

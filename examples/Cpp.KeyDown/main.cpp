@@ -43,7 +43,7 @@ int main(int argc, const char* argv[])
             }
         }
 
-        window->wait(100);
+        window->wait(16);
     }
 
     if (window->isOpen())
