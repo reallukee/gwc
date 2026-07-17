@@ -17,7 +17,7 @@
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
- * Versione  : v0.6.1
+ * Versione  : v0.6.2
  *             NOTA BENE: Campo INDICATIVO!
  * Licenza   : MIT
  */
@@ -51,5 +51,5 @@ using System.Windows.Forms;
 
 [assembly: Guid("e3352e34-8033-4f44-ae88-7e053e6d11e7")]
 
-[assembly: AssemblyVersion    ("0.6.1.0")]
-[assembly: AssemblyFileVersion("0.6.1.0")]
+[assembly: AssemblyVersion    ("0.6.2.0")]
+[assembly: AssemblyFileVersion("0.6.2.0")]

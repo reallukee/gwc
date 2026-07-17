@@ -24,6 +24,7 @@
     <Optimize>false</Optimize>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <AssemblyName>$(AssemblyName)-$(Platform)</AssemblyName>
@@ -32,6 +33,7 @@
     <Optimize>true</Optimize>
     <DebugSymbols>false</DebugSymbols>
     <DebugType>pdbonly</DebugType>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Platform)' == 'x86'">
     <PlatformTarget>x86</PlatformTarget>
@@ -60,6 +62,7 @@
     <Compile Include="..\gwc\IRenderable.cs" />
     <Compile Include="..\gwc\IBorderColor.cs" />
     <Compile Include="..\gwc\IFillColor.cs" />
+    <Compile Include="..\gwc\Clear.cs" />
     <Compile Include="..\gwc\BaseRectangle.cs" />
     <Compile Include="..\gwc\BaseEllipse.cs" />
     <Compile Include="..\gwc\BorderRectangle.cs" />
@@ -68,14 +71,16 @@
     <Compile Include="..\gwc\FillEllipse.cs" />
     <Compile Include="..\gwc\BaseImage.cs" />
     <Compile Include="..\gwc\BaseIcon.cs" />
-    <Compile Include="..\gwc\NativeInterop" />
+    <Compile Include="..\gwc\NativeInterop.cs" />
     <Compile Include="..\gwc\Render.cs" />
     <Compile Include="..\gwc\WindowForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="..\gwc\Sprite.cs" />
+    <Compile Include="..\gwc\SpriteBox.cs" />
     <Compile Include="..\gwc\SpriteHandler.cs" />
     <Compile Include="..\gwc\Canvas.cs" />
+    <Compile Include="..\gwc\CanvasBox.cs" />
     <Compile Include="..\gwc\CanvasHandler.cs" />
     <Compile Include="..\gwc\Window.cs" />
     <Compile Include="..\gwc\WindowHandler.cs" />
