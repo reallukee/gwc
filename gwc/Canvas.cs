@@ -17,7 +17,7 @@
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
- * Versione  : v0.6.1
+ * Versione  : v0.6.2
  *             NOTA BENE: Campo INDICATIVO!
  * Licenza   : MIT
  */
@@ -34,6 +34,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Windows.Forms;
 
 using Reallukee.GWC.Internal;
@@ -43,142 +44,21 @@ namespace Reallukee.GWC
 {
     public sealed class Canvas : IDisposable, IRenderable, IBorderColor, IFillColor
     {
-        internal sealed class CanvasBox : IDisposable, IRenderable
-        {
-            private Canvas canvas;
-
-            private bool disposed;
-
-            public CanvasBox(int x, int y, Canvas canvas)
-            {
-                this.X = x;
-                this.Y = y;
-                this.canvas = new Canvas(canvas);
-            }
-
-            public void Dispose()
-            {
-                Dispose(true);
-            }
-
-            private void Dispose(bool disposing)
-            {
-                if (disposed)
-                {
-                    return;
-                }
-
-                if (disposing)
-                {
-                    canvas?.Dispose();
-
-                    canvas = null;
-                }
-
-                disposed = true;
-            }
-
-
-
-            private int x;
-
-            public int X
-            {
-                get
-                {
-                    return x;
-                }
-
-                set
-                {
-                    x = value;
-                }
-            }
-
-            private int y;
-
-            public int Y
-            {
-                get
-                {
-                    return y;
-                }
-
-                set
-                {
-                    y = value;
-                }
-            }
-
-            public int Width
-            {
-                get
-                {
-                    return canvas.Width;
-                }
-            }
-
-            public int Height
-            {
-                get
-                {
-                    return canvas.Height;
-                }
-            }
-
-
-
-            public Rectangle Bounds
-            {
-                get
-                {
-                    return new Rectangle(X, Y, Width, Height);
-                }
-            }
-
-            public Size Size
-            {
-                get
-                {
-                    return new Size(Width, Height);
-                }
-            }
-
-            public Point Location
-            {
-                get
-                {
-                    return new Point(X, Y);
-                }
-            }
-
-
-
-            public void Render(Graphics g)
-            {
-                if (!canvas.IsCached)
-                {
-                    canvas.Render();
-                }
-
-                g.DrawImage(canvas.Bitmap, X, Y);
-            }
-        }
-
-
-
         public const int MaxBufferLength = 10000;
 
         private bool disposed;
 
         public Canvas(int width, int height)
         {
-            ThrowIfArgumentOutOfRange(nameof(width), width, IsLessOrEqualThen(0));
+            ThrowIfArgumentOutOfRange(
+                nameof(width), width, IsLessOrEqualThen(0)
+            );
 
-            ThrowIfArgumentOutOfRange(nameof(height), height, IsLessOrEqualThen(0));
+            ThrowIfArgumentOutOfRange(
+                nameof(height), height, IsLessOrEqualThen(0)
+            );
 
             InitBitmap(width, height);
-
             InitBuffer(width, height);
 
             BorderColor = Color.Black;
@@ -190,34 +70,6 @@ namespace Reallukee.GWC
         public Canvas() : this(800, 600)
         {
 
-        }
-
-        public Canvas(Canvas other)
-        {
-            ThrowIfArgumentNull(nameof(other), other);
-
-            ThrowIfObjectDisposed(nameof(other), other.disposed);
-
-            InitBitmap(other.Width, other.Height);
-
-            InitBuffer(other.Width, other.Height);
-
-            BorderColor = Color.Black;
-            FillColor = Color.Green;
-
-            this.Bitmap   = (Bitmap)other.Bitmap.Clone();
-            this.IsCached = other.IsCached;
-
-            List<IRenderable> otherBuffer;
-
-            lock (other.bufferLock)
-            {
-                otherBuffer = other.Buffer.ToList();
-            }
-
-            this.Buffer = new ConcurrentQueue<IRenderable>(otherBuffer);
-
-            disposed = false;
         }
 
         public void Dispose()
@@ -235,8 +87,10 @@ namespace Reallukee.GWC
             if (disposing)
             {
                 Bitmap?.Dispose();
+                Marshal.FreeHGlobal(RawBitmap);
 
                 Bitmap = null;
+                RawBitmap = IntPtr.Zero;
             }
 
             disposed = true;
@@ -323,7 +177,27 @@ namespace Reallukee.GWC
 
         private void InitBitmap(int width, int height)
         {
-            Bitmap = new Bitmap(width, height);
+            try
+            {
+                RawBitmap = Marshal.AllocHGlobal(width * height * 4);
+
+                Bitmap = new Bitmap(
+                    width,
+                    height,
+                    width * 4,
+                    PixelFormat.Format32bppPArgb,
+                    RawBitmap
+                );
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    $"Critical Error!\n Reason: {ex.Message}",
+                    "GWC",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
 
             bitmapLock = new object();
         }
@@ -336,6 +210,18 @@ namespace Reallukee.GWC
         }
 
 
+
+        internal int RawBitmapSize
+        {
+            get;
+            set;
+        }
+
+        internal IntPtr RawBitmap
+        {
+            get;
+            set;
+        }
 
         internal Bitmap Bitmap
         {
@@ -448,28 +334,28 @@ namespace Reallukee.GWC
 
         public bool DrawCanvas(Canvas canvas)
         {
-            IRenderable canvasCopy = new Canvas(canvas);
+            IRenderable canvasBox = new CanvasBox(0, 0, canvas);
 
-            return DrawRenderable(canvasCopy);
+            return DrawRenderable(canvasBox);
         }
 
         public bool DrawCanvas(int x, int y, Canvas canvas)
         {
-            CanvasBox canvasBox = new CanvasBox(x, y, canvas);
+            IRenderable canvasBox = new CanvasBox(x, y, canvas);
 
             return DrawRenderable(canvasBox);
         }
 
         public bool DrawSprite(Sprite sprite)
         {
-            IRenderable spriteCopy = new Sprite(sprite);
+            IRenderable spriteBox = new SpriteBox(0, 0, sprite);
 
-            return DrawRenderable(spriteCopy);
+            return DrawRenderable(spriteBox);
         }
 
         public bool DrawSprite(int x, int y, Sprite sprite)
         {
-            Sprite.SpriteBox spriteBox = new Sprite.SpriteBox(x, y, sprite);
+            IRenderable spriteBox = new SpriteBox(x, y, sprite);
 
             return DrawRenderable(spriteBox);
         }
