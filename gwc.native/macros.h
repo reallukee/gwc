@@ -84,7 +84,7 @@
         throw gcnew NullReferenceException(""); \
     } \
     \
-    Drawing::Color^ manangedColor = _host->invoke()->target; \
+    System::Drawing::Color^ manangedColor = _host->invoke()->target; \
     \
     gCOLOR* nativeColor = color_new( \
         (int)manangedColor->A, \
@@ -112,7 +112,7 @@
     \
     const gCOLOR* nativeColor = color; \
     \
-    Drawing::Color managedColor = Drawing::Color::FromArgb( \
+    System::Drawing::Color managedColor = System::Drawing::Color::FromArgb( \
         color_getAlpha(nativeColor), \
         color_getRed  (nativeColor), \
         color_getGreen(nativeColor), \
@@ -138,7 +138,7 @@
         throw gcnew NullReferenceException(""); \
     } \
     \
-    Drawing::Point^ manangedPoint = _host->invoke()->target; \
+    System::Drawing::Point^ manangedPoint = _host->invoke()->target; \
     \
     gPOINT* nativePoint = point_new( \
         (int)manangedPoint->X, \
@@ -164,7 +164,7 @@
     \
     const gPOINT* nativePoint = point; \
     \
-    Drawing::Point^ managedColor = gcnew Drawing::Point( \
+    System::Drawing::Point^ managedColor = gcnew System::Drawing::Point( \
         point_getX(nativePoint), \
         point_getY(nativePoint) \
     ); \
@@ -188,7 +188,7 @@
         throw gcnew NullReferenceException(""); \
     } \
     \
-    Drawing::Size^ manangedSize = _host->invoke()->target; \
+    System::Drawing::Size^ manangedSize = _host->invoke()->target; \
     \
     gSIZE* nativeSize = size_new( \
         (int)manangedSize->Width, \
@@ -214,7 +214,7 @@
     \
     const gSIZE* nativeSize = size; \
     \
-    Drawing::Size^ managedColor = gcnew Drawing::Size( \
+    System::Drawing::Size^ managedColor = gcnew System::Drawing::Size( \
         size_getWidth (nativeSize), \
         size_getHeight(nativeSize) \
     ); \
@@ -238,7 +238,7 @@
         throw gcnew NullReferenceException(""); \
     } \
     \
-    Drawing::Rectangle^ manangedRectangle = _host->invoke()->target; \
+    System::Drawing::Rectangle^ manangedRectangle = _host->invoke()->target; \
     \
     gRECTANGLE* nativeRectangle = rectangle_new( \
         (int)manangedRectangle->X, \
@@ -266,7 +266,7 @@
     \
     const gRECTANGLE* nativeRectangle = rectangle; \
     \
-    Drawing::Rectangle^ managedColor = gcnew Drawing::Rectangle( \
+    System::Drawing::Rectangle^ managedColor = gcnew System::Drawing::Rectangle( \
         rectangle_getX     (nativeRectangle), \
         rectangle_getY     (nativeRectangle), \
         rectangle_getWidth (nativeRectangle), \

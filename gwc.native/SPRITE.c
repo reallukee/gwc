@@ -132,7 +132,7 @@ int sprite_getHeight(const SPRITE* sprite)
 
 bool sprite_clear(const SPRITE* sprite, const gCOLOR* color)
 {
-    Drawing::Color managedColor = Drawing::Color::FromArgb(
+    System::Drawing::Color managedColor = System::Drawing::Color::FromArgb(
         color_getAlpha(color),
         color_getRed  (color),
         color_getGreen(color),
@@ -210,7 +210,7 @@ bool sprite_drawFillEllipse(const SPRITE* sprite, int x, int y, int width, int h
 
 
 
-static Drawing::Bitmap^ toManagedBitmap(Gdiplus::Bitmap* nativeBitmap)
+static System::Drawing::Bitmap^ toManagedBitmap(Gdiplus::Bitmap* nativeBitmap)
 {
     if (!nativeBitmap)
     {
@@ -241,28 +241,28 @@ static Drawing::Bitmap^ toManagedBitmap(Gdiplus::Bitmap* nativeBitmap)
         return nullptr;
     }
 
-    Drawing::Bitmap^ managedBitmap = nullptr;
+    System::Drawing::Bitmap^ managedBitmap = nullptr;
 
     try
     {
-        managedBitmap = gcnew Drawing::Bitmap(
+        managedBitmap = gcnew System::Drawing::Bitmap(
             width,
             height,
             nativeBitmapData.Stride,
-            Drawing::Imaging::PixelFormat::Format32bppPArgb,
+            System::Drawing::Imaging::PixelFormat::Format32bppPArgb,
             (IntPtr)nativeBitmapData.Scan0
         );
 
-        Drawing::Rectangle managedRectangle(
+        System::Drawing::Rectangle managedRectangle(
             0,
             0,
             width,
             height
         );
 
-        Drawing::Bitmap^ copy = managedBitmap->Clone(
+        System::Drawing::Bitmap^ copy = managedBitmap->Clone(
             managedRectangle,
-            Drawing::Imaging::PixelFormat::Format32bppPArgb
+            System::Drawing::Imaging::PixelFormat::Format32bppPArgb
         );
 
         delete managedBitmap;
@@ -271,7 +271,7 @@ static Drawing::Bitmap^ toManagedBitmap(Gdiplus::Bitmap* nativeBitmap)
     }
     catch (Exception^ ex)
     {
-        Windows::Forms::MessageBox::Show(ex->Message);
+        System::Windows::Forms::MessageBox::Show(ex->Message);
     }
     finally
     {
@@ -302,7 +302,7 @@ bool sprite_drawImage(const SPRITE* sprite, int x, int y, gIMAGE* image)
         return false;
     }
 
-    Drawing::Image^ managedImage = nullptr;
+    System::Drawing::Image^ managedImage = nullptr;
 
     bool result = false;
 
@@ -314,7 +314,7 @@ bool sprite_drawImage(const SPRITE* sprite, int x, int y, gIMAGE* image)
     }
     catch (Exception^ ex)
     {
-        Windows::Forms::MessageBox::Show(ex->Message);
+        System::Windows::Forms::MessageBox::Show(ex->Message);
     }
     finally
     {
@@ -348,7 +348,7 @@ bool sprite_drawIcon(const SPRITE* sprite, int x, int y, gICON* icon)
         return false;
     }
 
-    Drawing::Icon^ managedIcon = nullptr;
+    System::Drawing::Icon^ managedIcon = nullptr;
 
     bool result = false;
 
@@ -356,13 +356,13 @@ bool sprite_drawIcon(const SPRITE* sprite, int x, int y, gICON* icon)
     {
         IntPtr iconHandle = IntPtr(nativeIcon);
 
-        managedIcon = Drawing::Icon::FromHandle(iconHandle);
+        managedIcon = System::Drawing::Icon::FromHandle(iconHandle);
 
         result = _host->invoke()->DrawIcon(x, y, managedIcon);
     }
     catch (Exception^ ex)
     {
-        Windows::Forms::MessageBox::Show(ex->Message);
+        System::Windows::Forms::MessageBox::Show(ex->Message);
     }
     finally
     {

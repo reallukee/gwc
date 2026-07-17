@@ -116,7 +116,7 @@ namespace gwc
 
     bool Sprite::clear(gColor color)
     {
-        Drawing::Color managedColor = Drawing::Color::FromArgb(
+        System::Drawing::Color managedColor = System::Drawing::Color::FromArgb(
             color.getAlpha(),
             color.getRed  (),
             color.getGreen(),
@@ -196,7 +196,7 @@ namespace gwc
 
 
 
-    static Drawing::Bitmap^ toManagedBitmap(Gdiplus::Bitmap* nativeBitmap)
+    static System::Drawing::Bitmap^ toManagedBitmap(Gdiplus::Bitmap* nativeBitmap)
     {
         if (!nativeBitmap)
         {
@@ -227,28 +227,28 @@ namespace gwc
             return nullptr;
         }
 
-        Drawing::Bitmap^ managedBitmap = nullptr;
+        System::Drawing::Bitmap^ managedBitmap = nullptr;
 
         try
         {
-            managedBitmap = gcnew Drawing::Bitmap(
+            managedBitmap = gcnew System::Drawing::Bitmap(
                 width,
                 height,
                 nativeBitmapData.Stride,
-                Drawing::Imaging::PixelFormat::Format32bppPArgb,
+                System::Drawing::Imaging::PixelFormat::Format32bppPArgb,
                 (IntPtr)nativeBitmapData.Scan0
             );
 
-            Drawing::Rectangle managedRectangle(
+            System::Drawing::Rectangle managedRectangle(
                 0,
                 0,
                 width,
                 height
             );
 
-            Drawing::Bitmap^ copy = managedBitmap->Clone(
+            System::Drawing::Bitmap^ copy = managedBitmap->Clone(
                 managedRectangle,
-                Drawing::Imaging::PixelFormat::Format32bppPArgb
+                System::Drawing::Imaging::PixelFormat::Format32bppPArgb
             );
 
             delete managedBitmap;
@@ -257,7 +257,7 @@ namespace gwc
         }
         catch (Exception^ ex)
         {
-            Windows::Forms::MessageBox::Show(ex->Message);
+            System::Windows::Forms::MessageBox::Show(ex->Message);
         }
         finally
         {
@@ -283,7 +283,7 @@ namespace gwc
             return false;
         }
 
-        Drawing::Image^ managedImage = nullptr;
+        System::Drawing::Image^ managedImage = nullptr;
 
         bool result = false;
 
@@ -295,7 +295,7 @@ namespace gwc
         }
         catch (Exception^ ex)
         {
-            Windows::Forms::MessageBox::Show(ex->Message);
+            System::Windows::Forms::MessageBox::Show(ex->Message);
         }
         finally
         {
@@ -324,7 +324,7 @@ namespace gwc
             return false;
         }
 
-        Drawing::Icon^ managedIcon = nullptr;
+        System::Drawing::Icon^ managedIcon = nullptr;
 
         bool result = false;
 
@@ -332,13 +332,13 @@ namespace gwc
         {
             IntPtr iconHandle = IntPtr(nativeIcon);
 
-            managedIcon = Drawing::Icon::FromHandle(iconHandle);
+            managedIcon = System::Drawing::Icon::FromHandle(iconHandle);
 
             result = _host->invoke()->DrawIcon(x, y, managedIcon);
         }
         catch (Exception^ ex)
         {
-            Windows::Forms::MessageBox::Show(ex->Message);
+            System::Windows::Forms::MessageBox::Show(ex->Message);
         }
         finally
         {

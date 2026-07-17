@@ -81,7 +81,7 @@
         throw gcnew NullReferenceException(""); \
     } \
     \
-    Drawing::Color^ managedColor = _host->invoke()->target; \
+    System::Drawing::Color^ managedColor = _host->invoke()->target; \
     \
     gColor nativeColor = gColor( \
         (int)managedColor->A, \
@@ -104,7 +104,7 @@
     \
     const gColor nativeColor = color; \
     \
-    Drawing::Color managedColor = Drawing::Color::FromArgb( \
+    System::Drawing::Color managedColor = System::Drawing::Color::FromArgb( \
         nativeColor.getAlpha(), \
         nativeColor.getRed  (), \
         nativeColor.getGreen(), \
@@ -125,7 +125,7 @@
         throw gcnew NullReferenceException(""); \
     } \
     \
-    Drawing::Point^ managedPoint = _host->invoke()->target; \
+    System::Drawing::Point^ managedPoint = _host->invoke()->target; \
     \
     gPoint nativePoint = gPoint( \
         (int)managedPoint->X, \
@@ -146,7 +146,7 @@
     \
     const gPoint nativePoint = point; \
     \
-    Drawing::Point managedPoint = Drawing::Point::FromArgb( \
+    System::Drawing::Point managedPoint = System::Drawing::Point::FromArgb( \
         nativePoint.getX(), \
         nativePoint.getY() \
     ); \
@@ -165,7 +165,7 @@
         throw gcnew NullReferenceException(""); \
     } \
     \
-    Drawing::Size^ managedSize = _host->invoke()->target; \
+    System::Drawing::Size^ managedSize = _host->invoke()->target; \
     \
     gSize nativeSize = gSize( \
         (int)managedSize->Width, \
@@ -186,7 +186,7 @@
     \
     const gSize nativeSize = size; \
     \
-    Drawing::Size managedSize = Drawing::Size::FromArgb( \
+    System::Drawing::Size managedSize = System::Drawing::Size::FromArgb( \
         nativeSize.getWidth (), \
         nativeSize.getHeight() \
     ); \
@@ -205,7 +205,7 @@
         throw gcnew NullReferenceException(""); \
     } \
     \
-    Drawing::Rectangle^ managedRectangle = _host->invoke()->target; \
+    System::Drawing::Rectangle^ managedRectangle = _host->invoke()->target; \
     \
     gRectangle nativeRectangle = gRectangle( \
         (int)managedRectangle->X, \
@@ -228,7 +228,7 @@
     \
     const gRectangle nativeRectangle = rectangle; \
     \
-    Drawing::Rectangle managedRectangle = Drawing::Rectangle::FromArgb( \
+    System::Drawing::Rectangle managedRectangle = System::Drawing::Rectangle::FromArgb( \
         nativeRectangle.getX     (), \
         nativeRectangle.getY     (), \
         nativeRectangle.getWidth (), \

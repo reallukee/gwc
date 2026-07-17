@@ -180,8 +180,8 @@ namespace gwc
     {
         CC_BOOL_CPP(WindowHost, window);
 
-        Windows::Forms::Keys managedModifiers;
-        Windows::Forms::Keys managedKey;
+        System::Windows::Forms::Keys managedModifiers;
+        System::Windows::Forms::Keys managedKey;
 
         bool result = _host->invoke()->ConsumeKeyDown(
             managedModifiers, managedKey
@@ -200,8 +200,8 @@ namespace gwc
     {
         CC_BOOL_CPP(WindowHost, window);
 
-        Windows::Forms::Keys managedModifiers;
-        Windows::Forms::Keys managedKey;
+        System::Windows::Forms::Keys managedModifiers;
+        System::Windows::Forms::Keys managedKey;
 
         bool result = _host->invoke()->ConsumeKeyUp(
             managedModifiers, managedKey
@@ -230,11 +230,11 @@ namespace gwc
     {
         CC_BOOL_CPP(WindowHost, window);
 
-        Windows::Forms::Keys managedModifiers;
-        Windows::Forms::Keys managedKey;
+        System::Windows::Forms::Keys managedModifiers;
+        System::Windows::Forms::Keys managedKey;
 
-        managedModifiers = safe_cast<Windows::Forms::Keys>(modifiers);
-        managedKey       = safe_cast<Windows::Forms::Keys>(key);
+        managedModifiers = safe_cast<System::Windows::Forms::Keys>(modifiers);
+        managedKey       = safe_cast<System::Windows::Forms::Keys>(key);
 
         return _host->invoke()->IsKeyDownInBuffer(
             managedModifiers, managedKey
@@ -245,11 +245,11 @@ namespace gwc
     {
         CC_BOOL_CPP(WindowHost, window);
 
-        Windows::Forms::Keys managedModifiers;
-        Windows::Forms::Keys managedKey;
+        System::Windows::Forms::Keys managedModifiers;
+        System::Windows::Forms::Keys managedKey;
 
-        managedModifiers = safe_cast<Windows::Forms::Keys>(modifiers);
-        managedKey       = safe_cast<Windows::Forms::Keys>(key);
+        managedModifiers = safe_cast<System::Windows::Forms::Keys>(modifiers);
+        managedKey       = safe_cast<System::Windows::Forms::Keys>(key);
 
         return _host->invoke()->IsKeyUpInBuffer(
             managedModifiers, managedKey
@@ -302,8 +302,8 @@ namespace gwc
     {
         CC_BOOL_CPP(WindowHost, window);
 
-        Drawing::Point               managedLocation;
-        Windows::Forms::MouseButtons managedButton;
+        System::Drawing::Point               managedLocation;
+        System::Windows::Forms::MouseButtons managedButton;
 
         bool result = _host->invoke()->ConsumeMouseDown(
             managedLocation, managedButton
@@ -321,8 +321,8 @@ namespace gwc
     {
         CC_BOOL_CPP(WindowHost, window);
 
-        Drawing::Point               managedLocation;
-        Windows::Forms::MouseButtons managedButton;
+        System::Drawing::Point               managedLocation;
+        System::Windows::Forms::MouseButtons managedButton;
 
         bool result = _host->invoke()->ConsumeMouseUp(
             managedLocation, managedButton
@@ -350,11 +350,11 @@ namespace gwc
     {
         CC_BOOL_CPP(WindowHost, window);
 
-        Drawing::Point               managedLocation;
-        Windows::Forms::MouseButtons managedButton;
+        System::Drawing::Point               managedLocation;
+        System::Windows::Forms::MouseButtons managedButton;
 
-        managedLocation = Drawing::Point(location.getX(), location.getY());
-        managedButton   = safe_cast<Windows::Forms::MouseButtons>(button);
+        managedLocation = System::Drawing::Point(location.getX(), location.getY());
+        managedButton   = safe_cast<System::Windows::Forms::MouseButtons>(button);
 
         return _host->invoke()->IsMouseDownInBuffer(
             managedLocation, managedButton
@@ -365,11 +365,11 @@ namespace gwc
     {
         CC_BOOL_CPP(WindowHost, window);
 
-        Drawing::Point               managedLocation;
-        Windows::Forms::MouseButtons managedButton;
+        System::Drawing::Point               managedLocation;
+        System::Windows::Forms::MouseButtons managedButton;
 
-        managedLocation = Drawing::Point(location.getX(), location.getY());
-        managedButton   = safe_cast<Windows::Forms::MouseButtons>(button);
+        managedLocation = System::Drawing::Point(location.getX(), location.getY());
+        managedButton   = safe_cast<System::Windows::Forms::MouseButtons>(button);
 
         return _host->invoke()->IsMouseUpInBuffer(
             managedLocation, managedButton
@@ -434,7 +434,7 @@ namespace gwc
 
     bool Window::clear(gColor color)
     {
-        Drawing::Color managedColor = Drawing::Color::FromArgb(
+        System::Drawing::Color managedColor = System::Drawing::Color::FromArgb(
             color.getAlpha(),
             color.getRed  (),
             color.getGreen(),
@@ -514,7 +514,7 @@ namespace gwc
 
 
 
-    static Drawing::Bitmap^ toManagedBitmap(Gdiplus::Bitmap* nativeBitmap)
+    static System::Drawing::Bitmap^ toManagedBitmap(Gdiplus::Bitmap* nativeBitmap)
     {
         if (!nativeBitmap)
         {
@@ -545,28 +545,28 @@ namespace gwc
             return nullptr;
         }
 
-        Drawing::Bitmap^ managedBitmap = nullptr;
+        System::Drawing::Bitmap^ managedBitmap = nullptr;
 
         try
         {
-            managedBitmap = gcnew Drawing::Bitmap(
+            managedBitmap = gcnew System::Drawing::Bitmap(
                 width,
                 height,
                 nativeBitmapData.Stride,
-                Drawing::Imaging::PixelFormat::Format32bppPArgb,
+                System::Drawing::Imaging::PixelFormat::Format32bppPArgb,
                 (IntPtr)nativeBitmapData.Scan0
             );
 
-            Drawing::Rectangle managedRectangle(
+            System::Drawing::Rectangle managedRectangle(
                 0,
                 0,
                 width,
                 height
             );
 
-            Drawing::Bitmap^ copy = managedBitmap->Clone(
+            System::Drawing::Bitmap^ copy = managedBitmap->Clone(
                 managedRectangle,
-                Drawing::Imaging::PixelFormat::Format32bppPArgb
+                System::Drawing::Imaging::PixelFormat::Format32bppPArgb
             );
 
             delete managedBitmap;
@@ -575,7 +575,7 @@ namespace gwc
         }
         catch (Exception^ ex)
         {
-            Windows::Forms::MessageBox::Show(ex->Message);
+            System::Windows::Forms::MessageBox::Show(ex->Message);
         }
         finally
         {
@@ -601,7 +601,7 @@ namespace gwc
             return false;
         }
 
-        Drawing::Image^ managedImage = nullptr;
+        System::Drawing::Image^ managedImage = nullptr;
 
         bool result = false;
 
@@ -613,7 +613,7 @@ namespace gwc
         }
         catch (Exception^ ex)
         {
-            Windows::Forms::MessageBox::Show(ex->Message);
+            System::Windows::Forms::MessageBox::Show(ex->Message);
         }
         finally
         {
@@ -642,7 +642,7 @@ namespace gwc
             return false;
         }
 
-        Drawing::Icon^ managedIcon = nullptr;
+        System::Drawing::Icon^ managedIcon = nullptr;
 
         bool result = false;
 
@@ -650,13 +650,13 @@ namespace gwc
         {
             IntPtr iconHandle = IntPtr(nativeIcon);
 
-            managedIcon = Drawing::Icon::FromHandle(iconHandle);
+            managedIcon = System::Drawing::Icon::FromHandle(iconHandle);
 
             result = _host->invoke()->DrawIcon(x, y, managedIcon);
         }
         catch (Exception^ ex)
         {
-            Windows::Forms::MessageBox::Show(ex->Message);
+            System::Windows::Forms::MessageBox::Show(ex->Message);
         }
         finally
         {

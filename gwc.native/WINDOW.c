@@ -201,8 +201,8 @@ bool window_consumeKeyDown(const WINDOW* window, gKEYS* modifiers, gKEYS* key)
         return false;
     }
 
-    Windows::Forms::Keys managedModifiers;
-    Windows::Forms::Keys managedKey;
+    System::Windows::Forms::Keys managedModifiers;
+    System::Windows::Forms::Keys managedKey;
 
     bool result = _host->invoke()->ConsumeKeyDown(
         managedModifiers, managedKey
@@ -226,8 +226,8 @@ bool window_consumeKeyUp(const WINDOW* window, gKEYS* modifiers, gKEYS* key)
         return false;
     }
 
-    Windows::Forms::Keys managedModifiers;
-    Windows::Forms::Keys managedKey;
+    System::Windows::Forms::Keys managedModifiers;
+    System::Windows::Forms::Keys managedKey;
 
     bool result = _host->invoke()->ConsumeKeyUp(
         managedModifiers, managedKey
@@ -256,11 +256,11 @@ bool window_isKeyDownInBuffer(const WINDOW* window, gKEYS modifiers, gKEYS key)
 {
     CC_BOOL_C(WindowHost, window);
 
-    Windows::Forms::Keys managedModifiers;
-    Windows::Forms::Keys managedKey;
+    System::Windows::Forms::Keys managedModifiers;
+    System::Windows::Forms::Keys managedKey;
 
-    managedModifiers = safe_cast<Windows::Forms::Keys>(modifiers);
-    managedKey       = safe_cast<Windows::Forms::Keys>(key);
+    managedModifiers = safe_cast<System::Windows::Forms::Keys>(modifiers);
+    managedKey       = safe_cast<System::Windows::Forms::Keys>(key);
 
     return _host->invoke()->IsKeyDownInBuffer(
         managedModifiers, managedKey
@@ -271,11 +271,11 @@ bool window_isKeyUpInBuffer(const WINDOW* window, gKEYS modifiers, gKEYS key)
 {
     CC_BOOL_C(WindowHost, window);
 
-    Windows::Forms::Keys managedModifiers;
-    Windows::Forms::Keys managedKey;
+    System::Windows::Forms::Keys managedModifiers;
+    System::Windows::Forms::Keys managedKey;
 
-    managedModifiers = safe_cast<Windows::Forms::Keys>(modifiers);
-    managedKey       = safe_cast<Windows::Forms::Keys>(key);
+    managedModifiers = safe_cast<System::Windows::Forms::Keys>(modifiers);
+    managedKey       = safe_cast<System::Windows::Forms::Keys>(key);
 
     return _host->invoke()->IsKeyUpInBuffer(
         managedModifiers, managedKey
@@ -328,8 +328,8 @@ bool window_consumeMouseDown(const WINDOW* window, gPOINT** location, gMOUSEBUTT
 {
     CC_BOOL_C(WindowHost, window);
 
-    Drawing::Point               managedLocation;
-    Windows::Forms::MouseButtons managedButton;
+    System::Drawing::Point               managedLocation;
+    System::Windows::Forms::MouseButtons managedButton;
 
     bool result = _host->invoke()->ConsumeMouseDown(
         managedLocation, managedButton
@@ -347,8 +347,8 @@ bool window_consumeMouseUp(const WINDOW* window, gPOINT** location, gMOUSEBUTTON
 {
     CC_BOOL_C(WindowHost, window);
 
-    Drawing::Point               managedLocation;
-    Windows::Forms::MouseButtons managedButton;
+    System::Drawing::Point               managedLocation;
+    System::Windows::Forms::MouseButtons managedButton;
 
     bool result = _host->invoke()->ConsumeMouseUp(
         managedLocation, managedButton
@@ -376,11 +376,11 @@ bool window_isMouseDownInBuffer(const WINDOW* window, gPOINT* location, gMOUSEBU
 {
     CC_BOOL_C(WindowHost, window);
 
-    Drawing::Point               managedLocation;
-    Windows::Forms::MouseButtons managedButton;
+    System::Drawing::Point               managedLocation;
+    System::Windows::Forms::MouseButtons managedButton;
 
-    managedLocation = Drawing::Point(point_getX(location), point_getY(location));
-    managedButton   = safe_cast<Windows::Forms::MouseButtons>(button);
+    managedLocation = System::Drawing::Point(point_getX(location), point_getY(location));
+    managedButton   = safe_cast<System::Windows::Forms::MouseButtons>(button);
 
     return _host->invoke()->IsMouseDownInBuffer(
         managedLocation, managedButton
@@ -391,11 +391,11 @@ bool window_isMouseUpInBuffer(const WINDOW* window, gPOINT* location, gMOUSEBUTT
 {
     CC_BOOL_C(WindowHost, window);
 
-    Drawing::Point               managedLocation;
-    Windows::Forms::MouseButtons managedButton;
+    System::Drawing::Point               managedLocation;
+    System::Windows::Forms::MouseButtons managedButton;
 
-    managedLocation = Drawing::Point(point_getX(location), point_getY(location));
-    managedButton   = safe_cast<Windows::Forms::MouseButtons>(button);
+    managedLocation = System::Drawing::Point(point_getX(location), point_getY(location));
+    managedButton   = safe_cast<System::Windows::Forms::MouseButtons>(button);
 
     return _host->invoke()->IsMouseUpInBuffer(
         managedLocation, managedButton
@@ -438,7 +438,7 @@ int window_getCanvasHeight(const WINDOW* window)
 
 bool window_clear(const WINDOW* window, const gCOLOR* color)
 {
-    Drawing::Color managedColor = Drawing::Color::FromArgb(
+    System::Drawing::Color managedColor = System::Drawing::Color::FromArgb(
         color_getAlpha(color),
         color_getRed  (color),
         color_getGreen(color),
@@ -538,7 +538,7 @@ bool window_drawFillEllipse(const WINDOW* window, int x, int y, int width, int h
 
 
 
-static Drawing::Bitmap^ toManagedBitmap(Gdiplus::Bitmap* nativeBitmap)
+static System::Drawing::Bitmap^ toManagedBitmap(Gdiplus::Bitmap* nativeBitmap)
 {
     if (!nativeBitmap)
     {
@@ -569,28 +569,28 @@ static Drawing::Bitmap^ toManagedBitmap(Gdiplus::Bitmap* nativeBitmap)
         return nullptr;
     }
 
-    Drawing::Bitmap^ managedBitmap = nullptr;
+    System::Drawing::Bitmap^ managedBitmap = nullptr;
 
     try
     {
-        managedBitmap = gcnew Drawing::Bitmap(
+        managedBitmap = gcnew System::Drawing::Bitmap(
             width,
             height,
             nativeBitmapData.Stride,
-            Drawing::Imaging::PixelFormat::Format32bppPArgb,
+            System::Drawing::Imaging::PixelFormat::Format32bppPArgb,
             (IntPtr)nativeBitmapData.Scan0
         );
 
-        Drawing::Rectangle managedRectangle(
+        System::Drawing::Rectangle managedRectangle(
             0,
             0,
             width,
             height
         );
 
-        Drawing::Bitmap^ copy = managedBitmap->Clone(
+        System::Drawing::Bitmap^ copy = managedBitmap->Clone(
             managedRectangle,
-            Drawing::Imaging::PixelFormat::Format32bppPArgb
+            System::Drawing::Imaging::PixelFormat::Format32bppPArgb
         );
 
         delete managedBitmap;
@@ -599,7 +599,7 @@ static Drawing::Bitmap^ toManagedBitmap(Gdiplus::Bitmap* nativeBitmap)
     }
     catch (Exception^ ex)
     {
-        Windows::Forms::MessageBox::Show(ex->Message);
+        System::Windows::Forms::MessageBox::Show(ex->Message);
     }
     finally
     {
@@ -630,7 +630,7 @@ bool window_drawImage(const WINDOW* window, int x, int y, gIMAGE* image)
         return false;
     }
 
-    Drawing::Image^ managedImage = nullptr;
+    System::Drawing::Image^ managedImage = nullptr;
 
     bool result = false;
 
@@ -642,7 +642,7 @@ bool window_drawImage(const WINDOW* window, int x, int y, gIMAGE* image)
     }
     catch (Exception^ ex)
     {
-        Windows::Forms::MessageBox::Show(ex->Message);
+        System::Windows::Forms::MessageBox::Show(ex->Message);
     }
     finally
     {
@@ -676,7 +676,7 @@ bool window_drawIcon(const WINDOW* window, int x, int y, gICON* icon)
         return false;
     }
 
-    Drawing::Icon^ managedIcon = nullptr;
+    System::Drawing::Icon^ managedIcon = nullptr;
 
     bool result = false;
 
@@ -684,13 +684,13 @@ bool window_drawIcon(const WINDOW* window, int x, int y, gICON* icon)
     {
         IntPtr iconHandle = IntPtr(nativeIcon);
 
-        managedIcon = Drawing::Icon::FromHandle(iconHandle);
+        managedIcon = System::Drawing::Icon::FromHandle(iconHandle);
 
         result = _host->invoke()->DrawIcon(x, y, managedIcon);
     }
     catch (Exception^ ex)
     {
-        Windows::Forms::MessageBox::Show(ex->Message);
+        System::Windows::Forms::MessageBox::Show(ex->Message);
     }
     finally
     {
