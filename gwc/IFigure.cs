@@ -11,13 +11,13 @@
  *
  * Nome file : IFigure.cs
  *
- * Titolo    : IFIGURE
+ * Titolo    : IFIGURE/F
  * Sommario  : Contiene l'implementazione della
- *             classe IFigure.
+ *             classe IFigure/F.
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
- * Versione  : v0.3.1
+ * Versione  : v0.6.3
  *             NOTA BENE: Campo INDICATIVO!
  * Licenza   : MIT
  */
@@ -43,5 +43,12 @@ namespace Reallukee.GWC.Internal
         Rectangle Bounds   { get; }
         Point     Location { get; }
         Size      Size     { get; }
+    }
+
+    internal interface IFigureF
+    {
+        RectangleF Bounds   { get; }
+        PointF     Location { get; }
+        SizeF      Size     { get; }
     }
 }

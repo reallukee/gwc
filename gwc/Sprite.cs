@@ -17,7 +17,7 @@
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
- * Versione  : v0.6.2
+ * Versione  : v0.6.3
  *             NOTA BENE: Campo INDICATIVO!
  * Licenza   : MIT
  */
@@ -376,14 +376,14 @@ namespace Reallukee.GWC
 
         public bool DrawBorderRectangle(int x, int y, int width, int height)
         {
-            IRenderable borderRectangle = new BorderRectangle(BorderColor, x, y, width, height);
+            IRenderable borderRectangle = new GBorderRectangle(BorderColor, x, y, width, height);
 
             return DrawRenderable(borderRectangle);
         }
 
         public bool DrawFillRectangle(int x, int y, int width, int height)
         {
-            IRenderable fillRectangle = new FillRectangle(FillColor, x, y, width, height);
+            IRenderable fillRectangle = new GFillRectangle(FillColor, x, y, width, height);
 
             return DrawRenderable(fillRectangle);
         }
@@ -404,14 +404,14 @@ namespace Reallukee.GWC
 
         public bool DrawBorderEllipse(int x, int y, int width, int height)
         {
-            IRenderable borderEllipse = new BorderEllipse(BorderColor, x, y, width, height);
+            IRenderable borderEllipse = new GBorderEllipse(BorderColor, x, y, width, height);
 
             return DrawRenderable(borderEllipse);
         }
 
         public bool DrawFillEllipse(int x, int y, int width, int height)
         {
-            IRenderable fillEllipse = new FillEllipse(FillColor, x, y, width, height);
+            IRenderable fillEllipse = new GFillEllipse(FillColor, x, y, width, height);
 
             return DrawRenderable(fillEllipse);
         }
@@ -420,14 +420,14 @@ namespace Reallukee.GWC
 
         public bool DrawImage(int x, int y, Image image)
         {
-            IRenderable baseImage = new BaseImage(x, y, image);
+            IRenderable baseImage = new GImage(x, y, image);
 
             return DrawRenderable(baseImage);
         }
 
         public bool DrawIcon(int x, int y, Icon icon)
         {
-            IRenderable baseIcon = new BaseIcon(x, y, icon);
+            IRenderable baseIcon = new GIcon(x, y, icon);
 
             return DrawRenderable(baseIcon);
         }

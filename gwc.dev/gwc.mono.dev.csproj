@@ -20,7 +20,7 @@
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <PackageId>GWC.Mono.Dev</PackageId>
     <Title>GWC Mono Dev</Title>
-    <Version>0.6.2</Version>
+    <Version>0.6.3</Version>
     <Authors>Luca Pollicino</Authors>
     <Company>Luca Pollicino</Company>
     <Product>GWC</Product>
@@ -32,7 +32,7 @@
     <RepositoryUrl>https://github.com/reallukee/gwc</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>c;cpp;c-sharp;desktop;library</PackageTags>
-    <PackageReleaseNotes>GWC 0.6.2</PackageReleaseNotes>
+    <PackageReleaseNotes>GWC 0.6.3</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
   </PropertyGroup>
@@ -48,6 +48,13 @@
     <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
     <DefineConstants>$(DefineConstants);EXPERIMENTAL</DefineConstants>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="obj\**" />
+    <EmbeddedResource Remove="obj\**" />
+    <None Remove="obj\**" />
+    <Page Remove="obj\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <Compile Update="*.cs" Link="src\%(Filename)%(Extension)" />
