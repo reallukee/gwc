@@ -38,7 +38,7 @@ using System.Windows.Forms;
 
 namespace Reallukee.GWC.Internal
 {
-    internal class GIcon : GBaseIcon<int>, IRenderable, IDisposable
+    internal class GIcon : GBaseIcon<int>, IRenderable, IDisposable, IFigure
     {
         public GIcon(int x, int y, Icon icon)
             : base(x, y, icon)
@@ -122,7 +122,7 @@ namespace Reallukee.GWC.Internal
 
 
 
-    internal class GIconF : GBaseIcon<float>, IRenderableF, IDisposable
+    internal class GIconF : GBaseIcon<float>, IRenderable, IDisposable, IFigureF
     {
         public GIconF(float x, float y, Icon icon)
             : base(x, y, icon)

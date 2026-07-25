@@ -11,9 +11,9 @@
  *
  * Nome file : IRenderable.cs
  *
- * Titolo    : IRENDERABLE/F
+ * Titolo    : IRENDERABLE
  * Sommario  : Contiene l'implementazione della
- *             classe IRenderable/F.
+ *             classe IRenderable.
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
@@ -38,12 +38,7 @@ using System.Windows.Forms;
 
 namespace Reallukee.GWC.Internal
 {
-    internal interface IRenderable : IFigure
-    {
-        void Render(Graphics g);
-    }
-
-    internal interface IRenderableF : IFigureF
+    internal interface IRenderable
     {
         void Render(Graphics g);
     }

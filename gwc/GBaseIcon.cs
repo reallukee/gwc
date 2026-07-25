@@ -38,7 +38,7 @@ using System.Windows.Forms;
 
 namespace Reallukee.GWC.Internal
 {
-    internal abstract class GBaseIcon<T>
+    internal abstract class GBaseIcon<T> : IDisposable
     {
         protected bool disposed;
 

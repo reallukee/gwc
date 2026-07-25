@@ -51,11 +51,15 @@ namespace Reallukee.GWC
         public Canvas(int width, int height)
         {
             ThrowIfArgumentOutOfRange(
-                nameof(width), width, IsLessOrEqualThen(0)
+                nameof(width),
+                width,
+                IsLessOrEqualThen(0)
             );
 
             ThrowIfArgumentOutOfRange(
-                nameof(height), height, IsLessOrEqualThen(0)
+                nameof(height),
+                height,
+                IsLessOrEqualThen(0)
             );
 
             InitBitmap(width, height);
@@ -67,7 +71,8 @@ namespace Reallukee.GWC
             disposed = false;
         }
 
-        public Canvas() : this(800, 600)
+        public Canvas()
+            : this(800, 600)
         {
 
         }
@@ -98,63 +103,41 @@ namespace Reallukee.GWC
 
 
 
-        private static void ThrowIfObjectDisposed(string name, bool disposed)
-        {
-            if (disposed)
-            {
-                string message = "Object is disposed.";
-
-                throw new ArgumentNullException(name, message);
-            }
-        }
-
-
-
-        private static void ThrowIfArgumentNull(string name, object value)
-        {
-            if (value == null)
-            {
-                string message = "Object cannot null.";
-
-                throw new ArgumentNullException(name, message);
-            }
-        }
-
-
-
         private delegate (bool Invalid, string Message) RangeCheck(int value);
 
-        private static RangeCheck IsLessOrEqualThen(int min)
+        private RangeCheck IsLessOrEqualThen(int min)
         {
             return value =>
             {
                 if (value <= min)
                 {
-                    string message = $"Value cannot be less or equal than {min}.";
-
-                    return (true, message);
+                    return (
+                        true,
+                        $"Value cannot be less or equal than {min}."
+                    );
                 }
 
                 return (false, null);
             };
         }
 
-        private static RangeCheck IsGreaterOrEqualThan(int max)
+        private RangeCheck IsGreaterOrEqualThan(int max)
         {
             return value =>
             {
                 if (value >= max)
                 {
-                    string message = $"Value cannot be greater or equal than {max}.";
-
-                    return (true, message);
+                    return (
+                        true,
+                        $"Value cannot be greater or equal than {max}."
+                    );
                 }
 
                 return (false, null);
             };
         }
 
-        private static void ThrowIfArgumentOutOfRange(
+        private void ThrowIfArgumentOutOfRange(
             string name, int value, params RangeCheck[] rangeChecks
         )
         {
@@ -164,7 +147,10 @@ namespace Reallukee.GWC
 
                 if (invalid)
                 {
-                    throw new ArgumentOutOfRangeException(name, message);
+                    throw new ArgumentOutOfRangeException(
+                        name,
+                        message
+                    );
                 }
             }
         }
@@ -251,29 +237,9 @@ namespace Reallukee.GWC
 
 
 
-        public Rectangle Bounds
-        {
-            get
-            {
-                return new Rectangle(0, 0, Width, Height);
-            }
-        }
-
-        public Size Size
-        {
-            get
-            {
-                return new Size(Width, Height);
-            }
-        }
-
-        public Point Location
-        {
-            get
-            {
-                return new Point(0, 0);
-            }
-        }
+        public Rectangle Bounds   => new Rectangle(0, 0, Width, Height);
+        public Size      Size     => new Size     (Width, Height);
+        public Point     Location => new Point    (0, 0);
 
 
 
@@ -323,41 +289,57 @@ namespace Reallukee.GWC
 
 
 
-        public bool Clear(Color clearColor)
+        public bool Clear()
         {
-            IRenderable clear = new Clear(clearColor);
+            IRenderable renderable = new Clear(FillColor);
 
-            return DrawRenderable(clear);
+            return DrawRenderable(renderable);
         }
 
 
 
         public bool DrawCanvas(Canvas canvas)
         {
-            IRenderable canvasBox = new CanvasBox(0, 0, canvas);
+            IRenderable renderable = new GCanvas(0, 0, canvas);
 
-            return DrawRenderable(canvasBox);
+            return DrawRenderable(renderable);
         }
 
         public bool DrawCanvas(int x, int y, Canvas canvas)
         {
-            IRenderable canvasBox = new CanvasBox(x, y, canvas);
+            IRenderable renderable = new GCanvas(x, y, canvas);
 
-            return DrawRenderable(canvasBox);
+            return DrawRenderable(renderable);
         }
+
+        public bool DrawCanvasF(float x, float y, Canvas canvas)
+        {
+            IRenderable renderable = new GCanvasF(x, y, canvas);
+
+            return DrawRenderable(renderable);
+        }
+
+
 
         public bool DrawSprite(Sprite sprite)
         {
-            IRenderable spriteBox = new SpriteBox(0, 0, sprite);
+            IRenderable renderable = new GSprite(0, 0, sprite);
 
-            return DrawRenderable(spriteBox);
+            return DrawRenderable(renderable);
         }
 
         public bool DrawSprite(int x, int y, Sprite sprite)
         {
-            IRenderable spriteBox = new SpriteBox(x, y, sprite);
+            IRenderable renderable = new GSprite(x, y, sprite);
 
-            return DrawRenderable(spriteBox);
+            return DrawRenderable(renderable);
+        }
+
+        public bool DrawSpriteF(float x, float y, Sprite sprite)
+        {
+            IRenderable renderable = new GSpriteF(x, y, sprite);
+
+            return DrawRenderable(renderable);
         }
 
 
@@ -367,25 +349,49 @@ namespace Reallukee.GWC
             return DrawBorderRectangle(x, y, side, side);
         }
 
+        public bool DrawBorderSquareF(float x, float y, float side)
+        {
+            return DrawBorderRectangleF(x, y, side, side);
+        }
+
         public bool DrawFillSquare(int x, int y, int side)
         {
             return DrawFillRectangle(x, y, side, side);
+        }
+
+        public bool DrawFillSquareF(float x, float y, float side)
+        {
+            return DrawFillRectangleF(x, y, side, side);
         }
 
 
 
         public bool DrawBorderRectangle(int x, int y, int width, int height)
         {
-            IRenderable borderRectangle = new GBorderRectangle(BorderColor, x, y, width, height);
+            IRenderable renderable = new GBorderRectangle(BorderColor, x, y, width, height);
 
-            return DrawRenderable(borderRectangle);
+            return DrawRenderable(renderable);
+        }
+
+        public bool DrawBorderRectangleF(float x, float y, float width, float height)
+        {
+            IRenderable renderable = new GBorderRectangleF(BorderColor, x, y, width, height);
+
+            return DrawRenderable(renderable);
         }
 
         public bool DrawFillRectangle(int x, int y, int width, int height)
         {
-            IRenderable fillRectangle = new GFillRectangle(FillColor, x, y, width, height);
+            IRenderable renderable = new GFillRectangle(FillColor, x, y, width, height);
 
-            return DrawRenderable(fillRectangle);
+            return DrawRenderable(renderable);
+        }
+
+        public bool DrawFillRectangleF(float x, float y, float width, float height)
+        {
+            IRenderable renderable = new GFillRectangleF(FillColor, x, y, width, height);
+
+            return DrawRenderable(renderable);
         }
 
 
@@ -395,72 +401,82 @@ namespace Reallukee.GWC
             return DrawBorderEllipse(x, y, radius * 2, radius * 2);
         }
 
+        public bool DrawBorderCircleF(float x, float y, float radius)
+        {
+            return DrawBorderEllipseF(x, y, radius * 2, radius * 2);
+        }
+
         public bool DrawFillCircle(int x, int y, int radius)
         {
             return DrawFillEllipse(x, y, radius * 2, radius * 2);
+        }
+
+        public bool DrawFillCircleF(float x, float y, float radius)
+        {
+            return DrawFillEllipseF(x, y, radius * 2, radius * 2);
         }
 
 
 
         public bool DrawBorderEllipse(int x, int y, int width, int height)
         {
-            IRenderable borderEllipse = new GBorderEllipse(BorderColor, x, y, width, height);
+            IRenderable renderable = new GBorderEllipse(BorderColor, x, y, width, height);
 
-            return DrawRenderable(borderEllipse);
+            return DrawRenderable(renderable);
+        }
+
+        public bool DrawBorderEllipseF(float x, float y, float width, float height)
+        {
+            IRenderable renderable = new GBorderEllipseF(BorderColor, x, y, width, height);
+
+            return DrawRenderable(renderable);
         }
 
         public bool DrawFillEllipse(int x, int y, int width, int height)
         {
-            IRenderable fillEllipse = new GFillEllipse(FillColor, x, y, width, height);
+            IRenderable renderable = new GFillEllipse(FillColor, x, y, width, height);
 
-            return DrawRenderable(fillEllipse);
+            return DrawRenderable(renderable);
+        }
+
+        public bool DrawFillEllipseF(float x, float y, float width, float height)
+        {
+            IRenderable renderable = new GFillEllipseF(FillColor, x, y, width, height);
+
+            return DrawRenderable(renderable);
         }
 
 
 
         public bool DrawImage(int x, int y, Image image)
         {
-            IRenderable baseImage = new GImage(x, y, image);
+            IRenderable renderable = new GImage(x, y, image);
 
-            return DrawRenderable(baseImage);
+            return DrawRenderable(renderable);
+        }
+
+        public bool DrawImageF(float x, float y, Image image)
+        {
+            IRenderable renderable = new GImageF(x, y, image);
+
+            return DrawRenderable(renderable);
         }
 
         public bool DrawIcon(int x, int y, Icon icon)
         {
-            IRenderable baseIcon = new GIcon(x, y, icon);
+            IRenderable renderable = new GIcon(x, y, icon);
 
-            return DrawRenderable(baseIcon);
+            return DrawRenderable(renderable);
         }
 
-
-
-        internal void ResizeBitmap(int width, int height)
+        public bool DrawIconF(float x, float y, Icon icon)
         {
-            try
-            {
-                Bitmap oldBitmap = Bitmap;
+            IRenderable renderable = new GIconF(x, y, icon);
 
-                Bitmap newBitmap = new Bitmap(width, height);
-
-                using (Graphics g = Graphics.FromImage(newBitmap))
-                {
-                    g.DrawImage(oldBitmap, 0, 0);
-                }
-
-                Bitmap = newBitmap;
-
-                oldBitmap.Dispose();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(
-                    ex.Message,
-                    $"{Application.ProductName} {Application.ProductVersion}",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
-            }
+            return DrawRenderable(renderable);
         }
+
+
 
         public void Render(Graphics g)
         {

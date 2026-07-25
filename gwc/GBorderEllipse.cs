@@ -38,7 +38,7 @@ using System.Windows.Forms;
 
 namespace Reallukee.GWC.Internal
 {
-    internal class GBorderEllipse : GEllipse, IBorderColor, IRenderable
+    internal class GBorderEllipse : GEllipse, IBorderColor, IRenderable, IFigure
     {
         public GBorderEllipse(
             Color BorderColor,
@@ -105,7 +105,7 @@ namespace Reallukee.GWC.Internal
 
 
 
-    internal class GBorderEllipseF : GEllipseF, IBorderColor, IRenderableF
+    internal class GBorderEllipseF : GEllipseF, IBorderColor, IRenderable, IFigureF
     {
         public GBorderEllipseF(
             Color BorderColor,

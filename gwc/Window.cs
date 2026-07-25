@@ -17,7 +17,7 @@
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
- * Versione  : v0.6.1
+ * Versione  : v0.6.3
  *             NOTA BENE: Campo INDICATIVO!
  * Licenza   : MIT
  */
@@ -53,33 +53,28 @@ namespace Reallukee.GWC
 
         public Window(int width, int height)
         {
-            ThrowIfArgumentOutOfRange(nameof(width), width, IsLessOrEqualThen(0));
+            ThrowIfArgumentOutOfRange(
+                nameof(width),
+                width,
+                IsLessOrEqualThen(0)
+            );
 
-            ThrowIfArgumentOutOfRange(nameof(height), height, IsLessOrEqualThen(0));
+            ThrowIfArgumentOutOfRange(
+                nameof(height),
+                height,
+                IsLessOrEqualThen(0)
+            );
 
             InitWindow(width, height);
-
             InitRender(width, height);
 
             disposed = false;
         }
 
-        public Window() : this(800, 600)
+        public Window()
+            : this(800, 600)
         {
 
-        }
-
-        public Window(Window other)
-        {
-            ThrowIfArgumentNull(nameof(other), other);
-
-            ThrowIfObjectDisposed(nameof(other), other.disposed);
-
-            InitWindow(other.WindowWidth, other.WindowHeight);
-
-            InitRender(other.WindowWidth, other.WindowHeight);
-
-            disposed = false;
         }
 
         public void Dispose()
@@ -106,63 +101,41 @@ namespace Reallukee.GWC
 
 
 
-        private static void ThrowIfObjectDisposed(string name, bool disposed)
-        {
-            if (disposed)
-            {
-                string message = "Object is disposed.";
-
-                throw new ArgumentNullException(name, message);
-            }
-        }
-
-
-
-        private static void ThrowIfArgumentNull(string name, object value)
-        {
-            if (value == null)
-            {
-                string message = "Object cannot null.";
-
-                throw new ArgumentNullException(name, message);
-            }
-        }
-
-
-
         private delegate (bool Invalid, string Message) RangeCheck(int value);
 
-        private static RangeCheck IsLessOrEqualThen(int min)
+        private RangeCheck IsLessOrEqualThen(int min)
         {
             return value =>
             {
                 if (value <= min)
                 {
-                    string message = $"Value cannot be less or equal than {min}.";
-
-                    return (true, message);
+                    return (
+                        true,
+                        $"Value cannot be less or equal than {min}."
+                    );
                 }
 
                 return (false, null);
             };
         }
 
-        private static RangeCheck IsGreaterOrEqualThan(int max)
+        private RangeCheck IsGreaterOrEqualThan(int max)
         {
             return value =>
             {
                 if (value >= max)
                 {
-                    string message = $"Value cannot be greater or equal than {max}.";
-
-                    return (true, message);
+                    return (
+                        true,
+                        $"Value cannot be greater or equal than {max}."
+                    );
                 }
 
                 return (false, null);
             };
         }
 
-        private static void ThrowIfArgumentOutOfRange(
+        private void ThrowIfArgumentOutOfRange(
             string name, int value, params RangeCheck[] rangeChecks
         )
         {
@@ -172,7 +145,10 @@ namespace Reallukee.GWC
 
                 if (invalid)
                 {
-                    throw new ArgumentOutOfRangeException(name, message);
+                    throw new ArgumentOutOfRangeException(
+                        name,
+                        message
+                    );
                 }
             }
         }
@@ -1168,9 +1144,9 @@ namespace Reallukee.GWC
 
 
 
-        public bool Clear(Color clearColor)
+        public bool Clear()
         {
-            return canvas.Clear(clearColor);
+            return this.canvas.Clear();
         }
 
 
@@ -1185,6 +1161,13 @@ namespace Reallukee.GWC
             return this.canvas.DrawCanvas(x, y, canvas);
         }
 
+        public bool DrawCanvasF(float x, float y, Canvas canvas)
+        {
+            return this.canvas.DrawCanvasF(x, y, canvas);
+        }
+
+
+
         public bool DrawSprite(Sprite sprite)
         {
             return this.canvas.DrawSprite(sprite);
@@ -1195,6 +1178,11 @@ namespace Reallukee.GWC
             return this.canvas.DrawSprite(x, y, sprite);
         }
 
+        public bool DrawSpriteF(float x, float y, Sprite sprite)
+        {
+            return this.canvas.DrawSpriteF(x, y, sprite);
+        }
+
 
 
         public bool DrawBorderSquare(int x, int y, int side)
@@ -1202,9 +1190,19 @@ namespace Reallukee.GWC
             return canvas.DrawBorderSquare(x, y, side);
         }
 
+        public bool DrawBorderSquareF(float x, float y, int side)
+        {
+            return canvas.DrawBorderSquareF(x, y, side);
+        }
+
         public bool DrawFillSquare(int x, int y, int side)
         {
             return canvas.DrawFillSquare(x, y, side);
+        }
+
+        public bool DrawFillSquareF(float x, float y, int side)
+        {
+            return canvas.DrawFillSquareF(x, y, side);
         }
 
 
@@ -1214,9 +1212,19 @@ namespace Reallukee.GWC
             return canvas.DrawBorderRectangle(x, y, width, height);
         }
 
+        public bool DrawBorderRectangleF(float x, float y, float width, float height)
+        {
+            return canvas.DrawBorderRectangleF(x, y, width, height);
+        }
+
         public bool DrawFillRectangle(int x, int y, int width, int height)
         {
             return canvas.DrawFillRectangle(x, y, width, height);
+        }
+
+        public bool DrawFillRectangleF(float x, float y, float width, float height)
+        {
+            return canvas.DrawFillRectangleF(x, y, width, height);
         }
 
 
@@ -1226,9 +1234,19 @@ namespace Reallukee.GWC
             return canvas.DrawBorderCircle(x, y, radius);
         }
 
+        public bool DrawBorderCircleF(float x, float y, float radius)
+        {
+            return canvas.DrawBorderCircleF(x, y, radius);
+        }
+
         public bool DrawFillCircle(int x, int y, int radius)
         {
             return canvas.DrawFillCircle(x, y, radius);
+        }
+
+        public bool DrawFillCircleF(float x, float y, float radius)
+        {
+            return canvas.DrawFillCircleF(x, y, radius);
         }
 
 
@@ -1238,9 +1256,19 @@ namespace Reallukee.GWC
             return canvas.DrawBorderEllipse(x, y, width, height);
         }
 
+        public bool DrawBorderEllipseF(float x, float y, float width, float height)
+        {
+            return canvas.DrawBorderEllipseF(x, y, width, height);
+        }
+
         public bool DrawFillEllipse(int x, int y, int width, int height)
         {
             return canvas.DrawFillEllipse(x, y, width, height);
+        }
+
+        public bool DrawFillEllipseF(float x, float y, float width, float height)
+        {
+            return canvas.DrawFillEllipseF(x, y, width, height);
         }
 
 
@@ -1250,9 +1278,19 @@ namespace Reallukee.GWC
             return canvas.DrawImage(x, y, image);
         }
 
+        public bool DrawImageF(float x, float y, Image image)
+        {
+            return canvas.DrawImageF(x, y, image);
+        }
+
         public bool DrawIcon(int x, int y, Icon icon)
         {
             return canvas.DrawIcon(x, y, icon);
+        }
+
+        public bool DrawIconF(float x, float y, Icon icon)
+        {
+            return canvas.DrawIconF(x, y, icon);
         }
     }
 }

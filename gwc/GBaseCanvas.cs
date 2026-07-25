@@ -9,15 +9,15 @@
  *
  * https://github.com/reallukee/gwc
  *
- * Nome file : CanvasBox.cs
+ * Nome file : GBaseCanvas.cs
  *
- * Titolo    : CANVASBOX
+ * Titolo    : GBASECANVAS
  * Sommario  : Contiene l'implementazione della
- *             classe CanvasBox.
+ *             classe GBaseCanvas.
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
- * Versione  : v0.6.2
+ * Versione  : v0.6.3
  *             NOTA BENE: Campo INDICATIVO!
  * Licenza   : MIT
  */
@@ -42,16 +42,21 @@ using Reallukee.GWC.Interop;
 
 namespace Reallukee.GWC.Internal
 {
-    internal sealed class CanvasBox : IDisposable, IRenderable
+    internal abstract class GBaseCanvas<T> : IDisposable
     {
         private int    rawBitmapSize;
         private IntPtr rawBitmap;
         private Bitmap bitmap;
 
-        private bool disposed;
+        protected bool disposed;
 
-        public CanvasBox(int x, int y, Canvas canvas)
+        public GBaseCanvas(T x, T y, Canvas canvas)
         {
+            ThrowIfArgumentNull(
+                nameof(canvas),
+                canvas
+            );
+
             this.X      = x;
             this.Y      = y;
             this.Width  = canvas.Bitmap.Width;
@@ -64,10 +69,10 @@ namespace Reallukee.GWC.Internal
 
             try
             {
-                int bitmapStride = this.Width * 4;
+                int bitmapStride = Width * 4;
 
-                this.rawBitmapSize = Math.Abs(bitmapStride) * this.Height;
-                this.rawBitmap     = Marshal.AllocHGlobal(rawBitmapSize);
+                this.rawBitmapSize = Math.Abs(bitmapStride) * Height;
+                this.rawBitmap = Marshal.AllocHGlobal(rawBitmapSize);
 
                 unsafe
                 {
@@ -80,8 +85,8 @@ namespace Reallukee.GWC.Internal
                 }
 
                 bitmap = new Bitmap(
-                    width,
-                    height,
+                    Width,
+                    Height,
                     bitmapStride,
                     PixelFormat.Format32bppArgb,
                     rawBitmap
@@ -117,7 +122,7 @@ namespace Reallukee.GWC.Internal
                 Marshal.FreeHGlobal(rawBitmap);
 
                 rawBitmapSize = 0;
-                rawBitmap     = IntPtr.Zero;
+                rawBitmap = IntPtr.Zero;
             }
 
             disposed = true;
@@ -125,97 +130,59 @@ namespace Reallukee.GWC.Internal
 
 
 
-        private int x;
-
-        public int X
+        protected static void ThrowIfArgumentNull(
+            string name, object value
+        )
         {
-            get
+            if (value == null)
             {
-                return x;
-            }
-
-            set
-            {
-                x = value;
+                throw new ArgumentNullException(
+                    name,
+                    "Object cannot null."
+                );
             }
         }
 
-        private int y;
 
-        public int Y
+
+        public T X
         {
-            get
-            {
-                return y;
-            }
-
-            set
-            {
-                y = value;
-            }
+            get;
+            set;
         }
 
-        private int width;
+        public T Y
+        {
+            get;
+            set;
+        }
 
         public int Width
         {
-            set
-            {
-                width = value;
-            }
-
-            get
-            {
-                return width;
-            }
+            get;
+            set;
         }
-
-        private int height;
 
         public int Height
         {
-            set
-            {
-                height = value;
-            }
-
-            get
-            {
-                return height;
-            }
+            get;
+            set;
         }
 
 
 
-        public Rectangle Bounds
+        protected Bitmap Bitmap => bitmap;
+
+
+
+        public override string ToString()
         {
-            get
-            {
-                return new Rectangle(X, Y, Width, Height);
-            }
-        }
-
-        public Size Size
-        {
-            get
-            {
-                return new Size(Width, Height);
-            }
-        }
-
-        public Point Location
-        {
-            get
-            {
-                return new Point(X, Y);
-            }
-        }
-
-
-
-        public void Render(Graphics g)
-        {
-            g.DrawImage(bitmap, X, Y);
+            return string.Format(
+                "GBaseCanvas: X={0}, Y={1}, Disposed={2}",
+                X,
+                Y,
+                disposed
+            );
         }
     }
 }

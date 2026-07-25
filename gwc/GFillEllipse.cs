@@ -38,7 +38,7 @@ using System.Windows.Forms;
 
 namespace Reallukee.GWC.Internal
 {
-    internal class GFillEllipse : GEllipse, IFillColor, IRenderable
+    internal class GFillEllipse : GEllipse, IFillColor, IRenderable, IFigure
     {
         public GFillEllipse(
             Color fillColor,
@@ -105,7 +105,7 @@ namespace Reallukee.GWC.Internal
 
 
 
-    internal class GFillEllipseF : GEllipseF, IFillColor, IRenderableF
+    internal class GFillEllipseF : GEllipseF, IFillColor, IRenderable, IFigureF
     {
         public GFillEllipseF(
             Color fillColor,

@@ -38,7 +38,7 @@ using System.Windows.Forms;
 
 namespace Reallukee.GWC.Internal
 {
-    internal class GImage : GBaseImage<int>, IRenderable, IDisposable
+    internal class GImage : GBaseImage<int>, IRenderable, IDisposable, IFigure
     {
         public GImage(int x, int y, Image image)
             : base(x, y, image)
@@ -122,7 +122,7 @@ namespace Reallukee.GWC.Internal
 
 
 
-    internal class GImageF : GBaseImage<float>, IRenderableF, IDisposable
+    internal class GImageF : GBaseImage<float>, IRenderable, IDisposable, IFigureF
     {
         public GImageF(float x, float y, Image image)
             : base(x, y, image)

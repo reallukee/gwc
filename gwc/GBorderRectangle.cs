@@ -38,7 +38,7 @@ using System.Windows.Forms;
 
 namespace Reallukee.GWC.Internal
 {
-    internal class GBorderRectangle : GRectangle, IBorderColor, IRenderable
+    internal class GBorderRectangle : GRectangle, IBorderColor, IRenderable, IFigure
     {
         public GBorderRectangle(
             Color BorderColor,
@@ -105,7 +105,7 @@ namespace Reallukee.GWC.Internal
 
 
 
-    internal class GBorderRectangleF : GRectangleF, IBorderColor, IRenderableF
+    internal class GBorderRectangleF : GRectangleF, IBorderColor, IRenderable, IFigureF
     {
         public GBorderRectangleF(
             Color BorderColor,

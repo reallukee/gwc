@@ -38,7 +38,7 @@ using System.Windows.Forms;
 
 namespace Reallukee.GWC.Internal
 {
-    internal class GFillRectangle : GRectangle, IFillColor, IRenderable
+    internal class GFillRectangle : GRectangle, IFillColor, IRenderable, IFigure
     {
         public GFillRectangle(
             Color fillColor,
@@ -105,7 +105,7 @@ namespace Reallukee.GWC.Internal
 
 
 
-    internal class GFillRectangleF : GRectangleF, IFillColor, IRenderableF
+    internal class GFillRectangleF : GRectangleF, IFillColor, IRenderable, IFigureF
     {
         public GFillRectangleF(
             Color fillColor,
