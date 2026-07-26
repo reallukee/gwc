@@ -41,22 +41,22 @@ IF EXIST "%VSDEVCMD%" (
     CALL "%VSDEVCMD%" >NUL
 )
 
-dotnet restore gwc.sln
+dotnet restore gwc.slnx
 
-msbuild gwc.sln /t:gwc /p:Configuration=Release /p:Platform=x86
-msbuild gwc.sln /t:gwc /p:Configuration=Release /p:Platform=x64
-msbuild gwc.sln /t:gwc /p:Configuration=Release /p:Platform=ARM64
+msbuild gwc.slnx /t:gwc /p:Configuration=Release /p:Platform=x86
+msbuild gwc.slnx /t:gwc /p:Configuration=Release /p:Platform=x64
+msbuild gwc.slnx /t:gwc /p:Configuration=Release /p:Platform=ARM64
 
-msbuild gwc.sln /t:gwc_mono /p:Configuration=Release /p:Platform=x86
-msbuild gwc.sln /t:gwc_mono /p:Configuration=Release /p:Platform=x64
+msbuild gwc.slnx /t:gwc_mono /p:Configuration=Release /p:Platform=x86
+msbuild gwc.slnx /t:gwc_mono /p:Configuration=Release /p:Platform=x64
 
-msbuild gwc.sln /t:gwc_native /p:Configuration=Release /p:Platform=x86
-msbuild gwc.sln /t:gwc_native /p:Configuration=Release /p:Platform=x64
-msbuild gwc.sln /t:gwc_native /p:Configuration=Release /p:Platform=ARM64
+msbuild gwc.slnx /t:gwc_native /p:Configuration=Release /p:Platform=x86
+msbuild gwc.slnx /t:gwc_native /p:Configuration=Release /p:Platform=x64
+msbuild gwc.slnx /t:gwc_native /p:Configuration=Release /p:Platform=ARM64
 
-msbuild gwc.sln /t:gwc_native_abst /p:Configuration=Release /p:Platform=x86
-msbuild gwc.sln /t:gwc_native_abst /p:Configuration=Release /p:Platform=x64
-msbuild gwc.sln /t:gwc_native_abst /p:Configuration=Release /p:Platform=ARM64
+msbuild gwc.slnx /t:gwc_native_abst /p:Configuration=Release /p:Platform=x86
+msbuild gwc.slnx /t:gwc_native_abst /p:Configuration=Release /p:Platform=x64
+msbuild gwc.slnx /t:gwc_native_abst /p:Configuration=Release /p:Platform=ARM64
 
 POPD
 
