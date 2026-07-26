@@ -58,32 +58,41 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="IFigure.cs" />
-    <Compile Include="IRenderable.cs" />
-    <Compile Include="IBorderColor.cs" />
-    <Compile Include="IFillColor.cs" />
-    <Compile Include="Clear.cs" />
-    <Compile Include="BaseRectangle.cs" />
-    <Compile Include="BaseEllipse.cs" />
-    <Compile Include="BorderRectangle.cs" />
-    <Compile Include="BorderEllipse.cs" />
-    <Compile Include="FillRectangle.cs" />
-    <Compile Include="FillEllipse.cs" />
-    <Compile Include="BaseImage.cs" />
-    <Compile Include="BaseIcon.cs" />
-    <Compile Include="NativeInterop.cs" />
-    <Compile Include="Render.cs" />
-    <Compile Include="WindowForm.cs">
+    <Compile Include="src\gpipeline\IGFigure.cs" />
+    <Compile Include="src\gpipeline\IGRenderable.cs" />
+    <Compile Include="src\gpipeline\IGBorderColor.cs" />
+    <Compile Include="src\gpipeline\IGFillColor.cs" />
+    <Compile Include="src\gpipeline\IGBackColor.cs" />
+    <Compile Include="src\gpipeline\GObject.cs" />
+    <Compile Include="src\gpipeline\GBaseClear.cs" />
+    <Compile Include="src\gpipeline\GClear.cs" />
+    <Compile Include="src\gpipeline\GBaseRectangle.cs" />
+    <Compile Include="src\gpipeline\GRectangle.cs" />
+    <Compile Include="src\gpipeline\GBorderRectangle.cs" />
+    <Compile Include="src\gpipeline\GFillRectangle.cs" />
+    <Compile Include="src\gpipeline\GBaseEllipse.cs" />
+    <Compile Include="src\gpipeline\GEllipse.cs" />
+    <Compile Include="src\gpipeline\GBorderEllipse.cs" />
+    <Compile Include="src\gpipeline\GFillEllipse.cs" />
+    <Compile Include="src\gpipeline\GBaseImage.cs" />
+    <Compile Include="src\gpipeline\GImage.cs" />
+    <Compile Include="src\gpipeline\GBaseIcon.cs" />
+    <Compile Include="src\gpipeline\GIcon.cs" />
+    <Compile Include="src\gpipeline\GBaseSprite.cs" />
+    <Compile Include="src\gpipeline\GSprite.cs" />
+    <Compile Include="src\gpipeline\GBaseCanvas.cs" />
+    <Compile Include="src\gpipeline\GCanvas.cs" />
+    <Compile Include="src\internal\DwmApi.cs" />
+    <Compile Include="src\interop\SpriteHandler.cs" />
+    <Compile Include="src\interop\CanvasHandler.cs" />
+    <Compile Include="src\interop\WindowHandler.cs" />
+    <Compile Include="src\Render.cs" />
+    <Compile Include="src\WindowForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Sprite.cs" />
-    <Compile Include="SpriteBox.cs" />
-    <Compile Include="SpriteHandler.cs" />
-    <Compile Include="Canvas.cs" />
-    <Compile Include="CanvasBox.cs" />
-    <Compile Include="CanvasHandler.cs" />
-    <Compile Include="Window.cs" />
-    <Compile Include="WindowHandler.cs" />
+    <Compile Include="src\Sprite.cs" />
+    <Compile Include="src\Canvas.cs" />
+    <Compile Include="src\Window.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

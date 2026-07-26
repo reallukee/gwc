@@ -58,33 +58,42 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="..\gwc\IFigure.cs" />
-    <Compile Include="..\gwc\IRenderable.cs" />
-    <Compile Include="..\gwc\IBorderColor.cs" />
-    <Compile Include="..\gwc\IFillColor.cs" />
-    <Compile Include="..\gwc\Clear.cs" />
-    <Compile Include="..\gwc\BaseRectangle.cs" />
-    <Compile Include="..\gwc\BaseEllipse.cs" />
-    <Compile Include="..\gwc\BorderRectangle.cs" />
-    <Compile Include="..\gwc\BorderEllipse.cs" />
-    <Compile Include="..\gwc\FillRectangle.cs" />
-    <Compile Include="..\gwc\FillEllipse.cs" />
-    <Compile Include="..\gwc\BaseImage.cs" />
-    <Compile Include="..\gwc\BaseIcon.cs" />
-    <Compile Include="..\gwc\NativeInterop.cs" />
-    <Compile Include="..\gwc\Render.cs" />
-    <Compile Include="..\gwc\WindowForm.cs">
+        <Compile Include="..\gwc\src\gpipeline\IGFigure.cs" />
+    <Compile Include="..\gwc\src\gpipeline\IGRenderable.cs" />
+    <Compile Include="..\gwc\src\gpipeline\IGBorderColor.cs" />
+    <Compile Include="..\gwc\src\gpipeline\IGFillColor.cs" />
+    <Compile Include="..\gwc\src\gpipeline\IGBackColor.cs" />
+    <Compile Include="..\gwc\src\gpipeline\GObject.cs" />
+    <Compile Include="..\gwc\src\gpipeline\GBaseClear.cs" />
+    <Compile Include="..\gwc\src\gpipeline\GClear.cs" />
+    <Compile Include="..\gwc\src\gpipeline\GBaseRectangle.cs" />
+    <Compile Include="..\gwc\src\gpipeline\GRectangle.cs" />
+    <Compile Include="..\gwc\src\gpipeline\GBorderRectangle.cs" />
+    <Compile Include="..\gwc\src\gpipeline\GFillRectangle.cs" />
+    <Compile Include="..\gwc\src\gpipeline\GBaseEllipse.cs" />
+    <Compile Include="..\gwc\src\gpipeline\GEllipse.cs" />
+    <Compile Include="..\gwc\src\gpipeline\GBorderEllipse.cs" />
+    <Compile Include="..\gwc\src\gpipeline\GFillEllipse.cs" />
+    <Compile Include="..\gwc\src\gpipeline\GBaseImage.cs" />
+    <Compile Include="..\gwc\src\gpipeline\GImage.cs" />
+    <Compile Include="..\gwc\src\gpipeline\GBaseIcon.cs" />
+    <Compile Include="..\gwc\src\gpipeline\GIcon.cs" />
+    <Compile Include="..\gwc\src\gpipeline\GBaseSprite.cs" />
+    <Compile Include="..\gwc\src\gpipeline\GSprite.cs" />
+    <Compile Include="..\gwc\src\gpipeline\GBaseCanvas.cs" />
+    <Compile Include="..\gwc\src\gpipeline\GCanvas.cs" />
+    <Compile Include="..\gwc\src\internal\DwmApi.cs" />
+    <Compile Include="..\gwc\src\interop\SpriteHandler.cs" />
+    <Compile Include="..\gwc\src\interop\CanvasHandler.cs" />
+    <Compile Include="..\gwc\src\interop\WindowHandler.cs" />
+    <Compile Include="..\gwc\src\Render.cs" />
+    <Compile Include="..\gwc\src\WindowForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="..\gwc\Sprite.cs" />
-    <Compile Include="..\gwc\SpriteBox.cs" />
-    <Compile Include="..\gwc\SpriteHandler.cs" />
-    <Compile Include="..\gwc\Canvas.cs" />
-    <Compile Include="..\gwc\CanvasBox.cs" />
-    <Compile Include="..\gwc\CanvasHandler.cs" />
-    <Compile Include="..\gwc\Window.cs" />
-    <Compile Include="..\gwc\WindowHandler.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="..\gwc\src\Sprite.cs" />
+    <Compile Include="..\gwc\src\Canvas.cs" />
+    <Compile Include="..\gwc\src\Window.cs" />
+    <Compile Include="src\Program.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

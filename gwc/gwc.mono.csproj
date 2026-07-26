@@ -57,7 +57,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="*.cs" Link="src\%(Filename)%(Extension)" />
     <Compile Remove="Properties\AssemblyInfo.cs" />
   </ItemGroup>
 
