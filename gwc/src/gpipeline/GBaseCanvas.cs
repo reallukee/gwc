@@ -176,10 +176,10 @@ namespace Reallukee.GWC.GPipeline
 
 
 
-        private int RawBitmapSize
+        protected int RawBitmapSize
         {
             get;
-            set;
+            private set;
         }
 
         protected IntPtr RawBitmap

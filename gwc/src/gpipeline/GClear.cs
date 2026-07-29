@@ -39,7 +39,7 @@ using System.Windows.Forms;
 
 namespace Reallukee.GWC.GPipeline
 {
-    internal sealed class GClear : GBaseClear<int>, IGRenderable
+    internal sealed class GClear : GBaseClear<int>, IGRenderable, IGFigure
     {
         public GClear(int x, int y, int width, int height, Color clearColor)
             : base(x, y, width, height, clearColor)
@@ -74,25 +74,45 @@ namespace Reallukee.GWC.GPipeline
 
 
 
+        public Rectangle Bounds   => new Rectangle(X, Y, Width, Height);
+        public Size      Size     => new Size     (Width, Height);
+        public Point     Location => new Point    (X, Y);
+
+
+
         public void Render(Graphics g)
         {
             if (X < 0 || Y < 0 || Width < 0 || Height < 0)
             {
-                g.Clear(ClearColor);
+                g.Clear(BackColor);
             }
             else
             {
-                using (SolidBrush fill = new SolidBrush(ClearColor))
+                using (SolidBrush fill = new SolidBrush(BackColor))
                 {
                     g.FillRectangle(fill, X, Y, Width, Height);
                 }
             }
         }
+
+
+
+        public override string ToString()
+        {
+            return string.Format(
+                "GClear: X={0}, Y={1}, Width={2}, Height={3}, BackColor={4}",
+                X,
+                Y,
+                Width,
+                Height,
+                BackColor
+            );
+        }
     }
 
 
 
-    internal sealed class GClearF : GBaseClear<float>, IGRenderable
+    internal sealed class GClearF : GBaseClear<float>, IGRenderable, IGFigureF
     {
         public GClearF(float x, float y, float width, float height, Color clearColor)
             : base(x, y, width, height, clearColor)
@@ -127,19 +147,39 @@ namespace Reallukee.GWC.GPipeline
 
 
 
+        public RectangleF Bounds   => new RectangleF(X, Y, Width, Height);
+        public SizeF      Size     => new SizeF     (Width, Height);
+        public PointF     Location => new PointF    (X, Y);
+
+
+
         public void Render(Graphics g)
         {
             if (X < 0 || Y < 0 || Width < 0 || Height < 0)
             {
-                g.Clear(ClearColor);
+                g.Clear(BackColor);
             }
             else
             {
-                using (SolidBrush fill = new SolidBrush(ClearColor))
+                using (SolidBrush fill = new SolidBrush(BackColor))
                 {
                     g.FillRectangle(fill, X, Y, Width, Height);
                 }
             }
+        }
+
+
+
+        public override string ToString()
+        {
+            return string.Format(
+                "GClearF: X={0}, Y={1}, Width={2}, Height={3}, BackColor={4}",
+                X,
+                Y,
+                Width,
+                Height,
+                BackColor
+            );
         }
     }
 }

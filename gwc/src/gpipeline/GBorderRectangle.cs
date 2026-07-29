@@ -92,14 +92,68 @@ namespace Reallukee.GWC.GPipeline
 
 
 
+        public static bool operator ==(GBorderRectangle left, GBorderRectangle right)
+        {
+            if (ReferenceEquals(left, right))
+            {
+                return true;
+            }
+
+            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
+            {
+                return false;
+            }
+
+            if (!(left as GBaseRectangle<int> == right as GBaseRectangle<int>))
+            {
+                return false;
+            }
+
+            return left.BorderColor == right.BorderColor;
+        }
+
+        public static bool operator !=(GBorderRectangle left, GBorderRectangle right)
+        {
+            return !(left == right);
+        }
+
+
+
+        public override bool Equals(object obj)
+        {
+            if (!(obj is GBorderRectangle other))
+            {
+                return false;
+            }
+
+            return this == other;
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 17;
+
+                hash *= 23 + X.GetHashCode();
+                hash *= 23 + Y.GetHashCode();
+                hash *= 23 + Width.GetHashCode();
+                hash *= 23 + Height.GetHashCode();
+                hash *= 23 + BorderColor.GetHashCode();
+
+                return hash;
+            }
+        }
+
         public override string ToString()
         {
             return string.Format(
-                "GBorderRectangle: X={0}, Y={1}, Width={2}, Height={3}",
+                "GBorderRectangle: X={0}, Y={1}, Width={2}, Height={3}, BorderColor={4}",
                 X,
                 Y,
                 Width,
-                Height
+                Height,
+                BorderColor
             );
         }
     }
@@ -159,14 +213,68 @@ namespace Reallukee.GWC.GPipeline
 
 
 
+        public static bool operator ==(GBorderRectangleF left, GBorderRectangleF right)
+        {
+            if (ReferenceEquals(left, right))
+            {
+                return true;
+            }
+
+            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
+            {
+                return false;
+            }
+
+            if (!(left as GBaseRectangle<float> == right as GBaseRectangle<float>))
+            {
+                return false;
+            }
+
+            return left.BorderColor == right.BorderColor;
+        }
+
+        public static bool operator !=(GBorderRectangleF left, GBorderRectangleF right)
+        {
+            return !(left == right);
+        }
+
+
+
+        public override bool Equals(object obj)
+        {
+            if (!(obj is GBorderRectangleF other))
+            {
+                return false;
+            }
+
+            return this == other;
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 17;
+
+                hash *= 23 + X.GetHashCode();
+                hash *= 23 + Y.GetHashCode();
+                hash *= 23 + Width.GetHashCode();
+                hash *= 23 + Height.GetHashCode();
+                hash *= 23 + BorderColor.GetHashCode();
+
+                return hash;
+            }
+        }
+
         public override string ToString()
         {
             return string.Format(
-                "GBorderRectangleF: X={0}, Y={1}, Width={2}, Height={3}",
+                "GBorderRectangleF: X={0}, Y={1}, Width={2}, Height={3}, BorderColor={4}",
                 X,
                 Y,
                 Width,
-                Height
+                Height,
+                BorderColor
             );
         }
     }

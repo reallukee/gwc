@@ -92,14 +92,68 @@ namespace Reallukee.GWC.GPipeline
 
 
 
+        public static bool operator ==(GBorderEllipse left, GBorderEllipse right)
+        {
+            if (ReferenceEquals(left, right))
+            {
+                return true;
+            }
+
+            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
+            {
+                return false;
+            }
+
+            if (!(left as GBaseEllipse<int> == right as GBaseEllipse<int>))
+            {
+                return false;
+            }
+
+            return left.BorderColor == right.BorderColor;
+        }
+
+        public static bool operator !=(GBorderEllipse left, GBorderEllipse right)
+        {
+            return !(left == right);
+        }
+
+
+
+        public override bool Equals(object obj)
+        {
+            if (!(obj is GBorderEllipse other))
+            {
+                return false;
+            }
+
+            return this == other;
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 17;
+
+                hash *= 23 + X.GetHashCode();
+                hash *= 23 + Y.GetHashCode();
+                hash *= 23 + Width.GetHashCode();
+                hash *= 23 + Height.GetHashCode();
+                hash *= 23 + BorderColor.GetHashCode();
+
+                return hash;
+            }
+        }
+
         public override string ToString()
         {
             return string.Format(
-                "GBorderEllipse: X={0}, Y={1}, Width={2}, Height={3}",
+                "GBorderEllipse: X={0}, Y={1}, Width={2}, Height={3}, BorderColor={4}",
                 X,
                 Y,
                 Width,
-                Height
+                Height,
+                BorderColor
             );
         }
     }
@@ -159,14 +213,68 @@ namespace Reallukee.GWC.GPipeline
 
 
 
+        public static bool operator ==(GBorderEllipseF left, GBorderEllipseF right)
+        {
+            if (ReferenceEquals(left, right))
+            {
+                return true;
+            }
+
+            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
+            {
+                return false;
+            }
+
+            if (!(left as GBaseEllipse<float> == right as GBaseEllipse<float>))
+            {
+                return false;
+            }
+
+            return left.BorderColor == right.BorderColor;
+        }
+
+        public static bool operator !=(GBorderEllipseF left, GBorderEllipseF right)
+        {
+            return !(left == right);
+        }
+
+
+
+        public override bool Equals(object obj)
+        {
+            if (!(obj is GBorderEllipseF other))
+            {
+                return false;
+            }
+
+            return this == other;
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 17;
+
+                hash *= 23 + X.GetHashCode();
+                hash *= 23 + Y.GetHashCode();
+                hash *= 23 + Width.GetHashCode();
+                hash *= 23 + Height.GetHashCode();
+                hash *= 23 + BorderColor.GetHashCode();
+
+                return hash;
+            }
+        }
+
         public override string ToString()
         {
             return string.Format(
-                "GBorderEllipseF: X={0}, Y={1}, Width={2}, Height={3}",
+                "GBorderEllipseF: X={0}, Y={1}, Width={2}, Height={3}, BorderColor={4}",
                 X,
                 Y,
                 Width,
-                Height
+                Height,
+                BorderColor
             );
         }
     }
