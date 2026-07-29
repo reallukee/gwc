@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.:.:.:
 // GWC.Native.Abst
-// v0.6.2
+// v0.6.3
 // :.:.:.:.:.:.:.:
 //
 // https://github.com/reallukee/gwc
@@ -25,25 +25,25 @@
 // Questo è l'header dell'API C di GWC Abst.
 //
 // Versione API attesa:
-//  [0.6.2]
+//  [0.6.3]
 // Versione MINIMA API attesa:
-//  [0.6.2]
+//  [0.6.3]
 //
 // Assicurati di utilizzare versioni compatibili
 // dei binari e dei file di intestazione.
 //
 // GWC.Native.Abst richiede:
 //  GWC.Native:
-//   [0.6.2]
+//   [0.6.3]
 //  GWC:
-//   [0.6.2]
+//   [0.6.3]
 //
 
-#define GWC_ABST_VERSION_INCLUDE              62
-#define GWC_ABST_MIN_VERSION_INCLUDE          62
+#define GWC_ABST_VERSION_INCLUDE              63
+#define GWC_ABST_MIN_VERSION_INCLUDE          63
 
-#define GWC_ABST_FRIENDLY_VERSION_INCLUDE     "0.6.2"
-#define GWC_ABST_FRIENDLY_MIN_VERSION_INCLUDE "0.6.2"
+#define GWC_ABST_FRIENDLY_VERSION_INCLUDE     "0.6.3"
+#define GWC_ABST_FRIENDLY_MIN_VERSION_INCLUDE "0.6.3"
 
 #include "header.h"
 
