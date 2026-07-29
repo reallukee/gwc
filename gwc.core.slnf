@@ -1,0 +1,11 @@
+{
+  "solution": {
+    "path": "gwc.slnx",
+    "projects": [
+      "gwc.dev\\gwc.dev.csproj",
+      "gwc.dev\\gwc.mono.dev.csproj",
+      "gwc\\gwc.csproj",
+      "gwc\\gwc.mono.csproj"
+    ]
+  }
+}

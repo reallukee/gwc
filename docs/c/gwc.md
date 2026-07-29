@@ -13,8 +13,19 @@ Torna a [API C](./index.md)
 
 # Sommario
 
+* [Dizionario](#dizionario)
 * [Macro](#macro)
 * [Costanti](#costanti)
+
+
+
+# Dizionario
+
+| Abbreviazione | Significato |
+| :-----------: | :---------: |
+| `M`           | Major       |
+| `m`           | Minor       |
+| `p`           | Patch       |
 
 
 
