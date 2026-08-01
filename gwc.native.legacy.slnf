@@ -1,0 +1,11 @@
+{
+  "solution": {
+    "path": "gwc.legacy.slnx",
+    "projects": [
+      "gwc.native.abst.dev\\gwc.native.abst.dev.vcxproj",
+      "gwc.native.abst\\gwc.native.abst.vcxproj",
+      "gwc.native.dev\\gwc.native.dev.vcxproj",
+      "gwc.native\\gwc.native.vcxproj"
+    ]
+  }
+}
