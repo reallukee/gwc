@@ -1,14 +1,27 @@
-//
-// :.:.:.:.:.
-// GWC.Native
-// v0.6.1
-// :.:.:.:.:.
-//
-// https://github.com/reallukee/gwc
-//
-// Window.cpp
-//  Licenza MIT
-//
+/*
+ * :.:.:.:.:.:.:.:.
+ * GWC
+ * Graphical Window
+ * for Console Apps
+ * :.:.:.:.:.:.:.:.
+ *
+ * GWC Native
+ *
+ * A Graphics Library
+ *
+ * https://github.com/reallukee/gwc
+ *
+ * Nome file : Window.cpp
+ *
+ * Titolo    : WINDOW
+ * Sommario  : Window
+ *
+ * Autore    : Luca Pollicino
+ *             (https://github.com/reallukee)
+ * Versione  : v0.6.3
+ *             NOTA BENE: Campo INDICATIVO!
+ * Licenza   : MIT
+ */
 
 #include "gwc.clr.hpp"
 
@@ -430,18 +443,36 @@ namespace gwc
         CCI_SET_COLOR_CPP(WindowHost, window, FillColor, color);
     }
 
-
-
-    bool Window::clear(gColor color)
+    gColor Window::getBackColor()
     {
-        System::Drawing::Color managedColor = System::Drawing::Color::FromArgb(
-            color.getAlpha(),
-            color.getRed  (),
-            color.getGreen(),
-            color.getBlue ()
-        );
+        CCI_GET_COLOR_CPP(WindowHost, window, BackColor);
+    }
 
-        CCI_BOOL_CPP(WindowHost, window, Clear(managedColor));
+    void Window::setBackColor(gColor color)
+    {
+        CCI_SET_COLOR_CPP(WindowHost, window, BackColor, color);
+    }
+
+
+
+    bool Window::clear()
+    {
+        CCI_BOOL_CPP(WindowHost, window, Clear());
+    }
+
+    bool Window::clearArea(int x, int y, int width, int height)
+    {
+        CCI_BOOL_CPP(WindowHost, window, ClearArea(x, y, width, height));
+    }
+
+    bool Window::clearF()
+    {
+        CCI_BOOL_CPP(WindowHost, window, ClearF());
+    }
+
+    bool Window::clearAreaF(float x, float y, float width, float height)
+    {
+        CCI_BOOL_CPP(WindowHost, window, ClearAreaF(x, y, width, height));
     }
 
 
@@ -455,6 +486,17 @@ namespace gwc
         CCI_BOOL_CPP(WindowHost, window, DrawCanvas(x, y, managedCanvas));
     }
 
+    bool Window::drawCanvasF(float x, float y, const Canvas* canvas)
+    {
+        CanvasHost* canvasHost = CanvasHelper::get(canvas);
+
+        GWC::Canvas^ managedCanvas = canvasHost->invoke();
+
+        CCI_BOOL_CPP(WindowHost, window, DrawCanvasF(x, y, managedCanvas));
+    }
+
+
+
     bool Window::drawSprite(int x, int y, const Sprite* sprite)
     {
         SpriteHost* spriteHost = SpriteHelper::get(sprite);
@@ -464,6 +506,15 @@ namespace gwc
         CCI_BOOL_CPP(WindowHost, window, DrawSprite(x, y, managedSprite));
     }
 
+    bool Window::drawSpriteF(float x, float y, const Sprite* sprite)
+    {
+        SpriteHost* spriteHost = SpriteHelper::get(sprite);
+
+        GWC::Sprite^ managedSprite = spriteHost->invoke();
+
+        CCI_BOOL_CPP(WindowHost, window, DrawSpriteF(x, y, managedSprite));
+    }
+
 
 
     bool Window::drawBorderSquare(int x, int y, int side)
@@ -471,9 +522,19 @@ namespace gwc
         CCI_BOOL_CPP(WindowHost, window, DrawBorderSquare(x, y, side));
     }
 
+    bool Window::drawBorderSquareF(float x, float y, float side)
+    {
+        CCI_BOOL_CPP(WindowHost, window, DrawBorderSquareF(x, y, side));
+    }
+
     bool Window::drawFillSquare(int x, int y, int side)
     {
         CCI_BOOL_CPP(WindowHost, window, DrawFillSquare(x, y, side));
+    }
+
+    bool Window::drawFillSquareF(float x, float y, float side)
+    {
+        CCI_BOOL_CPP(WindowHost, window, DrawFillSquareF(x, y, side));
     }
 
 
@@ -483,9 +544,19 @@ namespace gwc
         CCI_BOOL_CPP(WindowHost, window, DrawBorderRectangle(x, y, width, height));
     }
 
+    bool Window::drawBorderRectangleF(float x, float y, float width, float height)
+    {
+        CCI_BOOL_CPP(WindowHost, window, DrawBorderRectangleF(x, y, width, height));
+    }
+
     bool Window::drawFillRectangle(int x, int y, int width, int height)
     {
         CCI_BOOL_CPP(WindowHost, window, DrawFillRectangle(x, y, width, height));
+    }
+
+    bool Window::drawFillRectangleF(float x, float y, float width, float height)
+    {
+        CCI_BOOL_CPP(WindowHost, window, DrawFillRectangleF(x, y, width, height));
     }
 
 
@@ -495,9 +566,19 @@ namespace gwc
         CCI_BOOL_CPP(WindowHost, window, DrawBorderCircle(x, y, radius));
     }
 
+    bool Window::drawBorderCircleF(float x, float y, float radius)
+    {
+        CCI_BOOL_CPP(WindowHost, window, DrawBorderCircleF(x, y, radius));
+    }
+
     bool Window::drawFillCircle(int x, int y, int radius)
     {
         CCI_BOOL_CPP(WindowHost, window, DrawFillCircle(x, y, radius));
+    }
+
+    bool Window::drawFillCircleF(float x, float y, float radius)
+    {
+        CCI_BOOL_CPP(WindowHost, window, DrawFillCircleF(x, y, radius));
     }
 
 
@@ -507,9 +588,19 @@ namespace gwc
         CCI_BOOL_CPP(WindowHost, window, DrawBorderEllipse(x, y, width, height));
     }
 
+    bool Window::drawBorderEllipseF(float x, float y, float width, float height)
+    {
+        CCI_BOOL_CPP(WindowHost, window, DrawBorderEllipseF(x, y, width, height));
+    }
+
     bool Window::drawFillEllipse(int x, int y, int width, int height)
     {
         CCI_BOOL_CPP(WindowHost, window, DrawFillEllipse(x, y, width, height));
+    }
+
+    bool Window::drawFillEllipseF(float x, float y, float width, float height)
+    {
+        CCI_BOOL_CPP(WindowHost, window, DrawFillEllipseF(x, y, width, height));
     }
 
 
@@ -573,10 +664,6 @@ namespace gwc
 
             managedBitmap = copy;
         }
-        catch (Exception^ ex)
-        {
-            System::Windows::Forms::MessageBox::Show(ex->Message);
-        }
         finally
         {
             nativeBitmap->UnlockBits(&nativeBitmapData);
@@ -585,10 +672,8 @@ namespace gwc
         return managedBitmap;
     }
 
-    bool Window::drawImage(int x, int y, const gImage& image)
+    static Bitmap* getNativeImage(const gImage& image)
     {
-        CC_BOOL_CPP(WindowHost, window);
-
         if (!image.isLoaded())
         {
             return false;
@@ -601,6 +686,34 @@ namespace gwc
             return false;
         }
 
+        return nativeImage;
+    }
+
+    static HICON getNativeIcon(const gIcon& icon)
+    {
+        if (!icon.isLoaded())
+        {
+            return false;
+        }
+
+        HICON nativeIcon = IconHelper::get(icon);
+
+        if (nativeIcon == nullptr)
+        {
+            return false;
+        }
+
+        return nativeIcon;
+    }
+
+
+
+    bool Window::drawImage(int x, int y, const gImage& image)
+    {
+        CC_BOOL_CPP(WindowHost, window);
+
+        Bitmap* nativeImage = getNativeImage(image);
+
         System::Drawing::Image^ managedImage = nullptr;
 
         bool result = false;
@@ -611,9 +724,32 @@ namespace gwc
 
             result = _host->invoke()->DrawImage(x, y, managedImage);
         }
-        catch (Exception^ ex)
+        finally
         {
-            System::Windows::Forms::MessageBox::Show(ex->Message);
+            if (managedImage)
+            {
+                delete managedImage;
+            }
+        }
+
+        return result;
+    }
+
+    bool Window::drawImageF(float x, float y, const gImage& image)
+    {
+        CC_BOOL_CPP(WindowHost, window);
+
+        Bitmap* nativeImage = getNativeImage(image);
+
+        System::Drawing::Image^ managedImage = nullptr;
+
+        bool result = false;
+
+        try
+        {
+            managedImage = toManagedBitmap(nativeImage);
+
+            result = _host->invoke()->DrawImageF(x, y, managedImage);
         }
         finally
         {
@@ -630,17 +766,7 @@ namespace gwc
     {
         CC_BOOL_CPP(WindowHost, window);
 
-        if (!icon.isLoaded())
-        {
-            return false;
-        }
-
-        HICON nativeIcon = IconHelper::get(icon);
-
-        if (nativeIcon == nullptr)
-        {
-            return false;
-        }
+        HICON nativeIcon = getNativeIcon(icon);
 
         System::Drawing::Icon^ managedIcon = nullptr;
 
@@ -654,9 +780,34 @@ namespace gwc
 
             result = _host->invoke()->DrawIcon(x, y, managedIcon);
         }
-        catch (Exception^ ex)
+        finally
         {
-            System::Windows::Forms::MessageBox::Show(ex->Message);
+            if (managedIcon)
+            {
+                delete managedIcon;
+            }
+        }
+
+        return result;
+    }
+
+    bool Window::drawIconF(float x, float y, const gIcon& icon)
+    {
+        CC_BOOL_CPP(WindowHost, window);
+
+        HICON nativeIcon = getNativeIcon(icon);
+
+        System::Drawing::Icon^ managedIcon = nullptr;
+
+        bool result = false;
+
+        try
+        {
+            IntPtr iconHandle = IntPtr(nativeIcon);
+
+            managedIcon = System::Drawing::Icon::FromHandle(iconHandle);
+
+            result = _host->invoke()->DrawIconF(x, y, managedIcon);
         }
         finally
         {

@@ -1,14 +1,27 @@
-//
-// :.:.:.:.:.
-// GWC.Native
-// v0.6.1
-// :.:.:.:.:.
-//
-// https://github.com/reallukee/gwc
-//
-// SPRITE.c
-//  Licenza MIT
-//
+/*
+ * :.:.:.:.:.:.:.:.
+ * GWC
+ * Graphical Window
+ * for Console Apps
+ * :.:.:.:.:.:.:.:.
+ *
+ * GWC Native
+ *
+ * A Graphics Library
+ *
+ * https://github.com/reallukee/gwc
+ *
+ * Nome file : SPRITE.c
+ *
+ * Titolo    : SPRITE
+ * Sommario  : Sprite
+ *
+ * Autore    : Luca Pollicino
+ *             (https://github.com/reallukee)
+ * Versione  : v0.6.3
+ *             NOTA BENE: Campo INDICATIVO!
+ * Licenza   : MIT
+ */
 
 #include "gwc.clr.hpp"
 
@@ -99,6 +112,16 @@ void sprite_setFillColor(const SPRITE* sprite, const gCOLOR* color)
     CCI_SET_COLOR_C(SpriteHost, sprite, FillColor, color);
 }
 
+gCOLOR* sprite_getBackColor(const SPRITE* sprite)
+{
+    CCI_GET_COLOR_C(SpriteHost, sprite, BackColor);
+}
+
+void sprite_setBackColor(const SPRITE* sprite, const gCOLOR* color)
+{
+    CCI_SET_COLOR_C(SpriteHost, sprite, BackColor, color);
+}
+
 
 
 gRECTANGLE* sprite_bounds(const SPRITE* sprite)
@@ -130,26 +153,47 @@ int sprite_getHeight(const SPRITE* sprite)
 
 
 
-bool sprite_clear(const SPRITE* sprite, const gCOLOR* color)
+bool sprite_clear(const SPRITE* sprite)
 {
-    System::Drawing::Color managedColor = System::Drawing::Color::FromArgb(
-        color_getAlpha(color),
-        color_getRed  (color),
-        color_getGreen(color),
-        color_getBlue (color)
-    );
-
-    CCI_BOOL_C(SpriteHost, sprite, Clear(managedColor));
+    CCI_BOOL_C(SpriteHost, sprite, Clear());
 }
+
+bool sprite_clearArea(const SPRITE* sprite, int x, int y, int width, int height)
+{
+    CCI_BOOL_C(SpriteHost, sprite, ClearArea(x, y, width, height));
+}
+
+bool sprite_clearF(const SPRITE* sprite)
+{
+    CCI_BOOL_C(SpriteHost, sprite, ClearF());
+}
+
+bool sprite_clearAreaF(const SPRITE* sprite, float x, float y, float width, float height)
+{
+    CCI_BOOL_C(SpriteHost, sprite, ClearAreaF(x, y, width, height));
+}
+
+
 
 bool sprite_drawCanvas(const SPRITE* sprite, int x, int y, const CANVAS* canvas)
 {
-    CanvasHost* spriteHost = canvasHelper_get(canvas);
+    CanvasHost* canvasHost = canvasHelper_get(canvas);
 
-    GWC::Canvas^ managedCanvas = spriteHost->invoke();
+    GWC::Canvas^ managedCanvas = canvasHost->invoke();
 
     CCI_BOOL_C(SpriteHost, sprite, DrawCanvas(x, y, managedCanvas));
 }
+
+bool sprite_drawCanvasF(const SPRITE* sprite, float x, float y, const CANVAS* canvas)
+{
+    CanvasHost* canvasHost = canvasHelper_get(canvas);
+
+    GWC::Canvas^ managedCanvas = canvasHost->invoke();
+
+    CCI_BOOL_C(SpriteHost, sprite, DrawCanvasF(x, y, managedCanvas));
+}
+
+
 
 bool sprite_drawSprite(const SPRITE* sprite, int x, int y, const SPRITE* sprite_)
 {
@@ -160,6 +204,15 @@ bool sprite_drawSprite(const SPRITE* sprite, int x, int y, const SPRITE* sprite_
     CCI_BOOL_C(SpriteHost, sprite, DrawSprite(x, y, managedSprite));
 }
 
+bool sprite_drawSpriteF(const SPRITE* sprite, float x, float y, const SPRITE* sprite_)
+{
+    SpriteHost* spriteHost = spriteHelper_get(sprite_);
+
+    GWC::Sprite^ managedSprite = spriteHost->invoke();
+
+    CCI_BOOL_C(SpriteHost, sprite, DrawSpriteF(x, y, managedSprite));
+}
+
 
 
 bool sprite_drawBorderSquare(const SPRITE* sprite, int x, int y, int side)
@@ -167,9 +220,19 @@ bool sprite_drawBorderSquare(const SPRITE* sprite, int x, int y, int side)
     CCI_BOOL_C(SpriteHost, sprite, DrawBorderSquare(x, y, side));
 }
 
+bool sprite_drawBorderSquareF(const SPRITE* sprite, float x, float y, float side)
+{
+    CCI_BOOL_C(SpriteHost, sprite, DrawBorderSquareF(x, y, side));
+}
+
 bool sprite_drawFillSquare(const SPRITE* sprite, int x, int y, int side)
 {
     CCI_BOOL_C(SpriteHost, sprite, DrawFillSquare(x, y, side));
+}
+
+bool sprite_drawFillSquareF(const SPRITE* sprite, float x, float y, float side)
+{
+    CCI_BOOL_C(SpriteHost, sprite, DrawFillSquareF(x, y, side));
 }
 
 
@@ -179,9 +242,19 @@ bool sprite_drawBorderRectangle(const SPRITE* sprite, int x, int y, int width, i
     CCI_BOOL_C(SpriteHost, sprite, DrawBorderRectangle(x, y, width, height));
 }
 
+bool sprite_drawBorderRectangleF(const SPRITE* sprite, float x, float y, float width, float height)
+{
+    CCI_BOOL_C(SpriteHost, sprite, DrawBorderRectangleF(x, y, width, height));
+}
+
 bool sprite_drawFillRectangle(const SPRITE* sprite, int x, int y, int width, int height)
 {
     CCI_BOOL_C(SpriteHost, sprite, DrawFillRectangle(x, y, width, height));
+}
+
+bool sprite_drawFillRectangleF(const SPRITE* sprite, float x, float y, float width, float height)
+{
+    CCI_BOOL_C(SpriteHost, sprite, DrawFillRectangleF(x, y, width, height));
 }
 
 
@@ -191,9 +264,19 @@ bool sprite_drawBorderCircle(const SPRITE* sprite, int x, int y, int radius)
     CCI_BOOL_C(SpriteHost, sprite, DrawBorderCircle(x, y, radius));
 }
 
+bool sprite_drawBorderCircleF(const SPRITE* sprite, float x, float y, float radius)
+{
+    CCI_BOOL_C(SpriteHost, sprite, DrawBorderCircleF(x, y, radius));
+}
+
 bool sprite_drawFillCircle(const SPRITE* sprite, int x, int y, int radius)
 {
     CCI_BOOL_C(SpriteHost, sprite, DrawFillCircle(x, y, radius));
+}
+
+bool sprite_drawFillCircleF(const SPRITE* sprite, float x, float y, float radius)
+{
+    CCI_BOOL_C(SpriteHost, sprite, DrawFillCircleF(x, y, radius));
 }
 
 
@@ -203,9 +286,19 @@ bool sprite_drawBorderEllipse(const SPRITE* sprite, int x, int y, int width, int
     CCI_BOOL_C(SpriteHost, sprite, DrawBorderEllipse(x, y, width, height));
 }
 
+bool sprite_drawBorderEllipseF(const SPRITE* sprite, float x, float y, float width, float height)
+{
+    CCI_BOOL_C(SpriteHost, sprite, DrawBorderEllipseF(x, y, width, height));
+}
+
 bool sprite_drawFillEllipse(const SPRITE* sprite, int x, int y, int width, int height)
 {
     CCI_BOOL_C(SpriteHost, sprite, DrawFillEllipse(x, y, width, height));
+}
+
+bool sprite_drawFillEllipseF(const SPRITE* sprite, float x, float y, float width, float height)
+{
+    CCI_BOOL_C(SpriteHost, sprite, DrawFillEllipseF(x, y, width, height));
 }
 
 
@@ -217,7 +310,7 @@ static System::Drawing::Bitmap^ toManagedBitmap(Gdiplus::Bitmap* nativeBitmap)
         return nullptr;
     }
 
-    UINT width  = nativeBitmap->GetWidth();
+    UINT width = nativeBitmap->GetWidth();
     UINT height = nativeBitmap->GetHeight();
 
     Gdiplus::Rect nativeRect(
@@ -269,10 +362,6 @@ static System::Drawing::Bitmap^ toManagedBitmap(Gdiplus::Bitmap* nativeBitmap)
 
         managedBitmap = copy;
     }
-    catch (Exception^ ex)
-    {
-        System::Windows::Forms::MessageBox::Show(ex->Message);
-    }
     finally
     {
         nativeBitmap->UnlockBits(&nativeBitmapData);
@@ -281,15 +370,8 @@ static System::Drawing::Bitmap^ toManagedBitmap(Gdiplus::Bitmap* nativeBitmap)
     return managedBitmap;
 }
 
-bool sprite_drawImage(const SPRITE* sprite, int x, int y, gIMAGE* image)
+static Bitmap* getNativeImage(const gIMAGE* image)
 {
-    CC_BOOL_C(SpriteHost, sprite);
-
-    if (image == NULL)
-    {
-        return false;
-    }
-
     if (!image_isLoaded(image))
     {
         return false;
@@ -297,10 +379,38 @@ bool sprite_drawImage(const SPRITE* sprite, int x, int y, gIMAGE* image)
 
     Bitmap* nativeImage = imageHelper_get(image);
 
-    if (nativeImage == NULL)
+    if (nativeImage == nullptr)
     {
         return false;
     }
+
+    return nativeImage;
+}
+
+static HICON getNativeIcon(const gICON* icon)
+{
+    if (!icon_isLoaded(icon))
+    {
+        return false;
+    }
+
+    HICON nativeIcon = iconHelper_get(icon);
+
+    if (nativeIcon == nullptr)
+    {
+        return false;
+    }
+
+    return nativeIcon;
+}
+
+
+
+bool sprite_drawImage(const SPRITE* sprite, int x, int y, gIMAGE* image)
+{
+    CC_BOOL_C(SpriteHost, sprite);
+
+    Bitmap* nativeImage = getNativeImage(image);
 
     System::Drawing::Image^ managedImage = nullptr;
 
@@ -312,9 +422,32 @@ bool sprite_drawImage(const SPRITE* sprite, int x, int y, gIMAGE* image)
 
         result = _host->invoke()->DrawImage(x, y, managedImage);
     }
-    catch (Exception^ ex)
+    finally
     {
-        System::Windows::Forms::MessageBox::Show(ex->Message);
+        if (managedImage)
+        {
+            delete managedImage;
+        }
+    }
+
+    return result;
+}
+
+bool sprite_drawImageF(const SPRITE* sprite, float x, float y, gIMAGE* image)
+{
+    CC_BOOL_C(SpriteHost, sprite);
+
+    Bitmap* nativeImage = getNativeImage(image);
+
+    System::Drawing::Image^ managedImage = nullptr;
+
+    bool result = false;
+
+    try
+    {
+        managedImage = toManagedBitmap(nativeImage);
+
+        result = _host->invoke()->DrawImageF(x, y, managedImage);
     }
     finally
     {
@@ -331,22 +464,7 @@ bool sprite_drawIcon(const SPRITE* sprite, int x, int y, gICON* icon)
 {
     CC_BOOL_C(SpriteHost, sprite);
 
-    if (icon == NULL)
-    {
-        return false;
-    }
-
-    if (!icon_isLoaded(icon))
-    {
-        return false;
-    }
-
-    HICON nativeIcon = iconHelper_get(icon);
-
-    if (nativeIcon == NULL)
-    {
-        return false;
-    }
+    HICON nativeIcon = getNativeIcon(icon);
 
     System::Drawing::Icon^ managedIcon = nullptr;
 
@@ -360,9 +478,34 @@ bool sprite_drawIcon(const SPRITE* sprite, int x, int y, gICON* icon)
 
         result = _host->invoke()->DrawIcon(x, y, managedIcon);
     }
-    catch (Exception^ ex)
+    finally
     {
-        System::Windows::Forms::MessageBox::Show(ex->Message);
+        if (managedIcon)
+        {
+            delete managedIcon;
+        }
+    }
+
+    return result;
+}
+
+bool sprite_drawIconF(const SPRITE* sprite, float x, float y, gICON* icon)
+{
+    CC_BOOL_C(SpriteHost, sprite);
+
+    HICON nativeIcon = getNativeIcon(icon);
+
+    System::Drawing::Icon^ managedIcon = nullptr;
+
+    bool result = false;
+
+    try
+    {
+        IntPtr iconHandle = IntPtr(nativeIcon);
+
+        managedIcon = System::Drawing::Icon::FromHandle(iconHandle);
+
+        result = _host->invoke()->DrawIconF(x, y, managedIcon);
     }
     finally
     {

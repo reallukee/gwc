@@ -1,14 +1,27 @@
-//
-// :.:.:.:.:.
-// GWC.Native
-// v0.6.1
-// :.:.:.:.:.
-//
-// https://github.com/reallukee/gwc
-//
-// CANVAS.c
-//  Licenza MIT
-//
+/*
+ * :.:.:.:.:.:.:.:.
+ * GWC
+ * Graphical Window
+ * for Console Apps
+ * :.:.:.:.:.:.:.:.
+ *
+ * GWC Native
+ *
+ * A Graphics Library
+ *
+ * https://github.com/reallukee/gwc
+ *
+ * Nome file : CANVAS.c
+ *
+ * Titolo    : CANVAS
+ * Sommario  : Canvas
+ *
+ * Autore    : Luca Pollicino
+ *             (https://github.com/reallukee)
+ * Versione  : v0.6.3
+ *             NOTA BENE: Campo INDICATIVO!
+ * Licenza   : MIT
+ */
 
 #include "gwc.clr.hpp"
 
@@ -99,6 +112,16 @@ void canvas_setFillColor(const CANVAS* canvas, const gCOLOR* color)
     CCI_SET_COLOR_C(CanvasHost, canvas, FillColor, color);
 }
 
+gCOLOR* canvas_getBackColor(const CANVAS* canvas)
+{
+    CCI_GET_COLOR_C(CanvasHost, canvas, BackColor);
+}
+
+void canvas_setBackColor(const CANVAS* canvas, const gCOLOR* color)
+{
+    CCI_SET_COLOR_C(CanvasHost, canvas, BackColor, color);
+}
+
 
 
 gRECTANGLE* canvas_bounds(const CANVAS* canvas)
@@ -130,17 +153,27 @@ int canvas_getHeight(const CANVAS* canvas)
 
 
 
-bool canvas_clear(const CANVAS* canvas, const gCOLOR* color)
+bool canvas_clear(const CANVAS* canvas)
 {
-    System::Drawing::Color managedColor = System::Drawing::Color::FromArgb(
-        color_getAlpha(color),
-        color_getRed  (color),
-        color_getGreen(color),
-        color_getBlue (color)
-    );
-
-    CCI_BOOL_C(CanvasHost, canvas, Clear(managedColor));
+    CCI_BOOL_C(CanvasHost, canvas, Clear());
 }
+
+bool canvas_clearArea(const CANVAS* canvas, int x, int y, int width, int height)
+{
+    CCI_BOOL_C(CanvasHost, canvas, ClearArea(x, y, width, height));
+}
+
+bool canvas_clearF(const CANVAS* canvas)
+{
+    CCI_BOOL_C(CanvasHost, canvas, ClearF());
+}
+
+bool canvas_clearAreaF(const CANVAS* canvas, float x, float y, float width, float height)
+{
+    CCI_BOOL_C(CanvasHost, canvas, ClearAreaF(x, y, width, height));
+}
+
+
 
 bool canvas_drawCanvas(const CANVAS* canvas, int x, int y, const CANVAS* canvas_)
 {
@@ -151,6 +184,17 @@ bool canvas_drawCanvas(const CANVAS* canvas, int x, int y, const CANVAS* canvas_
     CCI_BOOL_C(CanvasHost, canvas, DrawCanvas(x, y, managedCanvas));
 }
 
+bool canvas_drawCanvasF(const CANVAS* canvas, float x, float y, const CANVAS* canvas_)
+{
+    CanvasHost* canvasHost = canvasHelper_get(canvas_);
+
+    GWC::Canvas^ managedCanvas = canvasHost->invoke();
+
+    CCI_BOOL_C(CanvasHost, canvas, DrawCanvasF(x, y, managedCanvas));
+}
+
+
+
 bool canvas_drawSprite(const CANVAS* canvas, int x, int y, const SPRITE* sprite)
 {
     SpriteHost* spriteHost = spriteHelper_get(sprite);
@@ -160,6 +204,15 @@ bool canvas_drawSprite(const CANVAS* canvas, int x, int y, const SPRITE* sprite)
     CCI_BOOL_C(CanvasHost, canvas, DrawSprite(x, y, managedSprite));
 }
 
+bool canvas_drawSpriteF(const CANVAS* canvas, float x, float y, const SPRITE* sprite)
+{
+    SpriteHost* spriteHost = spriteHelper_get(sprite);
+
+    GWC::Sprite^ managedSprite = spriteHost->invoke();
+
+    CCI_BOOL_C(CanvasHost, canvas, DrawSpriteF(x, y, managedSprite));
+}
+
 
 
 bool canvas_drawBorderSquare(const CANVAS* canvas, int x, int y, int side)
@@ -167,9 +220,19 @@ bool canvas_drawBorderSquare(const CANVAS* canvas, int x, int y, int side)
     CCI_BOOL_C(CanvasHost, canvas, DrawBorderSquare(x, y, side));
 }
 
+bool canvas_drawBorderSquareF(const CANVAS* canvas, float x, float y, float side)
+{
+    CCI_BOOL_C(CanvasHost, canvas, DrawBorderSquareF(x, y, side));
+}
+
 bool canvas_drawFillSquare(const CANVAS* canvas, int x, int y, int side)
 {
     CCI_BOOL_C(CanvasHost, canvas, DrawFillSquare(x, y, side));
+}
+
+bool canvas_drawFillSquareF(const CANVAS* canvas, float x, float y, float side)
+{
+    CCI_BOOL_C(CanvasHost, canvas, DrawFillSquareF(x, y, side));
 }
 
 
@@ -179,9 +242,19 @@ bool canvas_drawBorderRectangle(const CANVAS* canvas, int x, int y, int width, i
     CCI_BOOL_C(CanvasHost, canvas, DrawBorderRectangle(x, y, width, height));
 }
 
+bool canvas_drawBorderRectangleF(const CANVAS* canvas, float x, float y, float width, float height)
+{
+    CCI_BOOL_C(CanvasHost, canvas, DrawBorderRectangleF(x, y, width, height));
+}
+
 bool canvas_drawFillRectangle(const CANVAS* canvas, int x, int y, int width, int height)
 {
     CCI_BOOL_C(CanvasHost, canvas, DrawFillRectangle(x, y, width, height));
+}
+
+bool canvas_drawFillRectangleF(const CANVAS* canvas, float x, float y, float width, float height)
+{
+    CCI_BOOL_C(CanvasHost, canvas, DrawFillRectangleF(x, y, width, height));
 }
 
 
@@ -191,9 +264,19 @@ bool canvas_drawBorderCircle(const CANVAS* canvas, int x, int y, int radius)
     CCI_BOOL_C(CanvasHost, canvas, DrawBorderCircle(x, y, radius));
 }
 
+bool canvas_drawBorderCircleF(const CANVAS* canvas, float x, float y, float radius)
+{
+    CCI_BOOL_C(CanvasHost, canvas, DrawBorderCircleF(x, y, radius));
+}
+
 bool canvas_drawFillCircle(const CANVAS* canvas, int x, int y, int radius)
 {
     CCI_BOOL_C(CanvasHost, canvas, DrawFillCircle(x, y, radius));
+}
+
+bool canvas_drawFillCircleF(const CANVAS* canvas, float x, float y, float radius)
+{
+    CCI_BOOL_C(CanvasHost, canvas, DrawFillCircleF(x, y, radius));
 }
 
 
@@ -203,9 +286,19 @@ bool canvas_drawBorderEllipse(const CANVAS* canvas, int x, int y, int width, int
     CCI_BOOL_C(CanvasHost, canvas, DrawBorderEllipse(x, y, width, height));
 }
 
+bool canvas_drawBorderEllipseF(const CANVAS* canvas, float x, float y, float width, float height)
+{
+    CCI_BOOL_C(CanvasHost, canvas, DrawBorderEllipseF(x, y, width, height));
+}
+
 bool canvas_drawFillEllipse(const CANVAS* canvas, int x, int y, int width, int height)
 {
     CCI_BOOL_C(CanvasHost, canvas, DrawFillEllipse(x, y, width, height));
+}
+
+bool canvas_drawFillEllipseF(const CANVAS* canvas, float x, float y, float width, float height)
+{
+    CCI_BOOL_C(CanvasHost, canvas, DrawFillEllipseF(x, y, width, height));
 }
 
 
@@ -217,7 +310,7 @@ static System::Drawing::Bitmap^ toManagedBitmap(Gdiplus::Bitmap* nativeBitmap)
         return nullptr;
     }
 
-    UINT width  = nativeBitmap->GetWidth();
+    UINT width = nativeBitmap->GetWidth();
     UINT height = nativeBitmap->GetHeight();
 
     Gdiplus::Rect nativeRect(
@@ -269,10 +362,6 @@ static System::Drawing::Bitmap^ toManagedBitmap(Gdiplus::Bitmap* nativeBitmap)
 
         managedBitmap = copy;
     }
-    catch (Exception^ ex)
-    {
-        System::Windows::Forms::MessageBox::Show(ex->Message);
-    }
     finally
     {
         nativeBitmap->UnlockBits(&nativeBitmapData);
@@ -281,15 +370,8 @@ static System::Drawing::Bitmap^ toManagedBitmap(Gdiplus::Bitmap* nativeBitmap)
     return managedBitmap;
 }
 
-bool canvas_drawImage(const CANVAS* canvas, int x, int y, gIMAGE* image)
+static Bitmap* getNativeImage(const gIMAGE* image)
 {
-    CC_BOOL_C(CanvasHost, canvas);
-
-    if (image == NULL)
-    {
-        return false;
-    }
-
     if (!image_isLoaded(image))
     {
         return false;
@@ -297,10 +379,38 @@ bool canvas_drawImage(const CANVAS* canvas, int x, int y, gIMAGE* image)
 
     Bitmap* nativeImage = imageHelper_get(image);
 
-    if (nativeImage == NULL)
+    if (nativeImage == nullptr)
     {
         return false;
     }
+
+    return nativeImage;
+}
+
+static HICON getNativeIcon(const gICON* icon)
+{
+    if (!icon_isLoaded(icon))
+    {
+        return false;
+    }
+
+    HICON nativeIcon = iconHelper_get(icon);
+
+    if (nativeIcon == nullptr)
+    {
+        return false;
+    }
+
+    return nativeIcon;
+}
+
+
+
+bool canvas_drawImage(const CANVAS* canvas, int x, int y, gIMAGE* image)
+{
+    CC_BOOL_C(CanvasHost, canvas);
+
+    Bitmap* nativeImage = getNativeImage(image);
 
     System::Drawing::Image^ managedImage = nullptr;
 
@@ -312,9 +422,32 @@ bool canvas_drawImage(const CANVAS* canvas, int x, int y, gIMAGE* image)
 
         result = _host->invoke()->DrawImage(x, y, managedImage);
     }
-    catch (Exception^ ex)
+    finally
     {
-        System::Windows::Forms::MessageBox::Show(ex->Message);
+        if (managedImage)
+        {
+            delete managedImage;
+        }
+    }
+
+    return result;
+}
+
+bool canvas_drawImageF(const CANVAS* canvas, float x, float y, gIMAGE* image)
+{
+    CC_BOOL_C(CanvasHost, canvas);
+
+    Bitmap* nativeImage = getNativeImage(image);
+
+    System::Drawing::Image^ managedImage = nullptr;
+
+    bool result = false;
+
+    try
+    {
+        managedImage = toManagedBitmap(nativeImage);
+
+        result = _host->invoke()->DrawImageF(x, y, managedImage);
     }
     finally
     {
@@ -331,22 +464,7 @@ bool canvas_drawIcon(const CANVAS* canvas, int x, int y, gICON* icon)
 {
     CC_BOOL_C(CanvasHost, canvas);
 
-    if (icon == NULL)
-    {
-        return false;
-    }
-
-    if (!icon_isLoaded(icon))
-    {
-        return false;
-    }
-
-    HICON nativeIcon = iconHelper_get(icon);
-
-    if (nativeIcon == NULL)
-    {
-        return false;
-    }
+    HICON nativeIcon = getNativeIcon(icon);
 
     System::Drawing::Icon^ managedIcon = nullptr;
 
@@ -360,9 +478,34 @@ bool canvas_drawIcon(const CANVAS* canvas, int x, int y, gICON* icon)
 
         result = _host->invoke()->DrawIcon(x, y, managedIcon);
     }
-    catch (Exception^ ex)
+    finally
     {
-        System::Windows::Forms::MessageBox::Show(ex->Message);
+        if (managedIcon)
+        {
+            delete managedIcon;
+        }
+    }
+
+    return result;
+}
+
+bool canvas_drawIconF(const CANVAS* canvas, float x, float y, gICON* icon)
+{
+    CC_BOOL_C(CanvasHost, canvas);
+
+    HICON nativeIcon = getNativeIcon(icon);
+
+    System::Drawing::Icon^ managedIcon = nullptr;
+
+    bool result = false;
+
+    try
+    {
+        IntPtr iconHandle = IntPtr(nativeIcon);
+
+        managedIcon = System::Drawing::Icon::FromHandle(iconHandle);
+
+        result = _host->invoke()->DrawIconF(x, y, managedIcon);
     }
     finally
     {

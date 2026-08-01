@@ -1,14 +1,27 @@
-//
-// :.:.:.:.:.
-// GWC.Native
-// v0.6.1
-// :.:.:.:.:.
-//
-// https://github.com/reallukee/gwc
-//
-// WINDOW.h
-//  Licenza MIT
-//
+/*
+ * :.:.:.:.:.:.:.:.
+ * GWC
+ * Graphical Window
+ * for Console Apps
+ * :.:.:.:.:.:.:.:.
+ *
+ * GWC Native
+ *
+ * A Graphics Library
+ *
+ * https://github.com/reallukee/gwc
+ *
+ * Nome file : WINDOW.h
+ *
+ * Titolo    : WINDOW
+ * Sommario  : Window
+ *
+ * Autore    : Luca Pollicino
+ *             (https://github.com/reallukee)
+ * Versione  : v0.6.3
+ *             NOTA BENE: Campo INDICATIVO!
+ * Licenza   : MIT
+ */
 
 #pragma once
 
@@ -90,25 +103,43 @@ GWC_C_API gCOLOR* window_getBorderColor(const WINDOW* window);
 GWC_C_API void    window_setBorderColor(const WINDOW* window, const gCOLOR* color);
 GWC_C_API gCOLOR* window_getFillColor  (const WINDOW* window);
 GWC_C_API void    window_setFillColor  (const WINDOW* window, const gCOLOR* color);
+GWC_C_API gCOLOR* window_getBackColor  (const WINDOW* window);
+GWC_C_API void    window_setBackColor  (const WINDOW* window, const gCOLOR* color);
 
-GWC_C_API bool window_clear(const WINDOW* window, const gCOLOR* color);
+GWC_C_API bool window_clear     (const WINDOW* window);
+GWC_C_API bool window_clearArea (const WINDOW* window, int x, int y, int width, int height);
+GWC_C_API bool window_clearF    (const WINDOW* window);
+GWC_C_API bool window_clearAreaF(const WINDOW* window, float x, float y, float width, float height);
 
-GWC_C_API bool window_drawCanvas(const WINDOW* window, int x, int y, const CANVAS* canvas);
-GWC_C_API bool window_drawSprite(const WINDOW* window, int x, int y, const SPRITE* sprite);
+GWC_C_API bool window_drawCanvas (const WINDOW* window, int x, int y, const CANVAS* canvas);
+GWC_C_API bool window_drawCanvasF(const WINDOW* window, float x, float y, const CANVAS* canvas);
 
-GWC_C_API bool window_drawBorderSquare(const WINDOW* window, int x, int y, int side);
-GWC_C_API bool window_drawFillSquare  (const WINDOW* window, int x, int y, int side);
+GWC_C_API bool window_drawSprite (const WINDOW* window, int x, int y, const SPRITE* sprite);
+GWC_C_API bool window_drawSpriteF(const WINDOW* window, float x, float y, const SPRITE* sprite);
 
-GWC_C_API bool window_drawBorderRectangle(const WINDOW* window, int x, int y, int width, int height);
-GWC_C_API bool window_drawFillRectangle  (const WINDOW* window, int x, int y, int width, int height);
+GWC_C_API bool window_drawBorderSquare (const WINDOW* window, int x, int y, int side);
+GWC_C_API bool window_drawBorderSquareF(const WINDOW* window, float x, float y, float side);
+GWC_C_API bool window_drawFillSquare   (const WINDOW* window, int x, int y, int side);
+GWC_C_API bool window_drawFillSquareF  (const WINDOW* window, float x, float y, float side);
 
-GWC_C_API bool window_drawBorderCircle(const WINDOW* window, int x, int y, int radius);
-GWC_C_API bool window_drawFillCircle  (const WINDOW* window, int x, int y, int radius);
+GWC_C_API bool window_drawBorderRectangle (const WINDOW* window, int x, int y, int width, int height);
+GWC_C_API bool window_drawBorderRectangleF(const WINDOW* window, float x, float y, float width, float height);
+GWC_C_API bool window_drawFillRectangle   (const WINDOW* window, int x, int y, int width, int height);
+GWC_C_API bool window_drawFillRectangleF  (const WINDOW* window, float x, float y, float width, float height);
 
-GWC_C_API bool window_drawBorderEllipse(const WINDOW* window, int x, int y, int width, int height);
-GWC_C_API bool window_drawFillEllipse  (const WINDOW* window, int x, int y, int width, int height);
+GWC_C_API bool window_drawBorderCircle (const WINDOW* window, int x, int y, int radius);
+GWC_C_API bool window_drawBorderCircleF(const WINDOW* window, float x, float y, float radius);
+GWC_C_API bool window_drawFillCircle   (const WINDOW* window, int x, int y, int radius);
+GWC_C_API bool window_drawFillCircleF  (const WINDOW* window, float x, float y, float radius);
 
-GWC_C_API bool window_drawImage(const WINDOW* window, int x, int y, gIMAGE* image);
-GWC_C_API bool window_drawIcon (const WINDOW* window, int x, int y, gICON* icon);
+GWC_C_API bool window_drawBorderEllipse (const WINDOW* window, int x, int y, int width, int height);
+GWC_C_API bool window_drawBorderEllipseF(const WINDOW* window, float x, float y, float width, float height);
+GWC_C_API bool window_drawFillEllipse   (const WINDOW* window, int x, int y, int width, int height);
+GWC_C_API bool window_drawFillEllipseF  (const WINDOW* window, float x, float y, float width, float height);
+
+GWC_C_API bool window_drawImage (const WINDOW* window, int x, int y, gIMAGE* image);
+GWC_C_API bool window_drawImageF(const WINDOW* window, float x, float y, gIMAGE* image);
+GWC_C_API bool window_drawIcon  (const WINDOW* window, int x, int y, gICON* icon);
+GWC_C_API bool window_drawIconF (const WINDOW* window, float x, float y, gICON* icon);
 
 #endif // !GWC_WINDOW_H

@@ -1,14 +1,27 @@
-//
-// :.:.:.:.:.
-// GWC.Native
-// v0.6.1
-// :.:.:.:.:.
-//
-// https://github.com/reallukee/gwc
-//
-// Sprite.cpp
-//  Licenza MIT
-//
+/*
+ * :.:.:.:.:.:.:.:.
+ * GWC
+ * Graphical Window
+ * for Console Apps
+ * :.:.:.:.:.:.:.:.
+ *
+ * GWC Native
+ *
+ * A Graphics Library
+ *
+ * https://github.com/reallukee/gwc
+ *
+ * Nome file : Sprite.cpp
+ *
+ * Titolo    : SPRITE
+ * Sommario  : Sprite
+ *
+ * Autore    : Luca Pollicino
+ *             (https://github.com/reallukee)
+ * Versione  : v0.6.3
+ *             NOTA BENE: Campo INDICATIVO!
+ * Licenza   : MIT
+ */
 
 #include "gwc.clr.hpp"
 
@@ -83,6 +96,16 @@ namespace gwc
         CCI_SET_COLOR_CPP(SpriteHost, sprite, FillColor, color);
     }
 
+    gColor Sprite::getBackColor()
+    {
+        CCI_GET_COLOR_CPP(SpriteHost, sprite, BackColor);
+    }
+
+    void Sprite::setBackColor(gColor color)
+    {
+        CCI_SET_COLOR_CPP(SpriteHost, sprite, BackColor, color);
+    }
+
 
 
     gRectangle Sprite::bounds()
@@ -114,16 +137,24 @@ namespace gwc
 
 
 
-    bool Sprite::clear(gColor color)
+    bool Sprite::clear()
     {
-        System::Drawing::Color managedColor = System::Drawing::Color::FromArgb(
-            color.getAlpha(),
-            color.getRed  (),
-            color.getGreen(),
-            color.getBlue ()
-        );
+        CCI_BOOL_CPP(SpriteHost, sprite, Clear());
+    }
 
-        CCI_BOOL_CPP(SpriteHost, sprite, Clear(managedColor));
+    bool Sprite::clearArea(int x, int y, int width, int height)
+    {
+        CCI_BOOL_CPP(SpriteHost, sprite, ClearArea(x, y, width, height));
+    }
+
+    bool Sprite::clearF()
+    {
+        CCI_BOOL_CPP(SpriteHost, sprite, ClearF());
+    }
+
+    bool Sprite::clearAreaF(float x, float y, float width, float height)
+    {
+        CCI_BOOL_CPP(SpriteHost, sprite, ClearAreaF(x, y, width, height));
     }
 
 
@@ -134,8 +165,19 @@ namespace gwc
 
         GWC::Canvas^ managedCanvas = canvasHost->invoke();
 
-        CCI_BOOL_CPP(SpriteHost, this->sprite, DrawCanvas(x, y, managedCanvas));
+        CCI_BOOL_CPP(SpriteHost, sprite, DrawCanvas(x, y, managedCanvas));
     }
+
+    bool Sprite::drawCanvasF(float x, float y, const Canvas* canvas)
+    {
+        CanvasHost* canvasHost = CanvasHelper::get(canvas);
+
+        GWC::Canvas^ managedCanvas = canvasHost->invoke();
+
+        CCI_BOOL_CPP(SpriteHost, sprite, DrawCanvasF(x, y, managedCanvas));
+    }
+
+
 
     bool Sprite::drawSprite(int x, int y, const Sprite* sprite)
     {
@@ -146,6 +188,15 @@ namespace gwc
         CCI_BOOL_CPP(SpriteHost, this->sprite, DrawSprite(x, y, managedSprite));
     }
 
+    bool Sprite::drawSpriteF(float x, float y, const Sprite* sprite)
+    {
+        SpriteHost* spriteHost = SpriteHelper::get(sprite);
+
+        GWC::Sprite^ managedSprite = spriteHost->invoke();
+
+        CCI_BOOL_CPP(SpriteHost, this->sprite, DrawSpriteF(x, y, managedSprite));
+    }
+
 
 
     bool Sprite::drawBorderSquare(int x, int y, int side)
@@ -153,9 +204,19 @@ namespace gwc
         CCI_BOOL_CPP(SpriteHost, sprite, DrawBorderSquare(x, y, side));
     }
 
+    bool Sprite::drawBorderSquareF(float x, float y, float side)
+    {
+        CCI_BOOL_CPP(SpriteHost, sprite, DrawBorderSquareF(x, y, side));
+    }
+
     bool Sprite::drawFillSquare(int x, int y, int side)
     {
         CCI_BOOL_CPP(SpriteHost, sprite, DrawFillSquare(x, y, side));
+    }
+
+    bool Sprite::drawFillSquareF(float x, float y, float side)
+    {
+        CCI_BOOL_CPP(SpriteHost, sprite, DrawFillSquareF(x, y, side));
     }
 
 
@@ -165,9 +226,19 @@ namespace gwc
         CCI_BOOL_CPP(SpriteHost, sprite, DrawBorderRectangle(x, y, width, height));
     }
 
+    bool Sprite::drawBorderRectangleF(float x, float y, float width, float height)
+    {
+        CCI_BOOL_CPP(SpriteHost, sprite, DrawBorderRectangleF(x, y, width, height));
+    }
+
     bool Sprite::drawFillRectangle(int x, int y, int width, int height)
     {
         CCI_BOOL_CPP(SpriteHost, sprite, DrawFillRectangle(x, y, width, height));
+    }
+
+    bool Sprite::drawFillRectangleF(float x, float y, float width, float height)
+    {
+        CCI_BOOL_CPP(SpriteHost, sprite, DrawFillRectangleF(x, y, width, height));
     }
 
 
@@ -177,9 +248,19 @@ namespace gwc
         CCI_BOOL_CPP(SpriteHost, sprite, DrawBorderCircle(x, y, radius));
     }
 
+    bool Sprite::drawBorderCircleF(float x, float y, float radius)
+    {
+        CCI_BOOL_CPP(SpriteHost, sprite, DrawBorderCircleF(x, y, radius));
+    }
+
     bool Sprite::drawFillCircle(int x, int y, int radius)
     {
         CCI_BOOL_CPP(SpriteHost, sprite, DrawFillCircle(x, y, radius));
+    }
+
+    bool Sprite::drawFillCircleF(float x, float y, float radius)
+    {
+        CCI_BOOL_CPP(SpriteHost, sprite, DrawFillCircleF(x, y, radius));
     }
 
 
@@ -189,9 +270,19 @@ namespace gwc
         CCI_BOOL_CPP(SpriteHost, sprite, DrawBorderEllipse(x, y, width, height));
     }
 
+    bool Sprite::drawBorderEllipseF(float x, float y, float width, float height)
+    {
+        CCI_BOOL_CPP(SpriteHost, sprite, DrawBorderEllipseF(x, y, width, height));
+    }
+
     bool Sprite::drawFillEllipse(int x, int y, int width, int height)
     {
         CCI_BOOL_CPP(SpriteHost, sprite, DrawFillEllipse(x, y, width, height));
+    }
+
+    bool Sprite::drawFillEllipseF(float x, float y, float width, float height)
+    {
+        CCI_BOOL_CPP(SpriteHost, sprite, DrawFillEllipseF(x, y, width, height));
     }
 
 
@@ -255,10 +346,6 @@ namespace gwc
 
             managedBitmap = copy;
         }
-        catch (Exception^ ex)
-        {
-            System::Windows::Forms::MessageBox::Show(ex->Message);
-        }
         finally
         {
             nativeBitmap->UnlockBits(&nativeBitmapData);
@@ -267,10 +354,8 @@ namespace gwc
         return managedBitmap;
     }
 
-    bool Sprite::drawImage(int x, int y, const gImage& image)
+    static Bitmap* getNativeImage(const gImage& image)
     {
-        CC_BOOL_CPP(SpriteHost, sprite);
-
         if (!image.isLoaded())
         {
             return false;
@@ -283,6 +368,34 @@ namespace gwc
             return false;
         }
 
+        return nativeImage;
+    }
+
+    static HICON getNativeIcon(const gIcon& icon)
+    {
+        if (!icon.isLoaded())
+        {
+            return false;
+        }
+
+        HICON nativeIcon = IconHelper::get(icon);
+
+        if (nativeIcon == nullptr)
+        {
+            return false;
+        }
+
+        return nativeIcon;
+    }
+
+
+
+    bool Sprite::drawImage(int x, int y, const gImage& image)
+    {
+        CC_BOOL_CPP(SpriteHost, sprite);
+
+        Bitmap* nativeImage = getNativeImage(image);
+
         System::Drawing::Image^ managedImage = nullptr;
 
         bool result = false;
@@ -293,9 +406,32 @@ namespace gwc
 
             result = _host->invoke()->DrawImage(x, y, managedImage);
         }
-        catch (Exception^ ex)
+        finally
         {
-            System::Windows::Forms::MessageBox::Show(ex->Message);
+            if (managedImage)
+            {
+                delete managedImage;
+            }
+        }
+
+        return result;
+    }
+
+    bool Sprite::drawImageF(float x, float y, const gImage& image)
+    {
+        CC_BOOL_CPP(SpriteHost, sprite);
+
+        Bitmap* nativeImage = getNativeImage(image);
+
+        System::Drawing::Image^ managedImage = nullptr;
+
+        bool result = false;
+
+        try
+        {
+            managedImage = toManagedBitmap(nativeImage);
+
+            result = _host->invoke()->DrawImageF(x, y, managedImage);
         }
         finally
         {
@@ -312,17 +448,7 @@ namespace gwc
     {
         CC_BOOL_CPP(SpriteHost, sprite);
 
-        if (!icon.isLoaded())
-        {
-            return false;
-        }
-
-        HICON nativeIcon = IconHelper::get(icon);
-
-        if (nativeIcon == nullptr)
-        {
-            return false;
-        }
+        HICON nativeIcon = getNativeIcon(icon);
 
         System::Drawing::Icon^ managedIcon = nullptr;
 
@@ -336,9 +462,34 @@ namespace gwc
 
             result = _host->invoke()->DrawIcon(x, y, managedIcon);
         }
-        catch (Exception^ ex)
+        finally
         {
-            System::Windows::Forms::MessageBox::Show(ex->Message);
+            if (managedIcon)
+            {
+                delete managedIcon;
+            }
+        }
+
+        return result;
+    }
+
+    bool Sprite::drawIconF(float x, float y, const gIcon& icon)
+    {
+        CC_BOOL_CPP(SpriteHost, sprite);
+
+        HICON nativeIcon = getNativeIcon(icon);
+
+        System::Drawing::Icon^ managedIcon = nullptr;
+
+        bool result = false;
+
+        try
+        {
+            IntPtr iconHandle = IntPtr(nativeIcon);
+
+            managedIcon = System::Drawing::Icon::FromHandle(iconHandle);
+
+            result = _host->invoke()->DrawIconF(x, y, managedIcon);
         }
         finally
         {
