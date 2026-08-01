@@ -1,14 +1,27 @@
-//
-// :.:.:.:.:.:.:.:
-// GWC.Native.Abst
-// v0.6.1
-// :.:.:.:.:.:.:.:
-//
-// https://github.com/reallukee/gwc
-//
-// SriMgr.hpp
-//  Licenza MIT
-//
+/*
+ * :.:.:.:.:.:.:.:.
+ * GWC
+ * Graphical Window
+ * for Console Apps
+ * :.:.:.:.:.:.:.:.
+ *
+ * GWC Native Abst
+ *
+ * A Graphics Library
+ *
+ * https://github.com/reallukee/gwc
+ *
+ * Nome file : SriMgr.hpp
+ *
+ * Titolo    : SRIMGR
+ * Sommario  : SriMgr
+ *
+ * Autore    : Luca Pollicino
+ *             (https://github.com/reallukee)
+ * Versione  : v0.6.3
+ *             NOTA BENE: Campo INDICATIVO!
+ * Licenza   : MIT
+ */
 
 #pragma once
 
@@ -52,6 +65,8 @@ namespace gwc_abst
         static void   setBorderColor(gColor color);
         static gColor getFillColor  ();
         static void   setFillColor  (gColor color);
+        static gColor getBackColor  ();
+        static void   setBackColor  (gColor color);
 
         static gRectangle bounds  ();
         static gSize      size    ();
@@ -60,25 +75,41 @@ namespace gwc_abst
         static int getWidth ();
         static int getHeight();
 
-        static bool clear(gColor color);
+        static bool clear     ();
+        static bool clearArea (int x, int y, int width, int height);
+        static bool clearF    ();
+        static bool clearAreaF(float x, float y, float width, float height);
 
-        static bool drawCanvas(int x, int y, CnvId canvasId);
-        static bool drawSprite(int x, int y, SriId spriteId);
+        static bool drawCanvas (int x, int y, CanvasId canvasId);
+        static bool drawCanvasF(float x, float y, CanvasId canvasId);
 
-        static bool drawBorderSquare(int x, int y, int side);
-        static bool drawFillSquare  (int x, int y, int side);
+        static bool drawSprite (int x, int y, SpriteId spriteId);
+        static bool drawSpriteF(float x, float y, const SpriteId spriteId);
 
-        static bool drawBorderRectangle(int x, int y, int width, int height);
-        static bool drawFillRectangle  (int x, int y, int width, int height);
+        static bool drawBorderSquare (int x, int y, int side);
+        static bool drawBorderSquareF(float x, float y, float side);
+        static bool drawFillSquare   (int x, int y, int side);
+        static bool drawFillSquareF  (float x, float y, float side);
 
-        static bool drawBorderCircle(int x, int y, int radius);
-        static bool drawFillCircle  (int x, int y, int radius);
+        static bool drawBorderRectangle (int x, int y, int width, int height);
+        static bool drawBorderRectangleF(float x, float y, float width, float height);
+        static bool drawFillRectangle   (int x, int y, int width, int height);
+        static bool drawFillRectangleF  (float x, float y, float width, float height);
 
-        static bool drawBorderEllipse(int x, int y, int width, int height);
-        static bool drawFillEllipse  (int x, int y, int width, int height);
+        static bool drawBorderCircle (int x, int y, int radius);
+        static bool drawBorderCircleF(float x, float y, float radius);
+        static bool drawFillCircle   (int x, int y, int radius);
+        static bool drawFillCircleF  (float x, float y, float radius);
 
-        static bool drawImage(int x, int y, const gImage& image);
-        static bool drawIcon (int x, int y, const gIcon& icon);
+        static bool drawBorderEllipse (int x, int y, int width, int height);
+        static bool drawBorderEllipseF(float x, float y, float width, float height);
+        static bool drawFillEllipse   (int x, int y, int width, int height);
+        static bool drawFillEllipseF  (float x, float y, float width, float height);
+
+        static bool drawImage (int x, int y, const gImage& image);
+        static bool drawImageF(float x, float y, const gImage& image);
+        static bool drawIcon  (int x, int y, const gIcon& icon);
+        static bool drawIconF (float x, float y, const gIcon& icon);
 
         static void render();
 

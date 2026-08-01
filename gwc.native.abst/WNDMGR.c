@@ -1,14 +1,27 @@
-//
-// :.:.:.:.:.:.:.:
-// GWC.Native.Abst
-// v0.6.1
-// :.:.:.:.:.:.:.:
-//
-// https://github.com/reallukee/gwc
-//
-// WNDMGR.c
-//  Licenza MIT
-//
+/*
+ * :.:.:.:.:.:.:.:.
+ * GWC
+ * Graphical Window
+ * for Console Apps
+ * :.:.:.:.:.:.:.:.
+ *
+ * GWC Native Abst
+ *
+ * A Graphics Library
+ *
+ * https://github.com/reallukee/gwc
+ *
+ * Nome file : WNDMGR.c
+ *
+ * Titolo    : WNDMGR
+ * Sommario  : WndMgr
+ *
+ * Autore    : Luca Pollicino
+ *             (https://github.com/reallukee)
+ * Versione  : v0.6.3
+ *             NOTA BENE: Campo INDICATIVO!
+ * Licenza   : MIT
+ */
 
 #pragma unmanaged
 
@@ -443,11 +456,36 @@ void wndmgr_setFillColor(const gCOLOR* color)
     CCI_SET_COLOR_C(window_setFillColor(ITEM, color));
 }
 
-
-
-bool wndmgr_clear(const gCOLOR* color)
+gCOLOR* wndmgr_getBackColor()
 {
-    CCI_BOOL_C(window_clear(ITEM, color));
+    CCI_GET_COLOR_C(window_getBackColor(ITEM));
+}
+
+void wndmgr_setBackColor(const gCOLOR* color)
+{
+    CCI_SET_COLOR_C(window_setBackColor(ITEM, color));
+}
+
+
+
+bool wndmgr_clear()
+{
+    CCI_BOOL_C(window_clear(ITEM));
+}
+
+bool wndmgr_clearArea(int x, int y, int width, int height)
+{
+    CCI_BOOL_C(window_clearArea(ITEM, x, y, width, height));
+}
+
+bool wndmgr_clearF()
+{
+    CCI_BOOL_C(window_clearF(ITEM));
+}
+
+bool wndmgr_clearAreaF(float x, float y, float width, float height)
+{
+    CCI_BOOL_C(window_clearAreaF(ITEM, x, y, width, height));
 }
 
 
@@ -459,11 +497,27 @@ bool wndmgr_drawCanvas(int x, int y, CNV_ID canvasId)
     CCI_BOOL_C(window_drawCanvas(ITEM, x, y, canvas));
 }
 
+bool wndmgr_drawCanvasF(float x, float y, CNV_ID canvasId)
+{
+    CANVAS* canvas = cnvmgrHelper_get(canvasId);
+
+    CCI_BOOL_C(window_drawCanvasF(ITEM, x, y, canvas));
+}
+
+
+
 bool wndmgr_drawSprite(int x, int y, SRI_ID spriteId)
 {
     SPRITE* sprite = srimgrHelper_get(spriteId);
 
     CCI_BOOL_C(window_drawSprite(ITEM, x, y, sprite));
+}
+
+bool wndmgr_drawSpriteF(float x, float y, SRI_ID spriteId)
+{
+    SPRITE* sprite = srimgrHelper_get(spriteId);
+
+    CCI_BOOL_C(window_drawSpriteF(ITEM, x, y, sprite));
 }
 
 
@@ -473,9 +527,19 @@ bool wndmgr_drawBorderSquare(int x, int y, int side)
     CCI_BOOL_C(window_drawBorderSquare(ITEM, x, y, side));
 }
 
+bool wndmgr_drawBorderSquareF(float x, float y, float side)
+{
+    CCI_BOOL_C(window_drawBorderSquareF(ITEM, x, y, side));
+}
+
 bool wndmgr_drawFillSquare(int x, int y, int side)
 {
     CCI_BOOL_C(window_drawFillSquare(ITEM, x, y, side));
+}
+
+bool wndmgr_drawFillSquareF(float x, float y, float side)
+{
+    CCI_BOOL_C(window_drawFillSquareF(ITEM, x, y, side));
 }
 
 
@@ -485,9 +549,19 @@ bool wndmgr_drawBorderRectangle(int x, int y, int width, int height)
     CCI_BOOL_C(window_drawBorderRectangle(ITEM, x, y, width, height));
 }
 
+bool wndmgr_drawBorderRectangleF(float x, float y, float width, float height)
+{
+    CCI_BOOL_C(window_drawBorderRectangleF(ITEM, x, y, width, height));
+}
+
 bool wndmgr_drawFillRectangle(int x, int y, int width, int height)
 {
     CCI_BOOL_C(window_drawFillRectangle(ITEM, x, y, width, height));
+}
+
+bool wndmgr_drawFillRectangleF(float x, float y, float width, float height)
+{
+    CCI_BOOL_C(window_drawFillRectangleF(ITEM, x, y, width, height));
 }
 
 
@@ -497,9 +571,19 @@ bool wndmgr_drawBorderCircle(int x, int y, int radius)
     CCI_BOOL_C(window_drawBorderCircle(ITEM, x, y, radius));
 }
 
+bool wndmgr_drawBorderCircleF(float x, float y, float radius)
+{
+    CCI_BOOL_C(window_drawBorderCircleF(ITEM, x, y, radius));
+}
+
 bool wndmgr_drawFillCircle(int x, int y, int radius)
 {
     CCI_BOOL_C(window_drawFillCircle(ITEM, x, y, radius));
+}
+
+bool wndmgr_drawFillCircleF(float x, float y, float radius)
+{
+    CCI_BOOL_C(window_drawFillCircleF(ITEM, x, y, radius));
 }
 
 
@@ -509,9 +593,19 @@ bool wndmgr_drawBorderEllipse(int x, int y, int width, int height)
     CCI_BOOL_C(window_drawBorderEllipse(ITEM, x, y, width, height));
 }
 
+bool wndmgr_drawBorderEllipseF(float x, float y, float width, float height)
+{
+    CCI_BOOL_C(window_drawBorderEllipseF(ITEM, x, y, width, height));
+}
+
 bool wndmgr_drawFillEllipse(int x, int y, int width, int height)
 {
     CCI_BOOL_C(window_drawFillEllipse(ITEM, x, y, width, height));
+}
+
+bool wndmgr_drawFillEllipseF(float x, float y, float width, float height)
+{
+    CCI_BOOL_C(window_drawFillEllipseF(ITEM, x, y, width, height));
 }
 
 
@@ -521,7 +615,17 @@ bool wndmgr_drawImage(int x, int y, gIMAGE* image)
     CCI_BOOL_C(window_drawImage(ITEM, x, y, image));
 }
 
+bool wndmgr_drawImageF(float x, float y, gIMAGE* image)
+{
+    CCI_BOOL_C(window_drawImageF(ITEM, x, y, image));
+}
+
 bool wndmgr_drawIcon(int x, int y, gICON* icon)
 {
     CCI_BOOL_C(window_drawIcon(ITEM, x, y, icon));
+}
+
+bool wndmgr_drawIconF(float x, float y, gICON* icon)
+{
+    CCI_BOOL_C(window_drawIconF(ITEM, x, y, icon));
 }

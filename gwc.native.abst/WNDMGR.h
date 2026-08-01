@@ -1,14 +1,27 @@
-//
-// :.:.:.:.:.:.:.:
-// GWC.Native.Abst
-// v0.6.1
-// :.:.:.:.:.:.:.:
-//
-// https://github.com/reallukee/gwc
-//
-// WNDMGR.h
-//  Licenza MIT
-//
+/*
+ * :.:.:.:.:.:.:.:.
+ * GWC
+ * Graphical Window
+ * for Console Apps
+ * :.:.:.:.:.:.:.:.
+ *
+ * GWC Native Abst
+ *
+ * A Graphics Library
+ *
+ * https://github.com/reallukee/gwc
+ *
+ * Nome file : WNDMGR.h
+ *
+ * Titolo    : WNDMGR
+ * Sommario  : WndMgr
+ *
+ * Autore    : Luca Pollicino
+ *             (https://github.com/reallukee)
+ * Versione  : v0.6.3
+ *             NOTA BENE: Campo INDICATIVO!
+ * Licenza   : MIT
+ */
 
 #pragma once
 
@@ -96,25 +109,43 @@ GWC_ABST_C_API gCOLOR* wndmgr_getBorderColor();
 GWC_ABST_C_API void    wndmgr_setBorderColor(const gCOLOR* color);
 GWC_ABST_C_API gCOLOR* wndmgr_getFillColor  ();
 GWC_ABST_C_API void    wndmgr_setFillColor  (const gCOLOR* color);
+GWC_ABST_C_API gCOLOR* wndmgr_getBackColor  ();
+GWC_ABST_C_API void    wndmgr_setBackColor  (const gCOLOR* color);
 
-GWC_ABST_C_API bool wndmgr_clear(const gCOLOR* color);
+GWC_ABST_C_API bool wndmgr_clear     ();
+GWC_ABST_C_API bool wndmgr_clearArea (int x, int y, int width, int height);
+GWC_ABST_C_API bool wndmgr_clearF    ();
+GWC_ABST_C_API bool wndmgr_clearAreaF(float x, float y, float width, float height);
 
-GWC_ABST_C_API bool wndmgr_drawCanvas(int x, int y, CNV_ID canvasId);
-GWC_ABST_C_API bool wndmgr_drawSprite(int x, int y, SRI_ID spriteId);
+GWC_ABST_C_API bool wndmgr_drawCanvas (int x, int y, CNV_ID canvasId);
+GWC_ABST_C_API bool wndmgr_drawCanvasF(float x, float y, CNV_ID canvasId);
 
-GWC_ABST_C_API bool wndmgr_drawBorderSquare(int x, int y, int side);
-GWC_ABST_C_API bool wndmgr_drawFillSquare  (int x, int y, int side);
+GWC_ABST_C_API bool wndmgr_drawSprite (int x, int y, SRI_ID spriteId);
+GWC_ABST_C_API bool wndmgr_drawSpriteF(float x, float y, const SRI_ID spriteId);
 
-GWC_ABST_C_API bool wndmgr_drawBorderRectangle(int x, int y, int width, int height);
-GWC_ABST_C_API bool wndmgr_drawFillRectangle  (int x, int y, int width, int height);
+GWC_ABST_C_API bool wndmgr_drawBorderSquare (int x, int y, int side);
+GWC_ABST_C_API bool wndmgr_drawBorderSquareF(float x, float y, float side);
+GWC_ABST_C_API bool wndmgr_drawFillSquare   (int x, int y, int side);
+GWC_ABST_C_API bool wndmgr_drawFillSquareF  (float x, float y, float side);
 
-GWC_ABST_C_API bool wndmgr_drawBorderCircle(int x, int y, int radius);
-GWC_ABST_C_API bool wndmgr_drawFillCircle  (int x, int y, int radius);
+GWC_ABST_C_API bool wndmgr_drawBorderRectangle (int x, int y, int width, int height);
+GWC_ABST_C_API bool wndmgr_drawBorderRectangleF(float x, float y, float width, float height);
+GWC_ABST_C_API bool wndmgr_drawFillRectangle   (int x, int y, int width, int height);
+GWC_ABST_C_API bool wndmgr_drawFillRectangleF  (float x, float y, float width, float height);
 
-GWC_ABST_C_API bool wndmgr_drawBorderEllipse(int x, int y, int width, int height);
-GWC_ABST_C_API bool wndmgr_drawFillEllipse  (int x, int y, int width, int height);
+GWC_ABST_C_API bool wndmgr_drawBorderCircle (int x, int y, int radius);
+GWC_ABST_C_API bool wndmgr_drawBorderCircleF(float x, float y, float radius);
+GWC_ABST_C_API bool wndmgr_drawFillCircle   (int x, int y, int radius);
+GWC_ABST_C_API bool wndmgr_drawFillCircleF  (float x, float y, float radius);
 
-GWC_ABST_C_API bool wndmgr_drawImage(int x, int y, gIMAGE* image);
-GWC_ABST_C_API bool wndmgr_drawIcon (int x, int y, gICON* icon);
+GWC_ABST_C_API bool wndmgr_drawBorderEllipse (int x, int y, int width, int height);
+GWC_ABST_C_API bool wndmgr_drawBorderEllipseF(float x, float y, float width, float height);
+GWC_ABST_C_API bool wndmgr_drawFillEllipse   (int x, int y, int width, int height);
+GWC_ABST_C_API bool wndmgr_drawFillEllipseF  (float x, float y, float width, float height);
+
+GWC_ABST_C_API bool wndmgr_drawImage (int x, int y, gIMAGE* image);
+GWC_ABST_C_API bool wndmgr_drawImageF(float x, float y, gIMAGE* image);
+GWC_ABST_C_API bool wndmgr_drawIcon  (int x, int y, gICON* icon);
+GWC_ABST_C_API bool wndmgr_drawIconF (float x, float y, gICON* icon);
 
 #endif // !GWC_ABST_WNDMGR_H

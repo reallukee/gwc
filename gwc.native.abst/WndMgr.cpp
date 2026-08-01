@@ -1,14 +1,27 @@
-//
-// :.:.:.:.:.:.:.:
-// GWC.Native.Abst
-// v0.6.1
-// :.:.:.:.:.:.:.:
-//
-// https://github.com/reallukee/gwc
-//
-// WndMgr.cpp
-//  Licenza MIT
-//
+/*
+ * :.:.:.:.:.:.:.:.
+ * GWC
+ * Graphical Window
+ * for Console Apps
+ * :.:.:.:.:.:.:.:.
+ *
+ * GWC Native Abst
+ *
+ * A Graphics Library
+ *
+ * https://github.com/reallukee/gwc
+ *
+ * Nome file : WndMgr.cpp
+ *
+ * Titolo    : WNDMGR
+ * Sommario  : WndMgr
+ *
+ * Autore    : Luca Pollicino
+ *             (https://github.com/reallukee)
+ * Versione  : v0.6.3
+ *             NOTA BENE: Campo INDICATIVO!
+ * Licenza   : MIT
+ */
 
 #include "WndMgr.hpp"
 
@@ -448,11 +461,36 @@ namespace gwc_abst
         CCI_SET_COLOR_CPP(setFillColor(color));
     }
 
-
-
-    bool WndMgr::clear(gColor color)
+    gColor WndMgr::getBackColor()
     {
-        CCI_BOOL_CPP(clear(color));
+        CCI_GET_COLOR_CPP(getBackColor());
+    }
+
+    void WndMgr::setBackColor(gColor color)
+    {
+        CCI_SET_COLOR_CPP(setBackColor(color));
+    }
+
+
+
+    bool WndMgr::clear()
+    {
+        CCI_BOOL_CPP(clear());
+    }
+
+    bool WndMgr::clearArea(int x, int y, int width, int height)
+    {
+        CCI_BOOL_CPP(clearArea(x, y, width, height));
+    }
+
+    bool WndMgr::clearF()
+    {
+        CCI_BOOL_CPP(clearF());
+    }
+
+    bool WndMgr::clearAreaF(float x, float y, float width, float height)
+    {
+        CCI_BOOL_CPP(clearAreaF(x, y, width, height));
     }
 
 
@@ -464,11 +502,27 @@ namespace gwc_abst
         CCI_BOOL_CPP(drawCanvas(x, y, canvas));
     }
 
+    bool WndMgr::drawCanvasF(float x, float y, CnvId canvasId)
+    {
+        Canvas* canvas = CnvMgrHelper::get(canvasId);
+
+        CCI_BOOL_CPP(drawCanvasF(x, y, canvas));
+    }
+
+
+
     bool WndMgr::drawSprite(int x, int y, SriId spriteId)
     {
         Sprite* sprite = SriMgrHelper::get(spriteId);
 
         CCI_BOOL_CPP(drawSprite(x, y, sprite));
+    }
+
+    bool WndMgr::drawSpriteF(float x, float y, SriId spriteId)
+    {
+        Sprite* sprite = SriMgrHelper::get(spriteId);
+
+        CCI_BOOL_CPP(drawSpriteF(x, y, sprite));
     }
 
 
@@ -478,9 +532,19 @@ namespace gwc_abst
         CCI_BOOL_CPP(drawBorderSquare(x, y, side));
     }
 
+    bool WndMgr::drawBorderSquareF(float x, float y, float side)
+    {
+        CCI_BOOL_CPP(drawBorderSquareF(x, y, side));
+    }
+
     bool WndMgr::drawFillSquare(int x, int y, int side)
     {
         CCI_BOOL_CPP(drawFillSquare(x, y, side));
+    }
+
+    bool WndMgr::drawFillSquareF(float x, float y, float side)
+    {
+        CCI_BOOL_CPP(drawFillSquareF(x, y, side));
     }
 
 
@@ -490,9 +554,19 @@ namespace gwc_abst
         CCI_BOOL_CPP(drawBorderRectangle(x, y, width, height));
     }
 
+    bool WndMgr::drawBorderRectangleF(float x, float y, float width, float height)
+    {
+        CCI_BOOL_CPP(drawBorderRectangleF(x, y, width, height));
+    }
+
     bool WndMgr::drawFillRectangle(int x, int y, int width, int height)
     {
         CCI_BOOL_CPP(drawFillRectangle(x, y, width, height));
+    }
+
+    bool WndMgr::drawFillRectangleF(float x, float y, float width, float height)
+    {
+        CCI_BOOL_CPP(drawFillRectangleF(x, y, width, height));
     }
 
 
@@ -502,9 +576,19 @@ namespace gwc_abst
         CCI_BOOL_CPP(drawBorderCircle(x, y, radius));
     }
 
+    bool WndMgr::drawBorderCircleF(float x, float y, float radius)
+    {
+        CCI_BOOL_CPP(drawBorderCircleF(x, y, radius));
+    }
+
     bool WndMgr::drawFillCircle(int x, int y, int radius)
     {
         CCI_BOOL_CPP(drawFillCircle(x, y, radius));
+    }
+
+    bool WndMgr::drawFillCircleF(float x, float y, float radius)
+    {
+        CCI_BOOL_CPP(drawFillCircleF(x, y, radius));
     }
 
 
@@ -514,9 +598,19 @@ namespace gwc_abst
         CCI_BOOL_CPP(drawBorderEllipse(x, y, width, height));
     }
 
+    bool WndMgr::drawBorderEllipseF(float x, float y, float width, float height)
+    {
+        CCI_BOOL_CPP(drawBorderEllipseF(x, y, width, height));
+    }
+
     bool WndMgr::drawFillEllipse(int x, int y, int width, int height)
     {
         CCI_BOOL_CPP(drawFillEllipse(x, y, width, height));
+    }
+
+    bool WndMgr::drawFillEllipseF(float x, float y, float width, float height)
+    {
+        CCI_BOOL_CPP(drawFillEllipseF(x, y, width, height));
     }
 
 
@@ -526,9 +620,19 @@ namespace gwc_abst
         CCI_BOOL_CPP(drawImage(x, y, image));
     }
 
+    bool WndMgr::drawImageF(float x, float y, const gImage& image)
+    {
+        CCI_BOOL_CPP(drawImageF(x, y, image));
+    }
+
     bool WndMgr::drawIcon(int x, int y, const gIcon& icon)
     {
         CCI_BOOL_CPP(drawIcon(x, y, icon));
+    }
+
+    bool WndMgr::drawIconF(float x, float y, const gIcon& icon)
+    {
+        CCI_BOOL_CPP(drawIconF(x, y, icon));
     }
 }
 

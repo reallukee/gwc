@@ -1,14 +1,27 @@
-//
-// :.:.:.:.:.:.:.:
-// GWC.Native.Abst
-// v0.6.1
-// :.:.:.:.:.:.:.:
-//
-// https://github.com/reallukee/gwc
-//
-// SRIMGR.c
-//  Licenza MIT
-//
+/*
+ * :.:.:.:.:.:.:.:.
+ * GWC
+ * Graphical Window
+ * for Console Apps
+ * :.:.:.:.:.:.:.:.
+ *
+ * GWC Native Abst
+ *
+ * A Graphics Library
+ *
+ * https://github.com/reallukee/gwc
+ *
+ * Nome file : SRIMGR.c
+ *
+ * Titolo    : SRIMGR
+ * Sommario  : SriMgr
+ *
+ * Autore    : Luca Pollicino
+ *             (https://github.com/reallukee)
+ * Versione  : v0.6.3
+ *             NOTA BENE: Campo INDICATIVO!
+ * Licenza   : MIT
+ */
 
 #pragma unmanaged
 
@@ -191,6 +204,16 @@ void srimgr_setFillColor(const gCOLOR* color)
     CCI_SET_COLOR_C(sprite_setFillColor(ITEM, color));
 }
 
+gCOLOR* srimgr_getBackColor()
+{
+    CCI_GET_COLOR_C(sprite_getBackColor(ITEM));
+}
+
+void srimgr_setBackColor(const gCOLOR* color)
+{
+    CCI_SET_COLOR_C(sprite_setBackColor(ITEM, color));
+}
+
 
 
 gRECTANGLE* srimgr_bounds()
@@ -222,9 +245,24 @@ int srimgr_getHeight()
 
 
 
-bool srimgr_clear(const gCOLOR* color)
+bool srimgr_clear()
 {
-    CCI_BOOL_C(sprite_clear(ITEM, color));
+    CCI_BOOL_C(sprite_clear(ITEM));
+}
+
+bool srimgr_clearArea(int x, int y, int width, int height)
+{
+    CCI_BOOL_C(sprite_clearArea(ITEM, x, y, width, height));
+}
+
+bool srimgr_clearF()
+{
+    CCI_BOOL_C(sprite_clearF(ITEM));
+}
+
+bool srimgr_clearAreaF(float x, float y, float width, float height)
+{
+    CCI_BOOL_C(sprite_clearAreaF(ITEM, x, y, width, height));
 }
 
 
@@ -236,11 +274,27 @@ bool srimgr_drawCanvas(int x, int y, CNV_ID canvasId)
     CCI_BOOL_C(sprite_drawCanvas(ITEM, x, y, canvas));
 }
 
+bool srimgr_drawCanvasF(float x, float y, CNV_ID canvasId)
+{
+    CANVAS* canvas = cnvmgrHelper_get(canvasId);
+
+    CCI_BOOL_C(sprite_drawCanvasF(ITEM, x, y, canvas));
+}
+
+
+
 bool srimgr_drawSprite(int x, int y, SRI_ID spriteId)
 {
     SPRITE* sprite = srimgrHelper_get(spriteId);
 
     CCI_BOOL_C(sprite_drawSprite(ITEM, x, y, sprite));
+}
+
+bool srimgr_drawSpriteF(float x, float y, SRI_ID spriteId)
+{
+    SPRITE* sprite = srimgrHelper_get(spriteId);
+
+    CCI_BOOL_C(sprite_drawSpriteF(ITEM, x, y, sprite));
 }
 
 
@@ -250,9 +304,19 @@ bool srimgr_drawBorderSquare(int x, int y, int side)
     CCI_BOOL_C(sprite_drawBorderSquare(ITEM, x, y, side));
 }
 
+bool srimgr_drawBorderSquareF(float x, float y, float side)
+{
+    CCI_BOOL_C(sprite_drawBorderSquareF(ITEM, x, y, side));
+}
+
 bool srimgr_drawFillSquare(int x, int y, int side)
 {
     CCI_BOOL_C(sprite_drawFillSquare(ITEM, x, y, side));
+}
+
+bool srimgr_drawFillSquareF(float x, float y, float side)
+{
+    CCI_BOOL_C(sprite_drawFillSquareF(ITEM, x, y, side));
 }
 
 
@@ -262,9 +326,19 @@ bool srimgr_drawBorderRectangle(int x, int y, int width, int height)
     CCI_BOOL_C(sprite_drawBorderRectangle(ITEM, x, y, width, height));
 }
 
+bool srimgr_drawBorderRectangleF(float x, float y, float width, float height)
+{
+    CCI_BOOL_C(sprite_drawBorderRectangleF(ITEM, x, y, width, height));
+}
+
 bool srimgr_drawFillRectangle(int x, int y, int width, int height)
 {
     CCI_BOOL_C(sprite_drawFillRectangle(ITEM, x, y, width, height));
+}
+
+bool srimgr_drawFillRectangleF(float x, float y, float width, float height)
+{
+    CCI_BOOL_C(sprite_drawFillRectangleF(ITEM, x, y, width, height));
 }
 
 
@@ -274,9 +348,19 @@ bool srimgr_drawBorderCircle(int x, int y, int radius)
     CCI_BOOL_C(sprite_drawBorderCircle(ITEM, x, y, radius));
 }
 
+bool srimgr_drawBorderCircleF(float x, float y, float radius)
+{
+    CCI_BOOL_C(sprite_drawBorderCircleF(ITEM, x, y, radius));
+}
+
 bool srimgr_drawFillCircle(int x, int y, int radius)
 {
     CCI_BOOL_C(sprite_drawFillCircle(ITEM, x, y, radius));
+}
+
+bool srimgr_drawFillCircleF(float x, float y, float radius)
+{
+    CCI_BOOL_C(sprite_drawFillCircleF(ITEM, x, y, radius));
 }
 
 
@@ -286,9 +370,19 @@ bool srimgr_drawBorderEllipse(int x, int y, int width, int height)
     CCI_BOOL_C(sprite_drawBorderEllipse(ITEM, x, y, width, height));
 }
 
+bool srimgr_drawBorderEllipseF(float x, float y, float width, float height)
+{
+    CCI_BOOL_C(sprite_drawBorderEllipseF(ITEM, x, y, width, height));
+}
+
 bool srimgr_drawFillEllipse(int x, int y, int width, int height)
 {
     CCI_BOOL_C(sprite_drawFillEllipse(ITEM, x, y, width, height));
+}
+
+bool srimgr_drawFillEllipseF(float x, float y, float width, float height)
+{
+    CCI_BOOL_C(sprite_drawFillEllipseF(ITEM, x, y, width, height));
 }
 
 
@@ -298,9 +392,19 @@ bool srimgr_drawImage(int x, int y, gIMAGE* image)
     CCI_BOOL_C(sprite_drawImage(ITEM, x, y, image));
 }
 
+bool srimgr_drawImageF(float x, float y, gIMAGE* image)
+{
+    CCI_BOOL_C(sprite_drawImageF(ITEM, x, y, image));
+}
+
 bool srimgr_drawIcon(int x, int y, gICON* icon)
 {
     CCI_BOOL_C(sprite_drawIcon(ITEM, x, y, icon));
+}
+
+bool srimgr_drawIconF(float x, float y, gICON* icon)
+{
+    CCI_BOOL_C(sprite_drawIconF(ITEM, x, y, icon));
 }
 
 
