@@ -8,6 +8,10 @@
 
 🖼️ A C#, C++ and C graphics library written in C#, C++ and C
 
+> [!CAUTION]
+> GWC 0.6.3 OUT NOW 🥳!<br />
+> [📦 Release!](https://github.com/reallukee/gwc/releases/tag/v0.6.3)
+
 <div align="center">
 
 ![Banner](./assets/repository/ball.gif)
