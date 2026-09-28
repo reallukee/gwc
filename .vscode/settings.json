@@ -4,5 +4,6 @@
     "*.c": "cpp",
     "VERSION": "plaintext",
     "global.json": "jsonc"
-  }
+  },
+  "dotnet.defaultSolution": "gwc.slnx"
 }

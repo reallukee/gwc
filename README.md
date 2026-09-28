@@ -8,9 +8,13 @@
 
 🖼️ A C#, C++ and C graphics library written in C#, C++ and C
 
-> [!CAUTION]
-> GWC 0.6.3 OUT NOW 🥳!<br />
+> [!NOTE]
+> GWC 0.6.3 OUT NOW 🥳!
+>
 > [📦 Release!](https://github.com/reallukee/gwc/releases/tag/v0.6.3)
+
+> [!NOTE]
+> GWC 0.7.0 IS COMING 👀...
 
 <div align="center">
 
@@ -20,13 +24,13 @@
 
 Caratteristiche:
 
-* 🤪 Folle
-* ☠️ Mortale
-* 🔬 Sperimentale
-* 🪄 Inaffidabile
-* 🚀 Ambiziosa
-* 📦 Instabile
-* 🤤 Goduriosa
+* 🤪 `Folle`
+* ☠️ `Mortale`
+* 🔬 `Sperimentale`
+* 🪄 `Inaffidabile`
+* 🚀 `Ambiziosa`
+* 🔥 `Instabile`
+* 🤤 `Goduriosa`
 
 
 
@@ -62,30 +66,6 @@ graph TD
 
 > Approssimativa!
 
-## GWC
-
-* Libreria Core Managed con interfaccia API 100% Managed
-* Scritta in C#
-* Espone l'API .NET
-
-## GWC.Mono
-
-* Libreria Mono Managed con interfaccia API 100% Managed
-* Scritta in C#
-* Espone l'API .NET
-
-## GWC.Native
-
-* Libreria Wrapper Mixed con interfaccia API 100% Native
-* Scritta in C++/CLI, C++ e C
-* Espone l'API VC++
-
-## GWC.Native.Abst
-
-* Libreria Wrapper Mixed con interfaccia API 100% Native
-* Scritta in C++/CLI, C++ e C
-* Espone l'API VC++
-
 
 
 # Organizzazione
@@ -97,15 +77,16 @@ config/              Config Scripts v1
 config2/             Config Scripts v2
 docs/                Documentazione
 examples/            Esempi
-gwc/                 Codice sorgente Core
-gwc.dev/             Modalità dev Core
-gwc.native/          Codice sorgente Nativo
-gwc.native.dev/      Modalità dev Nativo
-gwc.native.abst/     Codice sorgente Nativo Abst
-gwc.native.abst.dev/ Modalità dev Nativo Abst
+gwc/                 Codice Sorgente Core
+gwc.dev/             Modalità Sviluppo Core
+gwc.native/          Codice Sorgente Nativo
+gwc.native.dev/      Modalità Sviluppo Nativo
+gwc.native.abst/     Codice Sorgente Nativo Abst
+gwc.native.abst.dev/ Modalità Sviluppo Nativo Abst
 scripts/             Scripts v1
 scripts2/            Scripts v2
-templates/           Template
+templates/           Templates
+vs/                  Visual Studio
 ```
 
 
@@ -371,151 +352,25 @@ int main(int argc, const char* argv[])
 
 # Utilizzo
 
-* [Windows](#windows)
-* [Linux/macOS](#linuxmacos)
-
-
-
-## Windows
-
-### Requisiti
-
-* .NET
-  * .NET 10 Desktop Runtime
-  * .NET Framework 4.8.1 Runtime
-  * .NET Framework 4.7.2 Runtime
-* Microsoft Visual C++
-  * Microsoft Visual C++ v14 Redistributable
-
-
-
-## Linux/macOS
-
-> [!NOTE]
-> Possibile != Bello
-
-### Requisiti
-
-> [!WARNING]
-> `GWC` è supportata su Linux/macOS tramite `Mono`.<br />
-> `GWC.Mono` è supportata su Linux/macOS tramite `Mono`.
-
-* Mono Runtime 6.12.0
-
-> [!WARNING]
-> `GWC.Native` è supportata su Linux/macOS tramite `Wine`.<br />
-> `GWC.Native.Abst` è supportata su Linux/macOS tramite `Wine`.
-
-* Wine 10
+> Zzz... Zzz... Zzz...
 
 
 
 # Download
 
-| Mirror                  | Url                                                          |
-| :---------------------- | :----------------------------------------------------------: |
-| GitHub                  | [Download](https://github.com/reallukee/gwc/releases/latest) |
-| Altervista (`Rilascio`) | [Download](https://reallukee.altervista.org/gwc)             |
-| Altervista (`Snapshot`) | [Download](https://reallukee.altervista.org/gwc/snapshot)    |
+### GitHub
+
+* [Download](https://github.com/reallukee/gwc/releases/latest)
+
+### Altervista
+
+* [Download](https://reallukee.altervista.org/gwc)
 
 
 
 # Compilazione
 
-* [Windows](#windows-1)
-* [Linux/macOS](#linuxmacos-1)
-
-
-
-## Windows
-
-### 1. Prerequisiti
-
-* `git`
-* [Visual Studio 2026](https://aka.ms/vs/stable/vs_Community.exe)
-  oppure
-  [Build Tools per Visual Studio 2026](https://aka.ms/vs/stable/vs_BuildTools.exe)
-
-In Visual Studio Installer:
-
-* Sviluppo per Desktop .NET
-  * .NET 10 SDK
-  * .NET Framework 4.8.1 Targeting Pack
-  * .NET Framework 4.8.1 SDK
-  * .NET Framework 4.7.2 Targeting Pack
-  * .NET Framework 4.7.2 SDK
-* Sviluppo di Applicazioni Desktop con C++
-  * Supporto a C++/CLI (Ultima Versione)
-  * Strumenti di Compilazione MSVC per x64/x86 (Ultima Versione)
-  * Strumenti di Compilazione MSVC per ARM64/ARM64EC (Ultima Versione)
-
-### 2. Sorgente
-
-```
-git clone https://github.com/reallukee/gwc.git
-```
-
-### 3. Configurazione
-
-```cmd
-CD gwc
-
-CD scripts
-```
-
-### 4. Compilazione
-
-```cmd
-.\build_all.cmd
-```
-
-### 5. Pulizia (*Opzionale*)
-
-```bash
-.\clear_all.cmd
-```
-
-
-
-## Linux/macOS
-
-> [!NOTE]
-> Possibile != Bello
-
-### 1. Prerequisiti
-
-* `git`
-* `mono`
-
-### 2. Sorgente
-
-```
-git clone https://github.com/reallukee/gwc.git
-```
-
-### 3. Configurazione
-
-```bash
-cd gwc
-
-cd scripts
-```
-
-### 4. Compilazione
-
-```bash
-chmod +x build_all.sh
-
-./build_all.sh
-```
-
-### 5. Pulizia (*Opzionale*)
-
-```bash
-chmod +x clear_all.sh
-
-./clear_all.sh
-```
+> Zzz... Zzz... Zzz...
 
 
 

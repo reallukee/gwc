@@ -1,6 +1,6 @@
 {
   "solution": {
-    "path": "gwc.legacy.slnx",
+    "path": "..\\gwc.slnx",
     "projects": [
       "gwc.native.abst.dev\\gwc.native.abst.dev.vcxproj",
       "gwc.native.abst\\gwc.native.abst.vcxproj",

@@ -1,6 +1,6 @@
 {
   "solution": {
-    "path": "gwc.legacy.slnx",
+    "path": "..\\gwc.legacy.slnx",
     "projects": [
       "gwc.dev\\gwc.dev.legacy.csproj",
       "gwc.dev\\gwc.mono.dev.legacy.csproj",
