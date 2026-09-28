@@ -9,15 +9,15 @@
  *
  * https://github.com/reallukee/gwc
  *
- * Nome file : IGRenderable.cs
+ * Nome file : IGBorderColor.cs
  *
- * Titolo    : IGRENDERABLE
+ * Titolo    : IGBORDERCOLOR
  * Sommario  : Contiene l'implementazione della
- *             classe IGRenderable.
+ *             interfaccia IGBorderColor.
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
- * Versione  : v0.6.3
+ * Versione  : v0.3.0
  *             NOTA BENE: Campo INDICATIVO!
  * Licenza   : MIT
  */
@@ -37,10 +37,13 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 
-namespace Reallukee.GWC.GPipeline
+namespace Reallukee.GWC.GPipeline.GProperties
 {
-    internal interface IGRenderable
+    internal interface IGBorderColor
     {
-        void Render(Graphics g);
+        Color BorderColor
+        {
+            get;
+        }
     }
 }

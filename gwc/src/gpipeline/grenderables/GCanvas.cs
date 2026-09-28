@@ -11,13 +11,13 @@
  *
  * Nome file : GCanvas.cs
  *
- * Titolo    : GCANVAS/F
+ * Titolo    : GCANVAS
  * Sommario  : Contiene l'implementazione della
- *             classe GCanvas/F.
+ *             classe GCanvas.
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
- * Versione  : v0.6.3
+ * Versione  : v0.7.0
  *             NOTA BENE: Campo INDICATIVO!
  * Licenza   : MIT
  */
@@ -37,7 +37,12 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 
-namespace Reallukee.GWC.GPipeline
+using Reallukee.GWC.GPipeline.GCore;
+using Reallukee.GWC.GPipeline.GBase;
+using Reallukee.GWC.GPipeline.GProperties;
+using Reallukee.GWC.GPipeline.GFigures;
+
+namespace Reallukee.GWC.GPipeline.GRenderable
 {
     internal sealed class GCanvas : GBaseCanvas<int>, IGRenderable, IGFigure
     {
@@ -85,61 +90,6 @@ namespace Reallukee.GWC.GPipeline
         {
             return string.Format(
                 "GCanvas: X={0}, Y={1}, Disposed={2}",
-                X,
-                Y,
-                disposed
-            );
-        }
-    }
-
-
-
-    internal sealed class GCanvasF : GBaseCanvas<float>, IGRenderable, IGFigureF
-    {
-        public GCanvasF(float x, float y, Canvas canvas)
-            : base(x, y, canvas)
-        {
-
-        }
-
-        public GCanvasF(PointF location, Canvas canvas)
-            : base(location.X, location.Y, canvas)
-        {
-
-        }
-
-        public GCanvasF(GCanvasF other)
-            : base(other)
-        {
-
-        }
-
-
-
-        public override GObject<float> Clone()
-        {
-            return new GCanvasF(this);
-        }
-
-
-
-        public RectangleF Bounds   => new RectangleF(X, Y, Width, Height);
-        public SizeF      Size     => new SizeF     (Width, Height);
-        public PointF     Location => new PointF    (X, Y);
-
-
-
-        public void Render(Graphics g)
-        {
-            g.DrawImage(Bitmap, X, Y);
-        }
-
-
-
-        public override string ToString()
-        {
-            return string.Format(
-                "GCanvasF: X={0}, Y={1}, Disposed={2}",
                 X,
                 Y,
                 disposed

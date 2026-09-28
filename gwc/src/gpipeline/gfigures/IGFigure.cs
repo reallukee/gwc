@@ -11,13 +11,13 @@
  *
  * Nome file : IGFigure.cs
  *
- * Titolo    : IGFIGURE/F
+ * Titolo    : IGFIGURE
  * Sommario  : Contiene l'implementazione della
- *             classe IGFigure/F.
+ *             interfaccia IGFigure.
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
- * Versione  : v0.6.3
+ * Versione  : v0.7.0
  *             NOTA BENE: Campo INDICATIVO!
  * Licenza   : MIT
  */
@@ -37,7 +37,11 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 
-namespace Reallukee.GWC.GPipeline
+using Reallukee.GWC.GPipeline.GCore;
+using Reallukee.GWC.GPipeline.GBase;
+using Reallukee.GWC.GPipeline.GProperties;
+
+namespace Reallukee.GWC.GPipeline.GFigures
 {
     internal interface IGFigure
     {
@@ -52,24 +56,6 @@ namespace Reallukee.GWC.GPipeline
         }
 
         Size Size
-        {
-            get;
-        }
-    }
-
-    internal interface IGFigureF
-    {
-        RectangleF Bounds
-        {
-            get;
-        }
-
-        PointF Location
-        {
-            get;
-        }
-
-        SizeF Size
         {
             get;
         }

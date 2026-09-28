@@ -9,15 +9,15 @@
  *
  * https://github.com/reallukee/gwc
  *
- * Nome file : GEllipse.cs
+ * Nome file : GEllipseF.cs
  *
- * Titolo    : GELLIPSE/F
+ * Titolo    : GELLIPSEF
  * Sommario  : Contiene l'implementazione della
- *             classe GEllipse/F.
+ *             classe GEllipseF.
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
- * Versione  : v0.6.3
+ * Versione  : v0.7.0
  *             NOTA BENE: Campo INDICATIVO!
  * Licenza   : MIT
  */
@@ -37,57 +37,12 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 
-namespace Reallukee.GWC.GPipeline
+using Reallukee.GWC.GPipeline.GCore;
+using Reallukee.GWC.GPipeline.GBase;
+using Reallukee.GWC.GPipeline.GProperties;
+
+namespace Reallukee.GWC.GPipeline.GFigures
 {
-    internal class GEllipse : GBaseEllipse<int>, IGFigure
-    {
-        public GEllipse(int x, int y, int width, int height)
-            : base(x, y, width, height)
-        {
-
-        }
-
-        public GEllipse(Point location, Size size)
-            : base(location.X, location.Y, size.Width, size.Height)
-        {
-
-        }
-
-        public GEllipse(GEllipse other)
-            : base(other)
-        {
-
-        }
-
-
-
-        public override GObject<int> Clone()
-        {
-            return new GEllipse(this);
-        }
-
-
-
-        public Rectangle Bounds   => new Rectangle(X, Y, Width, Height);
-        public Size      Size     => new Size     (Width, Height);
-        public Point     Location => new Point    (X, Y);
-
-
-
-        public override string ToString()
-        {
-            return string.Format(
-                "GEllipse: X={0}, Y={1}, Width={2}, Height={3}",
-                X,
-                Y,
-                Width,
-                Height
-            );
-        }
-    }
-
-
-
     internal class GEllipseF : GBaseEllipse<float>, IGFigureF
     {
         public GEllipseF(float x, float y, float width, float height)

@@ -13,7 +13,7 @@
  *
  * Titolo    : IGFILLCOLOR
  * Sommario  : Contiene l'implementazione della
- *             classe IGFillColor.
+ *             interfaccia IGFillColor.
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
@@ -37,7 +37,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 
-namespace Reallukee.GWC.GPipeline
+namespace Reallukee.GWC.GPipeline.GProperties
 {
     internal interface IGFillColor
     {

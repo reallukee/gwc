@@ -9,15 +9,15 @@
  *
  * https://github.com/reallukee/gwc
  *
- * Nome file : GBaseClear.cs
+ * Nome file : GBaseEllipse.cs
  *
- * Titolo    : GBASECLEAR
+ * Titolo    : GBASEELLIPSE
  * Sommario  : Contiene l'implementazione della
- *             classe GBaseClear.
+ *             classe GBaseEllipse.
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
- * Versione  : v0.6.3
+ * Versione  : v0.7.0
  *             NOTA BENE: Campo INDICATIVO!
  * Licenza   : MIT
  */
@@ -37,37 +37,37 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 
-namespace Reallukee.GWC.GPipeline
+using Reallukee.GWC.GPipeline.GCore;
+using Reallukee.GWC.GPipeline.GProperties;
+
+namespace Reallukee.GWC.GPipeline.GBase
 {
-    internal abstract class GBaseClear<T> : GObject<T>, IGBackColor
+    internal abstract class GBaseEllipse<T> : GObject<T>
     {
-        public GBaseClear(
-            T     x,
-            T     y,
-            T     width,
-            T     height,
-            Color backColor
+        public GBaseEllipse(
+            T x,
+            T y,
+            T width,
+            T height
         )
         {
-            this.X         = x;
-            this.Y         = y;
-            this.Width     = width;
-            this.Height    = height;
-            this.BackColor = backColor;
+            this.X      = x;
+            this.Y      = y;
+            this.Width  = width;
+            this.Height = height;
         }
 
-        public GBaseClear(GBaseClear<T> other)
+        public GBaseEllipse(GBaseEllipse<T> other)
         {
             ThrowIfArgumentNull(
                 nameof(other),
                 other
             );
 
-            this.X         = other.X;
-            this.Y         = other.Y;
-            this.Width     = other.Width;
-            this.Height    = other.Height;
-            this.BackColor = other.BackColor;
+            this.X      = other.X;
+            this.Y      = other.Y;
+            this.Width  = other.Width;
+            this.Height = other.Height;
         }
 
 
@@ -96,15 +96,9 @@ namespace Reallukee.GWC.GPipeline
             private set;
         }
 
-        public Color BackColor
-        {
-            get;
-            private set;
-        }
 
 
-
-        public static bool operator ==(GBaseClear<T> left, GBaseClear<T> right)
+        public static bool operator ==(GBaseEllipse<T> left, GBaseEllipse<T> right)
         {
             if (ReferenceEquals(left, right))
             {
@@ -121,11 +115,10 @@ namespace Reallukee.GWC.GPipeline
             return comparer.Equals(left.X,      right.X     ) &&
                    comparer.Equals(left.Y,      right.Y     ) &&
                    comparer.Equals(left.Width,  right.Width ) &&
-                   comparer.Equals(left.Height, right.Height) &&
-                   left.BackColor == right.BackColor;
+                   comparer.Equals(left.Height, right.Height);
         }
 
-        public static bool operator !=(GBaseClear<T> left, GBaseClear<T> right)
+        public static bool operator !=(GBaseEllipse<T> left, GBaseEllipse<T> right)
         {
             return !(left == right);
         }
@@ -134,7 +127,7 @@ namespace Reallukee.GWC.GPipeline
 
         public override bool Equals(object obj)
         {
-            if (!(obj is GBaseClear<T> other))
+            if (!(obj is GBaseEllipse<T> other))
             {
                 return false;
             }
@@ -154,7 +147,6 @@ namespace Reallukee.GWC.GPipeline
                 hash *= 23 + comparer.GetHashCode(Y);
                 hash *= 23 + comparer.GetHashCode(Width);
                 hash *= 23 + comparer.GetHashCode(Height);
-                hash *= 23 + BackColor.GetHashCode();
 
                 return hash;
             }
@@ -163,13 +155,12 @@ namespace Reallukee.GWC.GPipeline
         public override string ToString()
         {
             return string.Format(
-                "GBaseClear<{0}>: X={1}, Y={2}, Width={3}, Height={4}, BackColor={5}",
+                "GBaseEllipse<{0}>: X={1}, Y={2}, Width={3}, Height={4}",
                 typeof(T).Name,
                 X,
                 Y,
                 Width,
-                Height,
-                BackColor
+                Height
             );
         }
     }

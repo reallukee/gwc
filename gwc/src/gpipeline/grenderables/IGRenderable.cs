@@ -9,15 +9,15 @@
  *
  * https://github.com/reallukee/gwc
  *
- * Nome file : IGBackColor.cs
+ * Nome file : IGRenderable.cs
  *
- * Titolo    : IGBACKCOLOR
+ * Titolo    : IGRENDERABLE
  * Sommario  : Contiene l'implementazione della
- *             classe IGBackColor.
+ *             interfaccia IGRenderable.
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
- * Versione  : v0.3.0
+ * Versione  : v0.7.0
  *             NOTA BENE: Campo INDICATIVO!
  * Licenza   : MIT
  */
@@ -37,13 +37,15 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 
-namespace Reallukee.GWC.GPipeline
+using Reallukee.GWC.GPipeline.GCore;
+using Reallukee.GWC.GPipeline.GBase;
+using Reallukee.GWC.GPipeline.GProperties;
+using Reallukee.GWC.GPipeline.GFigures;
+
+namespace Reallukee.GWC.GPipeline.GRenderable
 {
-    internal interface IGBackColor
+    internal interface IGRenderable
     {
-        Color BackColor
-        {
-            get;
-        }
+        void Render(Graphics g);
     }
 }

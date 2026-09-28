@@ -17,7 +17,7 @@
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
- * Versione  : v0.6.3
+ * Versione  : v0.7.0
  *             NOTA BENE: Campo INDICATIVO!
  * Licenza   : MIT
  */
@@ -37,7 +37,9 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 
-using Reallukee.GWC.GPipeline;
+using Reallukee.GWC.GPipeline.GProperties;
+using Reallukee.GWC.GPipeline.GFigures;
+using Reallukee.GWC.GPipeline.GRenderable;
 using Reallukee.GWC.Internal;
 using Reallukee.GWC.Interop;
 

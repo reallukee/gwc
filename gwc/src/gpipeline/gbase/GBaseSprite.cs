@@ -9,15 +9,15 @@
  *
  * https://github.com/reallukee/gwc
  *
- * Nome file : GBaseCanvas.cs
+ * Nome file : GBaseSprite.cs
  *
- * Titolo    : GBASECANVAS
+ * Titolo    : GBASESPRITE
  * Sommario  : Contiene l'implementazione della
- *             classe GBaseCanvas.
+ *             classe GBaseSprite.
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
- * Versione  : v0.6.3
+ * Versione  : v0.7.0
  *             NOTA BENE: Campo INDICATIVO!
  * Licenza   : MIT
  */
@@ -37,9 +37,12 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 
-namespace Reallukee.GWC.GPipeline
+using Reallukee.GWC.GPipeline.GCore;
+using Reallukee.GWC.GPipeline.GProperties;
+
+namespace Reallukee.GWC.GPipeline.GBase
 {
-    internal abstract class GBaseCanvas<T> : GObject<T>, IDisposable
+    internal abstract class GBaseSprite<T> : GObject<T>, IDisposable
     {
         protected bool disposed;
 
@@ -81,27 +84,27 @@ namespace Reallukee.GWC.GPipeline
             }
         }
 
-        public GBaseCanvas(T x, T y, Canvas canvas)
+        public GBaseSprite(T x, T y, Sprite sprite)
         {
             ThrowIfArgumentNull(
-                nameof(canvas),
-                canvas
+                nameof(sprite),
+                sprite
             );
 
             this.X      = x;
             this.Y      = y;
-            this.Width  = canvas.Bitmap.Width;
-            this.Height = canvas.Bitmap.Height;
+            this.Width  = sprite.Bitmap.Width;
+            this.Height = sprite.Bitmap.Height;
 
-            if (!canvas.IsCached)
+            if (!sprite.IsCached)
             {
-                canvas.Render();
+                sprite.Render();
             }
 
-            CopyBitmap(canvas.RawBitmap);
+            CopyBitmap(sprite.RawBitmap);
         }
 
-        public GBaseCanvas(GBaseCanvas<T> other)
+        public GBaseSprite(GBaseSprite<T> other)
         {
             ThrowIfArgumentNull(
                 nameof(other),
@@ -199,7 +202,7 @@ namespace Reallukee.GWC.GPipeline
         public override string ToString()
         {
             return string.Format(
-                "GBaseCanvas<{0}>: X={1}, Y={2}, Disposed={3}",
+                "GBaseSprite<{0}>: X={1}, Y={2}, Disposed={3}",
                 typeof(T).Name,
                 X,
                 Y,

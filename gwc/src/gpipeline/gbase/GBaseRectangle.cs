@@ -9,15 +9,15 @@
  *
  * https://github.com/reallukee/gwc
  *
- * Nome file : GBaseEllipse.cs
+ * Nome file : GBaseRectangle.cs
  *
- * Titolo    : GBASEELLIPSE
+ * Titolo    : GBASERECTANGLE
  * Sommario  : Contiene l'implementazione della
- *             classe GBaseEllipse.
+ *             classe GBaseRectangle.
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
- * Versione  : v0.6.3
+ * Versione  : v0.7.0
  *             NOTA BENE: Campo INDICATIVO!
  * Licenza   : MIT
  */
@@ -37,11 +37,14 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 
-namespace Reallukee.GWC.GPipeline
+using Reallukee.GWC.GPipeline.GCore;
+using Reallukee.GWC.GPipeline.GProperties;
+
+namespace Reallukee.GWC.GPipeline.GBase
 {
-    internal abstract class GBaseEllipse<T> : GObject<T>
+    internal abstract class GBaseRectangle<T> : GObject<T>
     {
-        public GBaseEllipse(
+        public GBaseRectangle(
             T x,
             T y,
             T width,
@@ -54,7 +57,7 @@ namespace Reallukee.GWC.GPipeline
             this.Height = height;
         }
 
-        public GBaseEllipse(GBaseEllipse<T> other)
+        public GBaseRectangle(GBaseRectangle<T> other)
         {
             ThrowIfArgumentNull(
                 nameof(other),
@@ -95,7 +98,7 @@ namespace Reallukee.GWC.GPipeline
 
 
 
-        public static bool operator ==(GBaseEllipse<T> left, GBaseEllipse<T> right)
+        public static bool operator ==(GBaseRectangle<T> left, GBaseRectangle<T> right)
         {
             if (ReferenceEquals(left, right))
             {
@@ -115,7 +118,7 @@ namespace Reallukee.GWC.GPipeline
                    comparer.Equals(left.Height, right.Height);
         }
 
-        public static bool operator !=(GBaseEllipse<T> left, GBaseEllipse<T> right)
+        public static bool operator !=(GBaseRectangle<T> left, GBaseRectangle<T> right)
         {
             return !(left == right);
         }
@@ -124,7 +127,7 @@ namespace Reallukee.GWC.GPipeline
 
         public override bool Equals(object obj)
         {
-            if (!(obj is GBaseEllipse<T> other))
+            if (!(obj is GBaseRectangle<T> other))
             {
                 return false;
             }
@@ -152,7 +155,7 @@ namespace Reallukee.GWC.GPipeline
         public override string ToString()
         {
             return string.Format(
-                "GBaseEllipse<{0}>: X={1}, Y={2}, Width={3}, Height={4}",
+                "GBaseRectangle<{0}>: X={1}, Y={2}, Width={3}, Height={4}",
                 typeof(T).Name,
                 X,
                 Y,

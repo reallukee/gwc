@@ -9,15 +9,15 @@
  *
  * https://github.com/reallukee/gwc
  *
- * Nome file : GClear.cs
+ * Nome file : GClearF.cs
  *
- * Titolo    : GCLEAR/F
+ * Titolo    : GCLEARF
  * Sommario  : Contiene l'implementazione della
- *             classe GClear/F.
+ *             classe GClearF.
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
- * Versione  : v0.6.3
+ * Versione  : v0.7.0
  *             NOTA BENE: Campo INDICATIVO!
  * Licenza   : MIT
  */
@@ -37,81 +37,13 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 
-namespace Reallukee.GWC.GPipeline
+using Reallukee.GWC.GPipeline.GCore;
+using Reallukee.GWC.GPipeline.GBase;
+using Reallukee.GWC.GPipeline.GProperties;
+using Reallukee.GWC.GPipeline.GFigures;
+
+namespace Reallukee.GWC.GPipeline.GRenderable
 {
-    internal sealed class GClear : GBaseClear<int>, IGRenderable, IGFigure
-    {
-        public GClear(int x, int y, int width, int height, Color clearColor)
-            : base(x, y, width, height, clearColor)
-        {
-
-        }
-
-        public GClear(Point location, Size size, Color clearColor)
-            : base(location.X, location.Y, size.Width, size.Height, clearColor)
-        {
-
-        }
-
-        public GClear(Color clearColor)
-            : base(-1, -1, -1, -1, clearColor)
-        {
-
-        }
-
-        public GClear(GClear other)
-            : base(other)
-        {
-
-        }
-
-
-
-        public override GObject<int> Clone()
-        {
-            return new GClear(this);
-        }
-
-
-
-        public Rectangle Bounds   => new Rectangle(X, Y, Width, Height);
-        public Size      Size     => new Size     (Width, Height);
-        public Point     Location => new Point    (X, Y);
-
-
-
-        public void Render(Graphics g)
-        {
-            if (X < 0 || Y < 0 || Width < 0 || Height < 0)
-            {
-                g.Clear(BackColor);
-            }
-            else
-            {
-                using (SolidBrush fill = new SolidBrush(BackColor))
-                {
-                    g.FillRectangle(fill, X, Y, Width, Height);
-                }
-            }
-        }
-
-
-
-        public override string ToString()
-        {
-            return string.Format(
-                "GClear: X={0}, Y={1}, Width={2}, Height={3}, BackColor={4}",
-                X,
-                Y,
-                Width,
-                Height,
-                BackColor
-            );
-        }
-    }
-
-
-
     internal sealed class GClearF : GBaseClear<float>, IGRenderable, IGFigureF
     {
         public GClearF(float x, float y, float width, float height, Color clearColor)
