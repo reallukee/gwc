@@ -18,7 +18,7 @@
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
- * Versione  : v0.6.3
+ * Versione  : v0.7.0
  *             NOTA BENE: Campo INDICATIVO!
  * Licenza   : MIT
  */
@@ -38,7 +38,7 @@ typedef CANVAS CNV;
 GWC_C_API CANVAS* canvas_new   (int width, int height);
 GWC_C_API void    canvas_delete(CANVAS* canvas);
 
-GWC_C_API bool canvas_isInitialized(const CANVAS* canvas);
+GWC_C_API bool canvas_clrIsInit(const CANVAS* canvas);
 
 GWC_C_API gCOLOR* canvas_getBorderColor(const CANVAS* canvas);
 GWC_C_API void    canvas_setBorderColor(const CANVAS* canvas, const gCOLOR* color);
@@ -58,6 +58,11 @@ GWC_C_API bool canvas_clear     (const CANVAS* canvas);
 GWC_C_API bool canvas_clearArea (const CANVAS* canvas, int x, int y, int width, int height);
 GWC_C_API bool canvas_clearF    (const CANVAS* canvas);
 GWC_C_API bool canvas_clearAreaF(const CANVAS* canvas, float x, float y, float width, float height);
+
+GWC_C_API bool canvas_drawLine (const CANVAS* canvas, int x1, int y1, int x2, int y2);
+GWC_C_API bool canvas_drawLineF(const CANVAS* canvas, float x1, float y1, float x2, float y2);
+GWC_C_API bool canvas_drawArc  (const CANVAS* canvas, int x1, int y1, int x2, int y2, int startAngle, int sweepAngle);
+GWC_C_API bool canvas_drawArcF (const CANVAS* canvas, float x1, float y1, float x2, float y2, float startAngle, float sweepAngle);
 
 GWC_C_API bool canvas_drawCanvas (const CANVAS* canvas, int x, int y, const CANVAS* canvas_);
 GWC_C_API bool canvas_drawCanvasF(const CANVAS* canvas, float x, float y, const CANVAS* canvas_);

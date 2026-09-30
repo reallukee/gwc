@@ -18,7 +18,7 @@
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
- * Versione  : v0.6.3
+ * Versione  : v0.7.0
  *             NOTA BENE: Campo INDICATIVO!
  * Licenza   : MIT
  */
@@ -48,7 +48,7 @@ namespace gwc
         Sprite ();
         ~Sprite();
 
-        bool isInitialized();
+        bool clrIsInit();
 
         gColor getBorderColor();
         void   setBorderColor(gColor color);
@@ -68,6 +68,11 @@ namespace gwc
         bool clearArea (int x, int y, int width, int height);
         bool clearF    ();
         bool clearAreaF(float x, float y, float width, float height);
+
+        bool drawLine (int x1, int y1, int x2, int y2);
+        bool drawLineF(float x1, float y1, float x2, float y2);
+        bool drawArc  (int x1, int y1, int x2, int y2, int startAngle, int sweepAngle);
+        bool drawArcF (float x1, float y1, float x2, float y2, float startAngle, float sweepAngle);
 
         bool drawCanvas (int x, int y, const Canvas* canvas);
         bool drawCanvasF(float x, float y, const Canvas* canvas);

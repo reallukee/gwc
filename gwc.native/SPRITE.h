@@ -18,7 +18,7 @@
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
- * Versione  : v0.6.3
+ * Versione  : v0.7.0
  *             NOTA BENE: Campo INDICATIVO!
  * Licenza   : MIT
  */
@@ -38,7 +38,7 @@ typedef SPRITE SRI;
 GWC_C_API SPRITE* sprite_new   (int width, int height);
 GWC_C_API void    sprite_delete(SPRITE* sprite);
 
-GWC_C_API bool sprite_isInitialized(const SPRITE* sprite);
+GWC_C_API bool sprite_clrIsInit(const SPRITE* sprite);
 
 GWC_C_API gCOLOR* sprite_getBorderColor(const SPRITE* sprite);
 GWC_C_API void    sprite_setBorderColor(const SPRITE* sprite, const gCOLOR* color);
@@ -58,6 +58,11 @@ GWC_C_API bool sprite_clear     (const SPRITE* sprite);
 GWC_C_API bool sprite_clearArea (const SPRITE* sprite, int x, int y, int width, int height);
 GWC_C_API bool sprite_clearF    (const SPRITE* sprite);
 GWC_C_API bool sprite_clearAreaF(const SPRITE* sprite, float x, float y, float width, float height);
+
+GWC_C_API bool sprite_drawLine (const SPRITE* sprite, int x1, int y1, int x2, int y2);
+GWC_C_API bool sprite_drawLineF(const SPRITE* sprite, float x1, float y1, float x2, float y2);
+GWC_C_API bool sprite_drawArc  (const SPRITE* sprite, int x1, int y1, int x2, int y2, int startAngle, int sweepAngle);
+GWC_C_API bool sprite_drawArcF (const SPRITE* sprite, float x1, float y1, float x2, float y2, float startAngle, float sweepAngle);
 
 GWC_C_API bool sprite_drawCanvas (const SPRITE* sprite, int x, int y, const CANVAS* canvas);
 GWC_C_API bool sprite_drawCanvasF(const SPRITE* sprite, float x, float y, const CANVAS* canvas);

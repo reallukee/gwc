@@ -18,7 +18,7 @@
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
- * Versione  : v0.6.3
+ * Versione  : v0.7.0
  *             NOTA BENE: Campo INDICATIVO!
  * Licenza   : MIT
  */
@@ -62,7 +62,7 @@ namespace gwc
 
 
 
-    bool Sprite::isInitialized()
+    bool Sprite::clrIsInit()
     {
         SpriteHost* host = static_cast<SpriteHost*>(sprite);
 
@@ -155,6 +155,28 @@ namespace gwc
     bool Sprite::clearAreaF(float x, float y, float width, float height)
     {
         CCI_BOOL_CPP(SpriteHost, sprite, ClearAreaF(x, y, width, height));
+    }
+
+
+
+    bool Sprite::drawLine(int x1, int y1, int x2, int y2)
+    {
+        CCI_BOOL_CPP(SpriteHost, sprite, DrawLine(x1, y1, x2, y2));
+    }
+
+    bool Sprite::drawLineF(float x1, float y1, float x2, float y2)
+    {
+        CCI_BOOL_CPP(SpriteHost, sprite, DrawLineF(x1, y1, x2, y2));
+    }
+
+    bool Sprite::drawArc(int x1, int y1, int x2, int y2, int startAngle, int sweepAngle)
+    {
+        CCI_BOOL_CPP(SpriteHost, sprite, DrawArc(x1, y1, x2, y2, startAngle, sweepAngle));
+    }
+
+    bool Sprite::drawArcF(float x1, float y1, float x2, float y2, float startAngle, float sweepAngle)
+    {
+        CCI_BOOL_CPP(SpriteHost, sprite, DrawArcF(x1, y1, x2, y2, startAngle, sweepAngle));
     }
 
 

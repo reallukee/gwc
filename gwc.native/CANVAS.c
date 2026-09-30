@@ -18,7 +18,7 @@
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
- * Versione  : v0.6.3
+ * Versione  : v0.7.0
  *             NOTA BENE: Campo INDICATIVO!
  * Licenza   : MIT
  */
@@ -73,7 +73,7 @@ void canvas_delete(CANVAS* canvas)
 
 
 
-bool canvas_isInitialized(const CANVAS* canvas)
+bool canvas_clrIsInit(const CANVAS* canvas)
 {
     if (canvas == NULL)
     {
@@ -171,6 +171,28 @@ bool canvas_clearF(const CANVAS* canvas)
 bool canvas_clearAreaF(const CANVAS* canvas, float x, float y, float width, float height)
 {
     CCI_BOOL_C(CanvasHost, canvas, ClearAreaF(x, y, width, height));
+}
+
+
+
+bool canvas_drawLine(const CANVAS* canvas, int x1, int y1, int x2, int y2)
+{
+    CCI_BOOL_C(CanvasHost, canvas, DrawLine(x1, y1, x2, y2));
+}
+
+bool canvas_drawLineF(const CANVAS* canvas, float x1, float y1, float x2, float y2)
+{
+    CCI_BOOL_C(CanvasHost, canvas, DrawLineF(x1, y1, x2, y2));
+}
+
+bool canvas_drawArc(const CANVAS* canvas, int x1, int y1, int x2, int y2, int startAngle, int sweepAngle)
+{
+    CCI_BOOL_C(CanvasHost, canvas, DrawArc(x1, y1, x2, y2, startAngle, sweepAngle));
+}
+
+bool canvas_drawArcF(const CANVAS* canvas, float x1, float y1, float x2, float y2, float startAngle, float sweepAngle)
+{
+    CCI_BOOL_C(CanvasHost, canvas, DrawArcF(x1, y1, x2, y2, startAngle, sweepAngle));
 }
 
 

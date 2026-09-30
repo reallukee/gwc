@@ -18,7 +18,7 @@
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
- * Versione  : v0.6.3
+ * Versione  : v0.7.0
  *             NOTA BENE: Campo INDICATIVO!
  * Licenza   : MIT
  */
@@ -40,7 +40,7 @@ typedef WINDOW WND;
 GWC_C_API WINDOW* window_new   (int width, int height);
 GWC_C_API void    window_delete(WINDOW* window);
 
-GWC_C_API bool window_isInitialized(const WINDOW* window);
+GWC_C_API bool window_clrIsInit(const WINDOW* window);
 
 GWC_C_API bool window_open (const WINDOW* window);
 GWC_C_API bool window_close(const WINDOW* window);
@@ -110,6 +110,11 @@ GWC_C_API bool window_clear     (const WINDOW* window);
 GWC_C_API bool window_clearArea (const WINDOW* window, int x, int y, int width, int height);
 GWC_C_API bool window_clearF    (const WINDOW* window);
 GWC_C_API bool window_clearAreaF(const WINDOW* window, float x, float y, float width, float height);
+
+GWC_C_API bool window_drawLine (const WINDOW* window, int x1, int y1, int x2, int y2);
+GWC_C_API bool window_drawLineF(const WINDOW* window, float x1, float y1, float x2, float y2);
+GWC_C_API bool window_drawArc  (const WINDOW* window, int x1, int y1, int x2, int y2, int startAngle, int sweepAngle);
+GWC_C_API bool window_drawArcF (const WINDOW* window, float x1, float y1, float x2, float y2, float startAngle, float sweepAngle);
 
 GWC_C_API bool window_drawCanvas (const WINDOW* window, int x, int y, const CANVAS* canvas);
 GWC_C_API bool window_drawCanvasF(const WINDOW* window, float x, float y, const CANVAS* canvas);

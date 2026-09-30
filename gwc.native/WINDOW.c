@@ -18,7 +18,7 @@
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
- * Versione  : v0.6.3
+ * Versione  : v0.7.0
  *             NOTA BENE: Campo INDICATIVO!
  * Licenza   : MIT
  */
@@ -72,7 +72,7 @@ void window_delete(WINDOW* window)
 
 
 
-bool window_isInitialized(const WINDOW* window)
+bool window_clrIsInit(const WINDOW* window)
 {
     if (window == NULL)
     {
@@ -499,6 +499,28 @@ bool window_clearF(const WINDOW* window)
 bool window_clearAreaF(const WINDOW* window, float x, float y, float width, float height)
 {
     CCI_BOOL_C(WindowHost, window, ClearAreaF(x, y, width, height));
+}
+
+
+
+bool window_drawLine(const WINDOW* window, int x1, int y1, int x2, int y2)
+{
+    CCI_BOOL_C(WindowHost, window, DrawLine(x1, y1, x2, y2));
+}
+
+bool window_drawLineF(const WINDOW* window, float x1, float y1, float x2, float y2)
+{
+    CCI_BOOL_C(WindowHost, window, DrawLineF(x1, y1, x2, y2));
+}
+
+bool window_drawArc(const WINDOW* window, int x1, int y1, int x2, int y2, int startAngle, int sweepAngle)
+{
+    CCI_BOOL_C(WindowHost, window, DrawArc(x1, y1, x2, y2, startAngle, sweepAngle));
+}
+
+bool window_drawArcF(const WINDOW* window, float x1, float y1, float x2, float y2, float startAngle, float sweepAngle)
+{
+    CCI_BOOL_C(WindowHost, window, DrawArcF(x1, y1, x2, y2, startAngle, sweepAngle));
 }
 
 
