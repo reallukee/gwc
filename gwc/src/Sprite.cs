@@ -331,6 +331,36 @@ namespace Reallukee.GWC
 
 
 
+        public bool DrawLine(int x1, int y1, int x2, int y2)
+        {
+            IGRenderable renderable = new GLine(BorderColor, x1, y1, x2, y2);
+
+            return DrawRenderable(renderable);
+        }
+
+        public bool DrawLineF(float x1, float y1, float x2, float y2)
+        {
+            IGRenderable renderable = new GLineF(BorderColor, x1, y1, x2, y2);
+
+            return DrawRenderable(renderable);
+        }
+
+        public bool DrawArc(int x1, int y1, int x2, int y2, int startAngle, int sweepAngle)
+        {
+            IGRenderable renderable = new GArc(BorderColor, x1, y1, x2, y2, startAngle, sweepAngle);
+
+            return DrawRenderable(renderable);
+        }
+
+        public bool DrawArcF(float x1, float y1, float x2, float y2, float startAngle, float sweepAngle)
+        {
+            IGRenderable renderable = new GArcF(BorderColor, x1, y1, x2, y2, startAngle, sweepAngle);
+
+            return DrawRenderable(renderable);
+        }
+
+
+
         public bool DrawCanvas(Canvas canvas)
         {
             IGRenderable renderable = new GCanvas(0, 0, canvas);

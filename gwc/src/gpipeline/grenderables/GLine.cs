@@ -9,11 +9,11 @@
  *
  * https://github.com/reallukee/gwc
  *
- * Nome file : GFillEllipse.cs
+ * Nome file : GLine.cs
  *
- * Titolo    : GFILLELLIPSE
+ * Titolo    : GLINE
  * Sommario  : Contiene l'implementazione della
- *             classe GFillEllipse.
+ *             classe GLine.
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
@@ -44,29 +44,29 @@ using Reallukee.GWC.GPipeline.GFigures;
 
 namespace Reallukee.GWC.GPipeline.GRenderable
 {
-    internal class GFillEllipse : GEllipse, IGFillColor, IGRenderable, IGFigure
+    internal class GLine : GBaseLine<int>, IGBorderColor, IGRenderable
     {
-        public GFillEllipse(
-            Color fillColor,
-            int   x,
-            int   y,
-            int   width,
-            int   height
-        ) : base(x, y, width, height)
+        public GLine(
+            Color borderColor,
+            int   x1,
+            int   y1,
+            int   x2,
+            int   y2
+        ) : base(x1, y1, x2, y2)
         {
-            this.FillColor = fillColor;
+            this.BorderColor = borderColor;
         }
 
-        public GFillEllipse(
-            Color fillColor,
-            Point location,
-            Size size
-        ) : base(location.X, location.Y, size.Width, size.Height)
+        public GLine(
+            Color borderColor,
+            Point location1,
+            Point location2
+        ) : base(location1.X, location1.Y, location2.X, location2.Y)
         {
-            this.FillColor = fillColor;
+            this.BorderColor = borderColor;
         }
 
-        public GFillEllipse(GFillEllipse other)
+        public GLine(GLine other)
             : base(other)
         {
             ThrowIfArgumentNull(
@@ -74,12 +74,12 @@ namespace Reallukee.GWC.GPipeline.GRenderable
                 other
             );
 
-            this.FillColor = other.FillColor;
+            this.BorderColor = other.BorderColor;
         }
 
 
 
-        public Color FillColor
+        public Color BorderColor
         {
             get;
             private set;
@@ -89,22 +89,22 @@ namespace Reallukee.GWC.GPipeline.GRenderable
 
         public override GObject<int> Clone()
         {
-            return new GFillEllipse(this);
+            return new GLine(this);
         }
 
 
 
         public void Render(Graphics g)
         {
-            using (SolidBrush fill = new SolidBrush(FillColor))
+            using (Pen border = new Pen(BorderColor))
             {
-                g.FillEllipse(fill, X - Width / 2, Y - Height / 2, Width, Height);
+                g.DrawLine(border, X1, Y1, X2, Y2);
             }
         }
 
 
 
-        public static bool operator ==(GFillEllipse left, GFillEllipse right)
+        public static bool operator ==(GLine left, GLine right)
         {
             if (ReferenceEquals(left, right))
             {
@@ -116,15 +116,15 @@ namespace Reallukee.GWC.GPipeline.GRenderable
                 return false;
             }
 
-            if (!(left as GBaseEllipse<int> == right as GBaseEllipse<int>))
+            if (!(left as GBaseLine<int> == right as GBaseLine<int>))
             {
                 return false;
             }
 
-            return left.FillColor == right.FillColor;
+            return left.BorderColor == right.BorderColor;
         }
 
-        public static bool operator !=(GFillEllipse left, GFillEllipse right)
+        public static bool operator !=(GLine left, GLine right)
         {
             return !(left == right);
         }
@@ -133,7 +133,7 @@ namespace Reallukee.GWC.GPipeline.GRenderable
 
         public override bool Equals(object obj)
         {
-            if (!(obj is GFillEllipse other))
+            if (!(obj is GLine other))
             {
                 return false;
             }
@@ -147,11 +147,11 @@ namespace Reallukee.GWC.GPipeline.GRenderable
             {
                 int hash = 17;
 
-                hash *= 23 + X.GetHashCode();
-                hash *= 23 + Y.GetHashCode();
-                hash *= 23 + Width.GetHashCode();
-                hash *= 23 + Height.GetHashCode();
-                hash *= 23 + FillColor.GetHashCode();
+                hash *= 23 + X1.GetHashCode();
+                hash *= 23 + Y1.GetHashCode();
+                hash *= 23 + X2.GetHashCode();
+                hash *= 23 + Y2.GetHashCode();
+                hash *= 23 + BorderColor.GetHashCode();
 
                 return hash;
             }
@@ -160,12 +160,12 @@ namespace Reallukee.GWC.GPipeline.GRenderable
         public override string ToString()
         {
             return string.Format(
-                "GFillEllipse: X={0}, Y={1}, Width={2}, Height={3}, FillColor={4}",
-                X,
-                Y,
-                Width,
-                Height,
-                FillColor
+                "GLine: X1={0}, Y1={1}, X2={2}, Y2={3}, BorderColor={4}",
+                X1,
+                Y1,
+                X2,
+                Y2,
+                BorderColor
             );
         }
     }

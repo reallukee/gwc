@@ -1180,6 +1180,28 @@ namespace Reallukee.GWC
 
 
 
+        public bool DrawLine(int x1, int y1, int x2, int y2)
+        {
+            return this.canvas.DrawLine(x1, y1, x2, y2);
+        }
+
+        public bool DrawLineF(float x1, float y1, float x2, float y2)
+        {
+            return this.canvas.DrawLineF(x1, y1, x2, y2);
+        }
+
+        public bool DrawArc(int x1, int y1, int x2, int y2, int startAngle, int sweepAngle)
+        {
+            return this.canvas.DrawArc(x1, y1, x2, y2, startAngle, sweepAngle);
+        }
+
+        public bool DrawArcF(float x1, float y1, float x2, float y2, float startAngle, float sweepAngle)
+        {
+            return this.canvas.DrawArcF(x1, y1, x2, y2, startAngle, sweepAngle);
+        }
+
+
+
         public bool DrawCanvas(Canvas canvas)
         {
             return this.canvas.DrawCanvas(canvas);

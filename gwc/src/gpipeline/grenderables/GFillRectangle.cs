@@ -87,6 +87,13 @@ namespace Reallukee.GWC.GPipeline.GRenderable
 
 
 
+        public override GObject<int> Clone()
+        {
+            return new GFillRectangle(this);
+        }
+
+
+
         public void Render(Graphics g)
         {
             using (SolidBrush fill = new SolidBrush(FillColor))

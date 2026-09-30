@@ -9,11 +9,11 @@
  *
  * https://github.com/reallukee/gwc
  *
- * Nome file : GFillEllipse.cs
+ * Nome file : GArc.cs
  *
- * Titolo    : GFILLELLIPSE
+ * Titolo    : GARC
  * Sommario  : Contiene l'implementazione della
- *             classe GFillEllipse.
+ *             classe GArc.
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
@@ -44,29 +44,33 @@ using Reallukee.GWC.GPipeline.GFigures;
 
 namespace Reallukee.GWC.GPipeline.GRenderable
 {
-    internal class GFillEllipse : GEllipse, IGFillColor, IGRenderable, IGFigure
+    internal class GArc : GBaseArc<int>, IGBorderColor, IGRenderable
     {
-        public GFillEllipse(
-            Color fillColor,
-            int   x,
-            int   y,
-            int   width,
-            int   height
-        ) : base(x, y, width, height)
+        public GArc(
+            Color borderColor,
+            int   x1,
+            int   y1,
+            int   x2,
+            int   y2,
+            int   startAngle,
+            int   sweepAngle
+        ) : base(x1, y1, x2, y2, startAngle, sweepAngle)
         {
-            this.FillColor = fillColor;
+            this.BorderColor = borderColor;
         }
 
-        public GFillEllipse(
-            Color fillColor,
-            Point location,
-            Size size
-        ) : base(location.X, location.Y, size.Width, size.Height)
+        public GArc(
+            Color borderColor,
+            Point location1,
+            Point location2,
+            int   startAngle,
+            int   sweepAngle
+        ) : base(location1.X, location1.Y, location2.X, location2.Y, startAngle, sweepAngle)
         {
-            this.FillColor = fillColor;
+            this.BorderColor = borderColor;
         }
 
-        public GFillEllipse(GFillEllipse other)
+        public GArc(GArc other)
             : base(other)
         {
             ThrowIfArgumentNull(
@@ -74,12 +78,12 @@ namespace Reallukee.GWC.GPipeline.GRenderable
                 other
             );
 
-            this.FillColor = other.FillColor;
+            this.BorderColor = other.BorderColor;
         }
 
 
 
-        public Color FillColor
+        public Color BorderColor
         {
             get;
             private set;
@@ -89,22 +93,30 @@ namespace Reallukee.GWC.GPipeline.GRenderable
 
         public override GObject<int> Clone()
         {
-            return new GFillEllipse(this);
+            return new GArc(this);
         }
 
 
 
         public void Render(Graphics g)
         {
-            using (SolidBrush fill = new SolidBrush(FillColor))
+            using (Pen border = new Pen(BorderColor))
             {
-                g.FillEllipse(fill, X - Width / 2, Y - Height / 2, Width, Height);
+                g.DrawArc(
+                    border,
+                    X1,
+                    Y1,
+                    Math.Abs(X2 - X1),
+                    Math.Abs(Y2 - Y1),
+                    StartAngle,
+                    SweepAngle
+                );
             }
         }
 
 
 
-        public static bool operator ==(GFillEllipse left, GFillEllipse right)
+        public static bool operator ==(GArc left, GArc right)
         {
             if (ReferenceEquals(left, right))
             {
@@ -116,15 +128,15 @@ namespace Reallukee.GWC.GPipeline.GRenderable
                 return false;
             }
 
-            if (!(left as GBaseEllipse<int> == right as GBaseEllipse<int>))
+            if (!(left as GBaseArc<int> == right as GBaseArc<int>))
             {
                 return false;
             }
 
-            return left.FillColor == right.FillColor;
+            return left.BorderColor == right.BorderColor;
         }
 
-        public static bool operator !=(GFillEllipse left, GFillEllipse right)
+        public static bool operator !=(GArc left, GArc right)
         {
             return !(left == right);
         }
@@ -133,7 +145,7 @@ namespace Reallukee.GWC.GPipeline.GRenderable
 
         public override bool Equals(object obj)
         {
-            if (!(obj is GFillEllipse other))
+            if (!(obj is GArc other))
             {
                 return false;
             }
@@ -147,11 +159,13 @@ namespace Reallukee.GWC.GPipeline.GRenderable
             {
                 int hash = 17;
 
-                hash *= 23 + X.GetHashCode();
-                hash *= 23 + Y.GetHashCode();
-                hash *= 23 + Width.GetHashCode();
-                hash *= 23 + Height.GetHashCode();
-                hash *= 23 + FillColor.GetHashCode();
+                hash *= 23 + X1.GetHashCode();
+                hash *= 23 + Y1.GetHashCode();
+                hash *= 23 + X2.GetHashCode();
+                hash *= 23 + Y2.GetHashCode();
+                hash *= 23 + StartAngle.GetHashCode();
+                hash *= 23 + SweepAngle.GetHashCode();
+                hash *= 23 + BorderColor.GetHashCode();
 
                 return hash;
             }
@@ -160,12 +174,14 @@ namespace Reallukee.GWC.GPipeline.GRenderable
         public override string ToString()
         {
             return string.Format(
-                "GFillEllipse: X={0}, Y={1}, Width={2}, Height={3}, FillColor={4}",
-                X,
-                Y,
-                Width,
-                Height,
-                FillColor
+                "GArc: X1={0}, Y1={1}, X2={2}, Y2={3}, StartAngle={4}, SweepAngle={5}, BorderColor={6}",
+                X1,
+                Y1,
+                X2,
+                Y2,
+                StartAngle,
+                SweepAngle,
+                BorderColor
             );
         }
     }
