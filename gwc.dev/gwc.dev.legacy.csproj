@@ -58,41 +58,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="..\gwc\src\gpipeline\IGFigure.cs" />
-    <Compile Include="..\gwc\src\gpipeline\IGRenderable.cs" />
-    <Compile Include="..\gwc\src\gpipeline\IGBorderColor.cs" />
-    <Compile Include="..\gwc\src\gpipeline\IGFillColor.cs" />
-    <Compile Include="..\gwc\src\gpipeline\IGBackColor.cs" />
-    <Compile Include="..\gwc\src\gpipeline\GObject.cs" />
-    <Compile Include="..\gwc\src\gpipeline\GBaseClear.cs" />
-    <Compile Include="..\gwc\src\gpipeline\GClear.cs" />
-    <Compile Include="..\gwc\src\gpipeline\GBaseRectangle.cs" />
-    <Compile Include="..\gwc\src\gpipeline\GRectangle.cs" />
-    <Compile Include="..\gwc\src\gpipeline\GBorderRectangle.cs" />
-    <Compile Include="..\gwc\src\gpipeline\GFillRectangle.cs" />
-    <Compile Include="..\gwc\src\gpipeline\GBaseEllipse.cs" />
-    <Compile Include="..\gwc\src\gpipeline\GEllipse.cs" />
-    <Compile Include="..\gwc\src\gpipeline\GBorderEllipse.cs" />
-    <Compile Include="..\gwc\src\gpipeline\GFillEllipse.cs" />
-    <Compile Include="..\gwc\src\gpipeline\GBaseImage.cs" />
-    <Compile Include="..\gwc\src\gpipeline\GImage.cs" />
-    <Compile Include="..\gwc\src\gpipeline\GBaseIcon.cs" />
-    <Compile Include="..\gwc\src\gpipeline\GIcon.cs" />
-    <Compile Include="..\gwc\src\gpipeline\GBaseSprite.cs" />
-    <Compile Include="..\gwc\src\gpipeline\GSprite.cs" />
-    <Compile Include="..\gwc\src\gpipeline\GBaseCanvas.cs" />
-    <Compile Include="..\gwc\src\gpipeline\GCanvas.cs" />
-    <Compile Include="..\gwc\src\internal\DwmApi.cs" />
-    <Compile Include="..\gwc\src\interop\SpriteHandler.cs" />
-    <Compile Include="..\gwc\src\interop\CanvasHandler.cs" />
-    <Compile Include="..\gwc\src\interop\WindowHandler.cs" />
-    <Compile Include="..\gwc\src\Render.cs" />
-    <Compile Include="..\gwc\src\WindowForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="..\gwc\src\Sprite.cs" />
-    <Compile Include="..\gwc\src\Canvas.cs" />
-    <Compile Include="..\gwc\src\Window.cs" />
+    <Compile Include="src\App.cs" />
     <Compile Include="src\Program.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +69,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\gwc\gwc.legacy.csproj">
+      <Project>{e3352e34-8033-4f44-ae88-7e053e6d11e7}</Project>
+      <Name>gwc.legacy</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

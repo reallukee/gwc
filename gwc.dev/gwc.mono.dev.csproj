@@ -50,15 +50,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Properties\AssemblyInfo.cs" />
     <Compile Remove="obj\**" />
     <EmbeddedResource Remove="obj\**" />
     <None Remove="obj\**" />
     <Page Remove="obj\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="Properties\AssemblyInfo.cs" />
-    <Compile Include="..\gwc\src\**\*.cs" Link="src\gwc\%(Filename)%(Extension)" />
   </ItemGroup>
 
   <ItemGroup>
@@ -81,6 +77,10 @@
       <PackagePath>\</PackagePath>
       <Link>nuget\LICENSE</Link>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\gwc\gwc.mono.csproj" />
   </ItemGroup>
 
   <ItemGroup>
