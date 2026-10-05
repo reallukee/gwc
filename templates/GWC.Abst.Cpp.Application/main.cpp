@@ -28,7 +28,7 @@ int main(int argc, const char* argv[])
 
     WndMgr::open();
 
-    if (!WndMgr::isInitialized())
+    if (!WndMgr::clrIsInit())
     {
         Render::shutdown();
         WndMgr::shutdown();

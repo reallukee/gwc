@@ -15,7 +15,7 @@ int main(int argc, const char* argv[])
 
     window->open();
 
-    if (!window->isInitialized())
+    if (!window->clrIsInit())
     {
         delete window;
 

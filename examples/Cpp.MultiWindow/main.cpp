@@ -21,9 +21,9 @@ int main(int argc, const char* argv[])
     window_2->open();
     window_3->open();
 
-    if (!window_1->isInitialized() ||
-        !window_2->isInitialized() ||
-        !window_3->isInitialized())
+    if (!window_1->clrIsInit() ||
+        !window_2->clrIsInit() ||
+        !window_3->clrIsInit())
     {
         delete window_1;
         delete window_2;

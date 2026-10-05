@@ -24,7 +24,7 @@ int main(int argc, const char* argv[])
 
     wndmgr_open();
 
-    if (!wndmgr_isInitialized())
+    if (!wndmgr_clrIsInit())
     {
         render_shutdown();
         wndmgr_shutdown();

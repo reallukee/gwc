@@ -17,9 +17,9 @@ int main(int argc, const char* argv[])
     window_open(window_2);
     window_open(window_3);
 
-    if (!window_isInitialized(window_1) ||
-        !window_isInitialized(window_2) ||
-        !window_isInitialized(window_3))
+    if (!window_clrIsInit(window_1) ||
+        !window_clrIsInit(window_2) ||
+        !window_clrIsInit(window_3))
     {
         window_delete(window_1);
         window_delete(window_2);
