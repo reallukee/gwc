@@ -51,10 +51,6 @@
 
   <ItemGroup>
     <Compile Remove="Properties\AssemblyInfo.cs" />
-    <Compile Remove="obj\**" />
-    <EmbeddedResource Remove="obj\**" />
-    <None Remove="obj\**" />
-    <Page Remove="obj\**" />
   </ItemGroup>
 
   <ItemGroup>
