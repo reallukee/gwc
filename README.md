@@ -13,7 +13,7 @@
 >
 > [📦 Release!](https://github.com/reallukee/gwc/releases/tag/v0.7.0)
 
-> [!DANGER]
+> [!IMPORTANT]
 > GWC 0.8.0
 >
 > .NET FX ➡️ .NET Core
