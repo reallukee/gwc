@@ -18,7 +18,7 @@
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
- * Versione  : v0.6.3
+ * Versione  : v0.7.0
  *             NOTA BENE: Campo INDICATIVO!
  * Licenza   : MIT
  */
@@ -46,7 +46,7 @@ GWC_ABST_C_API WND_ID wndmgr_getCurrent();
 GWC_ABST_C_API WND_ID wndmgr_alloc(int width, int height, bool select);
 GWC_ABST_C_API void   wndmgr_free ();
 
-GWC_ABST_C_API bool wndmgr_isInitialized();
+GWC_ABST_C_API bool wndmgr_clrIsInit();
 
 GWC_ABST_C_API bool wndmgr_open ();
 GWC_ABST_C_API bool wndmgr_close();
@@ -116,6 +116,11 @@ GWC_ABST_C_API bool wndmgr_clear     ();
 GWC_ABST_C_API bool wndmgr_clearArea (int x, int y, int width, int height);
 GWC_ABST_C_API bool wndmgr_clearF    ();
 GWC_ABST_C_API bool wndmgr_clearAreaF(float x, float y, float width, float height);
+
+GWC_ABST_C_API bool wndmgr_drawLine (int x1, int y1, int x2, int y2);
+GWC_ABST_C_API bool wndmgr_drawLineF(float x1, float y1, float x2, float y2);
+GWC_ABST_C_API bool wndmgr_drawArc  (int x1, int y1, int x2, int y2, int startAngle, int sweepAngle);
+GWC_ABST_C_API bool wndmgr_drawArcF (float x1, float y1, float x2, float y2, float startAngle, float sweepAngle);
 
 GWC_ABST_C_API bool wndmgr_drawCanvas (int x, int y, CNV_ID canvasId);
 GWC_ABST_C_API bool wndmgr_drawCanvasF(float x, float y, CNV_ID canvasId);

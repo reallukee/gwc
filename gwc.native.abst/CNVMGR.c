@@ -18,7 +18,7 @@
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
- * Versione  : v0.6.3
+ * Versione  : v0.7.0
  *             NOTA BENE: Campo INDICATIVO!
  * Licenza   : MIT
  */
@@ -177,9 +177,9 @@ void cnvmgr_free()
 
 
 
-bool cnvmgr_isInitialized()
+bool cnvmgr_clrIsInit()
 {
-    CCI_BOOL_C(canvas_isInitialized(ITEM));
+    CCI_BOOL_C(canvas_clrIsInit(ITEM));
 }
 
 
@@ -263,6 +263,28 @@ bool cnvmgr_clearF()
 bool cnvmgr_clearAreaF(float x, float y, float width, float height)
 {
     CCI_BOOL_C(canvas_clearAreaF(ITEM, x, y, width, height));
+}
+
+
+
+bool cnvmgr_drawLine(int x1, int y1, int x2, int y2)
+{
+    CCI_BOOL_C(cnvmgr_drawLine(x1, y1, x2, y2));
+}
+
+bool cnvmgr_drawLineF(float x1, float y1, float x2, float y2)
+{
+    CCI_BOOL_C(cnvmgr_drawLineF(x1, y1, x2, y2));
+}
+
+bool cnvmgr_drawArc(int x1, int y1, int x2, int y2, int startAngle, int sweepAngle)
+{
+    CCI_BOOL_C(cnvmgr_drawArc(x1, y1, x2, y2, startAngle, sweepAngle));
+}
+
+bool cnvmgr_drawArcF(float x1, float y1, float x2, float y2, float startAngle, float sweepAngle)
+{
+    CCI_BOOL_C(cnvmgr_drawArcF(x1, y1, x2, y2, startAngle, sweepAngle));
 }
 
 

@@ -18,7 +18,7 @@
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
- * Versione  : v0.6.3
+ * Versione  : v0.7.0
  *             NOTA BENE: Campo INDICATIVO!
  * Licenza   : MIT
  */
@@ -45,7 +45,7 @@ GWC_ABST_C_API SRI_ID srimgr_getCurrent();
 GWC_ABST_C_API SRI_ID srimgr_alloc(int width, int height, bool select);
 GWC_ABST_C_API void   srimgr_free ();
 
-GWC_ABST_C_API bool srimgr_isInitialized();
+GWC_ABST_C_API bool srimgr_clrIsInit();
 
 GWC_ABST_C_API gCOLOR* srimgr_getBorderColor();
 GWC_ABST_C_API void    srimgr_setBorderColor(const gCOLOR* color);
@@ -65,6 +65,11 @@ GWC_ABST_C_API bool srimgr_clear     ();
 GWC_ABST_C_API bool srimgr_clearArea (int x, int y, int width, int height);
 GWC_ABST_C_API bool srimgr_clearF    ();
 GWC_ABST_C_API bool srimgr_clearAreaF(float x, float y, float width, float height);
+
+GWC_ABST_C_API bool srimgr_drawLine (int x1, int y1, int x2, int y2);
+GWC_ABST_C_API bool srimgr_drawLineF(float x1, float y1, float x2, float y2);
+GWC_ABST_C_API bool srimgr_drawArc  (int x1, int y1, int x2, int y2, int startAngle, int sweepAngle);
+GWC_ABST_C_API bool srimgr_drawArcF (float x1, float y1, float x2, float y2, float startAngle, float sweepAngle);
 
 GWC_ABST_C_API bool srimgr_drawCanvas (int x, int y, CNV_ID canvasId);
 GWC_ABST_C_API bool srimgr_drawCanvasF(float x, float y, CNV_ID canvasId);

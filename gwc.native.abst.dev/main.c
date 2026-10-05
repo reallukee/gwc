@@ -1,14 +1,27 @@
-//
-// :.:.:.:.:.:.:.:
-// GWC.Native.Abst
-// v0.6.1
-// :.:.:.:.:.:.:.:
-//
-// https://github.com/reallukee/gwc
-//
-// main.c
-//  Licenza MIT
-//
+/*
+ * :.:.:.:.:.:.:.:.
+ * GWC
+ * Graphical Window
+ * for Console Apps
+ * :.:.:.:.:.:.:.:.
+ *
+ * GWC Native Abst
+ *
+ * A Graphics Library
+ *
+ * https://github.com/reallukee/gwc
+ *
+ * Nome file : main.c
+ *
+ * Titolo    : MAIN
+ * Sommario  : Main
+ *
+ * Autore    : Luca Pollicino
+ *             (https://github.com/reallukee)
+ * Versione  : v0.7.0
+ *             NOTA BENE: Campo INDICATIVO!
+ * Licenza   : MIT
+ */
 
 #include <gwc.h>
 
@@ -31,7 +44,7 @@ int main(int argc, const char* argv[])
 
     wndmgr_open();
 
-    if (!wndmgr_isInitialized())
+    if (!wndmgr_clrIsInit())
     {
         render_shutdown();
         wndmgr_shutdown();
@@ -103,8 +116,9 @@ void render(CNV_ID canvas)
     gCOLOR* color = NULL;
 
     color = color_new(255, 0, 0, 0);
-    cnvmgr_clear(color);
+    cnvmgr_setBackColor(color);
     color_delete(color);
+    cnvmgr_clear();
 
     cr += cvr;
     cg += cvg;
@@ -141,8 +155,9 @@ void render(CNV_ID canvas)
     cnvmgr_render();
 
     color = color_new(255, 0, 0, 0);
-    wndmgr_clear(color);
+    wndmgr_setBackColor(color);
     color_delete(color);
+    wndmgr_clear();
 
     wndmgr_drawCanvas(x, y, canvas);
 }
@@ -151,7 +166,7 @@ int loop()
 {
     CNV_ID canvas = cnvmgr_alloc(r * 2, r * 2, true);
 
-    if (!cnvmgr_isInitialized())
+    if (!cnvmgr_clrIsInit())
     {
         cnvmgr_free();
 

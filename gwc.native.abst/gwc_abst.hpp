@@ -1,14 +1,27 @@
-//
-// :.:.:.:.:.:.:.:
-// GWC.Native.Abst
-// v0.6.3
-// :.:.:.:.:.:.:.:
-//
-// https://github.com/reallukee/gwc
-//
-// gwc_abst.hpp
-//  Licenza MIT
-//
+/*
+ * :.:.:.:.:.:.:.:.
+ * GWC
+ * Graphical Window
+ * for Console Apps
+ * :.:.:.:.:.:.:.:.
+ *
+ * GWC Native Abst
+ *
+ * A Graphics Library
+ *
+ * https://github.com/reallukee/gwc
+ *
+ * Nome file : gwc_abst.hpp
+ *
+ * Titolo    : GWC_ABST
+ * Sommario  : GWC_ABST
+ *
+ * Autore    : Luca Pollicino
+ *             (https://github.com/reallukee)
+ * Versione  : v0.7.0
+ *             NOTA BENE: Campo INDICATIVO!
+ * Licenza   : MIT
+ */
 
 #pragma once
 
@@ -27,25 +40,25 @@
 // Questo è l'header dell'API C++ di GWC Abst.
 //
 // Versione API attesa:
-//  [0.6.3]
+//  [0.7.0]
 // Versione MINIMA API attesa:
-//  [0.6.3]
+//  [0.7.0]
 //
 // Assicurati di utilizzare versioni compatibili
 // dei binari e dei file di intestazione.
 //
 // GWC.Native.Abst richiede:
 //  GWC.Native:
-//   [0.6.3]
+//   [0.7.0]
 //  GWC:
-//   [0.6.3]
+//   [0.7.0]
 //
 
-#define GWC_ABST_VERSION_INCLUDE              63
-#define GWC_ABST_MIN_VERSION_INCLUDE          63
+#define GWC_ABST_VERSION_INCLUDE              70
+#define GWC_ABST_MIN_VERSION_INCLUDE          70
 
-#define GWC_ABST_FRIENDLY_VERSION_INCLUDE     "0.6.3"
-#define GWC_ABST_FRIENDLY_MIN_VERSION_INCLUDE "0.6.3"
+#define GWC_ABST_FRIENDLY_VERSION_INCLUDE     "0.7.0"
+#define GWC_ABST_FRIENDLY_MIN_VERSION_INCLUDE "0.7.0"
 
 #include "header.hpp"
 
@@ -57,8 +70,8 @@
 
 namespace gwc_abst
 {
-    GWC_ABST_CPP_EXTERN GWC_ABST_CPP_DLL const int  GWC_ABST_VERSION;
-    GWC_ABST_CPP_EXTERN GWC_ABST_CPP_DLL const int  GWC_ABST_MIN_VERSION;
+    GWC_ABST_CPP_EXTERN GWC_ABST_CPP_DLL const long GWC_ABST_VERSION;
+    GWC_ABST_CPP_EXTERN GWC_ABST_CPP_DLL const long GWC_ABST_MIN_VERSION;
 
     GWC_ABST_CPP_EXTERN GWC_ABST_CPP_DLL const char GWC_ABST_FRIENDLY_VERSION[];
     GWC_ABST_CPP_EXTERN GWC_ABST_CPP_DLL const char GWC_ABST_FRIENDLY_MIN_VERSION[];

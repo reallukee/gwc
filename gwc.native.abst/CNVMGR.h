@@ -18,7 +18,7 @@
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
- * Versione  : v0.6.3
+ * Versione  : v0.7.0
  *             NOTA BENE: Campo INDICATIVO!
  * Licenza   : MIT
  */
@@ -45,7 +45,7 @@ GWC_ABST_C_API CNV_ID cnvmgr_getCurrent();
 GWC_ABST_C_API CNV_ID cnvmgr_alloc(int width, int height, bool select);
 GWC_ABST_C_API void   cnvmgr_free ();
 
-GWC_ABST_C_API bool cnvmgr_isInitialized();
+GWC_ABST_C_API bool cnvmgr_clrIsInit();
 
 GWC_ABST_C_API gCOLOR* cnvmgr_getBorderColor();
 GWC_ABST_C_API void    cnvmgr_setBorderColor(const gCOLOR* color);
@@ -65,6 +65,11 @@ GWC_ABST_C_API bool cnvmgr_clear     ();
 GWC_ABST_C_API bool cnvmgr_clearArea (int x, int y, int width, int height);
 GWC_ABST_C_API bool cnvmgr_clearF    ();
 GWC_ABST_C_API bool cnvmgr_clearAreaF(float x, float y, float width, float height);
+
+GWC_ABST_C_API bool cnvmgr_drawLine (int x1, int y1, int x2, int y2);
+GWC_ABST_C_API bool cnvmgr_drawLineF(float x1, float y1, float x2, float y2);
+GWC_ABST_C_API bool cnvmgr_drawArc  (int x1, int y1, int x2, int y2, int startAngle, int sweepAngle);
+GWC_ABST_C_API bool cnvmgr_drawArcF (float x1, float y1, float x2, float y2, float startAngle, float sweepAngle);
 
 GWC_ABST_C_API bool cnvmgr_drawCanvas (int x, int y, CNV_ID canvasId);
 GWC_ABST_C_API bool cnvmgr_drawCanvasF(float x, float y, CNV_ID canvasId);

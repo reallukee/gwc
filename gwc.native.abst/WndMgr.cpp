@@ -18,7 +18,7 @@
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
- * Versione  : v0.6.3
+ * Versione  : v0.7.0
  *             NOTA BENE: Campo INDICATIVO!
  * Licenza   : MIT
  */
@@ -184,9 +184,9 @@ namespace gwc_abst
 
 
 
-    bool WndMgr::isInitialized()
+    bool WndMgr::clrIsInit()
     {
-        CCI_BOOL_CPP(isInitialized());
+        CCI_BOOL_CPP(clrIsInit());
     }
 
 
@@ -491,6 +491,28 @@ namespace gwc_abst
     bool WndMgr::clearAreaF(float x, float y, float width, float height)
     {
         CCI_BOOL_CPP(clearAreaF(x, y, width, height));
+    }
+
+
+
+    bool WndMgr::drawLine(int x1, int y1, int x2, int y2)
+    {
+        CCI_BOOL_CPP(drawLine(x1, y1, x2, y2));
+    }
+
+    bool WndMgr::drawLineF(float x1, float y1, float x2, float y2)
+    {
+        CCI_BOOL_CPP(drawLineF(x1, y1, x2, y2));
+    }
+
+    bool WndMgr::drawArc(int x1, int y1, int x2, int y2, int startAngle, int sweepAngle)
+    {
+        CCI_BOOL_CPP(drawArc(x1, y1, x2, y2, startAngle, sweepAngle));
+    }
+
+    bool WndMgr::drawArcF(float x1, float y1, float x2, float y2, float startAngle, float sweepAngle)
+    {
+        CCI_BOOL_CPP(drawArcF(x1, y1, x2, y2, startAngle, sweepAngle));
     }
 
 

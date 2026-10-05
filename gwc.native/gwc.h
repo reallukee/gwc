@@ -1,14 +1,27 @@
-//
-// :.:.:.:.:.
-// GWC.Native
-// v0.6.3
-// :.:.:.:.:.
-//
-// https://github.com/reallukee/gwc
-//
-// gwc.h
-//  Licenza MIT
-//
+/*
+ * :.:.:.:.:.:.:.:.
+ * GWC
+ * Graphical Window
+ * for Console Apps
+ * :.:.:.:.:.:.:.:.
+ *
+ * GWC Native
+ *
+ * A Graphics Library
+ *
+ * https://github.com/reallukee/gwc
+ *
+ * Nome file : gwc.h
+ *
+ * Titolo    : GWC
+ * Sommario  : GWC
+ *
+ * Autore    : Luca Pollicino
+ *             (https://github.com/reallukee)
+ * Versione  : v0.7.0
+ *             NOTA BENE: Campo INDICATIVO!
+ * Licenza   : MIT
+ */
 
 #pragma once
 
@@ -25,23 +38,23 @@
 // Questo è l'header dell'API C di GWC.
 //
 // Versione API attesa:
-//  [0.6.3]
+//  [0.7.0]
 // Versione MINIMA API attesa:
-//  [0.6.3]
+//  [0.7.0]
 //
 // Assicurati di utilizzare versioni compatibili
 // dei binari e dei file di intestazione.
 //
 // GWC.Native richiede:
 //  GWC:
-//   [0.6.3]
+//   [0.7.0]
 //
 
-#define GWC_VERSION_INCLUDE              63
-#define GWC_MIN_VERSION_INCLUDE          63
+#define GWC_VERSION_INCLUDE              70
+#define GWC_MIN_VERSION_INCLUDE          70
 
-#define GWC_FRIENDLY_VERSION_INCLUDE     "0.6.3"
-#define GWC_FRIENDLY_MIN_VERSION_INCLUDE "0.6.3"
+#define GWC_FRIENDLY_VERSION_INCLUDE     "0.7.0"
+#define GWC_FRIENDLY_MIN_VERSION_INCLUDE "0.7.0"
 
 #include "types.h"
 
@@ -51,8 +64,8 @@
 #include "CANVAS.h"
 #include "WINDOW.h"
 
-GWC_C_EXTERN GWC_C_DLL const int  GWC_VERSION;
-GWC_C_EXTERN GWC_C_DLL const int  GWC_MIN_VERSION;
+GWC_C_EXTERN GWC_C_DLL const long GWC_VERSION;
+GWC_C_EXTERN GWC_C_DLL const long GWC_MIN_VERSION;
 
 GWC_C_EXTERN GWC_C_DLL const char GWC_FRIENDLY_VERSION[];
 GWC_C_EXTERN GWC_C_DLL const char GWC_FRIENDLY_MIN_VERSION[];

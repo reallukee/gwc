@@ -18,7 +18,7 @@
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
- * Versione  : v0.6.3
+ * Versione  : v0.7.0
  *             NOTA BENE: Campo INDICATIVO!
  * Licenza   : MIT
  */
@@ -179,9 +179,9 @@ void wndmgr_free()
 
 
 
-bool wndmgr_isInitialized()
+bool wndmgr_clrIsInit()
 {
-    CCI_BOOL_C(window_isInitialized(ITEM));
+    CCI_BOOL_C(window_clrIsInit(ITEM));
 }
 
 
@@ -486,6 +486,28 @@ bool wndmgr_clearF()
 bool wndmgr_clearAreaF(float x, float y, float width, float height)
 {
     CCI_BOOL_C(window_clearAreaF(ITEM, x, y, width, height));
+}
+
+
+
+bool wndmgr_drawLine(int x1, int y1, int x2, int y2)
+{
+    CCI_BOOL_C(wndmgr_drawLine(x1, y1, x2, y2));
+}
+
+bool wndmgr_drawLineF(float x1, float y1, float x2, float y2)
+{
+    CCI_BOOL_C(wndmgr_drawLineF(x1, y1, x2, y2));
+}
+
+bool wndmgr_drawArc(int x1, int y1, int x2, int y2, int startAngle, int sweepAngle)
+{
+    CCI_BOOL_C(wndmgr_drawArc(x1, y1, x2, y2, startAngle, sweepAngle));
+}
+
+bool wndmgr_drawArcF(float x1, float y1, float x2, float y2, float startAngle, float sweepAngle)
+{
+    CCI_BOOL_C(wndmgr_drawArcF(x1, y1, x2, y2, startAngle, sweepAngle));
 }
 
 

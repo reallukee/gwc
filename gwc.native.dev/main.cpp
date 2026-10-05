@@ -1,14 +1,27 @@
-//
-// :.:.:.:.:.
-// GWC.Native
-// v0.6.1
-// :.:.:.:.:.
-//
-// https://github.com/reallukee/gwc
-//
-// main.cpp
-//  Licenza MIT
-//
+/*
+ * :.:.:.:.:.:.:.:.
+ * GWC
+ * Graphical Window
+ * for Console Apps
+ * :.:.:.:.:.:.:.:.
+ *
+ * GWC Native
+ *
+ * A Graphics Library
+ *
+ * https://github.com/reallukee/gwc
+ *
+ * Nome file : main.cpp
+ *
+ * Titolo    : MAIN
+ * Sommario  : Main
+ *
+ * Autore    : Luca Pollicino
+ *             (https://github.com/reallukee)
+ * Versione  : v0.7.0
+ *             NOTA BENE: Campo INDICATIVO!
+ * Licenza   : MIT
+ */
 
 #include <gwc.hpp>
 
@@ -27,7 +40,7 @@ int main(int argc, const char* argv[])
 
     window->open();
 
-    if (!window->isInitialized())
+    if (!window->clrIsInit())
     {
         delete window;
 
@@ -96,7 +109,8 @@ float cvb = 1.6f;
 
 void render(Canvas* canvas, Window* window)
 {
-    canvas->clear(gColor(255, 0, 0, 0));
+    canvas->setBackColor(gColor(255, 0, 0, 0));
+    canvas->clear();
 
     cr += cvr;
     cg += cvg;
@@ -128,7 +142,8 @@ void render(Canvas* canvas, Window* window)
 
     canvas->render();
 
-    window->clear(gColor(255, 0, 0, 0));
+    window->setBackColor(gColor(255, 0, 0, 0));
+    window->clear();
 
     window->drawCanvas(x, y, canvas);
 }
@@ -137,7 +152,7 @@ int loop(Window* window)
 {
     Canvas* canvas = new Canvas(r * 2, r * 2);
 
-    if (!canvas->isInitialized())
+    if (!canvas->clrIsInit())
     {
         delete canvas;
 

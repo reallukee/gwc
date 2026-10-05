@@ -18,7 +18,7 @@
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
- * Versione  : v0.6.3
+ * Versione  : v0.7.0
  *             NOTA BENE: Campo INDICATIVO!
  * Licenza   : MIT
  */
@@ -177,9 +177,9 @@ void srimgr_free()
 
 
 
-bool srimgr_isInitialized()
+bool srimgr_clrIsInit()
 {
-    CCI_BOOL_C(sprite_isInitialized(ITEM));
+    CCI_BOOL_C(sprite_clrIsInit(ITEM));
 }
 
 
@@ -263,6 +263,28 @@ bool srimgr_clearF()
 bool srimgr_clearAreaF(float x, float y, float width, float height)
 {
     CCI_BOOL_C(sprite_clearAreaF(ITEM, x, y, width, height));
+}
+
+
+
+bool srimgr_drawLine(int x1, int y1, int x2, int y2)
+{
+    CCI_BOOL_C(srimgr_drawLine(x1, y1, x2, y2));
+}
+
+bool srimgr_drawLineF(float x1, float y1, float x2, float y2)
+{
+    CCI_BOOL_C(srimgr_drawLineF(x1, y1, x2, y2));
+}
+
+bool srimgr_drawArc(int x1, int y1, int x2, int y2, int startAngle, int sweepAngle)
+{
+    CCI_BOOL_C(srimgr_drawArc(x1, y1, x2, y2, startAngle, sweepAngle));
+}
+
+bool srimgr_drawArcF(float x1, float y1, float x2, float y2, float startAngle, float sweepAngle)
+{
+    CCI_BOOL_C(srimgr_drawArcF(x1, y1, x2, y2, startAngle, sweepAngle));
 }
 
 
