@@ -9,12 +9,14 @@
 🖼️ A C#, C++ and C graphics library written in C#, C++ and C
 
 > [!NOTE]
-> GWC 0.6.3 OUT NOW 🥳!
+> GWC 0.7.0 OUT NOW 🥳!
 >
-> [📦 Release!](https://github.com/reallukee/gwc/releases/tag/v0.6.3)
+> [📦 Release!](https://github.com/reallukee/gwc/releases/tag/v0.7.0)
 
-> [!NOTE]
-> GWC 0.7.0 IS COMING 👀...
+> [!DANGER]
+> GWC 0.8.0
+>
+> .NET FX ➡️ .NET Core
 
 <div align="center">
 
@@ -117,7 +119,7 @@ int main(int argc, const char* argv[])
 
     window_open(window);
 
-    if (!window_isInitialized(window))
+    if (!window_clrIsInit(window))
     {
         window_delete(window);
 
@@ -179,7 +181,7 @@ int main(int argc, const char* argv[])
 
     wndmgr_open();
 
-    if (!wndmgr_isInitialized())
+    if (!wndmgr_clrIsInit())
     {
         render_shutdown();
         wndmgr_shutdown();
@@ -240,7 +242,7 @@ int main(int argc, const char* argv[])
 
     window->open();
 
-    if (!window->isInitialized())
+    if (!window->clrIsInit())
     {
         delete window;
 
@@ -306,7 +308,7 @@ int main(int argc, const char* argv[])
 
     WndMgr::open();
 
-    if (!WndMgr::isInitialized())
+    if (!WndMgr::clrIsInit())
     {
         Render::shutdown();
         WndMgr::shutdown();
