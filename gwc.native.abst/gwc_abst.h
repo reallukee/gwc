@@ -18,7 +18,7 @@
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
- * Versione  : v0.7.0
+ * Versione  : v0.8.0
  *             NOTA BENE: Campo INDICATIVO!
  * Licenza   : MIT
  */
@@ -38,25 +38,25 @@
 // Questo è l'header dell'API C di GWC Abst.
 //
 // Versione API attesa:
-//  [0.7.0]
+//  [0.8.0]
 // Versione MINIMA API attesa:
-//  [0.7.0]
+//  [0.8.0]
 //
 // Assicurati di utilizzare versioni compatibili
 // dei binari e dei file di intestazione.
 //
 // GWC.Native.Abst richiede:
 //  GWC.Native:
-//   [0.7.0]
+//   [0.8.0]
 //  GWC:
-//   [0.7.0]
+//   [0.8.0]
 //
 
-#define GWC_ABST_VERSION_INCLUDE              70
-#define GWC_ABST_MIN_VERSION_INCLUDE          70
+#define GWC_ABST_VERSION_INCLUDE              80
+#define GWC_ABST_MIN_VERSION_INCLUDE          80
 
-#define GWC_ABST_FRIENDLY_VERSION_INCLUDE     "0.7.0"
-#define GWC_ABST_FRIENDLY_MIN_VERSION_INCLUDE "0.7.0"
+#define GWC_ABST_FRIENDLY_VERSION_INCLUDE     "0.8.0"
+#define GWC_ABST_FRIENDLY_MIN_VERSION_INCLUDE "0.8.0"
 
 #include "header.h"
 

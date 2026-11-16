@@ -29,7 +29,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>18.0</VCProjectVersion>
     <ProjectGuid>{4D8F8825-2448-16D1-05BD-EBE07DDD9312}</ProjectGuid>
-    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <TargetFramework>net11.0</TargetFramework>
     <Keyword>ManagedCProj</Keyword>
     <RootNamespace>Reallukee.GWC</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
@@ -39,42 +39,42 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v145</PlatformToolset>
-    <CLRSupport>true</CLRSupport>
+    <CLRSupport>false</CLRSupport>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v145</PlatformToolset>
-    <CLRSupport>true</CLRSupport>
+    <CLRSupport>false</CLRSupport>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v145</PlatformToolset>
-    <CLRSupport>true</CLRSupport>
+    <CLRSupport>false</CLRSupport>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v145</PlatformToolset>
-    <CLRSupport>true</CLRSupport>
+    <CLRSupport>false</CLRSupport>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v145</PlatformToolset>
-    <CLRSupport>true</CLRSupport>
+    <CLRSupport>false</CLRSupport>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v145</PlatformToolset>
-    <CLRSupport>true</CLRSupport>
+    <CLRSupport>false</CLRSupport>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -154,7 +154,7 @@
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\gwc.native-d-$(PlatformTarget).lib;gdi32.lib;gdiplus.lib</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\gwc.native-d-$(PlatformTarget).lib;$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\gwc.native.abst-d-$(PlatformTarget).lib</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -169,7 +169,7 @@
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\gwc.native-$(PlatformTarget).lib;gdi32.lib;gdiplus.lib</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\gwc.native-$(PlatformTarget).lib;$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\gwc.native.abst-$(PlatformTarget).lib</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -184,7 +184,7 @@
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\gwc.native-d-$(PlatformTarget).lib;gdi32.lib;gdiplus.lib</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\gwc.native-d-$(PlatformTarget).lib;$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\gwc.native.abst-d-$(PlatformTarget).lib</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -199,7 +199,7 @@
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\gwc.native-$(PlatformTarget).lib;gdi32.lib;gdiplus.lib</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\gwc.native-$(PlatformTarget).lib;$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\gwc.native.abst-$(PlatformTarget).lib</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -214,7 +214,7 @@
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\gwc.native-d-$(PlatformTarget).lib;gdi32.lib;gdiplus.lib</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\gwc.native-d-$(PlatformTarget).lib;$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\gwc.native.abst-d-$(PlatformTarget).lib</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -229,16 +229,12 @@
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\gwc.native-$(PlatformTarget).lib;gdi32.lib;gdiplus.lib</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\gwc.native-$(PlatformTarget).lib;$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\gwc.native.abst-$(PlatformTarget).lib</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
+    <FrameworkReference Include="Microsoft.WindowsDesktop.App.WindowsForms" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\gwc\gwc.csproj">
@@ -248,42 +244,10 @@
   <ItemGroup>
     <ClInclude Include="AssemblyInfo.clr.hpp" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="..\gwc.native.abst\export.clr.hpp" />
-    <ClInclude Include="..\gwc.native.abst\header.clr.hpp" />
-    <ClInclude Include="..\gwc.native.abst\gwc_abst.clr.hpp" />
-    <ClInclude Include="..\gwc.native.abst\export.hpp" />
-    <ClInclude Include="..\gwc.native.abst\header.hpp" />
-    <ClInclude Include="..\gwc.native.abst\gwc_abst.hpp" />
-    <ClInclude Include="..\gwc.native.abst\types.hpp" />
-    <ClInclude Include="..\gwc.native.abst\macros.hpp" />
-    <ClInclude Include="..\gwc.native.abst\SriMgrHelper.hpp" />
-    <ClInclude Include="..\gwc.native.abst\SriMgr.hpp" />
-    <ClInclude Include="..\gwc.native.abst\CnvMgrHelper.hpp" />
-    <ClInclude Include="..\gwc.native.abst\CnvMgr.hpp" />
-    <ClInclude Include="..\gwc.native.abst\WndMgr.hpp" />
-    <ClInclude Include="..\gwc.native.abst\export.h" />
-    <ClInclude Include="..\gwc.native.abst\header.h" />
-    <ClInclude Include="..\gwc.native.abst\gwc_abst.h" />
-    <ClInclude Include="..\gwc.native.abst\types.h" />
-    <ClInclude Include="..\gwc.native.abst\macros.h" />
-    <ClInclude Include="..\gwc.native.abst\SRIMGRHELPER.h" />
-    <ClInclude Include="..\gwc.native.abst\SRIMGR.h" />
-    <ClInclude Include="..\gwc.native.abst\CNVMGRHELPER.h" />
-    <ClInclude Include="..\gwc.native.abst\CNVMGR.h" />
-    <ClInclude Include="..\gwc.native.abst\WNDMGR.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.clr.cpp" />
-    <ClCompile Include="..\gwc.native.abst\gwc_abst.clr.cpp" />
-    <ClCompile Include="..\gwc.native.abst\gwc_abst.cpp" />
-    <ClCompile Include="..\gwc.native.abst\SriMgr.cpp" />
-    <ClCompile Include="..\gwc.native.abst\CnvMgr.cpp" />
-    <ClCompile Include="..\gwc.native.abst\WndMgr.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="..\gwc.native.abst\gwc_abst.c" />
-    <ClCompile Include="..\gwc.native.abst\SRIMGR.c" />
-    <ClCompile Include="..\gwc.native.abst\CNVMGR.c" />
-    <ClCompile Include="..\gwc.native.abst\WNDMGR.c" />
     <ClCompile Include="main.c" />
   </ItemGroup>
   <ItemGroup>

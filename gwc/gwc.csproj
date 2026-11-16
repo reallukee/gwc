@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFramework>net481</TargetFramework>
+    <TargetFramework>net11.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
     <UseWPF>true</UseWPF>
     <AssemblyName>gwc</AssemblyName>
@@ -20,7 +20,7 @@
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <PackageId>GWC</PackageId>
     <Title>GWC</Title>
-    <Version>0.7.0</Version>
+    <Version>0.8.0</Version>
     <Authors>Luca Pollicino</Authors>
     <Company>Luca Pollicino</Company>
     <Product>GWC</Product>
@@ -32,7 +32,7 @@
     <RepositoryUrl>https://github.com/reallukee/gwc</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>c;cpp;c-sharp;desktop;library</PackageTags>
-    <PackageReleaseNotes>GWC 0.7.0</PackageReleaseNotes>
+    <PackageReleaseNotes>GWC 0.8.0</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
   </PropertyGroup>

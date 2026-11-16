@@ -1,7 +1,7 @@
 //
 // :.:.:.:.:.
 // GWC.Native
-// v0.1.0
+// v0.8.0
 // :.:.:.:.:.
 //
 // https://github.com/reallukee/gwc
@@ -17,7 +17,7 @@
 
 #ifdef __cplusplus_cli
 
-#include <msclr\appdomain.h>
+// #include <msclr\appdomain.h>
 #include <msclr\auto_gcroot.h>
 #include <msclr\auto_handle.h>
 #include <msclr\lock.h>

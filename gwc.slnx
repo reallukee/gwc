@@ -20,8 +20,11 @@
       <Platform Solution="*|x64" Project="x64" />
       <Platform Solution="*|x86" Project="x86" />
     </Project>
-    <Project Path="gwc.native.dev/gwc.native.dev.vcxproj" Id="3f011596-9c5f-2265-c9bd-9fd536c1d6e6" />
-    <Project Path="gwc.native.abst.dev/gwc.native.abst.dev.vcxproj" Id="4d8f8825-2448-16d1-05bd-ebe07ddd9312">
+    <Project Path="gwc.native.dev/gwc.native.dev.vcxproj">
+      <BuildDependency Project="gwc.native/gwc.native.vcxproj" />
+    </Project>
+    <Project Path="gwc.native.abst.dev/gwc.native.abst.dev.vcxproj">
+      <BuildDependency Project="gwc.native.abst/gwc.native.abst.vcxproj" />
       <BuildDependency Project="gwc.native/gwc.native.vcxproj" />
     </Project>
   </Folder>
@@ -35,8 +38,8 @@
     <Platform Solution="*|x64" Project="x64" />
     <Platform Solution="*|x86" Project="x86" />
   </Project>
-  <Project Path="gwc.native/gwc.native.vcxproj" Id="d6d18c01-745e-a3e3-8ca7-7aafaf9fbcfa" />
-  <Project Path="gwc.native.abst/gwc.native.abst.vcxproj" Id="8511cc65-fcba-a88a-46ce-8e8811794f2f">
+  <Project Path="gwc.native/gwc.native.vcxproj" />
+  <Project Path="gwc.native.abst/gwc.native.abst.vcxproj">
     <BuildDependency Project="gwc.native/gwc.native.vcxproj" />
   </Project>
 </Solution>

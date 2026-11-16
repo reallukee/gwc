@@ -18,7 +18,7 @@
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
- * Versione  : v0.7.0
+ * Versione  : v0.8.0
  *             NOTA BENE: Campo INDICATIVO!
  * Licenza   : MIT
  */
@@ -29,11 +29,11 @@
 
 namespace gwc
 {
-    const long GWC_VERSION                = 70;
-    const long GWC_MIN_VERSION            = 70;
+    const long GWC_VERSION                = 80;
+    const long GWC_MIN_VERSION            = 80;
 
-    const char GWC_FRIENDLY_VERSION[]     = "0.7.0";
-    const char GWC_FRIENDLY_MIN_VERSION[] = "0.7.0";
+    const char GWC_FRIENDLY_VERSION[]     = "0.8.0";
+    const char GWC_FRIENDLY_MIN_VERSION[] = "0.8.0";
 }
 
 #endif // __cplusplus

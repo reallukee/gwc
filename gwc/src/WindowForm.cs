@@ -17,7 +17,7 @@
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
- * Versione  : v0.6.3
+ * Versione  : v0.8.0
  *             NOTA BENE: Campo INDICATIVO!
  * Licenza   : MIT
  */
@@ -63,6 +63,9 @@ namespace Reallukee.GWC
             handleDestroyed = new ManualResetEventSlim(false);
         }
 
+#if NET10_0_OR_GREATER
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+#endif
         public Color FormCaptionColor
         {
             get
@@ -101,6 +104,9 @@ namespace Reallukee.GWC
             }
         }
 
+#if NET10_0_OR_GREATER
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+#endif
         public Color FormTextColor
         {
             get

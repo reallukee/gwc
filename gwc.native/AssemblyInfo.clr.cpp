@@ -18,7 +18,7 @@
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
- * Versione  : v0.7.0
+ * Versione  : v0.8.0
  *             NOTA BENE: Campo INDICATIVO!
  * Licenza   : MIT
  */
@@ -40,7 +40,7 @@
 
 [assembly:Guid("faab3f7b-a35f-4506-8080-73cabcb6ee23")];
 
-[assembly:AssemblyVersionAttribute    (L"0.7.0.0")];
-[assembly:AssemblyFileVersionAttribute(L"0.7.0.0")];
+[assembly:AssemblyVersionAttribute    (L"0.8.0.0")];
+[assembly:AssemblyFileVersionAttribute(L"0.8.0.0")];
 
 #endif // __cplusplus_cli

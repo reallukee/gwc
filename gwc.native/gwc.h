@@ -18,7 +18,7 @@
  *
  * Autore    : Luca Pollicino
  *             (https://github.com/reallukee)
- * Versione  : v0.7.0
+ * Versione  : v0.8.0
  *             NOTA BENE: Campo INDICATIVO!
  * Licenza   : MIT
  */
@@ -38,23 +38,23 @@
 // Questo è l'header dell'API C di GWC.
 //
 // Versione API attesa:
-//  [0.7.0]
+//  [0.8.0]
 // Versione MINIMA API attesa:
-//  [0.7.0]
+//  [0.8.0]
 //
 // Assicurati di utilizzare versioni compatibili
 // dei binari e dei file di intestazione.
 //
 // GWC.Native richiede:
 //  GWC:
-//   [0.7.0]
+//   [0.8.0]
 //
 
-#define GWC_VERSION_INCLUDE              70
-#define GWC_MIN_VERSION_INCLUDE          70
+#define GWC_VERSION_INCLUDE              80
+#define GWC_MIN_VERSION_INCLUDE          80
 
-#define GWC_FRIENDLY_VERSION_INCLUDE     "0.7.0"
-#define GWC_FRIENDLY_MIN_VERSION_INCLUDE "0.7.0"
+#define GWC_FRIENDLY_VERSION_INCLUDE     "0.8.0"
+#define GWC_FRIENDLY_MIN_VERSION_INCLUDE "0.8.0"
 
 #include "types.h"
 
