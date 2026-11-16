@@ -9,14 +9,9 @@
 🖼️ A C#, C++ and C graphics library written in C#, C++ and C
 
 > [!NOTE]
-> GWC 0.7.0 OUT NOW 🥳!
+> GWC 0.8.0 OUT NOW 🥳!
 >
 > [📦 Release!](https://github.com/reallukee/gwc/releases/tag/v0.7.0)
-
-> [!IMPORTANT]
-> GWC 0.8.0
->
-> .NET FX ➡️ .NET Core
 
 <div align="center">
 
@@ -354,7 +349,13 @@ int main(int argc, const char* argv[])
 
 # Utilizzo
 
-> Zzz... Zzz... Zzz...
+* .NET 11 Desktop Runtime
+* Microsoft Visual C++ v14 Redistributable
+
+## Legacy
+
+* .NET Framework 4.8.1 Runtime
+* Microsoft Visual C++ v14 Redistributable
 
 
 
@@ -372,7 +373,13 @@ int main(int argc, const char* argv[])
 
 # Compilazione
 
-> Zzz... Zzz... Zzz...
+* .NET 11 SDK
+* Visual Studio Build Tools
+
+## Legacy
+
+* .NET Framework 4.8.1 SDK
+* Visual Studio Build Tools
 
 
 
